@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Select Team Becas</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!--FONT AWESOME-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!--TYPEKIT-->
+    <script src="//use.typekit.net/nwo2lbv.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body class="index">
+    <div class="container-fluid">
+      <header class="clearfix">
+        <nav class="hidden-sm hidden-md hidden-lg navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only"></span>
+                <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="#"><img src="images/logo-sub.png" alt=""></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-mobile" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="menu"><a href="about.html">About</a></li>
+                <li class="menu"><a href="prospects.html">Prospects</a></li>
+                <li class="menu"><a href="coaches.html">Coaches</a></li>
+                <li class="menu"><a href="parents.html">Parents</a></li>
+                <li class="menu"><a href="contact.html">Contact</a></li>
+                <li class="extra">
+                  <p>
+                    <i class="fa fa-user fa-1x"></i> 
+                    <a href="" data-toggle="modal" data-target="#Login">Login</a> or <a href="" data-toggle="modal" data-target="#register">Register</a>
+                  </p>
+                  <hr>
+                  <p class="center-text">
+                    <a href="">English</a> | <a href="">Español</a>
+                  </p> 
+                </li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+
+        <div class=" hidden-xs header-top clearfix">
+          <h1 class="center block">
+            <a href="index.html">
+              <img src="images/logo-sub.png" alt=""/>
+            </a>
+          </h1>
+
+          <div class="col-xm-3 right registro">
+            <p>
+              <i class="fa fa-user fa-1x"></i> 
+              <a href="" data-toggle="modal" data-target="#Login">Login</a> or <a href="" data-toggle="modal" data-target="#register">Register</a>
+            </p>
+            <p class="center-text"><a href="">English</a> | <a href="">Español</a></p>         
+          </div>
+
+          <ul class="col-sm-12 col-md-10 col-lg-10 center block clearfix"><!--Menu-->
+            <li class="clearfix"><a class="center block" href="about.html">About Us</a></li> 
+            <li class="clearfix"><a class="center block" href="prospects.html">Prospects</a></li> 
+            <li class="clearfix"><a class="center block" href="coaches.html">Coaches</a></li> 
+            <li class="clearfix"><a class="center block" href="parents.html">Parents</a></li> 
+            <li class="clearfix"><a class="center block" href="contact.html">Contact</a></li>
+          </ul><!--Menu-->
+
+        </div>
+      </header>
+      
+      <div class="content">
+        <div class="col-xs-11 col-sm-9 col-md-8 col-lg-6 center block home">
+          <h2 class="center-text">Intro</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, odio, nihil. Aliquid culpa, consectetur possimus quibusdam sit perspiciatis eum facere commodi odio quaerat quia enim accusantium dolorem delectus nulla facilis!</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, odio, nihil. Aliquid culpa, consectetur possimus quibusdam sit perspiciatis eum facere commodi odio quaerat quia enim accusantium dolorem delectus nulla facilis!</p>
+          <button type="button" class="btn btn-info center block freeAssesment">Free assesment</button>
+        </div>
+      </div>
+
+    <!-- MODALS -->
+      <!-- LOGIN -->
+      <div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title center-text" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form">
+                <div class="input-group margin-bottom-sm">
+                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                  <input class="form-control" type="text" placeholder="Email address">
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                  <input class="form-control" type="password" placeholder="Password">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary center block">Enter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REGISTRO -->
+      <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h2 class="modal-title center-text" id="myModalLabel">Register</h2>
+            </div>
+            <div class="modal-body">
+              <form role="form">
+                <div class="form-group">
+                  <label for="coachName">Name</label>
+                  <input type="text" class="form-control" id="coachName">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
+
+                <div class="form-group clearfix">
+                  <label for="exampleInputEmail1">Select a sport</label>
+                  <div class="[ isotope-filters ]">
+                    <button data-filter=".tennis-register" type="button" class="btn btn-primary">Tennis</button>
+                    <button data-filter=".golf-register" type="button" class="btn btn-primary">Golf</button>
+                    <button data-filter=".soccer-register" type="button" class="btn btn-primary">Soccer</button>
+                    <button data-filter=".volleyball-register" type="button" class="btn btn-primary">Volleyball</button>
+                  </div><!-- isotope-filters -->
+                  <div class="[ isotope-container ]">
+                    <div class="[ golf-register ] [ isotope-item ]">
+                      <div class="form-group">
+                        <label for="average-score">Average score:</label>
+                        <select class="form-control" id="average-score">
+                          <option>under 66</option>
+                          <option>66-69</option>
+                          <option>70-73</option>
+                          <option>74-77</option>
+                          <option>78-80</option>
+                          <option>81-84</option>
+                          <option>85-88</option>
+                          <option>88-90</option>
+                        </select>                  
+                      </div>
+                    </div>
+                    <div class="[ volleyball-register ] [ isotope-item ]">
+                      <div class="form-group">
+                        <label for="volley-position">Position</label>
+                        <select class="form-control" id="volley-position">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option>
+                        </select>
+                      </div>   
+                      <div class="form-group">
+                        <label for="volley-height">Height</label>
+                        <input type="number" name="height" min="140" max="235" class="form-control" id="volley-height" placeholder="140">
+                        <p class="help-block">Height must be in centimeters. ex: 180.</p>
+                      </div>
+                    </div>
+                    <div class="[ tennis-register ] [ isotope-item ]">  
+                      <div class="form-group">
+                        <label for="volley-position">Hand</label>
+                        <select class="form-control" id="volley-position">
+                          <option>Left-handed</option>
+                          <option>Right-handed</option>
+                        </select>
+                      </div>   
+                      <div class="form-group">
+                        <label for="fmt-ranking">FMT ranking (for mexican players only)</label>
+                        <input type="number" name="ranking" class="form-control" id="fmt-ranking">
+                      </div>
+                      <div class="form-group clearfix">
+                        <label for="atp-tournament" class="col-xs-12">Have you ever played an ATP tournament?</label>
+                        <div class="radio col-xs-6 col-sm-3" id="atp-tournament">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="atp-yes" value="option1">
+                            Yes
+                          </label>
+                          <label>
+                            <input type="radio" name="optionsRadios" id="atp-no" value="option1">
+                            No
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="[ soccer-register ] [ isotope-item ]">  
+                      <div class="form-group">
+                        <label for="soccer-position">Position</label>
+                        <select class="form-control" id="soccer-position">
+                          <option>Goal keeper</option>
+                          <option>Defender</option>
+                          <option>Midfielder</option>
+                          <option>Forward</option>
+                        </select>
+                      </div>   
+                      <div class="form-group">
+                        <label for="volley-height">Height</label>
+                        <input type="number" name="height" min="140" max="235" class="form-control" id="volley-height" placeholder="140">
+                        <p class="help-block">Height must be in centimeters.</p>
+                      </div>
+                    </div>
+                  </div><!-- isotope-container -->
+              </form>
+            </div><!-- MODAL BODY-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary center block">Submit register</button>
+            </div>
+          </div>
+        </div>
+    </div><!--REGISTRO-->
+                  
+
+    </div><!--CONTAINER-FLUID-->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/functions.js"></script>
+    <script type="text/javascript">
+      correIsotope('.isotope-container', '.isotope-item', 'masonry');
+      filtrarIsotopeDefault('.isotope-container', 'none');
+      $('.isotope-filters button').on( 'click', function(e) {
+        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,580 @@
+
+
+.transition (@transition: all 0.5s ease ) {
+  -webkit-transition: @transition;
+  -moz-transition:    @transition;
+  -ms-transition:     @transition;
+  -o-transition:      @transition;
+}
+
+//ALINGMENT************
+
+.right{
+	float: right !important;
+}
+
+.left{
+	float: left !important;
+}
+
+.clear { clear:both; height:1px; margin:0; padding:0; font-size: 1px; line-height: 0; }
+
+//********************
+
+html{
+	height: 100%;
+}
+
+
+.index{
+	background: url(../images/01.jpg) no-repeat right center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+
+//CENTRAR COLUMNAS *************
+
+.block{ display: block !important; }
+.center{ margin-left: auto !important; margin-right: auto !important; float: none !important; }
+
+//******************************
+
+
+
+
+
+
+//GENERAL*******************************
+
+p{
+	font-family: @font-family-museo;
+	font-weight: 1.2em;
+}
+
+h2{
+	font-family: @font-family-fira;
+	font-weight: 800;
+
+	&.red{
+		color: @brand-success;
+	}
+}
+
+button, a{
+	.transition;
+}
+
+// a{
+// 	&:focus, &:visited{
+// 		outline: 0:
+// 	}
+// }
+
+.btn-primary.active{
+	background-color: @brand-info;
+	border-color: @brand-info;
+}
+
+.margin-bottom{
+	margin-bottom: 30px;
+}
+
+.texto{
+	font-family: @font-family-sans-serif;
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+.center-text{
+	text-align: center;
+}
+
+.btn{
+	border-radius: 0;
+	padding: 10px 35px;
+	font-family: @font-family-museo;
+}
+
+.container-fluid{
+	padding: 0;
+	background-repeat: repeat;
+	height: 100%;
+}
+
+.jumbotron{
+	background-image: url('../images/02.jpg');
+	background-position: center;
+	background-size: cover;
+	position: relative;
+
+	.container{
+		width: 100%;
+		height: 100%;
+		padding: 30px 10px;
+		background-color: rgba(0, 0, 0, 0.5);
+		position: relative;
+		bottom: 0;
+		color: @white;
+
+		p{ font-size: 1.2em;}
+
+		button{
+			font-size: 1.2em;
+		}
+	}
+}
+
+#register{	
+	form{
+		.form-group{
+			.isotope-filters{
+				margin-bottom: 2em;
+				button{
+					padding: 10px 0;
+					width: 45%;
+					margin: 5px;
+					&:hover, &:focus, &:active{
+						background-color: @brand-info;
+						border-color: @brand-info;
+						outline: none;
+					}
+				}
+			}
+			.isotope-container div{
+				width: 100%;
+			}
+		}
+	}
+}
+
+//*******************************************
+
+ //FORMS*******************
+
+ .input-group{
+ 	margin-bottom: 15px;
+ }
+
+ .modal-body{
+ 	span{ min-width: 40px;}
+ }
+
+//NAV*******
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+	margin: 0;
+}
+
+.navbar-nav{
+	margin: 0 -15px;
+}
+
+.container-fluid>.navbar-header{
+	margin: 0;
+}
+
+.navbar-default{
+	margin: 0;
+	background-color: @brand-primary;
+	border-bottom: solid 2px @white;
+}
+
+.navbar-mobile{
+	background: rgba(0, 21, 47, 0.9);
+	position: absolute;
+	width: 100%;
+	z-index: 500;
+	text-align: center;
+	color: #fff;
+	font-family: @font-family-museo;
+	font-size: 1.2em;
+	letter-spacing: 1px;
+
+	ul{
+		
+		li{
+			&.menu{
+
+				a{
+				
+				color: #fff !important;
+
+				}
+
+				&:hover, &.activo{
+					background-color: @brand-success !important;
+				}
+				
+			}
+
+			&.extra{
+
+				border-top: solid 1px darken(@brand-success, 25%);
+				background-color: darken(@brand-success, 15%);
+
+				p{
+					padding: 10px 0;
+					margin: 0;
+
+					a {	
+						color: @white;
+						text-decoration: none;			
+						&:hover{
+							color: rgba(255, 255, 255, 0.5);
+						}
+					}	
+				}
+
+				hr{
+					margin: 0;
+					border-top: solid 1px darken(@brand-success, 25%);
+				}
+			}
+		}
+	}
+}
+
+.navbar-header{
+	background-color: @brand-primary;
+	height: 60px;
+}
+
+.navbar{
+	border: none;
+}
+
+.navbar-brand{
+	margin: 0;
+	padding: 15px 5px;
+
+	img{
+		height: 100%;
+		margin-left: 15px;
+	}
+}
+
+.navbar-toggle{
+	border: none;
+
+	i{
+		font-size: 30px;
+		color: #fff;
+	}
+}
+
+
+.header-top{
+
+	background-color: @brand-primary;
+
+ 	h1{
+ 		top: 75px;
+ 		left: 45%;
+ 		right: 45%;
+ 		width: 7%;
+ 		padding: 0;
+ 		z-index: 0;
+
+		img{
+			width: 100%;
+		}
+ 	}
+
+	nav {
+
+		padding: 40px 5%;
+
+		height: 10%;
+
+		p{
+			color: @gray;
+			text-align: center;
+			font-size: 1.5em;
+			margin: 0;
+		}		
+	}
+
+	ul{	
+		padding: 20px 5% 0 5%;
+		height: 10%;
+
+		li{
+			width: 20%;
+			list-style: none;
+			display: inline-block;
+			padding: 0 25px;
+			float: left;
+
+			a{
+				float: left;
+				padding: 15px 0;
+				font-family: @font-family-fira;
+				font-size: 1.2em;
+				color: @white;
+				text-align: center;
+				text-decoration: none;
+				letter-spacing: 2px;
+				border-top: solid 2px @brand-primary;
+
+				&:hover, &.active{
+					color: @white;
+					border-top: solid 2px @brand-success;
+				}
+			}
+		}
+	}
+
+	.registro{ 
+		position: absolute;
+		z-index: 9999;
+		right: 30px;
+		top: 30px;
+
+		p, a{
+			color: @white;
+		}
+	}
+}
+
+//***********************************************
+
+
+
+
+
+
+
+
+//CONTENT****************************************
+
+
+
+	//HOME =========================
+	
+	.home{
+
+		h2{
+			padding-bottom: 15px;
+			margin-bottom: 10px;
+			font-weight: bold;
+			border-bottom: solid 2px @white;
+			color: @white;
+		}
+
+		p{
+			margin-bottom: 30px;
+			padding: 0 15px;
+			font-size: 1.2em;
+			color: @white;
+
+		}
+
+		.freeAssesment{
+			font-size: 1.5em;
+			font-weight: 300;
+			letter-spacing: 1px;
+			font-family: @font-family-museo; 
+		}
+	}
+
+	//============================================
+
+
+
+	//PROSPECTS***********************************
+
+	.prospects{
+
+		
+
+		button{
+
+			padding: 5px 8px;
+			min-height: 38px;
+			font-size: 1.2em;
+			margin: 0 1%;
+			float: left;
+			cursor: pointer;
+			
+			&.sport{
+
+				border: none;
+				width: 18%;
+
+				img{
+					max-width: 25px;
+					vertical-align: middle;
+				}
+
+				&:hover, &:focus{
+					background-color: @brand-info;
+					.transition;
+					outline: 0;
+				}
+			}
+
+			&.gender{
+				background-color: @white;
+				border: solid 1px @brand-primary;
+				color: @brand-primary;
+				float: left;
+				width: 30%;
+				margin: 0 1.66%;
+
+				&:hover, &:focus{
+					border-color: @brand-info;
+					color: @brand-info;
+					.transition;
+					outline: 0;
+				}
+			}
+		}
+	}
+
+
+	.player{
+		
+		padding: 10px;
+
+		img{
+			width: 100%;
+		}
+
+		.info{
+			padding: 5px;
+			border-bottom: solid 1px @brand-primary;
+
+			h4{
+				margin-top: 0;
+				margin-bottom: 5px;
+			}
+
+			button{
+				border: solid 1px @brand-primary;
+				padding: 5px 10px;
+
+				&:hover{
+					background-color: @brand-info;
+					border-color: @brand-info;
+				}
+			}
+		}
+	}
+
+//*************************************************
+
+
+
+
+
+//PROFILE*******************************************
+
+	.profile{
+		hr{
+			border-color: @gray-light;
+			margin: 10px 0;
+		}
+
+		img{
+			width: 100%;
+			border: solid 4px @gray-light;
+		}
+
+		h2{
+			padding-bottom: 15px;
+			border-bottom: solid 2px @brand-info;
+		}
+
+		.student-info{
+			p{
+				font-size: 1.2em;
+			}
+
+			a{
+				text-decoration: none;
+
+				&:hover{
+					color: @brand-info;
+				}
+			}
+
+			button{
+
+				&:hover{
+					background-color: @brand-info;
+					border-color: @brand-info;
+				}
+			i{
+				vertical-align: middle;
+				font-size: 1.5em;
+			}
+		}
+		}
+	}
+
+	#student-video{
+		.modal-header{
+			button{
+
+			}
+		}
+	}
+
+
+
+//***************************************************
+
+//COACHES***************************
+
+
+	.tennis-register, .soccer-register, .volleyball-register, .golf-register{
+		//display: none;
+		padding-bottom: 2em;
+	}
+
+
+
+
+
+//*********************************
+
+
+
+
+//CONTACTO**************************
+
+	.contact{
+		a{
+			&:hover{
+				color: @brand-info;
+				text-decoration: none;
+			}
+		}
+
+		button{
+			&:hover{
+				background-color: @brand-info;
+				border-color: @brand-info;
+			}
+		}
+	}
+
+
+
+//**********************************
+
+
+
+
+
+
+
+//*****************************************
+
+
+
