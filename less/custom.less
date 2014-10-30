@@ -273,12 +273,9 @@ button, a{
 	background-color: @brand-primary;
 
  	h1{
- 		top: 75px;
- 		left: 45%;
- 		right: 45%;
- 		width: 7%;
  		padding: 0;
  		z-index: 0;
+ 		margin-top:10px;
 
 		img{
 			width: 100%;
@@ -358,6 +355,10 @@ button, a{
 	
 	.home{
 
+		a{
+			color: @brand-info;
+		}
+
 		h2{
 			padding-bottom: 15px;
 			margin-bottom: 10px;
@@ -370,7 +371,7 @@ button, a{
 			margin-bottom: 30px;
 			padding: 0 15px;
 			font-size: 1.2em;
-			color: @white;
+			color: @gray-darker;
 
 		}
 
@@ -457,6 +458,11 @@ button, a{
 			button{
 				border: solid 1px @brand-primary;
 				padding: 5px 10px;
+
+				a{
+					color: @white;
+					text-decoration: none;
+				}
 
 				&:hover{
 					background-color: @brand-info;
@@ -568,7 +574,18 @@ button, a{
 
 //**********************************
 
-
+.isotope-filters{
+	button{
+		padding: 10px 0;
+		width: 45%;
+		margin: 5px;
+		&:hover, &:focus, &:active{
+			background-color: @brand-info;
+			border-color: @brand-info;
+			outline: none;
+		}
+	}
+}
 
 
 
@@ -578,3 +595,251 @@ button, a{
 
 
 
+/* Common style */
+.grid{
+	height: 480px;
+}
+
+.grid figure {
+	padding: 0;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	overflow: hidden;
+	background: #000;
+	text-align: center;
+	cursor: pointer;
+	height: 100%;
+	width: 25%;
+	border-right: solid 5px #fff;
+	background-repeat: no-repeat;
+	background-size: 180%;
+	background-position: center;
+}
+
+.grid figure img {
+	position: relative;
+	display: block;
+	opacity: 0.8;
+	width: 100%;
+}
+
+.grid figure figcaption {
+	padding: 0;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.25em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+	pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure a {
+	position: absolute;
+	bottom: 15%;
+	left: 0;
+	width: 100%;
+}
+
+/* Anchor will cover the whole item by default */
+/* For some effects it will show as a button */
+.grid figure a {
+	z-index: 1000;
+	text-indent: 200%;
+	white-space: nowrap;
+	font-size: 0;
+	opacity: 0;
+}
+
+.grid figure h2 {
+	word-spacing: -0.15em;
+	font-weight: 300;
+	font-family: @font-family-gothic;
+}
+
+.grid figure h2 span {
+	font-weight: 800;
+	font-family: @font-family-gothic;
+}
+
+.grid figure h2,
+.grid figure p {
+	margin: 0;
+	color: #fff;
+	-webkit-transition: all .5s ease-in-out;
+	text-shadow:1px 1px 1px #333; 
+}
+
+.grid figure p {
+	letter-spacing: 1px;
+	font-size: 68.5%;
+}
+
+
+
+/*---------------*/
+/***** Chico *****/
+/*---------------*/
+
+figure.effect-chico {
+	&:last-child{
+		border-right: none;
+	}
+
+	&.volley{
+		background-image: url(../images/volley-home.jpg);
+	}
+	&.soccer{
+		background-image: url(../images/soccer-home.jpg);
+	}
+	&.tennis{
+		background-image: url(../images/tennis-home.jpg);
+	}
+	&.golf{
+		background-image: url(../images/golf-home.jpg);
+	}
+	-webkit-transition: all .2s ease-in-out;
+	background-position: center top;
+}
+
+figure.effect-chico:hover{
+	
+
+	&.volley{
+		background-image: url(../images/volley-home-2.jpg);
+	}
+	&.soccer{
+		background-image: url(../images/soccer-home-2.jpg);
+	}
+	&.tennis{
+		background-image: url(../images/tennis-home-2.jpg);
+	}
+	&.golf{
+		background-image: url(../images/golf-home-2.jpg);
+	}
+	background-size: 200%;
+	background-position: top;
+}
+
+figure.effect-chico figcaption {
+	padding: 3em;
+}
+
+figure.effect-chico figcaption::before {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	bottom: 30px;
+	left: 30px;
+	border: 1px solid @brand-primary;
+	content: '';
+	
+}
+
+figure.effect-chico figcaption::before,
+figure.effect-chico p {
+	opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.effect-chico h2 {
+	padding: 10% 0 20px 0;
+}
+
+figure.effect-chico p, figure.effect-chico h2 {
+	margin: 0 auto;
+	max-width: 200px;
+	-webkit-transform: scale(1.5);
+	transform: scale(1.5);
+	color: #fff;
+	-webkit-transition: all .5s ease-in-out;
+}
+
+figure.effect-chico:hover figcaption::before,
+figure.effect-chico:hover p {
+	opacity: 1;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+figure.effect-chico:hover h2{
+	color: @brand-primary;
+	font-size: 1.1em;
+}
+figure.effect-chico:hover p{
+	color: @gray-darker;
+}
+
+
+
+
+
+/*---------------*/
+/***** Honey *****/
+/*---------------*/
+
+figure.effect-honey {
+	background: #4a3753;
+}
+
+figure.effect-honey img {
+	opacity: 0.9;
+	-webkit-transition: opacity 0.35s;
+	transition: opacity 0.35s;
+}
+
+figure.effect-honey:hover img {
+	opacity: 0.5;
+}
+
+figure.effect-honey figcaption::before {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 10px;
+	background: #fff;
+	content: '';
+	-webkit-transform: translate3d(0,10px,0);
+	transform: translate3d(0,10px,0);
+}
+
+figure.effect-honey h2 {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 1em 1.5em;
+	width: 100%;
+	text-align: left;
+	-webkit-transform: translate3d(0,-30px,0);
+	transform: translate3d(0,-30px,0);
+}
+
+figure.effect-honey h2 i {
+	font-style: normal;
+	opacity: 0;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: translate3d(0,-30px,0);
+	transform: translate3d(0,-30px,0);
+}
+
+figure.effect-honey figcaption::before,
+figure.effect-honey h2 {
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+}
+
+figure.effect-honey:hover figcaption::before,
+figure.effect-honey:hover h2,
+figure.effect-honey:hover h2 i {
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
