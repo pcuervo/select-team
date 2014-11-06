@@ -75,8 +75,8 @@ function reorder(este, contenedor){
 
 
 function setAlturaWindowMenosHeader(element){
-  var alturaHeader = $('header').height();
-  var alturaWindow = $(window).height();
+  var alturaHeader = $('header').outerHeight();
+  var alturaWindow = $(window).outerHeight();
   var alturaTotal = alturaWindow - alturaHeader;
   $(element).height(alturaTotal); 
 }
@@ -86,7 +86,15 @@ function setAlturaWindow(element){
   $(element).height(alturaWindow); 
 }
 
-
+function toggleClassCards(ancho){
+  if( ancho > 767 ){
+    console.log('if');
+    $('.cards').removeClass('cards-xs');
+  } else {
+      console.log('else');
+      $('.cards').addClass('cards-xs');
+  }
+}
 
 
 

@@ -70,8 +70,6 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 		this.questionsCount = this.questions.length;
 		// show first question
 		classie.addClass( this.questions[0], 'current' );
-		console.log( 's' );
-		console.log( this.questions[0] );
 
 		// next question control
 		this.ctrlNext = this.el.querySelector( 'button.next' );

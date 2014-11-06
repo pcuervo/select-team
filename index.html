@@ -97,7 +97,7 @@
                     </figcaption>
                 </figure>
             </div>
-            <div class="[ cards cards-prospect ] [ is-opened ]">
+            <div class="[ cards cards-prospect cards-xs ] [ is-opened ]">
                 <div class="card">
                     <form id="theForm" class="[ simform ] [ center block ]" autocomplete="off">
                         <div class="simform-inner">
@@ -242,7 +242,10 @@
     <script src="js/plugins.js"></script>
     <script src="js/functions.js"></script>
     <script type="text/javascript">
+        var ancho = $(window).outerWidth();
+        toggleClassCards(ancho);
         setAlturaWindowMenosHeader('figure');
+        setAlturaWindowMenosHeader('.cards');
         var theForm = document.getElementById( 'theForm' );
         new stepsForm( theForm, {
             onSubmit : function( form ) {
@@ -264,7 +267,10 @@
 
         //Responsive
         $(window).resize(function(){
+            var ancho = $(window).outerWidth();
+            toggleClassCards(ancho);
             setAlturaWindowMenosHeader('figure');
+            setAlturaWindowMenosHeader('.cards');
         });
           //correIsotope('.isotope-container', '.isotope-item', 'masonry');
           // filtrarIsotopeDefault('.isotope-container', 'none');
