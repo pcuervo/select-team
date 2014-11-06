@@ -152,7 +152,8 @@ function siguienteCardCoach(element){
 }
 
 function urlAbre(){
-  if( window.location.search.search('prosprectOpen') ){
+  var url = location.pathname;
+  if (window.location.href.indexOf("prosprectOpen") > -1)  {
       console.log('url');
       $('.grid').css({
         'left':'50%',
