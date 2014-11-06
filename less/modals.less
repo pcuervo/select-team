@@ -49,6 +49,7 @@
 
 // Actual modal
 .modal-content {
+  color: @white;
   position: relative;
   background-color: @modal-content-bg;
   border: 1px solid @modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
@@ -56,6 +57,7 @@
   background-clip: padding-box;
   // Remove focus outline from opened modal
   outline: 0;
+
 }
 
 // Modal background
@@ -76,7 +78,7 @@
 // Top section of the modal w/ title and dismiss
 .modal-header {
   padding: @modal-title-padding;
-  border-bottom: 1px solid @modal-header-border-color;
+  border: none;
   min-height: (@modal-title-padding + @modal-title-line-height);
 }
 // Close icon
@@ -101,7 +103,7 @@
 .modal-footer {
   padding: @modal-inner-padding;
   text-align: right; // right align buttons
-  border-top: 1px solid @modal-footer-border-color;
+  border: none;
   &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
 
   // Properly space out buttons
