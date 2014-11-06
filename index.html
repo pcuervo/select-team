@@ -35,18 +35,18 @@
                     <ul class="[ nav navbar-nav ]">
                         <li class="[ menu ]"><a href="about.html">About</a></li>
                         <li class="[ menu ]"><a href="prospects.html">Prospects</a></li>
-                    <!--<li class="[ menu ]"><a href="coaches.html">Coaches</a></li>-->                
+                    <!--<li class="[ menu ]"><a href="coaches.html">Coaches</a></li>-->
                         <li class="[ menu ]"><a href="parents.html">Parents</a></li>
                         <li class="[ menu ]"><a href="contact.html">Contact</a></li>
                         <li class="[ extra ]">
                             <p class="[ center-text ]">
-                                <i class="[ fa fa-user fa-1x ]"></i> 
+                                <i class="[ fa fa-user fa-1x ]"></i>
                                 <a href="" data-toggle="modal" data-target="#Login">Login</a>
                             </p>
                             <hr>
                             <p class="[ center-text ]">
                                 <a href="">English</a> | <a href="">Español</a>
-                            </p> 
+                            </p>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -57,19 +57,19 @@
                         <img class="[ img-responsive ]" src="images/logo-select-team.png" alt="Select Team"/>
                     </a>
                 </h1><ul class="[ clearfix ]">
-                    <li><a class="[ center block ]" href="about.html">About</a></li> 
-                    <li><a class="[ center block ]" href="prospects.html">Prospects</a></li> 
+                    <li><a class="[ center block ]" href="about.html">About</a></li>
+                    <li><a class="[ center block ]" href="prospects.html">Prospects</a></li>
                 <!--<li class="clearfix"><a class="[ center block ]" href="coaches.html">Coaches</a></li>-->
-                    <li><a class="[ center block ]" href="parents.html">Parents</a></li> 
+                    <li><a class="[ center block ]" href="parents.html">Parents</a></li>
                     <li><a class="[ center block ]" href="contact.html">Contact</a></li>
                 </ul><div class="[ registro ]">
                     <p class="[ text-center ]">
-                      <i class="[ fa fa-user fa-1x ]"></i> 
+                      <i class="[ fa fa-user fa-1x ]"></i>
                       <a href="" data-toggle="modal" data-target="#Login">Login</a>
                     </p>
-                    <p class="[ center-text ]"><a href="">English</a> | <a href="">Español</a></p>         
+                    <p class="[ center-text ]"><a href="">English</a> | <a href="">Español</a></p>
                 </div>
-            </div> 
+            </div>
             <div class="[ header-bottom ]">
                 <div class="[ container ]">
                     <p class="[ text-center ] [ col-xs-12 col-md-9 ] [ center block ]">
@@ -79,7 +79,7 @@
                 </div>
             </div>
         </header>
-      
+
         <div class="[ content clearfix ]">
             <div class="[ grid ]">
                 <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]">
@@ -87,14 +87,14 @@
                     <figcaption>
                         <h2>Become a prospect</h2>
                         <a href="#"></a>
-                    </figcaption>          
+                    </figcaption>
                 </figure>
                 <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-coach ]">
                     <div class="[ screen ]"></div>
                     <figcaption>
                         <h2>I am a coach</h2>
                         <a href="#"></a>
-                    </figcaption>           
+                    </figcaption>
                 </figure>
             </div>
             <div class="[ cards cards-prospect ] [ is-opened ]">
@@ -102,7 +102,7 @@
                     <form id="theForm" class="simform" autocomplete="off">
                         <div class="simform-inner">
                             <ol class="questions">
-                                <li class="current">
+                                <li>
                                     <span><label for="q1">What's your name?</label></span>
                                     <input id="q1" name="q1" type="text"/>
                                 </li>
@@ -247,6 +247,26 @@
     <script src="js/functions.js"></script>
     <script type="text/javascript">
         setAlturaWindowMenosHeader('figure');
+        var theForm = document.getElementById( 'theForm' );
+        new stepsForm( theForm, {
+            onSubmit : function( form ) {
+                // hide form
+                classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+
+                /*
+                form.submit()
+                or
+                AJAX request (maybe show loading indicator while we don't have an answer..)
+                */
+
+                // let's just simulate something...
+                var messageEl = theForm.querySelector( '.final-message' );
+                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+                classie.addClass( messageEl, 'show' );
+            }
+        } );
+
+        //Responsive
         $(window).resize(function(){
             setAlturaWindowMenosHeader('figure');
         });
