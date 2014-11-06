@@ -6249,10 +6249,23 @@ a {
   height: 100%;
 }
 .jumbotron {
-  background-image: url('../images/02.jpg');
   background-position: center;
   background-size: cover;
   position: relative;
+  -webkit-transition: all 0.2s ease-in-out;
+  background-position: center top;
+}
+.jumbotron.volley {
+  background-image: url(../images/volley-home.jpg);
+}
+.jumbotron.soccer {
+  background-image: url(../images/soccer-home.jpg);
+}
+.jumbotron.tennis {
+  background-image: url(../images/tennis-home.jpg);
+}
+.jumbotron.golf {
+  background-image: url(../images/golf-home.jpg);
 }
 .jumbotron .container {
   width: 100%;
@@ -6393,7 +6406,7 @@ a {
   height: 10%;
 }
 .header-top ul li {
-  width: 20%;
+  width: 25%;
   list-style: none;
   display: inline-block;
   padding: 0 25px;
@@ -6427,6 +6440,9 @@ a {
 }
 .home a {
   color: #e01322;
+}
+.home a:hover {
+  font-size: 1.2em;
 }
 .home h2 {
   padding-bottom: 15px;
@@ -6584,8 +6600,7 @@ a {
   background: #000;
   text-align: center;
   cursor: pointer;
-  height: 100%;
-  width: 25%;
+  height: 480px;
   border-right: solid 5px #fff;
   background-repeat: no-repeat;
   background-size: 180%;
@@ -6722,62 +6737,9 @@ figure.effect-chico:hover p {
 figure.effect-chico:hover h2 {
   color: #002147;
   font-size: 1.1em;
+  text-shadow: none;
 }
 figure.effect-chico:hover p {
   color: #222222;
-}
-/*---------------*/
-/***** Honey *****/
-/*---------------*/
-figure.effect-honey {
-  background: #4a3753;
-}
-figure.effect-honey img {
-  opacity: 0.9;
-  -webkit-transition: opacity 0.35s;
-  transition: opacity 0.35s;
-}
-figure.effect-honey:hover img {
-  opacity: 0.5;
-}
-figure.effect-honey figcaption::before {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  background: #fff;
-  content: '';
-  -webkit-transform: translate3d(0, 10px, 0);
-  transform: translate3d(0, 10px, 0);
-}
-figure.effect-honey h2 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 1em 1.5em;
-  width: 100%;
-  text-align: left;
-  -webkit-transform: translate3d(0, -30px, 0);
-  transform: translate3d(0, -30px, 0);
-}
-figure.effect-honey h2 i {
-  font-style: normal;
-  opacity: 0;
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
-  -webkit-transform: translate3d(0, -30px, 0);
-  transform: translate3d(0, -30px, 0);
-}
-figure.effect-honey figcaption::before,
-figure.effect-honey h2 {
-  -webkit-transition: -webkit-transform 0.35s;
-  transition: transform 0.35s;
-}
-figure.effect-honey:hover figcaption::before,
-figure.effect-honey:hover h2,
-figure.effect-honey:hover h2 i {
-  opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  text-shadow: none;
 }

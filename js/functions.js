@@ -74,3 +74,19 @@ function reorder(este, contenedor){
 
 
 
+function setAlturaWindowMenosHeader(element){
+  var alturaHeader = $('header').height();
+  var alturaWindow = $(window).height();
+  var alturaTotal = alturaWindow - alturaHeader;
+  $(element).height(alturaTotal); 
+}
+
+function setAlturaWindow(element){
+  var alturaWindow = $(window).height();
+  $(element).height(alturaWindow); 
+}
+
+
+
+
+
