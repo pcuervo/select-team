@@ -101,7 +101,7 @@
                 <div class="card-close">
                     <i class="fa fa-times"></i>
                 </div>
-                <div class="card">
+                <div class="[ card card-2 ] [ is-closed ]">
                     <form id="theForm" class="[ simform ] [ center block ]" autocomplete="off">
                         <div class="simform-inner">
                             <ol class="questions">
@@ -164,15 +164,15 @@
                                     <input id="q8" name="q8" type="text"/>
                                 </li>
                                 <!-- TENNIS -->
-                                <li class="[ js-sport js-tenis ]">
+                                <li class="[ js-sport js-tennis ]">
                                     <span><label for="q9">Are you left ot right handed?</label></span>
                                     <input id="q9" name="q9" type="text"/>
                                 </li>
-                                <li class="[ js-sport js-tenis ]">
+                                <li class="[ js-sport js-tennis ]">
                                     <span><label for="q9">What's your FTP ranking? (for mexican players only)</label></span>
                                     <input id="q9" name="q9" type="text"/>
                                 </li>
-                                <li class="[ js-sport js-tenis ]">
+                                <li class="[ js-sport js-tennis ]">
                                     <span><label for="q10">Have you ever played an ATP tournament?</label></span>
                                     <input id="q10" name="q10" type="text"/>
                                 </li>
@@ -310,11 +310,10 @@
                         </div><!-- /simform-inner -->
                         <span class="final-message"></span>
                     </form><!-- /simform -->
-
                 </div>
-                <div class="card">
-                    <p class="simform">As a prospect, your profile will be listed in Select Team for coaches to view, get in touch, and talk about sport scholarships at their universities in the United States.</p>
-                    <button class="[ btn btn-primary ][ btn-card-next ] [ js-next-card ]" data-card="card-2">Next <i class="fa fa-arrow-right"></i></button>
+                <div class="[ card card-1 ]">
+                    <p class="simform">As a coach, you will be able to view the listed prospect’s profile and ask for additional information according to the position to fill in the university’s sports team.</p>
+                    <button class="[ btn btn-success ][ btn-card-next ] [ js-next-card ]" data-card="card-2">Next <i class="fa fa-arrow-right"></i></button>
                 </div>
             </div><!-- cards -->
         </div><!--CONTENT-->
@@ -350,9 +349,9 @@
     </div><!--CONTAINER-FLUID-->
 
     <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/functions.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.min.js"></script>
+    <script src="js/functions.min.js"></script>
     <script type="text/javascript">
         //On load
         var ancho = $(window).outerWidth();
@@ -376,14 +375,19 @@
 
                 // let's just simulate something...
                 var messageEl = theForm.querySelector( '.final-message' );
-                messageEl.innerHTML = '¡Gracias! Nos pondrémos en contacto contigo.';
+                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
                 classie.addClass( messageEl, 'show' );
             }
         } );
         $('figure').on('click', function(){
             abrirCards( $(this) );
         });
-
+        $('.js-next-card').on('click', function(){
+            siguienteCard($(this));
+        });
+        $('.card-close').on('click', function(){
+            cerrarCards( $(this) );
+        });
         //Responsive
         $(window).resize(function(){
             //On Load

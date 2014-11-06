@@ -541,6 +541,9 @@ header{
 	text-align: center;
 	font-family: @font-family-fira;
 	color: @white;
+	position: relative;
+	left: 0;
+	.transition;
 }
 
 /* Common style */
@@ -602,7 +605,7 @@ header{
 	word-spacing: 0.1em;
 	font-weight: 300;
 	color: inherit;
-	border-bottom: 1px solid @white; 
+	border-bottom: 1px solid @white;
 	.center-full;
 }
 
@@ -622,15 +625,20 @@ header{
 
 .cards{ width: 100%; height: 100%; position: absolute; bottom: 0; z-index: 2; .transition; }
 .cards-prospect{ left: -100%; 
-				&.card{ background: @brand-success; }
+				.card{ background: @brand-success; }
 }
 .cards-prospect.is-opened{ left: 0; }
+.cards-prospect .card.is-closed{ left: -100%; }
+
 .cards-coach{ right: -100%; 
-				&.card{ background: @brand-primary; }
+				.card{ background: @brand-primary; }
 }
+.cards-coach{ right: -100%; }
 .cards-coach.is-opened{ right: 0; }
+.cards-coach .card.is-closed{ right: -100%; }
+
 .cards-xs{ height: 100% !important;}
-.card-close{ position: absolute; z-index: 6; top: 20px; right: 20px; color: @white; cursor: pointer}
+.card-close{ position: absolute; z-index: 6; top: 20px; right: 20px; color: @white; cursor: pointer; }
 
 .card{ width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
 .card p{ color: @white; }
@@ -710,25 +718,21 @@ figure.effect-sadie:hover figcaption::before {
 			display: inline-block;
 			vertical-align: middle;
 		}
-
 	 	h1{
 	 		padding: 0;
 	 		z-index: 0;
 	 		margin: 0;
 	 		width: 8.3333%;
 	 	}
-
 		ul{
 			width: 66.66666667%;
 			margin: 0 1%;
 			padding: 0;
-
 			li{
 				list-style: none;
 				display: inline-block;
 				padding: 0 2%;
 				float: left;
-
 				a{
 					float: left;
 					padding: 15px 0;
@@ -739,7 +743,6 @@ figure.effect-sadie:hover figcaption::before {
 					text-decoration: none;
 					letter-spacing: 2px;
 					border-top: solid 2px @brand-primary;
-
 					&:hover, &.active{
 						color: @white;
 						border-top: solid 2px @brand-success;
@@ -775,6 +778,8 @@ figure.effect-sadie:hover figcaption::before {
 
 	// CARDS ****************************
 	.cards{ width: 50%; }
+	.cards-prospect{ left: -50%; }
+	.cards-coach{ right: -50%; }
 
 	.simform{
 		font-size: 1.5em;
