@@ -103,5 +103,9 @@ function toggleClassCards(ancho){
   }
 }
 
+function abrirCards(element){
+  var cards = element.data('cards');
+  $('.cards.cards-'+cards).removeClass('is-closed').addClass('is-opened');
+}
 
 
