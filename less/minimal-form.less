@@ -12,11 +12,14 @@
 .simform {
 	position: relative;
 	margin: 0 auto;
-	padding: 2em 0;
+	padding: 2%;
+	width: 80%;
 	max-width: 860px;
-	width: 100%;
 	text-align: left;
 	font-size: 2.5em;
+	color: #fff;
+	z-index: 10;
+	.center-full;
 }
 
 .simform .submit {
@@ -35,7 +38,6 @@
 
 .simform ol:before {
 	content: '';
-	background-color: rgba(0,0,0,0.1);
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -104,7 +106,7 @@
 	padding: 0.5em 1em 0.5em 0.7em;
 	width: calc(100% - 2em);
 	border: none;
-	background: transparent;
+	background: @white;
 	color: rgba(0,0,0,0.8);
 	font-size: 1em;
 	line-height: 1;
@@ -152,11 +154,9 @@
 }
 
 .next::after {
-	position: absolute;
-	top: 0;
-	left: 0;
 	width: 100%;
 	height: 100%;
+	padding-right: 10px;
 	content: "\e600";
 	text-transform: none;
 	font-weight: normal;
@@ -179,7 +179,7 @@
 /* Progress bar */
 .simform .progress {
 	width: 0%;
-	height: 0.15em;
+	height: 0.5em;
 	background: rgba(0,0,0,0.3);
 	-webkit-transition: width 0.4s ease-in-out;
 	transition: width 0.4s ease-in-out;
@@ -188,7 +188,7 @@
 .simform .progress::before {
 	position: absolute;
 	top: auto;
-	width: 100%;
+	width: 93.5%;
 	height: inherit;
 	background: rgba(0,0,0,0.05);
 	content: '';
@@ -202,7 +202,7 @@
 	margin: 0.4em 0;
 	width: 3em;
 	font-weight: 700;
-	font-size: 0.4em;
+	font-size: 0.8em;
 }
 
 .simform .number:after {
@@ -256,7 +256,7 @@
 	width: 100%;
 	color: rgba(0,0,0,0.7);
 	font-style: italic;
-	font-size: 0.4em;
+	font-size: 0.6em;
 }
 
 .final-message {
