@@ -109,10 +109,21 @@ function abrirCards(element){
   $('.cards.cards-'+cards).removeClass('is-closed').addClass('is-opened');
 }
 
+function cerrarCards(element){
+  var papa = element.parent('.cards');
+  if ( papa.hasClass('cards-prospect') ){
+    $('.cards-prospect').removeClass('is-opened').addClass('is-closed');
+  }
+  if ( papa.hasClass('cards-coach') ){
+    $('.cards-coach').removeClass('is-opened').addClass('is-closed');
+  }
+
+}
+
 function siguienteCard(element){
   var card = element.data('card');
-  $('card').removeClass('is-opened').addClass('is-closed');
-  $(card).removeClass('is-closed').addClass('is-opened');
+  $('.card').removeClass('is-opened').addClass('is-closed');
+  $('.'+card).removeClass('is-closed').addClass('is-opened');
 }
 
 
