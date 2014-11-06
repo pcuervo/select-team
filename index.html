@@ -98,7 +98,7 @@
                 </figure>
             </div>
             <div class="[ cards cards-prospect cards-xs ] [ is-closed ]">
-                <div class="card">
+                <div class="[ card card-2 ]">
                     <form id="theForm" class="[ simform ] [ center block ]" autocomplete="off">
                         <div class="simform-inner">
                             <ol class="questions">
@@ -202,8 +202,117 @@
                         <span class="final-message"></span>
                     </form><!-- /simform -->
                 </div>
-                <div class="card">
-                    <p>As a prospect bla bla bla....</p>
+                <div class="[ card card-1 ]">
+                    <p>As a prospect, your profile will be listed in Select Team for coaches to view, get in touch, and talk about sport scholarships at their universities in the United States.</p>
+                </div>
+            </div><!-- cards -->
+            <div class="[ cards cards-coach cards-xs ] [ is-closed ]">
+                <div class="[ card card-2 ]">
+                    <form id="theForm" class="[ simform ] [ center block ]" autocomplete="off">
+                        <div class="simform-inner">
+                            <ol class="questions">
+                                <li>
+                                    <span><label for="q1">What's your name?</label></span>
+                                    <input id="q1" name="q1" type="text"/>
+                                </li>
+                                <li>
+                                    <span><label for="q2">When were you born?</label></span>
+                                    <input id="q2" name="q2" type="text"/>
+                                </li>
+                                <li>
+                                    <span><label for="q3">When are you graduating?</label></span>
+                                    <input id="q3" name="q3" type="text"/>
+                                </li>
+                                <li>
+                                    <span><label for="q4">What year are you studying?</label></span>
+                                    <input id="q4" name="q4" type="text"/>
+                                </li>
+                                <li>
+                                    <span><label for="q5">What sport do you practice?</label></span>
+                                    <select class="[ form-control ]" id="q5" name="q5">
+                                        <option>Sport</option>
+                                        <option value="tennis">Tennis</option>
+                                        <option value="golf">Golf</option>
+                                        <option value="soccer">Soccer</option>
+                                        <option value="bolleyball">Volleyball</option>
+                                    </select>
+                                </li>
+                                <!-- GOLF -->
+                                <li class="[ js-sport js-golf ]">
+                                    <span><label for="q6">What's your average score?</label></span>
+                                    <select class="[ form-control ]" id="q6" name="q6">
+                                        <option value="-66">Under 66</option>
+                                        <option value="66-67">66-67</option>
+                                        <option value="68-70">68-70</option>
+                                        <option value="71-73">71-73</option>
+                                        <option value="74-76">74-76</option>
+                                        <option value="77-79">77-79</option>
+                                        <option value="80-82">80-82</option>
+                                        <option value="83-85">83-85</option>
+                                        <option value="86-88">86-88</option>
+                                        <option value="89-90">89-90</option>
+                                    </select>
+                                </li>
+                                <!-- VOLLEYBALL -->
+                                <li class="[ js-sport js-volleyball ]">
+                                    <span><label for="q7">What's your position?</label></span>
+                                    <select class="[ form-control ]" id="q7" name="q7">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </li>
+                                <li class="[ js-sport js-volleyball ]">
+                                    <span><label for="q8">What's your height?(in centimeters)</label></span>
+                                    <input id="q8" name="q8" type="text"/>
+                                </li>
+                                <!-- TENNIS -->
+                                <li class="[ js-sport js-tenis ]">
+                                    <span><label for="q9">Are you left ot right handed?</label></span>
+                                    <input id="q9" name="q9" type="text"/>
+                                </li>
+                                <li class="[ js-sport js-tenis ]">
+                                    <span><label for="q9">What's your FTP ranking? (for mexican players only)</label></span>
+                                    <input id="q9" name="q9" type="text"/>
+                                </li>
+                                <li class="[ js-sport js-tenis ]">
+                                    <span><label for="q10">Have you ever played an ATP tournament?</label></span>
+                                    <input id="q10" name="q10" type="text"/>
+                                </li>
+                                <!-- SOCCER -->
+                                <li class="[ js-sport js-soccer ]">
+                                    <span><label for="q11">What's your position?</label></span>
+                                    <select class="[ form-control ]" id="q11" name="q11">
+                                        <option value="goal-keeper">Goal keeper</option>
+                                        <option value="defender">Defender</option>
+                                        <option value="midfielder">Midfielder</option>
+                                        <option value="forward">Forward</option>
+                                    </select>
+                                </li>
+                                <li class="[ js-sport js-soccer ]">
+                                    <span><label for="q12">What's your height?(in centimeters)</label></span>
+                                    <input id="q12" name="q12" type="text"/>
+                                </li>
+                            </ol><!-- /questions -->
+                            <button class="submit" type="submit">Enviar respuestas</button>
+                            <div class="controls">
+                                <button class="next"></button>
+                                <div class="progress"></div>
+                                <span class="number">
+                                    <span class="number-current"></span>
+                                    <span class="number-total"></span>
+                                </span>
+                                <span class="error-message"></span>
+                            </div><!-- / controls -->
+                        </div><!-- /simform-inner -->
+                        <span class="final-message"></span>
+                    </form><!-- /simform -->
+                </div>
+                <div class="[ card card-1 ]">
+                    <p>As a prospect, your profile will be listed in Select Team for coaches to view, get in touch, and talk about sport scholarships at their universities in the United States.</p>
                 </div>
             </div><!-- cards -->
         </div><!--CONTENT-->
@@ -271,6 +380,10 @@
         } );
         $('figure').on('click', function(){
             abrirCards( $(this) );
+        });
+
+        $('.js-next-card').on('click', function(){
+            siguienteCard($(this));
         });
 
         //Responsive

@@ -105,7 +105,14 @@ function toggleClassCards(ancho){
 
 function abrirCards(element){
   var cards = element.data('cards');
+  $('.cards').removeClass('is-opened').addClass('is-closed');
   $('.cards.cards-'+cards).removeClass('is-closed').addClass('is-opened');
+}
+
+function siguienteCard(element){
+  var card = element.data('card');
+  $('card').removeClass('is-opened').addClass('is-closed');
+  $(card).removeClass('is-closed').addClass('is-opened');
 }
 
 
