@@ -241,7 +241,6 @@
             </div>
         </div>
     </div><!--CONTAINER-FLUID-->
-
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins.min.js"></script>
@@ -250,8 +249,10 @@
         //On load
         var ancho = $(window).outerWidth();
         toggleClassCards(ancho);
-        setAlturaWindowMenosHeader('figure');
-        setAlturaWindowMenosHeader('.cards');
+        $(document).ready(function($) {
+            setAlturaWindowMenosHeader('figure');
+            setAlturaWindowMenosHeader('.cards');
+        });
 
         //On click/change/etc
         filterQuestions();
@@ -290,11 +291,6 @@
             setAlturaWindowMenosHeader('figure');
             setAlturaWindowMenosHeader('.cards');
         });
-          //correIsotope('.isotope-container', '.isotope-item', 'masonry');
-          // filtrarIsotopeDefault('.isotope-container', 'none');
-          // $('.isotope-filters button').on( 'click', function(e) {
-          //   filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
-          // });
     </script>
   </body>
 </html>

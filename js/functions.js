@@ -95,10 +95,8 @@ function filterQuestions(){
 
 function toggleClassCards(ancho){
   if( ancho > 767 ){
-    console.log('if');
     $('.cards').removeClass('cards-xs');
   } else {
-      console.log('else');
       $('.cards').addClass('cards-xs');
   }
 }
