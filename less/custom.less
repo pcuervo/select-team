@@ -55,6 +55,10 @@ h2{
 	}
 }
 
+hr{
+	border-color: @brand-success;
+}
+
 button, a{
 	.transition;
 }
@@ -101,6 +105,7 @@ button, a{
 	background-position: center;
 	background-size: cover;
 	position: relative;
+	height: 200px;
 
 	.container{
 		width: 100%;
@@ -281,8 +286,6 @@ header{
 
 
 //CONTENT****************************************
-
-
 
 	//HOME =========================
 
@@ -492,6 +495,7 @@ header{
 //CONTACTO**************************
 
 	.contact{
+		padding: 15px;
 		a{
 			&:hover{
 				color: @brand-info;
@@ -712,6 +716,10 @@ figure.effect-sadie:hover figcaption::before {
 	header{
 		background-color: @brand-primary;
 		padding: 20px 0 0 0;
+	}
+
+	.jumbotron{
+		height: 350px;
 	}
 	.header-top{
 		padding-bottom: 20px;
