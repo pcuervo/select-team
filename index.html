@@ -215,8 +215,8 @@
                 <div class="card-close">
                     <i class="fa fa-times"></i>
                 </div>
-                <div class="card">
-                    <form id="theForm" class="[ simform ] [ center block ]" autocomplete="off">
+                <div class="[ card card-2 ] [ is-closed ]">
+                    <form id="theForm2" class="[ simform ] [ center block ]" autocomplete="off">
                         <div class="simform-inner">
                             <ol class="questions">
                                 <li>
@@ -315,7 +315,7 @@
                         <span class="final-message"></span>
                     </form><!-- /simform -->
                 </div>
-                <div class="[ card card-1 ]">
+                <div class="[ card ]">
                     <p class="simform">As a coach, you will be able to view the listed prospect’s profile and ask for additional information according to the position to fill in the university’s sports team.</p>
                     <button class="[ btn btn-success ][ btn-card-next ] [ js-next-card ]" data-card="card-2">Next <i class="fa fa-arrow-right"></i></button>
                 </div>
@@ -355,9 +355,10 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins.min.js"></script>
-    <script src="js/functions.min.js"></script>
+    <script src="js/functions.js"></script>
     <script type="text/javascript">
         //On load
+        urlAbre();
         var ancho = $(window).outerWidth();
         toggleClassCards(ancho);
         $(document).ready(function($) {
@@ -385,11 +386,32 @@
                 classie.addClass( messageEl, 'show' );
             }
         } );
+        var theForm2 = document.getElementById( 'theForm2' );
+        new stepsForm( theForm2, {
+            onSubmit : function( form ) {
+                // hide form
+                classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
+
+                /*
+                form.submit()
+                or
+                AJAX request (maybe show loading indicator while we don't have an answer..)
+                */
+
+                // let's just simulate something...
+                var messageEl = theForm2.querySelector( '.final-message' );
+                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+                classie.addClass( messageEl, 'show' );
+            }
+        } );
         $('figure').on('click', function(){
             abrirCards( $(this) );
         });
-        $('.js-next-card').on('click', function(){
-            siguienteCard($(this));
+        $('.cards-prospect .js-next-card').on('click', function(){
+            siguienteCardProspect($(this));
+        });
+        $('.cards-coach .js-next-card').on('click', function(){
+            siguienteCardCoach($(this));
         });
         $('.card-close').on('click', function(){
             cerrarCards( $(this) );
