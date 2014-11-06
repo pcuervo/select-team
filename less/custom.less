@@ -557,12 +557,12 @@ header{
 }
 
 .bg-prospect{
-	background: url('../images/bg-home-tennis.jpg') no-repeat center -50px;
+	background: url('../images/bg-home-tennis.jpg') no-repeat center;
 	background-size: cover;
 }
 
 .bg-coach{
-	background: url('../images/bg-home-soccer.jpg') no-repeat center -50px;
+	background: url('../images/bg-home-soccer.jpg') no-repeat center;
 	background-size: cover;
 }
 
@@ -623,9 +623,11 @@ header{
 .cards-prospect{ left: -100%; }
 .cards-prospect.is-opened{ left: 0; }
 .cards-xs{ height: 100% !important;}
+.card-close{ position: absolute; z-index: 6; top: 20px; right: 20px; color: @white; cursor: pointer}
 
 .card{ width: 100%; height: 100%; background: @brand-success; position: absolute; top: 0; left: 0; }
 .card p{ color: @white; }
+.btn-card-next{ position: absolute; bottom: 40px; right: 40px; }
 
 
 /*---------------*/
@@ -752,6 +754,16 @@ figure.effect-sadie:hover figcaption::before {
 			padding: 1% 2%;
 		}
 	}
+
+	// GRIDS ****************************
+		.bg-prospect{
+			background: url('../images/bg-home-tennis.jpg') no-repeat center -50px;
+		}
+
+		.bg-coach{
+			background: url('../images/bg-home-soccer.jpg') no-repeat center -50px;
+		}
+
 	// CARDS ****************************
 	.cards{ width: 50%; }
 }

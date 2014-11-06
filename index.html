@@ -98,6 +98,9 @@
                 </figure>
             </div>
             <div class="[ cards cards-prospect cards-xs ] [ is-opened ]">
+                <div class="card-close">
+                    <i class="fa fa-times"></i>
+                </div>
                 <div class="card">
                     <form id="theForm" class="[ simform ] [ center block ]" autocomplete="off">
                         <div class="simform-inner">
@@ -190,8 +193,8 @@
                             </ol><!-- /questions -->
                             <button class="submit" type="submit">Enviar respuestas</button>
                             <div class="controls">
-                                <button class="next"></button>
                                 <div class="progress"></div>
+                                <button class="[ next ] [ right ]"></button>
                                 <span class="number">
                                     <span class="number-current"></span>
                                     <span class="number-total"></span>
@@ -201,9 +204,11 @@
                         </div><!-- /simform-inner -->
                         <span class="final-message"></span>
                     </form><!-- /simform -->
+
                 </div>
                 <div class="card">
-                    <p>As a prospect bla bla bla....</p>
+                    <p class="simform">As a prospect, your profile will be listed in Select Team for coaches to view, get in touch, and talk about sport scholarships at their universities in the United States.</p>
+                    <button class="[ btn btn-primary ][ btn-card-next ] [ js-next-card ]" data-card="card-2">Next <i class="fa fa-arrow-right"></i></button>
                 </div>
             </div><!-- cards -->
         </div><!--CONTENT-->
