@@ -70,8 +70,6 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 		this.questionsCount = this.questions.length;
 		// show first question
 		classie.addClass( this.questions[0], 'current' );
-		console.log( 's' );
-		console.log( this.questions[0] );
 
 		// next question control
 		this.ctrlNext = this.el.querySelector( 'button.next' );
@@ -184,7 +182,7 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 					self.currentNum.innerHTML = self.nextQuestionNum.innerHTML;
 					self.questionStatus.removeChild( self.nextQuestionNum );
 					// force the focus on the next input
-					nextQuestion.querySelector( 'input' ).focus();
+					nextQuestion.querySelector( 'input, select' ).focus();
 				}
 			};
 
@@ -220,7 +218,7 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 	// the validation function
 	stepsForm.prototype._validade = function() {
 		// current question´s input
-		var input = this.questions[ this.current ].querySelector( 'input' ).value;
+		var input = this.questions[ this.current ].querySelector( 'input, select' ).value;
 		if( input === '' ) {
 			this._showError( 'EMPTYSTR' );
 			return false;

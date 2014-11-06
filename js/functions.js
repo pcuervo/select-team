@@ -57,7 +57,7 @@ function reorder(este, contenedor){
   }
   var filterString = sport+gender;
   if(filterString=="**"){
-      filterString = "*"; 
+      filterString = "*";
   }
   este.parents('.button-group').find('.active').removeClass('active');
   este.addClass('active');
@@ -69,7 +69,7 @@ function reorder(este, contenedor){
           easing: 'linear',
           queue: false,
       }
-  });         
+  });
 }
 
 
@@ -78,12 +78,19 @@ function setAlturaWindowMenosHeader(element){
   var alturaHeader = $('header').height();
   var alturaWindow = $(window).height();
   var alturaTotal = alturaWindow - alturaHeader;
-  $(element).height(alturaTotal); 
+  $(element).height(alturaTotal);
 }
 
 function setAlturaWindow(element){
   var alturaWindow = $(window).height();
-  $(element).height(alturaWindow); 
+  $(element).height(alturaWindow);
+}
+
+function filterQuestions(){
+  $('#q5').on('change', function(event) {
+    var sport = $(this).val();
+    $('.js-sport:not(".js-'+sport+'")').remove();
+  });
 }
 
 
