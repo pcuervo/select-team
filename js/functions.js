@@ -104,7 +104,16 @@ function toggleClassCards(ancho){
 function abrirCards(element){
   var cards = element.data('cards');
   if ( cards == 'prospect' ){
-      $('.grid').css('left', '50%');
+      $('.grid').css({
+        'left':'50%',
+        'right':'auto'
+      });
+  }
+  if ( cards == 'coach' ){
+      $('.grid').css({
+        'right':'50%',
+        'left':'auto'
+      });
   }
 
   $('.cards').removeClass('is-opened').addClass('is-closed');
@@ -115,18 +124,30 @@ function cerrarCards(element){
   var papa = element.parent('.cards');
   if ( papa.hasClass('cards-prospect') ){
     $('.cards-prospect').removeClass('is-opened').addClass('is-closed');
-    $('.grid').css('left', '0%');
+    $('.grid').css({
+      'left':'0',
+      'right':'auto'
+    });
   }
   if ( papa.hasClass('cards-coach') ){
     $('.cards-coach').removeClass('is-opened').addClass('is-closed');
+    $('.grid').css({
+      'right':'0',
+      'left':'auto'
+    });
   }
 
 }
 
-function siguienteCard(element){
+function siguienteCardProspect(element){
   var card = element.data('card');
-  $('.card').removeClass('is-opened').addClass('is-closed');
-  $('.'+card).removeClass('is-closed').addClass('is-opened');
+  $('.cards-prospect .card').removeClass('is-opened').addClass('is-closed');
+  $('.cards-prospect .'+card).removeClass('is-closed').addClass('is-opened');
 }
 
+function siguienteCardCoach(element){
+  var card = element.data('card');
+  $('.cards-coach .card').removeClass('is-opened').addClass('is-closed');
+  $('.cards-coach .'+card).removeClass('is-closed').addClass('is-opened');
+}
 

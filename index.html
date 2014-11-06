@@ -215,7 +215,7 @@
                 <div class="card-close">
                     <i class="fa fa-times"></i>
                 </div>
-                <div class="card">
+                <div class="[ card card-2 ] [ is-closed ]">
                     <form id="theForm" class="[ simform ] [ center block ]" autocomplete="off">
                         <div class="simform-inner">
                             <ol class="questions">
@@ -311,7 +311,7 @@
                         <span class="final-message"></span>
                     </form><!-- /simform -->
                 </div>
-                <div class="[ card card-1 ]">
+                <div class="[ card ]">
                     <p class="simform">As a coach, you will be able to view the listed prospect’s profile and ask for additional information according to the position to fill in the university’s sports team.</p>
                     <button class="[ btn btn-success ][ btn-card-next ] [ js-next-card ]" data-card="card-2">Next <i class="fa fa-arrow-right"></i></button>
                 </div>
@@ -383,8 +383,11 @@
         $('figure').on('click', function(){
             abrirCards( $(this) );
         });
-        $('.js-next-card').on('click', function(){
-            siguienteCard($(this));
+        $('.cards-prospect .js-next-card').on('click', function(){
+            siguienteCardProspect($(this));
+        });
+        $('.cards-coach .js-next-card').on('click', function(){
+            siguienteCardCoach($(this));
         });
         $('.card-close').on('click', function(){
             cerrarCards( $(this) );

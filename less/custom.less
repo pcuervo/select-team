@@ -542,7 +542,8 @@ header{
 	font-family: @font-family-fira;
 	color: @white;
 	position: relative;
-	left: 0;
+	left: auto;
+	right: auto;
 	.transition;
 }
 
@@ -624,23 +625,24 @@ header{
 }
 
 .cards{ width: 100%; height: 100%; position: absolute; bottom: 0; z-index: 2; .transition; }
-.cards-prospect{ left: -100%; 
-				.card{ background: @brand-success; }
+.cards-prospect{ left: -100%;
+	.card{ background: @brand-success; }
 }
 .cards-prospect.is-opened{ left: 0; }
 .cards-prospect .card.is-closed{ left: -100%; }
 
-.cards-coach{ right: -100%; 
-				.card{ background: @brand-primary; }
+.cards-coach{ right: -100%;
+	.card{ background: @brand-primary; }
 }
 .cards-coach{ right: -100%; }
-.cards-coach.is-opened{ right: 0; }
-.cards-coach .card.is-closed{ right: -100%; }
+.cards-coach.is-opened{ right: 0; left: auto; }
+.cards-coach .card.is-closed{ right: -100%; left: auto; }
+.cards-coach .card.is-opened{ right: 0; left: auto; }
 
 .cards-xs{ height: 100% !important;}
 .card-close{ position: absolute; z-index: 6; top: 20px; right: 20px; color: @white; cursor: pointer; }
 
-.card{ width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+.card{ width: 100%; height: 100%; position: absolute; top: 0; left: 0; .transition; }
 .card p{ color: @white; }
 .btn-card-next{ position: absolute; bottom: 40px; right: 40px; }
 
@@ -780,7 +782,6 @@ figure.effect-sadie:hover figcaption::before {
 	.cards{ width: 50%; }
 	.cards-prospect{ left: -50%; }
 	.cards-coach{ right: -50%; }
-
 	.simform{
 		font-size: 1.5em;
 	}
