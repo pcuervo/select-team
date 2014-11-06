@@ -151,6 +151,11 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 		// increment current question iterator
 		++this.current;
 
+		//this.totalQuestionNum = questionsCount
+
+		this.questions = [].slice.call( this.el.querySelectorAll( 'ol.questions > li' ) );
+		console.log(this.questionsCount = this.questions.length);
+
 		// update progress bar
 		this._progress();
 
@@ -182,7 +187,7 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 					self.currentNum.innerHTML = self.nextQuestionNum.innerHTML;
 					self.questionStatus.removeChild( self.nextQuestionNum );
 					// force the focus on the next input
-					nextQuestion.querySelector( 'input' ).focus();
+					nextQuestion.querySelector( 'input, select' ).focus();
 				}
 			};
 
@@ -218,7 +223,7 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 	// the validation function
 	stepsForm.prototype._validade = function() {
 		// current question´s input
-		var input = this.questions[ this.current ].querySelector( 'input' ).value;
+		var input = this.questions[ this.current ].querySelector( 'input, select' ).value;
 		if( input === '' ) {
 			this._showError( 'EMPTYSTR' );
 			return false;

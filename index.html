@@ -120,17 +120,18 @@
                                 </li>
                                 <li>
                                     <span><label for="q5">What sport do you practice?</label></span>
-                                    <select id="q5" name="q5">
-                                        <option value="1">Tennis</option>
-                                        <option value="2">Golf</option>
-                                        <option value="3">Soccer</option>
-                                        <option value="4">Volleyball</option>
+                                    <select class="[ form-control ]" id="q5" name="q5">
+                                        <option>Sport</option>
+                                        <option value="tennis">Tennis</option>
+                                        <option value="golf">Golf</option>
+                                        <option value="soccer">Soccer</option>
+                                        <option value="bolleyball">Volleyball</option>
                                     </select>
                                 </li>
                                 <!-- GOLF -->
-                                <li>
+                                <li class="[ js-sport js-golf ]">
                                     <span><label for="q6">What's your average score?</label></span>
-                                    <select id="q6" name="q6">
+                                    <select class="[ form-control ]" id="q6" name="q6">
                                         <option value="-66">Under 66</option>
                                         <option value="66-67">66-67</option>
                                         <option value="68-70">68-70</option>
@@ -144,9 +145,9 @@
                                     </select>
                                 </li>
                                 <!-- VOLLEYBALL -->
-                                <li>
+                                <li class="[ js-sport js-volleyball ]">
                                     <span><label for="q7">What's your position?</label></span>
-                                    <select id="q7" name="q7">
+                                    <select class="[ form-control ]" id="q7" name="q7">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -155,39 +156,39 @@
                                         <option value="6">6</option>
                                     </select>
                                 </li>
-                                <li>
+                                <li class="[ js-sport js-volleyball ]">
                                     <span><label for="q8">What's your height?(in centimeters)</label></span>
                                     <input id="q8" name="q8" type="text"/>
                                 </li>
                                 <!-- TENNIS -->
-                                <li>
+                                <li class="[ js-sport js-tenis ]">
                                     <span><label for="q9">Are you left ot right handed?</label></span>
                                     <input id="q9" name="q9" type="text"/>
                                 </li>
-                                <li>
+                                <li class="[ js-sport js-tenis ]">
                                     <span><label for="q9">What's your FTP ranking? (for mexican players only)</label></span>
                                     <input id="q9" name="q9" type="text"/>
                                 </li>
-                                <li>
+                                <li class="[ js-sport js-tenis ]">
                                     <span><label for="q10">Have you ever played an ATP tournament?</label></span>
                                     <input id="q10" name="q10" type="text"/>
                                 </li>
                                 <!-- SOCCER -->
-                                <li>
+                                <li class="[ js-sport js-soccer ]">
                                     <span><label for="q11">What's your position?</label></span>
-                                    <select id="q11" name="q11">
+                                    <select class="[ form-control ]" id="q11" name="q11">
                                         <option value="goal-keeper">Goal keeper</option>
                                         <option value="defender">Defender</option>
                                         <option value="midfielder">Midfielder</option>
                                         <option value="forward">Forward</option>
                                     </select>
                                 </li>
-                                <li>
+                                <li class="[ js-sport js-soccer ]">
                                     <span><label for="q12">What's your height?(in centimeters)</label></span>
                                     <input id="q12" name="q12" type="text"/>
                                 </li>
                             </ol><!-- /questions -->
-                            <button class="submit" type="submit">Send answers</button>
+                            <button class="submit" type="submit">Enviar respuestas</button>
                             <div class="controls">
                                 <button class="next"></button>
                                 <div class="progress"></div>
@@ -246,6 +247,7 @@
         toggleClassCards(ancho);
         setAlturaWindowMenosHeader('figure');
         setAlturaWindowMenosHeader('.cards');
+        filterQuestions();
         var theForm = document.getElementById( 'theForm' );
         new stepsForm( theForm, {
             onSubmit : function( form ) {
@@ -260,7 +262,7 @@
 
                 // let's just simulate something...
                 var messageEl = theForm.querySelector( '.final-message' );
-                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+                messageEl.innerHTML = '¡Gracias! Nos pondrémos en contacto contigo.';
                 classie.addClass( messageEl, 'show' );
             }
         } );
