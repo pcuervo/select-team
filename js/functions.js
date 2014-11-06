@@ -105,6 +105,10 @@ function toggleClassCards(ancho){
 
 function abrirCards(element){
   var cards = element.data('cards');
+  if ( cards == 'prospect' ){
+      $('.grid').css('left', '50%');
+  }
+
   $('.cards').removeClass('is-opened').addClass('is-closed');
   $('.cards.cards-'+cards).removeClass('is-closed').addClass('is-opened');
 }
@@ -113,6 +117,7 @@ function cerrarCards(element){
   var papa = element.parent('.cards');
   if ( papa.hasClass('cards-prospect') ){
     $('.cards-prospect').removeClass('is-opened').addClass('is-closed');
+    $('.grid').css('left', '0%');
   }
   if ( papa.hasClass('cards-coach') ){
     $('.cards-coach').removeClass('is-opened').addClass('is-closed');

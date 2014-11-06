@@ -541,6 +541,9 @@ header{
 	text-align: center;
 	font-family: @font-family-fira;
 	color: @white;
+	position: relative;
+	left: 0;
+	.transition;
 }
 
 /* Common style */
@@ -602,7 +605,7 @@ header{
 	word-spacing: 0.1em;
 	font-weight: 300;
 	color: inherit;
-	border-bottom: 1px solid @white; 
+	border-bottom: 1px solid @white;
 	.center-full;
 }
 
@@ -708,25 +711,21 @@ figure.effect-sadie:hover figcaption::before {
 			display: inline-block;
 			vertical-align: middle;
 		}
-
 	 	h1{
 	 		padding: 0;
 	 		z-index: 0;
 	 		margin: 0;
 	 		width: 8.3333%;
 	 	}
-
 		ul{
 			width: 66.66666667%;
 			margin: 0 1%;
 			padding: 0;
-
 			li{
 				list-style: none;
 				display: inline-block;
 				padding: 0 2%;
 				float: left;
-
 				a{
 					float: left;
 					padding: 15px 0;
@@ -737,7 +736,6 @@ figure.effect-sadie:hover figcaption::before {
 					text-decoration: none;
 					letter-spacing: 2px;
 					border-top: solid 2px @brand-primary;
-
 					&:hover, &.active{
 						color: @white;
 						border-top: solid 2px @brand-success;
@@ -773,6 +771,8 @@ figure.effect-sadie:hover figcaption::before {
 
 	// CARDS ****************************
 	.cards{ width: 50%; }
+	.cards-prospect{ left: -50%; }
+	.cards-coach{ right: -50%; }
 
 	.simform{
 		font-size: 1.5em;
