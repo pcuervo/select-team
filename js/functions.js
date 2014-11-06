@@ -151,3 +151,14 @@ function siguienteCardCoach(element){
   $('.cards-coach .'+card).removeClass('is-closed').addClass('is-opened');
 }
 
+function urlAbre(){
+  if( window.location.search.search('prosprectOpen') ){
+      console.log('url');
+      $('.grid').css({
+        'left':'50%',
+        'right':'auto'
+      });
+      $('.cards').removeClass('is-opened').addClass('is-closed');
+      $('.cards.cards-prospect').removeClass('is-closed').addClass('is-opened');
+    }
+}
