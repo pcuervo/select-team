@@ -602,6 +602,7 @@ header{
 	word-spacing: 0.1em;
 	font-weight: 300;
 	color: inherit;
+	border-bottom: 1px solid @white; 
 	.center-full;
 }
 
@@ -653,11 +654,11 @@ figure.effect-sadie h2 {
 	position: absolute;
 	top: 50%;
 	left: 0;
-	width: 100%;
 	-webkit-transition: -webkit-transform 0.35s, color 0.35s;
 	transition: transform 0.35s, color 0.35s;
 	-webkit-transform: translate3d(0,-50%,0);
 	transform: translate3d(0,-50%,0);
+	.center-full;
 }
 
 figure.effect-sadie figcaption::before {
@@ -761,15 +762,21 @@ figure.effect-sadie:hover figcaption::before {
 
 	// GRIDS ****************************
 		.bg-prospect{
-			background: url('../images/bg-home-tennis.jpg') no-repeat center -50px;
+			background: url('../images/bg-home-tennis.jpg') no-repeat center;
+			background-size: cover;
 		}
 
 		.bg-coach{
-			background: url('../images/bg-home-soccer.jpg') no-repeat center -50px;
+			background: url('../images/bg-home-soccer.jpg') no-repeat center;
+			background-size: cover;
 		}
 
 	// CARDS ****************************
 	.cards{ width: 50%; }
+
+	.simform{
+		font-size: 1.5em;
+	}
 }
 
 
