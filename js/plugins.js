@@ -152,9 +152,7 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 		++this.current;
 
 		//this.totalQuestionNum = questionsCount
-
 		this.questions = [].slice.call( this.el.querySelectorAll( 'ol.questions > li' ) );
-		console.log(this.questionsCount = this.questions.length);
 
 		// update progress bar
 		this._progress();
