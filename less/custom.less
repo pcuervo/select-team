@@ -101,7 +101,10 @@ button, a{
 }
 
 .jumbotron{
-	background-image: url('../images/02.jpg');
+	&.banner-about{ background-image: url('../images/banner-golf.jpg'); }
+	&.banner-prospects{ background-image: url('../images/banner-tennis.jpg'); }
+	&.banner-parents{ background-image: url('../images/banner-soccer.jpg'); }
+	&.banner-profile{ background-image: url('../images/banner-tennis.jpg'); }
 	background-position: center;
 	background-size: cover;
 	position: relative;
@@ -565,12 +568,12 @@ header{
 }
 
 .bg-prospect{
-	background: url('../images/bg-home-tennis.jpg') no-repeat center;
+	background: url('../images/bg-home-tennis-alt.jpg') no-repeat center top;
 	background-size: cover;
 }
 
 .bg-coach{
-	background: url('../images/bg-home-soccer.jpg') no-repeat center;
+	background: url('../images/bg-home-soccer-alt.jpg') no-repeat center top;
 	background-size: cover;
 }
 
@@ -777,12 +780,12 @@ figure.effect-sadie:hover figcaption::before {
 
 	// GRIDS ****************************
 		.bg-prospect{
-			background: url('../images/bg-home-tennis.jpg') no-repeat top;
+			background: url('../images/bg-home-tennis-alt.jpg') no-repeat  center top;
 			background-size: cover;
 		}
 
 		.bg-coach{
-			background: url('../images/banner-soccer.jpg') no-repeat center top;
+			background: url('../images/bg-home-soccer-alt.jpg') no-repeat center top;
 			background-size:  cover;
 		}
 
