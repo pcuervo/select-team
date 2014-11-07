@@ -17,7 +17,7 @@
     <script>try{Typekit.load();}catch(e){}</script>
   </head>
 
-  <body class="">
+  <body class="body-home">
     <div class="[ container-fluid ]">
         <header class="[ clearfix ]">
             <nav class="[ hidden-md hidden-lg ] [ navbar navbar-default ]" role="navigation">
@@ -123,7 +123,7 @@
                                 </li>
                                 <li>
                                     <span><label for="q5">What's your email address?</label></span>
-                                    <input id="q5" name="q5" type="text"/>
+                                    <input id="q5" name="q5" type="email"/>
                                 </li>
                                 <li>
                                     <span><label for="q6">What sport do you practice?</label></span>
@@ -191,7 +191,7 @@
                                     </select>
                                 </li>
                                 <li class="[ js-sport js-soccer ]">
-                                    <span><label for="q14">What's your height?(in centimeters)</label></span>
+                                    <span><label for="q14">What's your height? (in centimeters)</label></span>
                                     <input id="q14" name="q14" type="text"/>
                                 </li>
                             </ol><!-- /questions -->
@@ -242,7 +242,7 @@
                                 </li>
                                 <!-- GOLF -->
                                 <li class="[ js-sport js-golf ]">
-                                    <span><label for="q4">What's your average score?</label></span>
+                                    <span><label for="q4">What's the average score you are looking for?</label></span>
                                     <select class="[ form-control ]" id="q4" name="q4">
                                         <option value="-66">Under 66</option>
                                         <option value="66-67">66-67</option>
@@ -258,7 +258,7 @@
                                 </li>
                                 <!-- VOLLEYBALL -->
                                 <li class="[ js-sport js-volleyball ]">
-                                    <span><label for="q5">What's your position?</label></span>
+                                    <span><label for="q5">What position does the player have to play?</label></span>
                                     <select class="[ form-control ]" id="q5" name="q5">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -268,23 +268,19 @@
                                         <option value="6">6</option>
                                     </select>
                                 </li>
-                                <li class="[ js-sport js-volleyball ]">
-                                    <span><label for="q6">What's your height? (in feet)</label></span>
-                                    <input id="q6" name="q6" type="text"/>
-                                </li>
                                 <!-- TENNIS -->
                                 <li class="[ js-sport js-tennis ]">
-                                    <span><label for="q7">Do you prefer a left ot right handed player?</label></span>
-                                    <input id="q7" name="q7" type="text"/>
+                                    <span><label for="q6">Do you prefer a left or right handed player?</label></span>
+                                    <input id="q6" name="q6" type="text"/>
                                 </li>
                                 <li class="[ js-sport js-tennis ]">
-                                    <span><label for="q8">What FMT ranking are you looking for? (for mexican players only)</label></span>
-                                    <input id="q8" name="q8" type="text"/>
+                                    <span><label for="q7">What FMT ranking are you looking for? (for mexican players only)</label></span>
+                                    <input id="q7" name="q7" type="text"/>
                                 </li>
                                 <!-- SOCCER -->
                                 <li class="[ js-sport js-soccer ]">
-                                    <span><label for="q10">What position does the player have to play?</label></span>
-                                    <select class="[ form-control ]" id="q10" name="q10">
+                                    <span><label for="q8">What position does the player have to play?</label></span>
+                                    <select class="[ form-control ]" id="q8" name="q8">
                                         <option value="goal-keeper">Goal keeper</option>
                                         <option value="defender">Defender</option>
                                         <option value="midfielder">Midfielder</option>
@@ -292,10 +288,6 @@
                                     </select>
                                 </li>
                                 <!-- SOCCER -->
-                                <li>
-                                    <span><label for="q12">Do you want a free assesment?</label></span>
-                                    <input id="q12" name="q12" type="text"/>
-                                </li>
                             </ol><!-- /questions -->
                             <button class="submit" type="submit">Send</button>
                             <div class="controls">
@@ -355,10 +347,13 @@
         urlAbre();
         var ancho = $(window).outerWidth();
         toggleClassCards(ancho);
-        $(document).ready(function($) {
+        setAlturaWindowMenosHeader('figure');
+        setAlturaWindowMenosHeader('.cards');
+        setTimeout(function(){
+            console.log('ya');
             setAlturaWindowMenosHeader('figure');
             setAlturaWindowMenosHeader('.cards');
-        });
+        }, 500);
 
         //On click/change/etc
         filterQuestions();
@@ -367,17 +362,14 @@
             onSubmit : function( form ) {
                 // hide form
                 classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+                $.post("send-prospects.php", $("#theForm").serialize(), function(response) {
+                    console.log('ajax done');
+                    var messageEl = theForm.querySelector( '.final-message' );
+                    messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+                    classie.addClass( messageEl, 'show' );
+                });
+                return false;
 
-                /*
-                form.submit()
-                or
-                AJAX request (maybe show loading indicator while we don't have an answer..)
-                */
-
-                // let's just simulate something...
-                var messageEl = theForm.querySelector( '.final-message' );
-                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
-                classie.addClass( messageEl, 'show' );
             }
         } );
         var theForm2 = document.getElementById( 'theForm2' );
@@ -385,17 +377,12 @@
             onSubmit : function( form ) {
                 // hide form
                 classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
-
-                /*
-                form.submit()
-                or
-                AJAX request (maybe show loading indicator while we don't have an answer..)
-                */
-
-                // let's just simulate something...
-                var messageEl = theForm2.querySelector( '.final-message' );
-                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
-                classie.addClass( messageEl, 'show' );
+                $.post("send-coach.php", $("#theForm2").serialize(), function(response) {
+                    console.log('ajax done');
+                    var messageEl = theForm2.querySelector( '.final-message' );
+                    messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+                    classie.addClass( messageEl, 'show' );
+                });
             }
         } );
         $('figure').on('click', function(){
