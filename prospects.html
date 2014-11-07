@@ -21,7 +21,7 @@
 
   <div id="monthdebug"></div>
   <div id="yeardebug"></div>
-  
+
 
   <body>
     <div class="container-fluid">
@@ -81,20 +81,24 @@
       <div class="jumbotron banner-prospects">
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 426a864195657e12092f3fc4abef0519fa7a07eb
       </div>
       <div id="filters">
-        <div class="col-xs-11 col-sm-12 col-md-10 center block clearfix margin-bottom ui-group">
+        <div class="container center block clearfix margin-bottom ui-group">
           <h2 class="red">Prospects</h2>
           <p>Filter by:</p>
             <div class="[ isotope-filters-sports ]">
-              <div class="[ prospects ] [ margin-bottom clearfix ] [ sportFilter button-group ]" id="sportAll" data-active="">
+              <div class="[ prospects ] [ margin-bottom clearfix ] [ sportFilter button-group text-center ]" id="sportAll" data-active="">
                 <button type="button" class="btn btn-primary sport" data-filter="*">All </button>
                 <button type="button" class="btn btn-primary sport" data-filter=".tennis"><img src="images/tennis-icon.png" alt=""> <span class="hidden-xs">Tennis</span></button>
                 <button type="button" class="btn btn-primary sport" data-filter=".golf"><img src="images/golf-icon.png" alt=""> <span class="hidden-xs">Golf</span></button>
                 <button type="button" class="btn btn-primary sport" data-filter=".soccer"><img src="images/soccer-icon.png" alt=""> <span class="hidden-xs">Soccer</span></button>
                 <button type="button" class="btn btn-primary sport" data-filter=".volleyball"><img src="images/volleyball-icon.png" alt=""> <span class="hidden-xs">Volleyball</span></button>
               </div>
-              <div class="[ prospects ] [ center margin-bottom ] [ block ] [ clearfix ] [ genderFilter button-group ]" id="genderAll" data-active="">
+              <div class="[ prospects ] [ center margin-bottom ] [ block ] [ clearfix ] [ genderFilter button-group text-center ]" id="genderAll" data-active="">
                 <button type="button" class="btn btn-primary gender" data-filter="*">All</button>
                 <button type="button" class="btn btn-primary gender" data-filter=".male">Male</button>
                 <button type="button" class="btn btn-primary gender" data-filter=".female">Female</button>
@@ -203,7 +207,7 @@
                             <option>81-84</option>
                             <option>85-88</option>
                             <option>88-90</option>
-                          </select>                  
+                          </select>
                         </div>
                       </div>
                       <div class="[ volleyball-register ] [ isotope-item ]">
@@ -217,21 +221,21 @@
                             <option>5</option>
                             <option>6</option>
                           </select>
-                        </div>   
+                        </div>
                         <div class="form-group">
                           <label for="volley-height">Height</label>
                           <input type="number" name="height" min="140" max="235" class="form-control" id="volley-height" placeholder="140">
                           <p class="help-block">Height must be in centimeters. ex: 180.</p>
                         </div>
                       </div>
-                      <div class="[ tennis-register ] [ isotope-item ]">  
+                      <div class="[ tennis-register ] [ isotope-item ]">
                         <div class="form-group">
                           <label for="volley-position">Hand</label>
                           <select class="form-control" id="volley-position">
                             <option>Left-handed</option>
                             <option>Right-handed</option>
                           </select>
-                        </div>   
+                        </div>
                         <div class="form-group">
                           <label for="fmt-ranking">FMT ranking (for mexican players only)</label>
                           <input type="number" name="ranking" class="form-control" id="fmt-ranking">
@@ -250,7 +254,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="[ soccer-register ] [ isotope-item ]">  
+                      <div class="[ soccer-register ] [ isotope-item ]">
                         <div class="form-group">
                           <label for="soccer-position">Position</label>
                           <select class="form-control" id="soccer-position">
@@ -259,7 +263,7 @@
                             <option>Midfielder</option>
                             <option>Forward</option>
                           </select>
-                        </div>   
+                        </div>
                         <div class="form-group">
                           <label for="volley-height">Height</label>
                           <input type="number" name="height" min="140" max="235" class="form-control" id="volley-height" placeholder="140">
@@ -285,7 +289,7 @@
       filtrarIsotopeDefault('.isotope-container', 'none');
       $('.isotope-filters button').on( 'click', function(e) {
         filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
-      });    
+      });
       $('#sportAll button').on('click', function(){
         var sport = $(this).attr('data-filter');
         //console.log(sport);
