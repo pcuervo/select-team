@@ -1,7 +1,7 @@
 (function( $ ) {
   "use strict";
   $(function(){
-    console.log('Hola');
+
     /*
     ** Para el video cuando se cierra el modal
     */
@@ -126,7 +126,6 @@
           'left':'auto'
         });
       }
-
     }
 
     function siguienteCardProspect(element){
