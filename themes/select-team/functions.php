@@ -14,16 +14,19 @@
 	define( 'SITEURL', site_url('/') );
 
 
-
 // FRONT END SCRIPTS AND STYLES //////////////////////////////////////////////////////
-
 
 
 	add_action( 'wp_enqueue_scripts', function(){
 
 		// scripts
+		wp_enqueue_script( 'bootstrap', JSPATH.'bootstrap.min.js', array('jquery'), '1.0', true );
 		wp_enqueue_script( 'plugins', JSPATH.'plugins.js', array('jquery'), '1.0', true );
-		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('plugins'), '1.0', true );
+		wp_enqueue_script( 'classie', JSPATH.'classie.js', array('jquery'), '1.0', true );
+		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('jquery'), '1.0', true );
+		wp_enqueue_script( 'stepsForm', JSPATH.'stepsForm.js', array('plugins'), '1.0', true );
+		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('jquery'), '1.0', true );
+
 
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
@@ -32,6 +35,81 @@
 		wp_enqueue_style( 'styles', get_stylesheet_uri() );
 
 	});
+
+
+
+// FRONT END SCRIPTS FOOTER //////////////////////////////////////////////////////
+	function footerScripts(){
+		if( wp_script_is( 'functions', 'done' ) ) { ?>
+        <script type="text/javascript">
+            (function( $ ) {
+                "use strict";
+                $(function(){
+                    //On load
+                    urlAbre();
+                    var ancho = $(window).outerWidth();
+                    toggleClassCards(ancho);
+                    setAlturaWindowMenosHeader('figure');
+                    setAlturaWindowMenosHeader('.cards');
+                    setTimeout(function(){
+                        console.log('ya');
+                        setAlturaWindowMenosHeader('figure');
+                        setAlturaWindowMenosHeader('.cards');
+                    }, 500);
+
+                    //On click/change/etc
+                    filterQuestions();
+                    var theForm = document.getElementById( 'theForm' );
+                    new stepsForm( theForm, {
+                        onSubmit : function( form ) {
+                            // hide form
+                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+                            $.post("send-prospects.php", $("#theForm").serialize(), function(response) {
+                                console.log('ajax done');
+                                var messageEl = theForm.querySelector( '.final-message' );
+                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+                                classie.addClass( messageEl, 'show' );
+                            });
+                            return false;
+                        }
+                    } );
+                    var theForm2 = document.getElementById( 'theForm2' );
+                    new stepsForm( theForm2, {
+                        onSubmit : function( form ) {
+                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
+                            $.post("send-coach.php", $("#theForm2").serialize(), function(response) {
+                                console.log('ajax done');
+                                var messageEl = theForm2.querySelector( '.final-message' );
+                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+                                classie.addClass( messageEl, 'show' );
+                            });
+                        }
+                    } );
+                    $('figure').on('click', function(){
+                        abrirCards( $(this) );
+                    });
+                    $('.cards-prospect .js-next-card').on('click', function(){
+                        siguienteCardProspect($(this));
+                    });
+                    $('.cards-coach .js-next-card').on('click', function(){
+                        siguienteCardCoach($(this));
+                    });
+                    $('.card-close').on('click', function(){
+                        cerrarCards( $(this) );
+                    });
+                    //Responsive
+                    $(window).resize(function(){
+                        //On Load
+                        var ancho = $(window).outerWidth();
+                        toggleClassCards(ancho);
+                        setAlturaWindowMenosHeader('figure');
+                        setAlturaWindowMenosHeader('.cards');
+                    });
+                });
+            }(jQuery));
+        </script>
+    <?php } }
+    add_action( 'wp_footer', 'footerScripts', 21 );
 
 
 
