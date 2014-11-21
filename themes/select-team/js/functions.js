@@ -131,7 +131,6 @@ function cerrarCards(element){
       'left':'auto'
     });
   }
-
 }
 
 function siguienteCardProspect(element){
