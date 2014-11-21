@@ -50,7 +50,8 @@
 	                <!--<li class="clearfix"><a class="[ center block ]" href="coaches.html">Coaches</a></li>-->
 	                    <li><a class="[ center block ]" href="parents.html">Parents</a></li>
 	                    <li><a class="[ center block ]" href="contact.html">Contact</a></li>
-	                </ul><!-- <div class="[ registro ]">
+	                </ul>
+	                <div class="[ registro ]">
 	                    <p class="[ text-center ]">
 	                      <i class="[ fa fa-user fa-1x ]"></i>
 	                      <a href="" data-toggle="modal" data-target="#Login">Login</a>

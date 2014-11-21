@@ -1,5 +1,63 @@
 <?php
 
+// Block access to the admin area. ////////////////////////////////////////////////////////////////////////
+function restrict_admin()
+{
+	if ( ! current_user_can( 'manage_options' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
+                wp_redirect( site_url() );
+	}
+}
+add_action( 'admin_init', 'restrict_admin', 1 );
+
+// Redirect back to the custom login page on a failed login attempt.. /////////////////////////////////////
+function pu_login_failed( $user ) {
+  	// check what page the login attempt is coming from
+  	$referrer = $_SERVER['HTTP_REFERER'];
+
+  	// check that were not on the default login page
+	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') && $user!=null ) {
+		// make sure we don't already have a failed login attempt
+		if ( !strstr($referrer, '?login=failed' )) {
+			// Redirect to the login page and append a querystring of login failed
+	    	wp_redirect( $referrer . '?login=failed');
+	    } else {
+	      	wp_redirect( $referrer );
+	    }
+
+	    exit;
+	}
+}
+add_action( 'wp_login_failed', 'pu_login_failed' ); // hook failed login
+
+
+// check that the username and password are not empty. ///////////////////////////
+function pu_blank_login( $user ){
+  	// check what page the login attempt is coming from
+  	$referrer = $_SERVER['HTTP_REFERER'];
+
+  	$error = false;
+
+  	if($_POST['log'] == '' || $_POST['pwd'] == '')
+  	{
+  		$error = true;
+  	}
+
+  	// check that were not on the default login page
+  	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') && $error ) {
+
+  		// make sure we don't already have a failed login attempt
+    	if ( !strstr($referrer, '?login=failed') ) {
+    		// Redirect to the login page and append a querystring of login failed
+        	wp_redirect( $referrer . '?login=failed' );
+      	} else {
+        	wp_redirect( $referrer );
+      	}
+
+    exit;
+
+  	}
+}
+add_action( 'authenticate', 'pu_blank_login');
 
 // DEFINIR LOS PATHS A LOS DIRECTORIOS DE JAVASCRIPT Y CSS ///////////////////////////
 
@@ -323,3 +381,29 @@
 			OR isset($query->post_title) AND preg_match("/$string/i", remove_accents(str_replace(' ', '-', $query->post_title) ) ) )
 			echo 'active';
 	}
+
+// HELPER METHODS AND FUNCTIONS //////////////////////////////////////////////////////
+ $args = array(
+        'echo' => true,
+        'redirect' => site_url(), 
+        'form_id' => 'form',
+        'label_username' => __( 'Username' ),
+        'label_password' => __( 'Password' ),
+        'label_log_in' => __( 'Log In' ),
+        'id_username' => 'user_login',
+        'id_password' => 'user_pass',
+        'id_submit' => 'wp-submit',
+        'remember' => true,
+        'value_username' => NULL,
+        'value_remember' => false );
+
+//wp_login_form( $args );
+
+if(isset($_GET['login']) && $_GET['login'] == 'failed')
+{
+    ?>
+        <div id="login-error" style="background-color: #FFEBE8;border:1px solid #C00;padding:5px;">
+            <p>Login failed: You have entered an incorrect Username or password, please try again.</p>
+        </div>
+    <?php
+}
