@@ -195,7 +195,7 @@ function cerrarSesion(){
 
 function Delete_Cookie( name ) {
 //var name = getCookie('cookie_nom');
-var path = document.pathname;
+var path = window.location.pathname;
 var domain = document.domain;
 console.log(name, path, domain);
 if ( getCookie( name ) ) document.cookie = name + "=" +

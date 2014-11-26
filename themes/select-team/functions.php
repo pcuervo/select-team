@@ -417,9 +417,9 @@ if(isset($_SESSION['myKey'])) {
 }
 
 
-echo "<pre>";
-print_r($_COOKIE);
-echo "</pre>";
+//echo "<pre>";
+//print_r($_COOKIE);
+//echo "</pre>";
 
 $index =0;
 $id_key="";
