@@ -52,14 +52,15 @@
 	                    <li><a class="[ center block ]" href="contact.html">Contact</a></li>
 	                </ul>
 	                <div class="[ registro ]">
-	                    <p class="[ text-center ]"  id="j-login">
+	                    <!--<p class="[ text-center ]"  id="j-login">
 	                      <i class="[ fa fa-user fa-1x ]"></i>
 	                      <a href="" data-toggle="modal"  data-target="#Login">Login</a>
 	                    </p>
 	                    <p class="[ text-center ]" id="j-logout">
 	                      <i class="[ fa fa-user fa-1x ]"></i>
-	                      <a href="<?php //echo wp_logout_url( site_url() ); session_destroy(); ?>" id="j-logoutLink" data-toggle="modal" data-target="#Logout">Logout</a>
-	                    </p>
+	                      <a href="" id="j-logoutLink" data-toggle="modal" data-target="#Logout">Logout</a>
+	                    </p>-->
+	                    <?php own_wp_loginout(); ?>
 	                    <p class="[ center-text ]"><a href="">English</a> | <a href="">Español</a></p>
 	                </div> 
 	            </div>

@@ -410,16 +410,6 @@ function myEndSession() {
     session_destroy ();
 }
 
-if(isset($_SESSION['myKey'])) {
-    $value = $_SESSION['myKey'];
-} else {
-    $value = '';
-}
-
-
-//echo "<pre>";
-//print_r($_COOKIE);
-//echo "</pre>";
 
 $index =0;
 $id_key="";
@@ -436,14 +426,16 @@ $user = $usuario[0];
 
 setcookie("user-qwertyui", $user);
 
-if($user!='WP Cookie check')
-	echo 'Usuario:' .$user.'<br/>';
+if($user!='WP Cookie check' || $user!='')
+	{
+	//echo 'Usuario:' .$user.'<br/>';
+	}
 else {
-	echo 'Usuario no logeado';
+	//echo 'Usuario no logeado';
 }
 
 
-if(isset($_GET['login']) && $_GET['login'] == 'failed' && $user=='WP Cookie check'){
+if(isset($_GET['login']) && $_GET['login'] == 'failed' && $user==''){
 echo '
 	<div id="login-error" style="background-color: #FFEBE8;border:1px solid #C00;padding:5px;">
 		<p>Login failed: You have entered an incorrect Username or password, please try again.</p>
@@ -452,7 +444,3 @@ echo '
 }
 
 ///////////////////////////////////////////////////////////////-
-//session_start();
-
-//session_destroy ();
-//echo "string";
