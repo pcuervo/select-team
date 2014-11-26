@@ -1,5 +1,4 @@
 <?php
-
 // Block access to the admin area. ////////////////////////////////////////////////////////////////////////
 function restrict_admin()
 {
@@ -57,11 +56,9 @@ function pu_blank_login( $user ){
 
   	}
 }
-add_action( 'authenticate', 'pu_blank_login');
+//add_action( 'authenticate', 'pu_blank_login');
 
 // DEFINIR LOS PATHS A LOS DIRECTORIOS DE JAVASCRIPT Y CSS ///////////////////////////
-
-
 
 	define( 'JSPATH', get_template_directory_uri() . '/js/' );
 
@@ -385,7 +382,7 @@ add_action( 'authenticate', 'pu_blank_login');
 // HELPER METHODS AND FUNCTIONS //////////////////////////////////////////////////////
  $args = array(
         'echo' => true,
-        'redirect' => site_url(), 
+        //'redirect' => site_url(), 
         'form_id' => 'form',
         'label_username' => __( 'Username' ),
         'label_password' => __( 'Password' ),
@@ -398,12 +395,64 @@ add_action( 'authenticate', 'pu_blank_login');
         'value_remember' => false );
 
 //wp_login_form( $args );
+add_action('init', 'myStartSession', 1);
+add_action('wp_logout', 'myEndSession');
+add_action('wp_login', 'myStartSession');
 
-if(isset($_GET['login']) && $_GET['login'] == 'failed')
-{
-    ?>
-        <div id="login-error" style="background-color: #FFEBE8;border:1px solid #C00;padding:5px;">
-            <p>Login failed: You have entered an incorrect Username or password, please try again.</p>
-        </div>
-    <?php
+function myStartSession() {
+    if(!session_id()) {
+    	echo session_id();
+        session_start();
+    }
 }
+
+function myEndSession() {
+    session_destroy ();
+}
+
+if(isset($_SESSION['myKey'])) {
+    $value = $_SESSION['myKey'];
+} else {
+    $value = '';
+}
+
+
+echo "<pre>";
+print_r($_COOKIE);
+echo "</pre>";
+
+$index =0;
+$id_key="";
+$usuario="";
+foreach ($_COOKIE as $key => $value) {
+	$id_key=substr($key, 0, 20 );
+	if($id_key=='wordpress_logged_in_'){
+		setcookie("cookie_nom", $key);
+		$usuario=explode("|", $_COOKIE[$key]);
+	}
+	$index++;
+}
+$user = $usuario[0];
+
+setcookie("user-qwertyui", $user);
+
+if($user!='WP Cookie check')
+	echo 'Usuario:' .$user.'<br/>';
+else {
+	echo 'Usuario no logeado';
+}
+
+
+if(isset($_GET['login']) && $_GET['login'] == 'failed' && $user=='WP Cookie check'){
+echo '
+	<div id="login-error" style="background-color: #FFEBE8;border:1px solid #C00;padding:5px;">
+		<p>Login failed: You have entered an incorrect Username or password, please try again.</p>
+	</div>
+';
+}
+
+///////////////////////////////////////////////////////////////-
+//session_start();
+
+//session_destroy ();
+//echo "string";
