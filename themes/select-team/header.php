@@ -48,7 +48,7 @@
 	                    <li><a class="[ center block ]" href="<?php echo site_url('index.php'); ?>">About</a></li>
 	                    <li><a class="[ center block ]" href="<?php echo site_url('prospects.php'); ?>">Prospects</a></li>
 	                <!--<li class="clearfix"><a class="[ center block ]" href="coaches.html">Coaches</a></li>-->
-	                    <li><a class="[ center block ]" href="<?php echo site_url('index.php'); ?>">Parents</a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('parents.php'); ?>">Parents</a></li>
 	                    <li><a class="[ center block ]" href="<?php echo site_url('contact.php'); ?>">Contact</a></li>
 	                </ul>
 	                <div class="[ registro ]">

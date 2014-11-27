@@ -3,10 +3,10 @@
 //$args = array('redirect' => get_permalink( get_page( $page_id_of_member_area ) ) );
 //$args = array( 'redirect' => site_url() );
 ?>
-<?php //get_header(); 
-echo site_url( );
-?>
+<?php //get_header(); ?>
 
+
+    <base href="http://localhost/Select/select-team/" />
 		<div class="margin-bottom">
             <h2 class="red">Why study in the USA?</h2>
             <p>
