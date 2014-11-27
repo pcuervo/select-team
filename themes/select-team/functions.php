@@ -22,10 +22,9 @@
 		// scripts
 		wp_enqueue_script( 'bootstrap', JSPATH.'bootstrap.min.js', array('jquery'), '1.0', true );
 		wp_enqueue_script( 'plugins', JSPATH.'plugins.js', array('jquery'), '1.0', true );
-		wp_enqueue_script( 'classie', JSPATH.'classie.js', array('jquery'), '1.0', true );
-		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('jquery'), '1.0', true );
-		wp_enqueue_script( 'stepsForm', JSPATH.'stepsForm.js', array('plugins'), '1.0', true );
-		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('jquery'), '1.0', true );
+		wp_enqueue_script( 'classie', JSPATH.'classie.js', array('plugins'), '1.0', true );
+		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
+		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
 
 		// localize scripts
