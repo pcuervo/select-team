@@ -4,12 +4,12 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2014, Codrops
  * http://www.codrops.com
  */
 ;( function( window ) {
-	
+
 	'use strict';
 
 	var transEndEventNames = {
@@ -23,7 +23,7 @@
 		support = { transitions : Modernizr.csstransitions };
 
 	function extend( a, b ) {
-		for( var key in b ) { 
+		for( var key in b ) {
 			if( b.hasOwnProperty( key ) ) {
 				a[key] = b[key];
 			}
@@ -52,13 +52,13 @@
 		this.questionsCount = this.questions.length;
 		// show first question
 		classie.addClass( this.questions[0], 'current' );
-		
+
 		// next question control
 		this.ctrlNext = this.el.querySelector( 'button.next' );
 
 		// progress bar
 		this.progress = this.el.querySelector( 'div.progress' );
-		
+
 		// question number status
 		this.questionStatus = this.el.querySelector( 'span.number' );
 		// current question placeholder
@@ -70,7 +70,7 @@
 
 		// error message
 		this.error = this.el.querySelector( 'span.error-message' );
-		
+
 		// init events
 		this._initEvents();
 	};
@@ -78,7 +78,7 @@
 	stepsForm.prototype._initEvents = function() {
 		var self = this,
 			// first input
-			firstElInput = this.questions[ this.current ].querySelector( 'input' ),
+			firstElInput = this.questions[ this.current ].querySelector( 'input, select' ),
 			// focus
 			onFocusStartFn = function() {
 				firstElInput.removeEventListener( 'focus', onFocusStartFn );
@@ -89,9 +89,9 @@
 		firstElInput.addEventListener( 'focus', onFocusStartFn );
 
 		// show next question
-		this.ctrlNext.addEventListener( 'click', function( ev ) { 
+		this.ctrlNext.addEventListener( 'click', function( ev ) {
 			ev.preventDefault();
-			self._nextQuestion(); 
+			self._nextQuestion();
 		} );
 
 		// pressing enter will jump to next question
@@ -110,7 +110,7 @@
 			// tab
 			if( keyCode === 9 ) {
 				ev.preventDefault();
-			} 
+			}
 		} );
 	};
 
@@ -129,9 +129,11 @@
 
 		// current question
 		var currentQuestion = this.questions[ this.current ];
-
+		console.log(currentQuestion);
+		console.log(this.current);
 		// increment current question iterator
 		++this.current;
+		console.log(this.current);
 
 		// update progress bar
 		this._progress();
@@ -164,7 +166,7 @@
 					self.currentNum.innerHTML = self.nextQuestionNum.innerHTML;
 					self.questionStatus.removeChild( self.nextQuestionNum );
 					// force the focus on the next input
-					nextQuestion.querySelector( 'input' ).focus();
+					nextQuestion.querySelector( 'input, select' ).focus();
 				}
 			};
 
@@ -200,12 +202,11 @@
 	// the validation function
 	stepsForm.prototype._validade = function() {
 		// current question´s input
-		var input = this.questions[ this.current ].querySelector( 'input' ).value;
+		var input = this.questions[ this.current ].querySelector( 'input, select' ).value;
 		if( input === '' ) {
 			this._showError( 'EMPTYSTR' );
 			return false;
 		}
-
 		return true;
 	}
 
@@ -213,10 +214,10 @@
 	stepsForm.prototype._showError = function( err ) {
 		var message = '';
 		switch( err ) {
-			case 'EMPTYSTR' : 
+			case 'EMPTYSTR' :
 				message = 'Please fill the field before continuing';
 				break;
-			case 'INVALIDEMAIL' : 
+			case 'INVALIDEMAIL' :
 				message = 'Please fill a valid email address';
 				break;
 			// ...
