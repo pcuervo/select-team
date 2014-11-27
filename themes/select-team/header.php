@@ -31,11 +31,11 @@
 	                <!-- Collect the nav links, forms, and other content for toggling -->
 	                <div class="[ collapse navbar-collapse navbar-mobile ]" id="bs-example-navbar-collapse-1">
 	                    <ul class="[ nav navbar-nav ]">
-	                        <li class="[ menu ]"><a href="about.html">About</a></li>
-	                        <li class="[ menu ]"><a href="prospects.html">Prospects</a></li>
+	                        <li class="[ menu ]"><a href="<?php echo site_url('index.php'); ?>">About</a></li>
+	                        <li class="[ menu ]"><a href="<?php echo site_url('prospects.php'); ?>">Prospects</a></li>
 	                    <!--<li class="[ menu ]"><a href="coaches.html">Coaches</a></li>-->
-	                        <li class="[ menu ]"><a href="parents.html">Parents</a></li>
-	                        <li class="[ menu ]"><a href="contact.html">Contact</a></li>
+	                        <li class="[ menu ]"><a href="<?php echo site_url('parents.php'); ?>">Parents</a></li>
+	                        <li class="[ menu ]"><a href="<?php echo site_url('contact.php'); ?>">Contact</a></li>
 	                    </ul>
 	                </div><!-- /.navbar-collapse -->
 	            </nav>
@@ -45,11 +45,11 @@
 	                        <img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
 	                    </a>
 	                </h1><ul class="[ clearfix ]">
-	                    <li><a class="[ center block ]" href="about.html">About</a></li>
-	                    <li><a class="[ center block ]" href="prospects.html">Prospects</a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('index.php'); ?>">About</a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('prospects.php'); ?>">Prospects</a></li>
 	                <!--<li class="clearfix"><a class="[ center block ]" href="coaches.html">Coaches</a></li>-->
-	                    <li><a class="[ center block ]" href="parents.html">Parents</a></li>
-	                    <li><a class="[ center block ]" href="contact.html">Contact</a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('index.php'); ?>">Parents</a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('contact.php'); ?>">Contact</a></li>
 	                </ul>
 	                <div class="[ registro ]">
 	                    <!--<p class="[ text-center ]"  id="j-login">
