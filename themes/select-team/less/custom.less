@@ -355,6 +355,7 @@ header{
 				background-color: @white;
 				border: solid 1px @brand-primary;
 				color: @brand-primary;
+				padding: 1%;
 				&:hover, &:focus{
 					border-color: @brand-info;
 					color: @brand-info;
@@ -367,8 +368,10 @@ header{
 
 
 	.player{
-
-		padding: 10px;
+		background-color: @brand-primary;
+		margin: 5px;
+		padding: 0;
+		color: @white;
 
 		img{
 			width: 100%;
@@ -376,12 +379,13 @@ header{
 
 		.info{
 			padding: 5px;
-			border-bottom: solid 1px @brand-primary;
-
+			
 			h4{
 				margin-top: 0;
 				margin-bottom: 5px;
 			}
+
+			p{ margin-bottom: 5px; }
 
 			button{
 				border: solid 1px @brand-primary;
@@ -553,12 +557,12 @@ header{
 }
 
 .bg-prospect{
-	background: url('images/bg-home-tennis-alt.jpg') no-repeat center top;
+	background: url('../images/bg-home-tennis-alt.jpg') no-repeat center top;
 	background-size: cover;
 }
 
 .bg-coach{
-	background: url(images/bg-home-soccer-alt.jpg) no-repeat center top;
+	background: url('../images/bg-home-soccer-alt.jpg') no-repeat center top;
 	background-size: cover;
 }
 
@@ -765,12 +769,12 @@ figure.effect-sadie:hover figcaption::before {
 
 	// GRIDS ****************************
 		.bg-prospect{
-			background: url('images/bg-home-tennis-alt.jpg') no-repeat  center top;
+			background: url('../images/bg-home-tennis-alt.jpg') no-repeat  center top;
 			background-size: cover;
 		}
 
 		.bg-coach{
-			background: url(images/bg-home-soccer-alt.jpg) no-repeat center top;
+			background: url('../images/bg-home-soccer-alt.jpg') no-repeat center top;
 			background-size:  cover;
 		}
 

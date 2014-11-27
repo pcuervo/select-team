@@ -16,6 +16,7 @@
 
 
 }(jQuery));
+
 var $=jQuery.noConflict();
 function correIsotope(contenedor, item, layoutMode){
   var $container = $(contenedor);
@@ -130,7 +131,6 @@ function cerrarCards(element){
       'left':'auto'
     });
   }
-
 }
 
 function siguienteCardProspect(element){
@@ -157,3 +157,50 @@ function urlAbre(){
     $('.cards.cards-prospect').removeClass('is-closed').addClass('is-opened');
   }
 }
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+//esconderLoginLogout();
+
+function esconderLoginLogout(){
+  user= getCookie('user-qwertyui');
+  console.log(user);
+  if(user!='WP+Cookie+check'){
+    $('#j-login').hide();
+    $('#j-logout').show(); 
+  }
+  else{
+    $('#j-login').show();
+   $('#j-logout').hide(); 
+  }
+
+}
+
+
+function cerrarSesion(){
+  $('#j-logoutLink').on('click', function(e){
+    e.preventDefault();
+    Delete_Cookie('cookie_nom');
+  });
+}
+
+
+function Delete_Cookie( name ) {
+//var name = getCookie('cookie_nom');
+var path = window.location.pathname;
+var domain = document.domain;
+console.log(name, path, domain);
+if ( getCookie( name ) ) document.cookie = name + "=" +
+( ( path ) ? ";path=" + path : "") +
+( ( domain ) ? ";domain=" + domain : "" ) +
+";expires=Thu, 01-Jan-1970 00:00:01 GMT";
+}
+cerrarSesion();
