@@ -15,10 +15,7 @@
 	    <script>try{Typekit.load();}catch(e){}</script>
 		<?php wp_head(); ?>
 	</head>
-	<body <?php 
-	if(is_home())
-	body_class('body-home'); 
-	?> >
+	<body <?php body_class(); ?> >
 	    <div class="[ container-fluid ]">
 	        <header class="[ clearfix ]">
 	            <nav class="[ hidden-md hidden-lg ] [ navbar navbar-default ]" role="navigation">
