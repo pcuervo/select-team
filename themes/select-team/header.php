@@ -44,23 +44,51 @@
 	                    <a href="<?php echo site_url('index.php'); ?>">
 	                        <img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
 	                    </a>
-	                </h1><ul class="[ clearfix ]">
-	                    <li><a class="[ center block ]" href="<?php echo site_url('acerca'); ?>">About</a></li>
-	                    <li><a class="[ center block ]" href="<?php echo site_url('prospecto'); ?>">Prospects</a></li>
+	                </h1><ul class="[ desktop-nav ] [ clearfix ]">
+	                    <li><a class="[ center block ]" href="<?php echo site_url('acerca'); ?>">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								Acerca
+							<?php } else { ?>
+								About
+							<?php } ?>
+	                    </a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('prospecto'); ?>">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								Prospectos
+							<?php } else { ?>
+								Prospects
+							<?php } ?>
+	                    </a></li>
 	                <!--<li class="clearfix"><a class="[ center block ]" href="coaches.html">Coaches</a></li>-->
-	                    <li><a class="[ center block ]" href="<?php echo site_url('padre'); ?>">Parents</a></li>
-	                    <li><a class="[ center block ]" href="<?php echo site_url('contact'); ?>">Contact</a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('padre'); ?>">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								Padres
+							<?php } else { ?>
+								Parents
+							<?php } ?>
+						</a></li>
+						<li><a class="[ center block ]" href="<?php echo site_url('contact'); ?>">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								Contacto
+							<?php } else { ?>
+								Contact
+							<?php } ?>
+						</a></li>
 	                </ul>
 	                <div class="[ registro ]">
 	                    <?php own_wp_loginout(); ?>
-	                    <p class="[ center-text ] [ no-margin ]"><a href="">English</a> | <a href="">Español</a></p>
+						<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 	                </div> 
 	            </div>
 	            <?php if(is_home()){ ?>
 		            <div class="[ header-bottom ]">
 		                <div class="[ container ]">
 		                    <p class="[ text-center ] [ col-xs-12 col-md-9 ] [ center block ]">
-		                        Select Team creates new opportunities for students and helps athletes to become part of a sports team with an scholarship in universities in the United States.
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									Select team crea oportunidades de beca para atletas estudiantes para jugar y estufdiar en universidades de Estados Unidos.  
+								<?php } else { ?>
+									Select Team creates scholarship opportunities for student athletes to play sports and study at universities in the United States.
+								<?php } ?>
 		                    </p>
 		                    <img class="[ col-xs-6 col-sm-5 col-md-2 ] [ center block ]" src="<?php echo THEMEPATH; ?>images/icon-sports.png" alt="">
 		                </div>

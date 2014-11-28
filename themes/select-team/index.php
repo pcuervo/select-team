@@ -1,22 +1,28 @@
- <?php
-
-//$args = array('redirect' => get_permalink( get_page( $page_id_of_member_area ) ) );
-//$args = array( 'redirect' => site_url() );
-?>
-    
 <?php get_header(); ?>
     <div class="[ grid ]">
         <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]" data-cards="prospect">
             <div class="[ screen ]"></div>
             <figcaption>
-                <h2 class="">Become a prospect</h2>
+                <h2 class="">
+                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                        Se un propecto
+                    <?php } else { ?>
+                        Become a prospect
+                    <?php } ?>
+                </h2>
                 <a href="#"></a>
             </figcaption>
         </figure>
         <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-coach ]" data-cards="coach">
             <div class="[ screen ]"></div>
             <figcaption>
-                <h2 class="[ center block ] [  ]">I am a coach</h2>
+                <h2 class="[ center block ] [  ]">
+                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                        Soy coach
+                    <?php } else { ?>
+                        I am a coach
+                    <?php } ?>
+                </h2>
                 <a href="#"></a>
             </figcaption>
         </figure>
