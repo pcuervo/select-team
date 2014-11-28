@@ -53,7 +53,7 @@
 	                </ul>
 	                <div class="[ registro ]">
 	                    <?php //own_wp_loginout(); ?>
-	                    <p class="[ center-text ]"><a href="">English</a> | <a href="">Español</a></p>
+	                    <p class="[ center-text ] [ no-margin ]"><a href="">English</a> | <a href="">Español</a></p>
 	                </div> 
 	            </div>
 	            <?php if(is_home()){ ?>
