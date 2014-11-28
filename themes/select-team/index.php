@@ -1,9 +1,3 @@
- <?php
-
-//$args = array('redirect' => get_permalink( get_page( $page_id_of_member_area ) ) );
-//$args = array( 'redirect' => site_url() );
-?>
-    
 <?php get_header(); ?>
     <div class="[ grid ]">
         <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]" data-cards="prospect">
@@ -35,15 +29,21 @@
                         </li>
                         <li>
                             <span><label for="q2">When were you born?</label></span>
-                            <input id="q2" name="q2" type="text"/>
+                            <input type="text" id="datepicker" name="q2" ></p>
                         </li>
                         <li>
                             <span><label for="q3">When are you graduating?</label></span>
-                            <input id="q3" name="q3" type="text"/>
+                            <input name="q3" type="text" id="datepicker2"/>
                         </li>
                         <li>
                             <span><label for="q4">What year are you studying?</label></span>
-                            <input id="q4" name="q4" type="text"/>
+                            <select class="[ form-control ]" id="q4" name="q4">
+                                <option>Grade</option>
+                                <option value="tennis"> ----- </option>
+                                <option value="golf"> ----- </option>
+                                <option value="soccer"> ----- </option>
+                                <option value="volleyball"> ----- </option>
+                            </select>
                         </li>
                         <li>
                             <span><label for="q5">What's your email address?</label></span>
@@ -53,10 +53,10 @@
                             <span><label for="q6">What sport do you practice?</label></span>
                             <select class="[ form-control ]" id="q6" name="q6">
                                 <option>Sport</option>
-                                <option value="tennis">Tennis</option>
-                                <option value="golf">Golf</option>
-                                <option value="soccer">Soccer</option>
-                                <option value="volleyball">Volleyball</option>
+                                <option value="tennis">Tennis </option>
+                                <option value="golf">Golf </option>
+                                <option value="soccer">Soccer </option>
+                                <option value="volleyball">Volleyball </option>
                             </select>
                         </li>
                         <!-- GOLF -->

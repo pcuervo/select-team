@@ -76,6 +76,7 @@ function pu_blank_login( $user ){
 
 		// scripts
 		wp_enqueue_script( 'bootstrap', JSPATH.'bootstrap.min.js', array('jquery'), '1.0', true );
+		wp_enqueue_script( 'jquery-ui-datepicker');
 		wp_enqueue_script( 'plugins', JSPATH.'plugins.js', array('jquery'), '1.0', true );
 		wp_enqueue_script( 'classie', JSPATH.'classie.js', array('plugins'), '1.0', true );
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
@@ -101,6 +102,10 @@ function pu_blank_login( $user ){
 		                "use strict";
 		                $(function(){
 		                    //On load
+		                    $( "#datepicker" ).datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate', '01-01-1995');
+		                    $( "#datepicker2" ).datepicker({dateFormat: 'dd-mm-yy'});
+		                    
+
 		                    urlAbre();
 		                    var ancho = $(window).outerWidth();
 		                    toggleClassCards(ancho);
@@ -122,19 +127,9 @@ function pu_blank_login( $user ){
 		                            // hide form
 		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
 		                           	var messageEl = theForm.querySelector( '.final-message' );
-	                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+	                                messageEl.innerHTML = 'Loading.';
 	                                classie.addClass( messageEl, 'show' );
-		                            
-		                            //$.post("send-prospects.php", $("#theForm").serialize(), function(response) {
-		                            $.post( current_url+"/dashboard", $("#theForm").serialize(), function(response) {
-		                                console.log('ajax done');
-		                                var messageEl = theForm.querySelector( '.final-message' );
-		                                messageEl.innerHTML = 'Redirecting';
-		                                $('theForm').submit();
-		                                location.replace(current_url+"/dashboard");
-
-		                                classie.addClass( messageEl, 'show' );
-		                            });
+		                            location.replace(current_url+"/dashboard?"+ $("#theForm").serialize());
 		                            return false;
 		                        }
 		                    } );

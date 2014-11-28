@@ -1,10 +1,8 @@
- <?php
-
-//$args = array('redirect' => get_permalink( get_page( $page_id_of_member_area ) ) );
-//$args = array( 'redirect' => site_url() );
-?>
-<?php print_r($_POST); ?>    
-<?php print_r($_GET); ?>    
+<?php 
+//echo "<pre>";
+//print_r($_GET); 
+//echo "</pre>"
+?>    
 <?php get_header(); ?>
     <div id="dashboard">
                 <!-- Sidebar -->
@@ -38,24 +36,51 @@
                                 <form role="form" class="[ row ]">
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="exampleInputEmail1">Full name</label>
-                                        <input type="text" class="[ form-control ]" id="exampleInputEmail1">
+                                        <input type="text" class="[ form-control ]" id="exampleInputEmail1" value="<?php echo $_GET['q1']; ?>" name="q1" >
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="fechaNacimiento">Date of birth</label>
-                                        <input type="text" class="[ form-control ]" id="fechaNacimiento">
+                                        <input type="text" class="[ form-control ]" id="fechaNacimiento" value="<?php echo $_GET['q2']; ?>" name="q2">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="email">E-mail</label>
-                                        <input type="email" class="[ form-control ]" id="email">
+                                        <input type="email" class="[ form-control ]" id="email" value="<?php echo $_GET['q5']; ?>">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="sport">Sport you practice</label>
-                                        <select class="[ form-control ]" id="q3" name="q3">
-                                            <option value="sport"selected disabled>Sport</option>
-                                            <option value="tennis">Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball">Volleyball</option>
+                                        <select class="[ form-control ]" id="q3" name="q3" >
+                                            <?php switch ($_GET['q6']) {
+                                                case 'tennis': ?>
+                                                        <option value="tennis" selected>Tennis</option>
+                                                        <option value="golf">Golf</option>
+                                                        <option value="soccer">Soccer</option>
+                                                        <option value="volleyball">Volleyball</option>                                        
+                                                    <?php break;
+                                                
+                                                case 'golf': ?>
+                                                        <option value="tennis" >Tennis</option>
+                                                        <option value="golf" selected>Golf</option>
+                                                        <option value="soccer">Soccer</option>
+                                                        <option value="volleyball">Volleyball</option>                                        
+                                                    <?php break;
+                                                
+                                                case 'soccer': ?>
+                                                        <option value="tennis">Tennis</option>
+                                                        <option value="golf">Golf</option>
+                                                        <option value="soccer" selected>Soccer</option>
+                                                        <option value="volleyball">Volleyball</option>                                        
+                                                    <?php break;
+                                                
+                                                case 'volleyball': ?>
+                                                        <option value="tennis" >Tennis</option>
+                                                        <option value="golf">Golf</option>
+                                                        <option value="soccer">Soccer</option>
+                                                        <option value="volleyball" selected>Volleyball</option>                                        
+                                                    <?php break;
+                                                
+                                                default:
+                                                    break;
+                                            } ?>
                                         </select>
                                     </div>
                                     <!--GOLF-->
