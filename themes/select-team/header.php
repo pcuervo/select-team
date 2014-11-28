@@ -40,6 +40,7 @@
 	                </div><!-- /.navbar-collapse -->
 	            </nav>
 	            <div class="[ container ] [ hidden-xs hidden-sm ] [ header-top ] [ clearfix ]">
+	            	<input type="hidden" id="current_url" value="<?php echo site_url(); ?>"/>
 	                <h1>
 	                    <a href="<?php echo site_url('index.php'); ?>">
 	                        <img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>

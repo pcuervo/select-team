@@ -3,7 +3,8 @@
 //$args = array('redirect' => get_permalink( get_page( $page_id_of_member_area ) ) );
 //$args = array( 'redirect' => site_url() );
 ?>
-    
+<?php print_r($_POST); ?>    
+<?php print_r($_GET); ?>    
 <?php get_header(); ?>
     <div class="[ grid ]">
         <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]" data-cards="prospect">

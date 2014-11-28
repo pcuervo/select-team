@@ -117,12 +117,22 @@ function pu_blank_login( $user ){
 		                    var theForm = document.getElementById( 'theForm' );
 		                    new stepsForm( theForm, {
 		                        onSubmit : function( form ) {
+		                        	var current_url = document.getElementById('current_url').value;
+		                        	console.log(current_url);
 		                            // hide form
 		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
-		                            $.post("send-prospects.php", $("#theForm").serialize(), function(response) {
+		                           	var messageEl = theForm.querySelector( '.final-message' );
+	                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+	                                classie.addClass( messageEl, 'show' );
+		                            
+		                            //$.post("send-prospects.php", $("#theForm").serialize(), function(response) {
+		                            $.post( current_url+"/dashboard", $("#theForm").serialize(), function(response) {
 		                                console.log('ajax done');
 		                                var messageEl = theForm.querySelector( '.final-message' );
-		                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+		                                messageEl.innerHTML = 'Redirecting';
+		                                $('theForm').submit();
+		                                location.replace(current_url+"/dashboard");
+
 		                                classie.addClass( messageEl, 'show' );
 		                            });
 		                            return false;
