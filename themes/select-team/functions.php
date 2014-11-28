@@ -449,32 +449,6 @@ function myEndSession() {
     session_destroy ();
 }
 
-
-$index =0;
-$id_key="";
-$usuario="";
-foreach ($_COOKIE as $key => $value) {
-	$id_key=substr($key, 0, 20 );
-	if($id_key=='wordpress_logged_in_'){
-		setcookie("cookie_nom", $key);
-		$usuario=explode("|", $_COOKIE[$key]);
-	}
-	$index++;
-}
-//if(sizeof($usuario)>0){
-//	$user = $usuario[0];
-
-//	setcookie("user-qwertyui", $user);
-
-//	if($user!='WP Cookie check' || $user!='')
-//		{
-		//echo 'Usuario:' .$user.'<br/>';
-//		}
-//	else {
-		//echo 'Usuario no logeado';
-//}
-//}
-
 if(isset($_GET['login']) && $_GET['login'] == 'failed' && $user==''){
 echo '
 	<div id="login-error" style="background-color: #FFEBE8;border:1px solid #C00;padding:5px;">

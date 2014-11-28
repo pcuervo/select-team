@@ -122,6 +122,16 @@
                                         <input type="file" id="exampleInputFile">
                                         <p class="help-block">File must be 500 x 500 pixels. No larger than 400 kb.</p>
                                     </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="[ form-control ]" id="password">
+                                        <p class="help-block">Password must contain at least 8 characters.</p>
+                                    </div>
+
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="password">Confirm Password</label>
+                                        <input type="password" class="[ form-control ]" id="password">
+                                    </div>
                                   <button type="submit" class="[ btn btn-primary ]">Guardar cambios</button>
                                 </form>
                             </div>
@@ -179,8 +189,11 @@
                                         <label for="tournamentRank">Ranking</label>
                                         <input type="text" class="[ form-control ]" id="tournamentRank">
                                     </div>
+                                    <div class="clear"></div>
                                     <button class="[ btn btn-primary ] [ margin-bottom ]">Add <i class="fa fa-plus"></i></button>
-                                    <div class="tournaments-added"></div>
+                                    <div class="clear"></div>
+                                    <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Guardar cambios</button>
                                 </form>
                             </div>
                         </div>

@@ -15,8 +15,14 @@
 	    <script>try{Typekit.load();}catch(e){}</script>
 		<?php wp_head(); ?>
 	</head>
-	<?php if(is_page()) { $page_slug = 'page-'.$post->post_name; } ?>
-	<body <?php body_class($page_slug); ?> >
+	<?php $page_slug; if(is_page()) { $page_slug = 'page-'.$post->post_name; } ?>
+	<body <?php
+		if(is_page()){
+			body_class($page_slug);
+		} else {
+			body_class();
+		}
+		?> >
 	    <div class="[ container-fluid ]">
 	        <header class="[ clearfix ]">
 	            <nav class="[ hidden-md hidden-lg ] [ navbar navbar-default ]" role="navigation">
@@ -53,8 +59,8 @@
 	                    <li><a class="[ center block ]" href="<?php echo site_url('contact'); ?>">Contact</a></li>
 	                </ul>
 	                <div class="[ registro ]">
-	                    <?php //own_wp_loginout(); ?>
-	                    <p class="[ center-text ]"><a href="">English</a> | <a href="">Español</a></p>
+	                    <?php own_wp_loginout(); ?>
+	                    <p class="[ center-text ] [ no-margin ]"><a href="">English</a> | <a href="">Español</a></p>
 	                </div> 
 	            </div>
 	            <?php if(is_home()){ ?>

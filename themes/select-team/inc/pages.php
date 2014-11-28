@@ -6,7 +6,6 @@
 
 	add_action('init', function(){
 
-
 		// DASHBOARD
 		if( ! get_page_by_path('dashboard') ){
 			$page = array(
@@ -18,6 +17,5 @@
 			);
 			wp_insert_post( $page, true );
 		}
-
 
 	});
