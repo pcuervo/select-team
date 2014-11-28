@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Select Team Becas</title>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!--FONT AWESOME-->
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <!--TYPEKIT-->
+        <script src="//use.typekit.net/nwo2lbv.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+    </head>
+
+
+
+    <div id="monthdebug"></div>
+    <div id="yeardebug"></div>
+
+
+    <body class="[ body-dashboard ]">
+        <div class="container-fluid">
+            <header class="[ clearfix ]">
+                <nav class="[ hidden-md hidden-lg ] [ navbar navbar-default ]" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="[ navbar-header ]">
+                        <button type="button" class="[ navbar-toggle collapsed ]" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="[ sr-only ]"></span>
+                            <i class="[ fa fa-bars ]"></i>
+                        </button>
+                      <a class="[ navbar-brand ]" href="index.html"><img class="[ img-responsive ]" src="images/logo-select-team-mobile.png" alt=""></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="[ collapse navbar-collapse navbar-mobile ]" id="bs-example-navbar-collapse-1">
+                        <ul class="[ nav navbar-nav ]">
+                            <li class="[ menu ]"><a href="about.html">About</a></li>
+                            <li class="[ menu ]"><a href="prospects.html">Prospects</a></li>
+                        <!--<li class="[ menu ]"><a href="coaches.html">Coaches</a></li>-->
+                            <li class="[ menu ]"><a href="parents.html">Parents</a></li>
+                            <li class="[ menu ]"><a href="contact.html">Contact</a></li>
+                            <!-- <li class="[ extra ]">
+                                <p class="[ center-text ]">
+                                    <i class="[ fa fa-user fa-1x ]"></i>
+                                    <a href="" data-toggle="modal" data-target="#Login">Login</a>
+                                </p>
+                                <hr>
+                                <p class="[ center-text ]">
+                                    <a href="">English</a> | <a href="">Español</a>
+                                </p>
+                            </li> -->
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+                <div class="[ container ] [ hidden-xs hidden-sm ] [ header-top ] [ clearfix ]">
+                    <h1>
+                        <a href="index.html">
+                            <img class="[ img-responsive ]" src="images/logo-select-team.png" alt="Select Team"/>
+                        </a>
+                    </h1><ul class="[ clearfix ]">
+                        <li><a class="[ center block ]" href="about.html">About</a></li>
+                        <li><a class="[ center block ]" href="prospects.html">Prospects</a></li>
+                    <!--<li class="clearfix"><a class="[ center block ]" href="coaches.html">Coaches</a></li>-->
+                        <li><a class="[ center block ]" href="parents.html">Parents</a></li>
+                        <li><a class="[ center block ]" href="contact.html">Contact</a></li>
+                    </ul><!-- <div class="[ registro ]">
+                        <p class="[ text-center ]">
+                          <i class="[ fa fa-user fa-1x ]"></i>
+                          <a href="" data-toggle="modal" data-target="#Login">Login</a>
+                        </p>
+                        <p class="[ center-text ]"><a href="">English</a> | <a href="">Español</a></p>
+                    </div> -->
+                </div>
+            </header>   
+
+        <div id="dashboard">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand">
+                            <p><i class="fa fa-cogs"></i> My Dashboard </p>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-file-o"></i> Curriculum</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-envelope-o"></i> Messages</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /#sidebar-wrapper -->
+
+                <!-- Page Content -->
+                <div id="page-content-wrapper">
+                    <div class="[ container-fluid ]">
+                        <div class="[ row ]">
+                            <a href="#menu-toggle" id="dashboard-toggle" class="[ btn btn-success ]"><i class="[ fa fa-cogs ]"></i> Dashboard</a>
+                        </div>
+                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]">
+                            <div class="[ col-xs-12 col-sm-7 center block ]">
+                                <h3>Basic Profile</h3>
+                                <form role="form" class="[ row ]">
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="exampleInputEmail1">Full name</label>
+                                        <input type="text" class="[ form-control ]" id="exampleInputEmail1">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="fechaNacimiento">Date of birth</label>
+                                        <input type="text" class="[ form-control ]" id="fechaNacimiento">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="[ form-control ]" id="email">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="sport">Sport you practice</label>
+                                        <select class="[ form-control ]" id="q3" name="q3">
+                                            <option value="sport"selected disabled>Sport</option>
+                                            <option value="tennis">Tennis</option>
+                                            <option value="golf">Golf</option>
+                                            <option value="soccer">Soccer</option>
+                                            <option value="volleyball">Volleyball</option>
+                                        </select>
+                                    </div>
+                                    <!--GOLF-->
+                                    <div class="[ form-group ] [ col-xs-6 ]">
+                                        <label for="sport">Average score</label>
+                                        <select class="[ form-control ]" id="q4" name="q4">
+                                            <option value="-66">Under 66</option>
+                                            <option value="66-67">66-67</option>
+                                            <option value="68-70">68-70</option>
+                                            <option value="71-73">71-73</option>
+                                            <option value="74-76">74-76</option>
+                                            <option value="77-79">77-79</option>
+                                            <option value="80-82">80-82</option>
+                                            <option value="83-85">83-85</option>
+                                            <option value="86-88">86-88</option>
+                                            <option value="89-90">89-90</option>
+                                        </select>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <!--VOLLEBALL-->
+                                    <div class="[ form-group ] [ col-xs-6 ]">
+                                        <label for="volleyPosition">Position</label>
+                                        <select class="[ form-control ]" id="volleyPosition" name="q8">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-6 ]">
+                                        <label for="volleyHeight">Height (cm)</label>
+                                        <input type="text" class="[ form-control ]" id="volleyHeight">
+                                    </div>
+                                    <!--TENNIS-->
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="tennisHand">Right or lef handed?</label>
+                                        <input type="text" class="[ form-control ]" id="tennisHand">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="tennisHand">FTP ranking</label>
+                                        <input type="text" class="[ form-control ]" id="tennisHand">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="atpTournament">Played an ATP tournament?</label>
+                                        <input type="text" class="[ form-control ]" id="atpTournament">
+                                    </div>
+                                    <!--SOCCER-->
+                                    <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
+                                        <label for="soccerPosition">Position</label>
+                                        <select class="[ form-control ]" id="q13" name="q13">
+                                            <option value="goal-keeper">Goal keeper</option>
+                                            <option value="defender">Defender</option>
+                                            <option value="midfielder">Midfielder</option>
+                                            <option value="forward">Forward</option>
+                                        </select>
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
+                                        <label for="soccerHeight">Height (cm)</label>
+                                        <input type="text" class="[ form-control ]" id="soccerHeight">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="exampleInputFile">Upload your profile picture</label>
+                                        <input type="file" id="exampleInputFile">
+                                        <p class="help-block">File must be 500 x 500 pixels. No larger than 400 kb.</p>
+                                    </div>
+                                  <button type="submit" class="[ btn btn-primary ]">Guardar cambios</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]">
+                            <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                                <h3>Curriculum</h3>
+                                <p class="help-block">This section will not appear on your public profile.</p>
+                                <form role="form" class="[ row ]">
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="[ form-control ]" id="address">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" class="[ form-control ]" id="phone">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
+                                        <label for="mPhone">Mobile Phone</label>
+                                        <input type="text" class="[ form-control ]" id="mPhone">
+                                    </div>
+                                    <h4 class="[ col-xs-12 ]">Academic Carreer</h4>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="midSchool">Middle School</label>
+                                        <input type="text" class="[ form-control ]" id="midSchool">
+                                        <p class="help-block">School and grade must be placed.</p>
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="midGrad">Graduate Year</label>
+                                        <input type="text" class="[ form-control ]" id="midGrad">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="highSchool">Highschool</label>
+                                        <input type="text" class="[ form-control ]" id="highSchool">
+                                        <p class="help-block">School and grade must be placed.</p>
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="highGrad">Graduate Date</label>
+                                        <input type="text" class="[ form-control ]" id="highGrad">
+                                        <p class="help-block">ex: February, 2015</p>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <h4 class="[ col-xs-12 ]">Sports Development</h4>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="tournament">Tournament</label>
+                                        <input type="text" class="[ form-control ]" id="tournament">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-6 ]">
+                                        <label for="tournamentDate">Date</label>
+                                        <input type="text" class="[ form-control ]" id="tournamentDate">
+                                        <p class="help-block">mm-yy</p>
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-6 ]">
+                                        <label for="tournamentRank">Ranking</label>
+                                        <input type="text" class="[ form-control ]" id="tournamentRank">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /#page-content-wrapper -->
+
+            </div>
+            <!-- /#wrapper -->
+        </div>
+
+
+      <!--MODALS-->
+        <!-- LOGIN -->
+        <div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2 class="modal-title center-text" id="myModalLabel">Login</h2>
+              </div>
+              <div class="modal-body">
+                <form role="form">
+                  <div class="input-group margin-bottom-sm">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input class="form-control" type="text" placeholder="Email address">
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input class="form-control" type="password" placeholder="Password">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary center block">Enter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REGISTRO -->
+        <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2 class="modal-title center-text" id="myModalLabel">Register</h2>
+              </div>
+              <div class="modal-body">
+                <form role="form">
+                  <div class="form-group">
+                    <label for="coachName">Name</label>
+                    <input type="text" class="form-control" id="coachName">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+
+                  <div class="form-group clearfix">
+                    <label for="exampleInputEmail1">Select a sport</label>
+                    <div class="[ isotope-filters ]">
+                      <button data-filter=".tennis-register" type="button" class="btn btn-primary">Tennis</button>
+                      <button data-filter=".golf-register" type="button" class="btn btn-primary">Golf</button>
+                      <button data-filter=".soccer-register" type="button" class="btn btn-primary">Soccer</button>
+                      <button data-filter=".volleyball-register" type="button" class="btn btn-primary">Volleyball</button>
+                    </div><!-- isotope-filters -->
+                    <div class="[ isotope-container ]">
+                      <div class="[ golf-register ] [ isotope-item ]">
+                        <div class="form-group">
+                          <label for="average-score">Average score:</label>
+                          <select class="form-control" id="average-score">
+                            <option>under 66</option>
+                            <option>66-69</option>
+                            <option>70-73</option>
+                            <option>74-77</option>
+                            <option>78-80</option>
+                            <option>81-84</option>
+                            <option>85-88</option>
+                            <option>88-90</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="[ volleyball-register ] [ isotope-item ]">
+                        <div class="form-group">
+                          <label for="volley-position">Position</label>
+                          <select class="form-control" id="volley-position">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="volley-height">Height</label>
+                          <input type="number" name="height" min="140" max="235" class="form-control" id="volley-height" placeholder="140">
+                          <p class="help-block">Height must be in centimeters. ex: 180.</p>
+                        </div>
+                      </div>
+                      <div class="[ tennis-register ] [ isotope-item ]">
+                        <div class="form-group">
+                          <label for="volley-position">Hand</label>
+                          <select class="form-control" id="volley-position">
+                            <option>Left-handed</option>
+                            <option>Right-handed</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="fmt-ranking">FMT ranking (for mexican players only)</label>
+                          <input type="number" name="ranking" class="form-control" id="fmt-ranking">
+                        </div>
+                        <div class="form-group clearfix">
+                          <label for="atp-tournament" class="col-xs-12">Have you ever played an ATP tournament?</label>
+                          <div class="radio col-xs-6 col-sm-3" id="atp-tournament">
+                            <label>
+                              <input type="radio" name="optionsRadios" id="atp-yes" value="option1">
+                              Yes
+                            </label>
+                            <label>
+                              <input type="radio" name="optionsRadios" id="atp-no" value="option1">
+                              No
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="[ soccer-register ] [ isotope-item ]">
+                        <div class="form-group">
+                          <label for="soccer-position">Position</label>
+                          <select class="form-control" id="soccer-position">
+                            <option>Goal keeper</option>
+                            <option>Defender</option>
+                            <option>Midfielder</option>
+                            <option>Forward</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="volley-height">Height</label>
+                          <input type="number" name="height" min="140" max="235" class="form-control" id="volley-height" placeholder="140">
+                          <p class="help-block">Height must be in centimeters.</p>
+                        </div>
+                      </div>
+                    </div><!-- isotope-container -->
+                </form>
+              </div><!-- MODAL BODY-->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary center block">Submit register</button>
+              </div>
+            </div>
+          </div>
+      </div><!--REGISTRO-->
+    </div><!--CONTAINER-FLUID-->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/functions.js"></script>
+    <script type="text/javascript">
+      correIsotope('.isotope-container', '.isotope-item', 'masonry');
+      filtrarIsotopeDefault('.isotope-container', 'none');
+      $('.isotope-filters button').on( 'click', function(e) {
+        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+      });
+      $('#sportAll button').on('click', function(){
+        var sport = $(this).attr('data-filter');
+        //console.log(sport);
+        $('#sportAll').attr('data-active', sport);
+        reorder($(this), '.isotope-container-sports');
+        return false;
+      });
+      $('#genderAll button').on('click', function(){
+        var gender = $(this).attr('data-filter');
+        //console.log(gender);
+        $('#genderAll').attr('data-active', gender);
+        reorder($(this), '.isotope-container-sports');
+        return false;
+      });
+    </script>
+    <script type="text/javascript">
+      $( function() {
+        $('.sportContainer').isotope({
+          itemSelector: '.player',
+          layoutMode: 'masonry'
+        });
+      });
+      $( function() {
+        var $container = $('.sportContainer');
+          $container.imagesLoaded(function(){
+              $container.isotope({
+                  itemSelector: '.player'
+              });
+          });
+      });
+</script>
+
+
+  </body>
+</html>

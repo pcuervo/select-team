@@ -23,7 +23,7 @@ html{
 	height: 100%;
 }
 .body-home{ max-width: 100%; overflow: hidden; }
-
+.body-dashboard{ overflow: hidden; }
 
 
 
@@ -469,17 +469,18 @@ header{
 
 //COACHES***************************
 
-
 	.tennis-register, .soccer-register, .volleyball-register, .golf-register{
 		//display: none;
 		padding-bottom: 2em;
 	}
 
-
-
-
-
 //*********************************
+
+// DASHBOARD **************************
+
+
+
+//*************************************
 
 
 
@@ -794,3 +795,162 @@ figure.effect-sadie:hover figcaption::before {
 @media (min-width: @screen-lg-min) {
 
 }
+
+
+
+
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#dashboard {
+	height: 85vh;
+    padding-left: 0;
+    overflow: hidden;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#dashboard-toggle{ 
+	margin-bottom: 20px; 
+	margin-left: 20px;
+	border: none;
+	&:active, &:focus{ background-color: @brand-success; }
+}
+
+#dashboard.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 0;
+    padding-top: 50px;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: @brand-success;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#dashboard.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+	height: 85vh;
+	min-width: 320px;
+    width: 100%;
+    padding: 50px 15px 0 15px;
+    overflow-y: scroll;
+    button{ margin-left: 20px; }
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 50px;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+    border-top: 1px solid darken(@brand-success, 10%);
+    padding: 15px 0;
+    .transition;
+    &:first-child{ border-top: none; }
+} 
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: darken(@brand-success, 10%);
+    .transition;
+     i{ margin-right: 1%; }
+}
+
+.sidebar-nav li:hover {
+    text-decoration: none;
+    color: @white ;
+    background: darken(@brand-success, 10%);
+    a{ color: @white; }
+}
+
+.dash-active {
+    text-decoration: none;
+    color: @white ;
+    background: darken(@brand-success, 10%);
+    a{ color: @white !important; }
+}
+
+
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    padding: 0;
+    font-size: 18px;
+    line-height: 60px;
+    border-top: none;
+}
+
+.sidebar-nav > .sidebar-brand p {
+    color: @white;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: rgba(255, 255, 255, .4);
+    background: none;
+}
+
+@media(min-width:768px) {
+    #dashboard {
+        padding-left: 250px;
+    }
+
+    #dashboard.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #dashboard.toggled #sidebar-wrapper {
+        width: 0;
+        left: -250px;
+    }
+
+    #page-content-wrapper {
+        padding: 50px 20px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.dashboard-profile{ border-top: 1px solid @brand-success; }
+
+//********************************************
