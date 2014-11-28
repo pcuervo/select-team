@@ -1397,7 +1397,7 @@ pre code {
 }
 @media (min-width: 768px) {
   .container {
-    width: 80%;
+    width: 70%;
   }
 }
 @media (min-width: 1025px) {
@@ -7108,9 +7108,6 @@ figure.effect-sadie:hover figcaption::before {
   .header-top ul li a.active {
     color: #ffffff;
     border-top: solid 2px #bb133e;
-  }
-  .header-top .registro {
-    width: 23%;
   }
   .header-top .registro p,
   .header-top .registro a {

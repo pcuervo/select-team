@@ -158,6 +158,12 @@ function urlAbre(){
   }
 }
 
+/* DASHBOARD */
+  $("#dashboard-toggle").click(function(e) {
+    e.preventDefault();
+    $("#dashboard").toggleClass('toggled');
+  });
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
