@@ -9,22 +9,7 @@
                         <h4 class="[ modal-title ] [ center-text ]" id="myModalLabel">Login</h4>
                     </div>
                     <div class="[ modal-body ]">
-                        <?php own_wp_login_form( $args ); ?>
-                        <!--<form role="form">
-                            <div class="[ input-group ] [ margin-bottom-sm ]">
-                                <span class="[ input-group-addon ]"><i class="fa fa-envelope"></i></span>
-                                <input class="[ form-control ]" type="text" placeholder="Email address">
-                            </div>
-                            <div class="[ input-group ]">
-                                <span class="[ input-group-addon ]"><i class="fa fa-lock"></i></span>
-                                <input class="[ form-control ]" type="password" placeholder="Password">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="[ modal-footer ]">
-                        <button type="button" class="[ btn btn-success ] [ center block ]">Enter</button>
-                        <p>If you are not a member yet, please click on become a prospect. </p>
-                    </div> -->
+                        <?php own_wp_login_form(); ?>
                 </div>
             </div>
         </div>

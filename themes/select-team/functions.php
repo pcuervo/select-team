@@ -94,75 +94,115 @@ function pu_blank_login( $user ){
 
 // FRONT END SCRIPTS FOOTER //////////////////////////////////////////////////////
 	function footerScripts(){
-		if( wp_script_is( 'functions', 'done' ) ) { ?>
-        <script type="text/javascript">
-            (function( $ ) {
-                "use strict";
-                $(function(){
-                    //On load
-                    urlAbre();
-                    var ancho = $(window).outerWidth();
-                    toggleClassCards(ancho);
-                    setAlturaWindowMenosHeader('figure');
-                    setAlturaWindowMenosHeader('.cards');
-                    setTimeout(function(){
-                        console.log('ya');
-                        setAlturaWindowMenosHeader('figure');
-                        setAlturaWindowMenosHeader('.cards');
-                    }, 500);
+		if( wp_script_is( 'functions', 'done' ) ) { 
+			if (is_home()) { ?>
+		        <script type="text/javascript">
+		            (function( $ ) {
+		                "use strict";
+		                $(function(){
+		                    //On load
+		                    urlAbre();
+		                    var ancho = $(window).outerWidth();
+		                    toggleClassCards(ancho);
+		                    setAlturaWindowMenosHeader('figure');
+		                    setAlturaWindowMenosHeader('.cards');
+		                    setTimeout(function(){
+		                        console.log('ya');
+		                        setAlturaWindowMenosHeader('figure');
+		                        setAlturaWindowMenosHeader('.cards');
+		                    }, 500);
 
-                    //On click/change/etc
-                    filterQuestions();
-                    var theForm = document.getElementById( 'theForm' );
-                    new stepsForm( theForm, {
-                        onSubmit : function( form ) {
-                            // hide form
-                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
-                            $.post("send-prospects.php", $("#theForm").serialize(), function(response) {
-                                console.log('ajax done');
-                                var messageEl = theForm.querySelector( '.final-message' );
-                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
-                                classie.addClass( messageEl, 'show' );
-                            });
-                            return false;
-                        }
-                    } );
-                    var theForm2 = document.getElementById( 'theForm2' );
-                    new stepsForm( theForm2, {
-                        onSubmit : function( form ) {
-                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
-                            $.post("send-coach.php", $("#theForm2").serialize(), function(response) {
-                                console.log('ajax done');
-                                var messageEl = theForm2.querySelector( '.final-message' );
-                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
-                                classie.addClass( messageEl, 'show' );
-                            });
-                        }
-                    } );
-                    $('figure').on('click', function(){
-                        abrirCards( $(this) );
-                    });
-                    $('.cards-prospect .js-next-card').on('click', function(){
-                        siguienteCardProspect($(this));
-                    });
-                    $('.cards-coach .js-next-card').on('click', function(){
-                        siguienteCardCoach($(this));
-                    });
-                    $('.card-close').on('click', function(){
-                        cerrarCards( $(this) );
-                    });
-                    //Responsive
-                    $(window).resize(function(){
-                        //On Load
-                        var ancho = $(window).outerWidth();
-                        toggleClassCards(ancho);
-                        setAlturaWindowMenosHeader('figure');
-                        setAlturaWindowMenosHeader('.cards');
-                    });
-                });
-            }(jQuery));
-        </script>
-    <?php } }
+		                    //On click/change/etc
+		                    filterQuestions();
+		                    var theForm = document.getElementById( 'theForm' );
+		                    new stepsForm( theForm, {
+		                        onSubmit : function( form ) {
+		                            // hide form
+		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+		                            $.post("send-prospects.php", $("#theForm").serialize(), function(response) {
+		                                console.log('ajax done');
+		                                var messageEl = theForm.querySelector( '.final-message' );
+		                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+		                                classie.addClass( messageEl, 'show' );
+		                            });
+		                            return false;
+		                        }
+		                    } );
+		                    var theForm2 = document.getElementById( 'theForm2' );
+		                    new stepsForm( theForm2, {
+		                        onSubmit : function( form ) {
+		                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
+		                            $.post("send-coach.php", $("#theForm2").serialize(), function(response) {
+		                                console.log('ajax done');
+		                                var messageEl = theForm2.querySelector( '.final-message' );
+		                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+		                                classie.addClass( messageEl, 'show' );
+		                            });
+		                        }
+		                    } );
+		                    $('figure').on('click', function(){
+		                        abrirCards( $(this) );
+		                    });
+		                    $('.cards-prospect .js-next-card').on('click', function(){
+		                        siguienteCardProspect($(this));
+		                    });
+		                    $('.cards-coach .js-next-card').on('click', function(){
+		                        siguienteCardCoach($(this));
+		                    });
+		                    $('.card-close').on('click', function(){
+		                        cerrarCards( $(this) );
+		                    });
+		                    //Responsive
+		                    $(window).resize(function(){
+		                        //On Load
+		                        var ancho = $(window).outerWidth();
+		                        toggleClassCards(ancho);
+		                        setAlturaWindowMenosHeader('figure');
+		                        setAlturaWindowMenosHeader('.cards');
+		                    });
+		                });
+		            }(jQuery));
+		        </script>
+			<?php }elseif (get_the_title()=='Prospects') { ?>
+				<script type="text/javascript">
+				      correIsotope('.isotope-container', '.isotope-item', 'masonry');
+				      filtrarIsotopeDefault('.isotope-container', 'none');
+				      $('.isotope-filters button').on( 'click', function(e) {
+				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+				      });
+				      $('#sportAll button').on('click', function(){
+				        var sport = $(this).attr('data-filter');
+				        //console.log(sport);
+				        $('#sportAll').attr('data-active', sport);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				      });
+				      $('#genderAll button').on('click', function(){
+				        var gender = $(this).attr('data-filter');
+				        //console.log(gender);
+				        $('#genderAll').attr('data-active', gender);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				      });
+				    </script>
+				    <script type="text/javascript">
+				      $( function() {
+				        $('.sportContainer').isotope({
+				          itemSelector: '.player',
+				          layoutMode: 'masonry'
+				        });
+				      });
+				      $( function() {
+				        var $container = $('.sportContainer');
+				          $container.imagesLoaded(function(){
+				              $container.isotope({
+				                  itemSelector: '.player'
+				              });
+				          });
+				      });
+				</script>
+			<?php } ?>
+    	<?php } }
     add_action( 'wp_footer', 'footerScripts', 21 );
 
 
@@ -421,18 +461,19 @@ foreach ($_COOKIE as $key => $value) {
 	}
 	$index++;
 }
-$user = $usuario[0];
+//if(sizeof($usuario)>0){
+//	$user = $usuario[0];
 
-setcookie("user-qwertyui", $user);
+//	setcookie("user-qwertyui", $user);
 
-if($user!='WP Cookie check' || $user!='')
-	{
-	//echo 'Usuario:' .$user.'<br/>';
-	}
-else {
-	//echo 'Usuario no logeado';
-}
-
+//	if($user!='WP Cookie check' || $user!='')
+//		{
+		//echo 'Usuario:' .$user.'<br/>';
+//		}
+//	else {
+		//echo 'Usuario no logeado';
+//}
+//}
 
 if(isset($_GET['login']) && $_GET['login'] == 'failed' && $user==''){
 echo '
