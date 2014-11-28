@@ -13,7 +13,7 @@
 				'post_author' => 1,
 				'post_status' => 'publish',
 				'post_title'  => 'Dashboard',
-				'post_name'   => 'dashboard'
+				'post_name'   => 'dashboard',
 				'post_type'   => 'page'
 			);
 			wp_insert_post( $page, true );
