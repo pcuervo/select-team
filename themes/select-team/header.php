@@ -52,7 +52,7 @@
 	                    <li><a class="[ center block ]" href="<?php echo site_url('contact'); ?>">Contact</a></li>
 	                </ul>
 	                <div class="[ registro ]">
-	                    <?php //own_wp_loginout(); ?>
+	                    <?php own_wp_loginout(); ?>
 	                    <p class="[ center-text ] [ no-margin ]"><a href="">English</a> | <a href="">Español</a></p>
 	                </div> 
 	            </div>
