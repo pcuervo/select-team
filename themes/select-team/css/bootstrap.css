@@ -6489,7 +6489,7 @@ html {
   max-width: 100%;
   overflow: hidden;
 }
-.body-dashboard {
+.page-dashboard {
   overflow: hidden;
 }
 .block {
@@ -6699,6 +6699,9 @@ header {
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #ffffff;
 }
+.header-bottom p {
+  color: #ffffff;
+}
 .home a {
   color: #e01322;
 }
@@ -6706,17 +6709,12 @@ header {
   font-size: 1.2em;
 }
 .home h2 {
-  padding-bottom: 15px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  border-bottom: solid 2px #ffffff;
-  color: #ffffff;
+  padding-bottom: 5px;
 }
 .home p {
   margin-bottom: 30px;
   padding: 0 15px;
   font-size: 1.2em;
-  color: #222222;
 }
 .home .freeAssesment {
   font-size: 1.5em;
@@ -6880,11 +6878,11 @@ header {
   cursor: pointer;
 }
 .bg-prospect {
-  background: url('../images/bg-home-tennis-alt.jpg') no-repeat center top;
+  background: url('images/bg-home-tennis-alt.jpg') no-repeat center top;
   background-size: cover;
 }
 .bg-coach {
-  background: url('../images/bg-home-soccer-alt.jpg') no-repeat center top;
+  background: url('images/bg-home-soccer-alt.jpg') no-repeat center top;
   background-size: cover;
 }
 .grid figure figcaption {
@@ -7120,11 +7118,11 @@ figure.effect-sadie:hover figcaption::before {
     padding: 1% 2%;
   }
   .bg-prospect {
-    background: url('../images/bg-home-tennis-alt.jpg') no-repeat center top;
+    background: url('images/bg-home-tennis-alt.jpg') no-repeat center top;
     background-size: cover;
   }
   .bg-coach {
-    background: url('../images/bg-home-soccer-alt.jpg') no-repeat center top;
+    background: url('images/bg-home-soccer-alt.jpg') no-repeat center top;
     background-size: cover;
   }
   .cards {

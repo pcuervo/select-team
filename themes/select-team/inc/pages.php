@@ -8,7 +8,7 @@
 
 
 		// DASHBOARD
-		if( ! get_page_by_path('faq') ){
+		if( ! get_page_by_path('dashboard') ){
 			$page = array(
 				'post_author' => 1,
 				'post_status' => 'publish',
