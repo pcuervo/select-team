@@ -15,7 +15,14 @@
 	    <script>try{Typekit.load();}catch(e){}</script>
 		<?php wp_head(); ?>
 	</head>
-	<body <?php body_class(); ?> >
+	<?php $page_slug; if(is_page()) { $page_slug = 'page-'.$post->post_name; } ?>
+	<body <?php
+		if(is_page()){
+			body_class($page_slug);
+		} else {
+			body_class();
+		}
+		?> >
 	    <div class="[ container-fluid ]">
 	        <header class="[ clearfix ]">
 	            <nav class="[ hidden-md hidden-lg ] [ navbar navbar-default ]" role="navigation">
