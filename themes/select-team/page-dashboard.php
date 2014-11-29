@@ -91,7 +91,7 @@ include_once('send-prospects.php');
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="email">E-mail</label>
-                                        <input type="email" class="[ form-control ]" id="email" value="<?php echo $_GET['q4']; ?>" name="q4" > 
+                                        <input type="email" class="[ form-control ]" id="email" value="<?php echo $_GET['q6']; ?>" name="q6" > 
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="sport">Sport you practice</label>
