@@ -295,17 +295,6 @@ header{
 	.home{
 		a{ color: @brand-info; }
 		h2{ padding-bottom: 5px; }
-		p{
-			padding: 0 15px;
-			font-size: 1.2em;
-		}
-
-		.freeAssesment{
-			font-size: 1.5em;
-			font-weight: 300;
-			letter-spacing: 1px;
-			font-family: @font-family-museo;
-		}
 	}
 
 	//============================================
@@ -709,7 +698,7 @@ figure.effect-sadie:hover figcaption::before {
 	 		margin: 0;
 	 		width: 8.3333%;
 	 	}
-		ul{
+		.desktop-nav{
 			width: 66.66666667%;
 			margin: 0 1%;
 			padding: 0;
@@ -736,7 +725,12 @@ figure.effect-sadie:hover figcaption::before {
 				}
 			}
 		}
-
+		.qtrans_language_chooser{ padding: 0;
+			li{ display: inline-block; padding: 0 10px 0 0; list-style: none; opacity: 1;
+				a{}
+				&.active{ opacity: 0.7; }
+			}
+		}
 		.registro{
 			p, a{
 				color: @white;

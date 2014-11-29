@@ -51,7 +51,7 @@ include_once('send-prospects.php');
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="sport">Sport you practice</label>
-                                        <select class="[ form-control ]" id="sport" name="q3" >
+                                        <select class="[ form-control ]" id="sport" name="q6" >
                                             <?php switch ($_GET['q6']) {
                                                 case 'tennis': ?>
                                                         <option value="tennis" selected>Tennis</option>
@@ -94,16 +94,130 @@ include_once('send-prospects.php');
                                     <div class="[ form-group ] [ col-xs-6 ]">
                                         <label for="sport">Average score</label>
                                         <select class="[ form-control ]" id="q4" name="q4">
-                                            <option value="-66">Under 66</option>
-                                            <option value="66-67">66-67</option>
-                                            <option value="68-70">68-70</option>
-                                            <option value="71-73">71-73</option>
-                                            <option value="74-76">74-76</option>
-                                            <option value="77-79">77-79</option>
-                                            <option value="80-82">80-82</option>
-                                            <option value="83-85">83-85</option>
-                                            <option value="86-88">86-88</option>
-                                            <option value="89-90">89-90</option>
+                                        <?php switch ($_GET['q7']) {
+                                                case '-66': ?>
+                                                        <option value="-66" selected>Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '66-67': ?>
+                                                        <option value="-66">Under 66</option>
+                                                        <option value="66-67" selected>66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '68-70': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70" selected>68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '71-73': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73" selected>71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '74-76': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76" selected>74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '77-79': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" selected>77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '80-82': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" >77-79</option>
+                                                        <option value="80-82" selected>80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '83-85': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" >77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85" selected>83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '77-79': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" selected>77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '77-79': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" selected>77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                            
+                                            } ?>
+
                                         </select>
                                     </div>
                                     <div class="clear"></div>

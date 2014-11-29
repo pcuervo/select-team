@@ -16,9 +16,8 @@
 	$q12 	= ( isset($_GET['q12']) ) ? $_GET['q12'] : ''; //Have you ever played an ATP tournament?
 	$q13 	= ( isset($_GET['q13']) ) ? $_GET['q13'] : ''; //What's your position?
 	$q14 	= ( isset($_GET['q14']) ) ? $_GET['q14'] : ''; //What's your height?
+	//print_r($_GET);
 
-
-	//echo "send-prospects.php";
 	//$q1 = $q2 = $q3 = $q4 = $q5 = $q6 = $q7 = $q8 = $q9 = $q10 = $q11 = $q12 = '';
 
 	//$q1 	= ( isset($_POST['q1']) ) ? $_POST['q1'] : ''; //What's your name?
