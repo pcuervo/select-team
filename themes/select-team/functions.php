@@ -127,7 +127,7 @@ function pu_blank_login( $user ){
 		                            // hide form
 		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
 		                           	var messageEl = theForm.querySelector( '.final-message' );
-	                                messageEl.innerHTML = 'Loading.';
+	                                messageEl.innerHTML = 'Loading...';
 	                                classie.addClass( messageEl, 'show' );
 		                            location.replace(current_url+"/dashboard?"+ $("#theForm").serialize());
 		                            return false;
