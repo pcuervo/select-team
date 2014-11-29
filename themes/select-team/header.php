@@ -64,10 +64,14 @@
 	                </div> 
 	            </div>
 	            <?php if(is_home()){ ?>
+	            	<div class="start-screen">
+	            		<img class="[ img-responsive ] [ center block ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
+	            		<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
+	            	</div>
 		            <div class="[ header-bottom ]">
 		                <div class="[ container ]">
 		                    <p class="[ text-center ] [ col-xs-12 col-md-9 ] [ center block ]">
-		                        Select Team creates new opportunities for students and helps athletes to become part of a sports team with an scholarship in universities in the United States.
+		                        Select Team creates scholarship opportunities for student athletes to play sports and study at universities in the United States.
 		                    </p>
 		                    <img class="[ col-xs-6 col-sm-5 col-md-2 ] [ center block ]" src="<?php echo THEMEPATH; ?>images/icon-sports.png" alt="">
 		                </div>

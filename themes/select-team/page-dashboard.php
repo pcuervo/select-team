@@ -13,13 +13,16 @@
                             <p><i class="fa fa-cogs"></i> My Dashboard </p>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-user"></i> Profile</a>
+                            <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-file-o"></i> Curriculum</a>
+                            <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-envelope-o"></i> Messages</a>
+                            <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
+                        </li>
+                        <li>
+                            <a href="#" type="download"><i class="fa fa-download"></i> Download the applicant manual</a>
                         </li>
                     </ul>
                 </div>
@@ -27,11 +30,11 @@
 
                 <!-- Page Content -->
                 <div id="page-content-wrapper">
-                    <div class="[ container-fluid ]">
+                    <div class="[ container-fluid ]" id="page-content">
                         <div class="[ row ]">
                             <a href="#menu-toggle" id="dashboard-toggle" class="[ btn btn-success ]"><i class="[ fa fa-cogs ]"></i> Dashboard</a>
                         </div>
-                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]">
+                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                             <div class="[ col-xs-12 col-sm-7 center block ]">
                                 <h3>Basic Profile</h3>
                                 <form role="form" class="[ row ]">
@@ -123,6 +126,24 @@
                                         <p class="help-block">File must be 500 x 500 pixels. No larger than 400 kb.</p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="">Where does your video is hosted?</label>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                Vimeo
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                Youtube
+                                            </label>
+                                        </div>
+                                        <label for="playerVideo">Your video URL</label>
+                                        <input type="text" class="[ form-control ]" id="playerVideo">
+                                        <p class="help-block">Paste the entire url of the video:<br> ( www.youtube.com/watch?v=HT3diQX3i1I )</p>
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="password">Password</label>
                                         <input type="password" class="[ form-control ]" id="password">
                                         <p class="help-block">Password must contain at least 8 characters.</p>
@@ -136,7 +157,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]">
+                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="curriculum">
                             <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
                                 <h3>Curriculum</h3>
                                 <p class="help-block">This section will not appear on your public profile.</p>
@@ -194,6 +215,26 @@
                                     <div class="clear"></div>
                                     <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
                                     <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Guardar cambios</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="messages">
+                            <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                                <h3>Messages</h3>
+                                <p class="help-block">Send a message to one of our managers.</p>
+                                <form role="form" class="[ row ]">
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="messageName">Name</label>
+                                        <input type="text" class="[ form-control ]" id="messageName">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="messageEmail">Email</label>
+                                        <input type="email" class="[ form-control ]" id="messageEmail">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="message">Your message</label>
+                                        <textarea class="form-control" rows="3" id="message"></textarea>
+                                    </div>
                                 </form>
                             </div>
                         </div>
