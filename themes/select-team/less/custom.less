@@ -275,7 +275,10 @@ header{
 	p{ margin-bottom: 30px; color: @white; }
 }
 
-
+.container{  
+			&.prospect-filters{ width: 80%; }
+			&.header-top{ width: 90%; }
+		}
 
 
 
@@ -320,6 +323,7 @@ header{
 	//PROSPECTS***********************************
 
 	.prospects{
+		
 		button{
 			padding: 5px 8px;
 			min-height: 38px;
@@ -800,9 +804,9 @@ figure.effect-sadie:hover figcaption::before {
 /* Toggle Styles */
 
 #dashboard {
-	height: 85vh;
     padding-left: 0;
     overflow: hidden;
+    position: relative;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -823,8 +827,9 @@ figure.effect-sadie:hover figcaption::before {
 #sidebar-wrapper {
     z-index: 0;
     padding-top: 50px;
-    position: fixed;
+    position: absolute;
     left: 250px;
+    top: 0;
     width: 0;
     height: 100%;
     margin-left: -250px;

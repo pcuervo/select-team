@@ -15,6 +15,9 @@ include_once('send-prospects.php');
                             <p><i class="fa fa-cogs"></i> My Dashboard </p>
                         </li>
                         <li>
+                            <a href="#accountInfo" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Account Info</a>
+                        </li>
+                        <li>
                             <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
                         </li>
                         <li>
@@ -36,6 +39,29 @@ include_once('send-prospects.php');
                         <div class="[ row ]">
                             <a href="#menu-toggle" id="dashboard-toggle" class="[ btn btn-success ]"><i class="[ fa fa-cogs ]"></i> Dashboard</a>
                         </div>
+                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="accountInfo">
+                            <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                                <h3>Account Info</h3>
+                                <form role="form" class="[ row ]">
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="userName">User name</label>
+                                        <input type="text" class="[ form-control ]" id="userName" name="">
+                                    </div>
+                                     <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="[ form-control ]" id="password" name="q20">
+                                        <p class="help-block">Password must contain at least 8 characters.</p>
+                                    </div>
+
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="password">Confirm Password</label>
+                                        <input type="password" class="[ form-control ]" id="password_again" name="q21">
+                                        <label for="validate" id="validate"></label>
+                                    </div>
+                                    <button type="submit" class="[ btn btn-primary ] " id="subB">Save changes</button>
+                                </form>
+                            </div>
+                        </div>
                         <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                             <div class="[ col-xs-12 col-sm-7 center block ]">
                                 <h3>Basic Profile</h3>
@@ -45,8 +71,23 @@ include_once('send-prospects.php');
                                         <input type="text" class="[ form-control ]" id="exampleInputEmail1" value="<?php echo $_GET['q1']; ?>" name="q1" >
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="q2" value="<?php echo $_GET['q2']; ?>" name="q2" >Género</label>
+                                            <select class="[ form-control ]" id="q2" name="q2">
+                                                <option value="Mujer">Mujer</option>
+                                                <option value="Hombre">Hombre</option>
+                                            </select>
+                                        <?php } else { ?>
+                                            <label for="q2">Gender</label>
+                                            <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="q2">
+                                                <option value="female">Female</option>
+                                                <option value="male">Male</option>
+                                            </select>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="fechaNacimiento">Date of birth</label>
-                                        <input type="text" class="[ form-control ]" id="fechaNacimiento" value="<?php echo $_GET['q2']; ?>" name="q2">
+                                        <input type="text" class="[ form-control ]" id="datepicker" name="q3"  value="<?php echo $_GET['q2']; ?>" name="q2"></p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="email">E-mail</label>
@@ -243,15 +284,21 @@ include_once('send-prospects.php');
                                     <!--TENNIS-->
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="tennisHand">Right or lef handed?</label>
-                                        <input type="text" class="[ form-control ]" id="tennisHand" name="q10" value="<?php echo $_GET['q10']; ?> ">
+                                        <select class="[ form-control ]" id="tennisHand" name="q10" value="<?php echo $_GET['q10']; ?> ">
+                                            <option value="left">Left handed</option>
+                                            <option value="right">Right handed</option>
+                                        </select>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="tennisHand">FTP ranking</label>
-                                        <input type="text" class="[ form-control ]" id="tennisHand" name="q11" value="<?php echo $_GET['q11']; ?> ">
+                                        <label for="tennisHand">FMT ranking</label>
+                                        <input type="number" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q11']; ?> ">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="atpTournament">Played an ATP tournament?</label>
-                                        <input type="text" class="[ form-control ]" id="atpTournament" name="q12" value="<?php echo $_GET['q12']; ?> ">
+                                        <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q12']; ?> ">
+                                            <option value="left">Left handed</option>
+                                            <option value="right">Right handed</option>
+                                        </select>
                                     </div>
                                     <!--SOCCER-->
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
@@ -291,7 +338,7 @@ include_once('send-prospects.php');
                                         <p class="help-block">Paste the entire url of the video:<br> ( www.youtube.com/watch?v=HT3diQX3i1I )</p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="password">Password</label>
+                                        <label for="password">Cahnge Password</label>
                                         <input type="password" class="[ form-control ]" id="password" name="q20">
                                         <p class="help-block">Password must contain at least 8 characters.</p>
                                     </div>
@@ -324,27 +371,44 @@ include_once('send-prospects.php');
                                     </div>
                                     <h4 class="[ col-xs-12 ]">Academic Carreer</h4>
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="midSchool">Middle School</label>
-                                        <input type="text" class="[ form-control ]" id="midSchool" name="q25">
-                                        <p class="help-block">School and grade must be placed.</p>
-                                    </div>
-                                    <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="midGrad">Graduate Year</label>
-                                        <input type="text" class="[ form-control ]" id="midGrad" name="q4" value="<?php echo $_GET['q4']; ?> ">
-                                    </div>
-                                    <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="highSchool">Highschool</label>
                                         <input type="text" class="[ form-control ]" id="highSchool" name="q27">
                                         <p class="help-block">School and grade must be placed.</p>
                                     </div>
+                                     <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="midGrad" id="midGrad" name="q4" value="<?php echo $_GET['q4']; ?> ">Class</label>
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <span><label for="q4">¿En qué año vas?</label></span>
+                                            <select class="[ form-control ]" id="q4" name="q4">
+                                                <option>Grado</option>
+                                                <option value="grado1">3º Secundaria </option>
+                                                <option value="grado2">4º Preparatoria </option>
+                                                <option value="grado3">5º Preparatoria </option>
+                                                <option value="grado4">6º Preparatoria </option>
+                                            </select>
+                                            <?php } else { ?>
+                                                <span><label for="q4">What Class are you in?</label></span>
+                                                <select class="[ form-control ]" id="q4" name="q4">
+                                                <option>Class</option>
+                                                <option value="grado1">Freshment </option>
+                                                <option value="grado2">Sophomore </option>
+                                                <option value="grado3">Junior </option>
+                                                <option value="grado4">Senior </option>
+                                            </select>
+                                         <?php } ?>
+                                    </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="highGrad">Graduate Date</label>
-                                        <input type="text" class="[ form-control ]" id="highGrad" name="q3" value="<?php echo $_GET['q3']; ?> ">
-                                        <p class="help-block">ex: February, 2015</p>
+                                        <label for="highGrad" id="highGrad" name="q3" value="<?php echo $_GET['q3']; ?> ">Graduation Year</label>
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <span><label for="q3">¿Cuándo te vas a graduar?</label></span>
+                                        <?php } else { ?>
+                                            <span><label for="q3">When are you graduating?</label></span>
+                                        <?php } ?>
+                                        <input name="q3" class="[ form-control ]" type="number" id="datepicker2"/>
                                     </div>
                                     <div class="clear"></div>
                                     <h4 class="[ col-xs-12 ]">Sports Development</h4>
-                                    <p class="help-block">You can add more than one tournament.</p>
+                                    <p class="[ col-xs-12 ] [ help-block ]">You can add more than one tournament.</p>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="tournament">Tournament</label>
                                         <input type="text" class="[ form-control ]" id="tournament" name="q29">
@@ -362,7 +426,7 @@ include_once('send-prospects.php');
                                     <button class="[ btn btn-primary ] [ margin-bottom ]">Add <i class="fa fa-plus"></i></button>
                                     <div class="clear"></div>
                                     <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
-                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Guardar cambios</button>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Save changes</button>
                                 </form>
                             </div>
                         </div>
@@ -383,6 +447,7 @@ include_once('send-prospects.php');
                                         <label for="message">Your message</label>
                                         <textarea class="form-control" rows="3" id="message"></textarea>
                                     </div>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Send Message</button>
                                 </form>
                             </div>
                         </div>

@@ -14,7 +14,7 @@
 
 		
     <div id="filters">
-        <div class="container center block clearfix margin-bottom ui-group">
+        <div class="container center block clearfix margin-bottom ui-group prospect-filters">
 
         <?php 
         $args = array(

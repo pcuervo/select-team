@@ -45,46 +45,68 @@
                         </li>
                         <li>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q2">¿Cuándo naciste?</label></span>
+                                <span><label for="q2">Género</label></span>
+                                <select class="[ form-control ]" id="q2" name="q2">
+                                    <option value="Mujer">Mujer</option>
+                                    <option value="Hombre">Hombre</option>
+                                </select>
                             <?php } else { ?>
-                                <span><label for="q2">When were you born?</label></span>
+                                <span><label for="q2">Gender</label></span>
+                                <select class="[ form-control ]" id="q2" name="q2">
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                </select>
                             <?php } ?>
-                            <input type="text" id="datepicker" name="q2" ></p>
                         </li>
                         <li>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q3">¿Cuándo te vas a graduar?</label></span>
+                                <span><label for="q3">¿Cuándo naciste?</label></span>
                             <?php } else { ?>
-                                <span><label for="q3">When are you graduating?</label></span>
+                                <span><label for="q3">When were you born?</label></span>
                             <?php } ?>
-                            <input name="q3" type="text" id="datepicker2"/>
+                            <input type="text" id="datepicker" name="q3" ></p>
                         </li>
                         <li>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q4">¿En qué año vas?</label></span>
+                                <span><label for="q4">¿Cuándo te vas a graduar?</label></span>
                             <?php } else { ?>
-                                <span><label for="q4">What year are you studying?</label></span>
+                                <span><label for="q4">When are you graduating?</label></span>
                             <?php } ?>
-                            <select class="[ form-control ]" id="q4" name="q4">
-                                <option>Grade</option>
-                                <option value="grado1">grado1 </option>
-                                <option value="grado2">grado2 </option>
-                                <option value="grado3">grado3 </option>
-                                <option value="grado4">grado4 </option>
+                            <input name="q4" type="text" id="datepicker2"/>
+                        </li>
+                        <li>
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <span><label for="q5">¿En qué año vas?</label></span>
+                                <select class="[ form-control ]" id="q5" name="q5">
+                                <option>Grado</option>
+                                <option value="grado1">3º Secundaria </option>
+                                <option value="grado2">4º Preparatoria </option>
+                                <option value="grado3">5º Preparatoria </option>
+                                <option value="grado4">6º Preparatoria </option>
                             </select>
-                        </li>
-                        <li>
-                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q5">¿Cuál es tu e-mail?</label></span>
                             <?php } else { ?>
-                                <span><label for="q5">What's your e-mail address?</label></span>
+                                <span><label for="q5">What Class are you in?</label></span>
+                                <select class="[ form-control ]" id="q5" name="q5">
+                                <option>Class</option>
+                                <option value="grado1">Freshment </option>
+                                <option value="grado2">Sophomore </option>
+                                <option value="grado3">Junior </option>
+                                <option value="grado4">Senior </option>
+                            </select>
                             <?php } ?>
-                            <input id="q5" name="q5" type="email"/>
                         </li>
                         <li>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q6">¿Qué deporte practicas?</label></span>
-                                <select class="[ form-control ]" id="q6" name="q6">
+                                <span><label for="q6">¿Cuál es tu e-mail?</label></span>
+                            <?php } else { ?>
+                                <span><label for="q6">What's your e-mail address?</label></span>
+                            <?php } ?>
+                            <input id="q6" name="q6" type="email"/>
+                        </li>
+                        <li>
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <span><label for="q7">¿Qué deporte practicas?</label></span>
+                                <select class="[ form-control ]" id="q7" name="q7">
                                     <option disabled>Selecciona uno</option>
                                     <option value="tennis">Tennis</option>
                                     <option value="golf">Golf</option>
@@ -92,9 +114,9 @@
                                     <option value="volleyball">Volleyball</option>
                                 </select>
                             <?php } else { ?>
-                                <span><label for="q6">What sport do you practice?</label></span>
-                                <select class="[ form-control ]" id="q6" name="q6">
-                                    <option disabled>Choose one</option>
+                                <span><label for="q7">What sport do you practice?</label></span>
+                                <select class="[ form-control ]" id="q7" name="q7">
+                                    <option value="chooseOne" selected disabled>Choose one</option>
                                     <option value="tennis">Tennis</option>
                                     <option value="golf">Golf</option>
                                     <option value="soccer">Soccer</option>
@@ -105,11 +127,11 @@
                         <!-- GOLF -->
                         <li class="[ js-sport js-golf ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q7">¿Cuál es tu puntaje promedio?</label></span>
+                                <span><label for="q8">¿Cuál es tu puntaje promedio?</label></span>
                             <?php } else { ?>
-                                <span><label for="q7">What's your average score?</label></span>
+                                <span><label for="q8">What's your average score?</label></span>
                             <?php } ?>
-                            <select class="[ form-control ]" id="q7" name="q7">
+                            <select class="[ form-control ]" id="q8" name="q8">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <option value="-66">Menos de 66</option>
                                 <?php } else { ?>
@@ -129,11 +151,11 @@
                         <!-- VOLLEYBALL -->
                         <li class="[ js-sport js-volleyball ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q8">¿Qué posición eres?</label></span>
+                                <span><label for="q9">¿Qué posición eres?</label></span>
                             <?php } else { ?>
-                                <span><label for="q8">What's your position?</label></span>
+                                <span><label for="q9">What's your position?</label></span>
                             <?php } ?>
-                            <select class="[ form-control ]" id="q8" name="q8">
+                            <select class="[ form-control ]" id="q9" name="q9">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -144,50 +166,58 @@
                         </li>
                         <li class="[ js-sport js-volleyball ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q9">¿Cuánto mides? (en centimetros)</label></span>
+                                <span><label for="q10">¿Cuánto mides? (en centimetros)</label></span>
                             <?php } else { ?>
-                                <span><label for="q9">What's your height? (in centimeters)</label></span>
+                                <span><label for="q10">What's your height? (in centimeters)</label></span>
                             <?php } ?>
-                            <input id="q9" name="q9" type="text"/>
+                            <input id="q10" name="q10" type="number"/>
                         </li>
                         <!-- TENNIS -->
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q10">¿Eres zurdo o diestro?</label></span>
+                                <span><label for="q11">¿Eres zurdo o diestro?</label></span>
                             <?php } else { ?>
-                                <span><label for="q10">Are you left or right handed?</label></span>
+                                <span><label for="q11">Are you left or right handed?</label></span>
                             <?php } ?>
-                            <input id="q10" name="q10" type="text"/>
-                        </li>
-                        <li class="[ js-sport js-tennis ]">
-                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <span><label for="q11">¿Cuál es tu ranking FMT? (sólo jugadores mexicanos)</label></span>
-                            <?php } else { ?>
-                                <span><label for="q11">What's your FMT ranking? (Mexican players only)</label></span>
-                            <?php } ?> 
                             <input id="q11" name="q11" type="text"/>
                         </li>
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <span><label for="q12">¿Has jugado un torneo ATP?</label></span>
+                            <span><label for="q12">¿Cuál es tu ranking FMT? (sólo jugadores mexicanos)</label></span>
                             <?php } else { ?>
-                                <span><label for="q12">Have you ever played an ATP tournament?</label></span>
+                                <span><label for="q12">What's your FMT ranking? (Mexican players only)</label></span>
+                            <?php } ?> 
+                            <input id="q12" name="q12" type="number"/>
+                        </li>
+                        <li class="[ js-sport js-tennis ]">
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <span><label for="q13">¿Has jugado un torneo ATP?</label></span>
+                            <select class="[ form-control ]" id="q13" name="q13">
+                                <option value="yes">Yes </option>
+                                <option value="no">No </option>
+                            </select>
+                            <?php } else { ?>
+                                <span><label for="q13">Have you ever played an ATP tournament?</label></span>
+                                <select class="[ form-control ]" id="q13" name="q13">
+                                    <option value="si">Sí </option>
+                                    <option value="no">No </option>
+                                </select>
                             <?php } ?>
-                            <input id="q12" name="q12" type="text"/>
+                            
                         </li>
                         <!-- SOCCER -->
                         <li class="[ js-sport js-soccer ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q13">¿Qué posición eres?</label></span>
-                                <select class="[ form-control ]" id="q13" name="q13">
+                                <span><label for="q14">¿Qué posición eres?</label></span>
+                                <select class="[ form-control ]" id="q14" name="q14">
                                     <option value="goal-keeper">Portero</option>
                                     <option value="defender">Defensa</option>
                                     <option value="midfielder">Medio</option>
                                     <option value="forward">Delantero</option>
                                 </select>
                             <?php } else { ?>
-                                <span><label for="q13">What's your position?</label></span>
-                                <select class="[ form-control ]" id="q13" name="q13">
+                                <span><label for="q14">What's your position?</label></span>
+                                <select class="[ form-control ]" id="q14" name="q14">
                                     <option value="goal-keeper">Goal keeper</option>
                                     <option value="defender">Defender</option>
                                     <option value="midfielder">Midfielder</option>
@@ -197,11 +227,11 @@
                         </li>
                         <li class="[ js-sport js-soccer ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q14">¿Cuánto mides? (en centimetros)</label></span>
+                                <span><label for="q15">¿Cuánto mides? (en centimetros)</label></span>
                             <?php } else { ?>
-                                <span><label for="q14">What's your height? (in centimeters)</label></span>
+                                <span><label for="q15">What's your height? (in centimeters)</label></span>
                             <?php } ?>
-                            <input id="q14" name="q14" type="text"/>
+                            <input id="q15" name="q15" type="number"/>
                         </li>
                     </ol><!-- /questions -->
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
