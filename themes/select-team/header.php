@@ -7,6 +7,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="cleartype" content="on">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	  	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 		<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 		<!--FONT AWESOME-->
 	    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -47,20 +50,45 @@
 	                </div><!-- /.navbar-collapse -->
 	            </nav>
 	            <div class="[ container ] [ hidden-xs hidden-sm ] [ header-top ] [ clearfix ]">
+	            	<input type="hidden" id="current_url" value="<?php echo site_url(); ?>"/>
 	                <h1>
 	                    <a href="<?php echo site_url('index.php'); ?>">
 	                        <img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
 	                    </a>
-	                </h1><ul class="[ clearfix ]">
-	                    <li><a class="[ center block ]" href="<?php echo site_url('acerca'); ?>">About</a></li>
-	                    <li><a class="[ center block ]" href="<?php echo site_url('prospecto'); ?>">Prospects</a></li>
+	                </h1><ul class="[ desktop-nav ] [ clearfix ]">
+	                    <li><a class="[ center block ]" href="<?php echo site_url('acerca'); ?>">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								Acerca
+							<?php } else { ?>
+								About
+							<?php } ?>
+	                    </a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('prospecto'); ?>">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								Prospectos
+							<?php } else { ?>
+								Prospects
+							<?php } ?>
+	                    </a></li>
 	                <!--<li class="clearfix"><a class="[ center block ]" href="coaches.html">Coaches</a></li>-->
-	                    <li><a class="[ center block ]" href="<?php echo site_url('padre'); ?>">Parents</a></li>
-	                    <li><a class="[ center block ]" href="<?php echo site_url('contact'); ?>">Contact</a></li>
+	                    <li><a class="[ center block ]" href="<?php echo site_url('padre'); ?>">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								Padres
+							<?php } else { ?>
+								Parents
+							<?php } ?>
+						</a></li>
+						<li><a class="[ center block ]" href="<?php echo site_url('contact'); ?>">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								Contacto
+							<?php } else { ?>
+								Contact
+							<?php } ?>
+						</a></li>
 	                </ul>
 	                <div class="[ registro ]">
 	                    <?php own_wp_loginout(); ?>
-	                    <p class="[ center-text ] [ no-margin ]"><a href="">English</a> | <a href="">Español</a></p>
+						<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 	                </div> 
 	            </div>
 	            <?php if(is_home()){ ?>
@@ -71,7 +99,11 @@
 		            <div class="[ header-bottom ]">
 		                <div class="[ container ]">
 		                    <p class="[ text-center ] [ col-xs-12 col-md-9 ] [ center block ]">
-		                        Select Team creates scholarship opportunities for student athletes to play sports and study at universities in the United States.
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									Select team crea oportunidades de beca para atletas estudiantes para jugar y estufdiar en universidades de Estados Unidos.  
+								<?php } else { ?>
+									Select Team creates scholarship opportunities for student athletes to play sports and study at universities in the United States.
+								<?php } ?>
 		                    </p>
 		                    <img class="[ col-xs-6 col-sm-5 col-md-2 ] [ center block ]" src="<?php echo THEMEPATH; ?>images/icon-sports.png" alt="">
 		                </div>

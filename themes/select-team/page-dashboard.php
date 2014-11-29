@@ -1,9 +1,11 @@
- <?php
+<?php 
 
-//$args = array('redirect' => get_permalink( get_page( $page_id_of_member_area ) ) );
-//$args = array( 'redirect' => site_url() );
-?>
-    
+include_once('send-prospects.php');
+
+
+//print_r($_POST); 
+//print_r($_GET); 
+?>    
 <?php get_header(); ?>
     <div id="dashboard">
                 <!-- Sidebar -->
@@ -37,43 +39,188 @@
                         <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                             <div class="[ col-xs-12 col-sm-7 center block ]">
                                 <h3>Basic Profile</h3>
-                                <form role="form" class="[ row ]">
+                                <form id="userForm" role="form" class="[ row ]" action="<?php echo site_url('dashboard'); ?> " method="POST">
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="exampleInputEmail1">Full name</label>
-                                        <input type="text" class="[ form-control ]" id="exampleInputEmail1">
+                                        <input type="text" class="[ form-control ]" id="exampleInputEmail1" value="<?php echo $_GET['q1']; ?>" name="q1" >
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="fechaNacimiento">Date of birth</label>
-                                        <input type="text" class="[ form-control ]" id="fechaNacimiento">
+                                        <input type="text" class="[ form-control ]" id="fechaNacimiento" value="<?php echo $_GET['q2']; ?>" name="q2">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="email">E-mail</label>
-                                        <input type="email" class="[ form-control ]" id="email">
+                                        <input type="email" class="[ form-control ]" id="email" value="<?php echo $_GET['q5']; ?>" name="q5" > 
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="sport">Sport you practice</label>
-                                        <select class="[ form-control ]" id="q3" name="q3">
-                                            <option value="sport"selected disabled>Sport</option>
-                                            <option value="tennis">Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball">Volleyball</option>
+                                        <select class="[ form-control ]" id="sport" name="q6" >
+                                            <?php switch ($_GET['q6']) {
+                                                case 'tennis': ?>
+                                                        <option value="tennis" selected>Tennis</option>
+                                                        <option value="golf">Golf</option>
+                                                        <option value="soccer">Soccer</option>
+                                                        <option value="volleyball">Volleyball</option>                                        
+                                                    <?php break;
+                                                
+                                                case 'golf': ?>
+                                                        <option value="tennis" >Tennis</option>
+                                                        <option value="golf" selected>Golf</option>
+                                                        <option value="soccer">Soccer</option>
+                                                        <option value="volleyball">Volleyball</option>                                        
+                                                    <?php break;
+                                                
+                                                case 'soccer': ?>
+                                                        <option value="tennis">Tennis</option>
+                                                        <option value="golf">Golf</option>
+                                                        <option value="soccer" selected>Soccer</option>
+                                                        <option value="volleyball">Volleyball</option>                                        
+                                                    <?php break;
+                                                
+                                                case 'volleyball': ?>
+                                                        <option value="tennis" >Tennis</option>
+                                                        <option value="golf">Golf</option>
+                                                        <option value="soccer">Soccer</option>
+                                                        <option value="volleyball" selected>Volleyball</option>                                        
+                                                    <?php break;
+                                                
+                                                default: ?>
+                                                        <option value="tennis" >Tennis</option>
+                                                        <option value="golf">Golf</option>
+                                                        <option value="soccer">Soccer</option>
+                                                        <option value="volleyball">Volleyball</option>                                        
+                                                    <?php break;
+                                            } ?>
                                         </select>
                                     </div>
                                     <!--GOLF-->
                                     <div class="[ form-group ] [ col-xs-6 ]">
                                         <label for="sport">Average score</label>
                                         <select class="[ form-control ]" id="q4" name="q4">
-                                            <option value="-66">Under 66</option>
-                                            <option value="66-67">66-67</option>
-                                            <option value="68-70">68-70</option>
-                                            <option value="71-73">71-73</option>
-                                            <option value="74-76">74-76</option>
-                                            <option value="77-79">77-79</option>
-                                            <option value="80-82">80-82</option>
-                                            <option value="83-85">83-85</option>
-                                            <option value="86-88">86-88</option>
-                                            <option value="89-90">89-90</option>
+                                        <?php switch ($_GET['q7']) {
+                                                case '-66': ?>
+                                                        <option value="-66" selected>Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '66-67': ?>
+                                                        <option value="-66">Under 66</option>
+                                                        <option value="66-67" selected>66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '68-70': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70" selected>68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '71-73': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73" selected>71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '74-76': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76" selected>74-76</option>
+                                                        <option value="77-79">77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '77-79': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" selected>77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '80-82': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" >77-79</option>
+                                                        <option value="80-82" selected>80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '83-85': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" >77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85" selected>83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '77-79': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" selected>77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                                case '77-79': ?>
+                                                        <option value="-66" >Under 66</option>
+                                                        <option value="66-67">66-67</option>
+                                                        <option value="68-70">68-70</option>
+                                                        <option value="71-73">71-73</option>
+                                                        <option value="74-76">74-76</option>
+                                                        <option value="77-79" selected>77-79</option>
+                                                        <option value="80-82">80-82</option>
+                                                        <option value="83-85">83-85</option>
+                                                        <option value="86-88">86-88</option>
+                                                        <option value="89-90">89-90</option>
+                                                    <?php break;
+                                            
+                                            } ?>
+
                                         </select>
                                     </div>
                                     <div class="clear"></div>
@@ -91,20 +238,20 @@
                                     </div>
                                     <div class="[ form-group ] [ col-xs-6 ]">
                                         <label for="volleyHeight">Height (cm)</label>
-                                        <input type="text" class="[ form-control ]" id="volleyHeight">
+                                        <input type="text" class="[ form-control ]" id="volleyHeight" name="q14">
                                     </div>
                                     <!--TENNIS-->
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="tennisHand">Right or lef handed?</label>
-                                        <input type="text" class="[ form-control ]" id="tennisHand">
+                                        <input type="text" class="[ form-control ]" id="tennisHand" name="q10" value="<?php echo $_GET['q10']; ?> ">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="tennisHand">FTP ranking</label>
-                                        <input type="text" class="[ form-control ]" id="tennisHand">
+                                        <input type="text" class="[ form-control ]" id="tennisHand" name="q11" value="<?php echo $_GET['q11']; ?> ">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="atpTournament">Played an ATP tournament?</label>
-                                        <input type="text" class="[ form-control ]" id="atpTournament">
+                                        <input type="text" class="[ form-control ]" id="atpTournament" name="q12" value="<?php echo $_GET['q12']; ?> ">
                                     </div>
                                     <!--SOCCER-->
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
@@ -118,11 +265,11 @@
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                         <label for="soccerHeight">Height (cm)</label>
-                                        <input type="text" class="[ form-control ]" id="soccerHeight">
+                                        <input type="text" class="[ form-control ]" id="soccerHeight" name="q18">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="exampleInputFile">Upload your profile picture</label>
-                                        <input type="file" id="exampleInputFile">
+                                        <input type="file" id="exampleInputFile" name="q19">
                                         <p class="help-block">File must be 500 x 500 pixels. No larger than 400 kb.</p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
@@ -145,15 +292,16 @@
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="password">Password</label>
-                                        <input type="password" class="[ form-control ]" id="password">
+                                        <input type="password" class="[ form-control ]" id="password" name="q20">
                                         <p class="help-block">Password must contain at least 8 characters.</p>
                                     </div>
 
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="password">Confirm Password</label>
-                                        <input type="password" class="[ form-control ]" id="password">
+                                        <input type="password" class="[ form-control ]" id="password_again" name="q21">
+                                        <label for="validate" id="validate"></label>
                                     </div>
-                                  <button type="submit" class="[ btn btn-primary ]">Guardar cambios</button>
+                                  <button type="submit" class="[ btn btn-primary ] " id="subB">Guardar cambios</button>
                                 </form>
                             </div>
                         </div>
@@ -164,34 +312,34 @@
                                 <form role="form" class="[ row ]">
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="address">Address</label>
-                                        <input type="text" class="[ form-control ]" id="address">
+                                        <input type="text" class="[ form-control ]" id="address" name="q22">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                         <label for="phone">Phone</label>
-                                        <input type="text" class="[ form-control ]" id="phone">
+                                        <input type="text" class="[ form-control ]" id="phone" name="q23">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                         <label for="mPhone">Mobile Phone</label>
-                                        <input type="text" class="[ form-control ]" id="mPhone">
+                                        <input type="text" class="[ form-control ]" id="mPhone" name="q24">
                                     </div>
                                     <h4 class="[ col-xs-12 ]">Academic Carreer</h4>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="midSchool">Middle School</label>
-                                        <input type="text" class="[ form-control ]" id="midSchool">
+                                        <input type="text" class="[ form-control ]" id="midSchool" name="q25">
                                         <p class="help-block">School and grade must be placed.</p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="midGrad">Graduate Year</label>
-                                        <input type="text" class="[ form-control ]" id="midGrad">
+                                        <input type="text" class="[ form-control ]" id="midGrad" name="q4" value="<?php echo $_GET['q4']; ?> ">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="highSchool">Highschool</label>
-                                        <input type="text" class="[ form-control ]" id="highSchool">
+                                        <input type="text" class="[ form-control ]" id="highSchool" name="q27">
                                         <p class="help-block">School and grade must be placed.</p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="highGrad">Graduate Date</label>
-                                        <input type="text" class="[ form-control ]" id="highGrad">
+                                        <input type="text" class="[ form-control ]" id="highGrad" name="q3" value="<?php echo $_GET['q3']; ?> ">
                                         <p class="help-block">ex: February, 2015</p>
                                     </div>
                                     <div class="clear"></div>
@@ -199,7 +347,7 @@
                                     <p class="help-block">You can add more than one tournament.</p>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="tournament">Tournament</label>
-                                        <input type="text" class="[ form-control ]" id="tournament">
+                                        <input type="text" class="[ form-control ]" id="tournament" name="q29">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-6 ]">
                                         <label for="tournamentDate">Date</label>

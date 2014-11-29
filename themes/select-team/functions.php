@@ -76,6 +76,7 @@ function pu_blank_login( $user ){
 
 		// scripts
 		wp_enqueue_script( 'bootstrap', JSPATH.'bootstrap.min.js', array('jquery'), '1.0', true );
+		wp_enqueue_script( 'jquery-ui-datepicker');
 		wp_enqueue_script( 'plugins', JSPATH.'plugins.js', array('jquery'), '1.0', true );
 		wp_enqueue_script( 'classie', JSPATH.'classie.js', array('plugins'), '1.0', true );
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
@@ -101,6 +102,10 @@ function pu_blank_login( $user ){
 		                "use strict";
 		                $(function(){
 		                    //On load
+		                    $( "#datepicker" ).datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate', '01-01-1995');
+		                    $( "#datepicker2" ).datepicker({dateFormat: 'dd-mm-yy'});
+		                    
+
 		                    urlAbre();
 		                    var ancho = $(window).outerWidth();
 		                    toggleClassCards(ancho);
@@ -117,14 +122,14 @@ function pu_blank_login( $user ){
 		                    var theForm = document.getElementById( 'theForm' );
 		                    new stepsForm( theForm, {
 		                        onSubmit : function( form ) {
+		                        	var current_url = document.getElementById('current_url').value;
+		                        	console.log(current_url);
 		                            // hide form
 		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
-		                            $.post("send-prospects.php", $("#theForm").serialize(), function(response) {
-		                                console.log('ajax done');
-		                                var messageEl = theForm.querySelector( '.final-message' );
-		                                messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
-		                                classie.addClass( messageEl, 'show' );
-		                            });
+		                           	var messageEl = theForm.querySelector( '.final-message' );
+	                                messageEl.innerHTML = 'Loading.';
+	                                classie.addClass( messageEl, 'show' );
+		                            location.replace(current_url+"/dashboard?"+ $("#theForm").serialize());
 		                            return false;
 		                        }
 		                    } );
@@ -201,6 +206,26 @@ function pu_blank_login( $user ){
 				          });
 				      });
 				</script>
+			<?php }elseif (get_the_title()=='Dashboard') { ?>
+				<script type="text/javascript">
+				      $( function() {
+
+				      		$('#password_again').on('change', function(e){
+				      			console.log('cambio');
+				      		});
+
+							//var userForm = document.getElementById( 'userForm' );
+							$('#subB').on('click', function(e){
+								e.preventDefault();
+								console.log('Sub');
+			                	var serializd = $('#userForm').serialize();
+			                	$.post("", $('#userForm').serialize(), function(response){
+			                		console.log('ajax done');
+			                	});
+
+							});
+						});
+				</script>	
 			<?php } ?>
     	<?php } }
     add_action( 'wp_footer', 'footerScripts', 21 );
@@ -449,7 +474,8 @@ function myEndSession() {
     session_destroy ();
 }
 
-if(isset($_GET['login']) && $_GET['login'] == 'failed' && $user==''){
+//if(isset($_GET['login']) && $_GET['login'] == 'failed' && $user==''){
+if(isset($_GET['login']) && $_GET['login'] == 'failed' && session_id()!='' ){
 echo '
 	<div id="login-error" style="background-color: #FFEBE8;border:1px solid #C00;padding:5px;">
 		<p>Login failed: You have entered an incorrect Username or password, please try again.</p>
