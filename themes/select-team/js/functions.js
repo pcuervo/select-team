@@ -17,6 +17,13 @@
 
 }(jQuery));
 
+//PANTALLA INICIAL 
+
+setTimeout(function(){
+  $('.start-screen').fadeOut(800);}, 
+  3000);
+
+//ISOTOPE
 var $=jQuery.noConflict();
 function correIsotope(contenedor, item, layoutMode){
   var $container = $(contenedor);
@@ -163,6 +170,11 @@ function urlAbre(){
     e.preventDefault();
     $("#dashboard").toggleClass('toggled');
   });
+
+
+
+
+
 
 function getCookie(cname) {
     var name = cname + "=";

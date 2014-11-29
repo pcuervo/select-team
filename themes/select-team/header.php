@@ -92,6 +92,10 @@
 	                </div> 
 	            </div>
 	            <?php if(is_home()){ ?>
+	            	<div class="start-screen">
+	            		<img class="[ img-responsive ] [ center block ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
+	            		<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
+	            	</div>
 		            <div class="[ header-bottom ]">
 		                <div class="[ container ]">
 		                    <p class="[ text-center ] [ col-xs-12 col-md-9 ] [ center block ]">
