@@ -66,7 +66,7 @@
                                 <span><label for="q4">What year are you studying?</label></span>
                             <?php } ?>
                             <select class="[ form-control ]" id="q4" name="q4">
-                                <option>Grade</option>
+                                <option disabled>Grade</option>
                                 <option value="grado1">grado1 </option>
                                 <option value="grado2">grado2 </option>
                                 <option value="grado3">grado3 </option>
