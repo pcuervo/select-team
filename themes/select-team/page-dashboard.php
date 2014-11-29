@@ -22,7 +22,7 @@
                             <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
                         </li>
                         <li>
-                            <a href="#" type="download"><i class="fa fa-download"></i> Download the applicant manual</a>
+                            <a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
                         </li>
                     </ul>
                 </div>
