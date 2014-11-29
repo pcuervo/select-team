@@ -85,7 +85,7 @@ function setAlturaWindow(element){
 }
 
 function filterQuestions(){
-  $('#theForm #q6').on('change', function() {
+  $('#theForm #q7').on('change', function() {
     var sport = $(this).val();
     $('#theForm .js-sport:not(".js-'+sport+'")').remove();
   });

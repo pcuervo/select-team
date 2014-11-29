@@ -72,8 +72,8 @@ include_once('send-prospects.php');
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                            <label for="q2" value="<?php echo $_GET['q2']; ?>" name="q2" >Género</label>
-                                            <select class="[ form-control ]" id="q2" name="q2">
+                                            <label for="q2">Género</label>
+                                            <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="q2" >
                                                 <option value="Mujer">Mujer</option>
                                                 <option value="Hombre">Hombre</option>
                                             </select>
@@ -87,16 +87,16 @@ include_once('send-prospects.php');
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="fechaNacimiento">Date of birth</label>
-                                        <input type="text" class="[ form-control ]" id="datepicker" name="q3"  value="<?php echo $_GET['q2']; ?>" name="q2"></p>
+                                        <input type="text" class="[ form-control ]" id="datepicker" name="q3"  value="<?php echo $_GET['q3']; ?>" name="q3"></p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="email">E-mail</label>
-                                        <input type="email" class="[ form-control ]" id="email" value="<?php echo $_GET['q5']; ?>" name="q5" > 
+                                        <input type="email" class="[ form-control ]" id="email" value="<?php echo $_GET['q4']; ?>" name="q4" > 
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="sport">Sport you practice</label>
-                                        <select class="[ form-control ]" id="sport" name="q6" >
-                                            <?php switch ($_GET['q6']) {
+                                        <select class="[ form-control ]" id="sport" name="q7" >
+                                            <?php switch ($_GET['q7']) {
                                                 case 'tennis': ?>
                                                         <option value="tennis" selected>Tennis</option>
                                                         <option value="golf">Golf</option>
@@ -135,11 +135,11 @@ include_once('send-prospects.php');
                                         </select>
                                     </div>
                                     <!--GOLF-->
-                                    <?php if($_GET['q6']=='golf') { ?>
+                                    <?php if($_GET['q7']=='golf') { ?>
                                     <div class="[ form-group ] [ col-xs-6 ]">
                                         <label for="sport">Average score</label>
-                                        <select class="[ form-control ]" id="q4" name="q4">
-                                        <?php switch ($_GET['q7']) {
+                                        <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="q8">
+                                        <?php switch ($_GET['q8']) {
                                                 case '-66': ?>
                                                         <option value="-66" selected>Under 66</option>
                                                         <option value="66-67">66-67</option>
@@ -280,11 +280,11 @@ include_once('send-prospects.php');
                                     <div class="clear"></div>
                                     <?php } ?>
                                     <!--VOLLEBALL-->
-                                    <?php if($_GET['q6']=='volleyball') { ?>
+                                    <?php if($_GET['q7']=='volleyball') { ?>
                                     <div class="[ form-group ] [ col-xs-6 ]">
                                         <label for="volleyPosition">Position</label>
-                                        <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q8']; ?>" name="q8">
-                                        <?php switch ($_GET['q8']) {
+                                        <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="q9">
+                                        <?php switch ($_GET['q9']) {
                                                 case '1': ?>
                                                     <option value="1" selected>1</option>
                                                     <option value="2">2</option>
@@ -345,45 +345,45 @@ include_once('send-prospects.php');
                                     </div>
                                     <div class="[ form-group ] [ col-xs-6 ]">
                                         <label for="volleyHeight">Height (cm)</label>
-                                        <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q9']; ?>" name="q9">
+                                        <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q10']; ?>" name="q10">
                                     </div>
 
                                     <?php } ?>
                                     <!--TENNIS-->
-                                    <?php if($_GET['q6']=='tennis') { ?>
+                                    <?php if($_GET['q7']=='tennis') { ?>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="tennisHand">Right or lef handed?</label>
-                                        <select class="[ form-control ]" id="tennisHand" name="q10" value="<?php echo $_GET['q10']; ?> ">
+                                        <select class="[ form-control ]" id="tennisHand" name="q10" value="<?php echo $_GET['q11']; ?> ">
                                             <option value="left">Left handed</option>
                                             <option value="right">Right handed</option>
                                         </select>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="tennisHand">FMT ranking</label>
-                                        <input type="number" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q11']; ?> ">
+                                        <input type="number" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q12']; ?> ">
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="atpTournament">Played an ATP tournament?</label>
-                                        <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q12']; ?> ">
+                                        <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?> ">
                                             <option value="left">Left handed</option>
                                             <option value="right">Right handed</option>
                                         </select>
                                     </div>
                                     <?php } ?>
                                     <!--SOCCER-->
-                                    <?php if($_GET['q6']=='soccer') { ?>
+                                    <?php if($_GET['q7']=='soccer') { ?>
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                         <label for="soccerPosition">Position</label>
-                                        <select class="[ form-control ]" id="q13" name="q13">
-                                            <option value="goal-keeper" <?php if($_GET['q13']=='goal-keeper') echo " selected"; ?> >Goal keeper</option>
-                                            <option value="defender" <?php if($_GET['q13']=='defender') echo " selected"; ?> >Defender</option>
-                                            <option value="midfielder" <?php if($_GET['q13']=='midfielder') echo " selected"; ?> >Midfielder</option>
-                                            <option value="forward" <?php if($_GET['q13']=='forward') echo " selected"; ?> >Forward</option>
+                                        <select class="[ form-control ]" id="q14" name="q14">
+                                            <option value="goal-keeper" <?php if($_GET['q14']=='goal-keeper') echo " selected"; ?> >Goal keeper</option>
+                                            <option value="defender" <?php if($_GET['q14']=='defender') echo " selected"; ?> >Defender</option>
+                                            <option value="midfielder" <?php if($_GET['q14']=='midfielder') echo " selected"; ?> >Midfielder</option>
+                                            <option value="forward" <?php if($_GET['q14']=='forward') echo " selected"; ?> >Forward</option>
                                         </select>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                         <label for="soccerHeight">Height (cm)</label>
-                                        <input type="text" class="[ form-control ]" id="soccerHeight" name="q14" value="<?php echo $_GET['q14']; ?>">
+                                        <input type="text" class="[ form-control ]" id="soccerHeight" name="q15" value="<?php echo $_GET['q15']; ?>">
                                     </div>
                                     <?php } ?>
                                     <div class="[ form-group ] [ col-xs-12 ]">
@@ -448,7 +448,7 @@ include_once('send-prospects.php');
                                         <p class="help-block">School and grade must be placed.</p>
                                     </div>
                                      <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="midGrad" id="midGrad" name="q4" value="<?php echo $_GET['q4']; ?> ">Class</label>
+                                        <label for="midGrad" id="midGrad" name="q4" value="<?php echo $_GET['q5']; ?> ">Class</label>
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                                             <span><label for="q4">¿En qué año vas?</label></span>
                                             <select class="[ form-control ]" id="q4" name="q4">
@@ -460,7 +460,7 @@ include_once('send-prospects.php');
                                             </select>
                                             <?php } else { ?>
                                                 <span><label for="q4">What Class are you in?</label></span>
-                                                <select class="[ form-control ]" id="q4" name="q4">
+                                                <select class="[ form-control ]" id="q4" name="q5">
                                                 <option>Class</option>
                                                 <option value="grado1">Freshment </option>
                                                 <option value="grado2">Sophomore </option>
@@ -470,7 +470,7 @@ include_once('send-prospects.php');
                                          <?php } ?>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="highGrad" id="highGrad" name="q3" value="<?php echo $_GET['q3']; ?> ">Graduation Year</label>
+                                        <label for="highGrad" id="highGrad" name="q4" value="<?php echo $_GET['q4']; ?> ">Graduation Year</label>
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                                             <span><label for="q3">¿Cuándo te vas a graduar?</label></span>
                                         <?php } else { ?>
@@ -526,7 +526,6 @@ include_once('send-prospects.php');
                     </div>
                 </div>
                 <!-- /#page-content-wrapper -->
-
             </div>
             <!-- /#dashboard -->
         </div>

@@ -176,10 +176,18 @@
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q11">¿Eres zurdo o diestro?</label></span>
+                                <select class="[ form-control ]" id="q10" name="q10">
+                                    <option value="rightHand">Right handed</option>
+                                    <option value="leftHand">Left handed</option>
+                                </select>
                             <?php } else { ?>
                                 <span><label for="q11">Are you left or right handed?</label></span>
+                                <select class="[ form-control ]" id="q10" name="q10">
+                                    <option value="rightHand">Right handed</option>
+                                    <option value="leftHand">Left handed</option>
+                                </select>
                             <?php } ?>
-                            <input id="q11" name="q11" type="text"/>
+                            
                         </li>
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -193,14 +201,14 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <span><label for="q13">¿Has jugado un torneo ATP?</label></span>
                             <select class="[ form-control ]" id="q13" name="q13">
-                                <option value="yes">Yes </option>
+                                <option value="si">Sí </option>
                                 <option value="no">No </option>
                             </select>
                             <?php } else { ?>
                                 <span><label for="q13">Have you ever played an ATP tournament?</label></span>
                                 <select class="[ form-control ]" id="q13" name="q13">
-                                    <option value="si">Sí </option>
-                                    <option value="no">No </option>
+                                   <option value="yes">Yes </option>
+                                <option value="no">No </option> 
                                 </select>
                             <?php } ?>
                             
