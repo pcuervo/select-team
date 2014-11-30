@@ -95,16 +95,23 @@ function pu_blank_login( $user ){
 
 // FRONT END SCRIPTS FOOTER //////////////////////////////////////////////////////
 	function footerScripts(){
-		if( wp_script_is( 'functions', 'done' ) ) { 
+		if( wp_script_is( 'functions', 'done' ) ) {
 			if (is_home()) { ?>
 		        <script type="text/javascript">
 		            (function( $ ) {
 		                "use strict";
 		                $(function(){
 		                    //On load
-		                    $( "#datepicker" ).datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate', '01-01-1995');
-		                    $( "#datepicker2" ).datepicker({dateFormat: 'dd-mm-yy'});
-		                    
+		                    $( "#datepicker" ).datepicker({
+		                    	dateFormat: 'mm-dd-yy',
+		                    	changeMonth: true,
+      							changeYear: true
+		                    }).datepicker('setDate', '01-01-1995');
+		                    $( "#datepicker2" ).datepicker({
+		                    	dateFormat: 'mm-dd-yy',
+		                    	changeMonth: true,
+      							changeYear: true
+		                    });
 
 		                    urlAbre();
 		                    var ancho = $(window).outerWidth();
@@ -168,7 +175,7 @@ function pu_blank_login( $user ){
 		                });
 		            }(jQuery));
 		        </script>
-			<?php }elseif (get_the_title()=='Prospects') { ?>
+			<?php } elseif ( get_the_title()=='Prospects' ) { ?>
 				<script type="text/javascript">
 				      correIsotope('.isotope-container', '.isotope-item', 'masonry');
 				      filtrarIsotopeDefault('.isotope-container', 'none');
@@ -206,7 +213,7 @@ function pu_blank_login( $user ){
 				          });
 				      });
 				</script>
-			<?php }elseif (get_the_title()=='Dashboard') { ?>
+			<?php } elseif (get_the_title()=='Dashboard') { ?>
 				<script type="text/javascript">
 				      $( function() {
 
@@ -222,10 +229,9 @@ function pu_blank_login( $user ){
 			                	$.post("", $('#userForm').serialize(), function(response){
 			                		console.log('ajax done');
 			                	});
-
 							});
 						});
-				</script>	
+				</script>
 			<?php } ?>
     	<?php } }
     add_action( 'wp_footer', 'footerScripts', 21 );
@@ -446,7 +452,7 @@ function pu_blank_login( $user ){
 // HELPER METHODS AND FUNCTIONS //////////////////////////////////////////////////////
  $args = array(
         'echo' => true,
-        //'redirect' => site_url(), 
+        //'redirect' => site_url(),
         'form_id' => 'form',
         'label_username' => __( 'Username' ),
         'label_password' => __( 'Password' ),

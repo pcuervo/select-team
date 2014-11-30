@@ -17,10 +17,10 @@
 
 }(jQuery));
 
-//PANTALLA INICIAL 
+//PANTALLA INICIAL
 
 setTimeout(function(){
-  $('.start-screen').fadeOut(800);}, 
+  $('.start-screen').fadeOut(800);},
   3000);
 
 //ISOTOPE
@@ -166,10 +166,14 @@ function urlAbre(){
 }
 
 /* DASHBOARD */
-  $("#dashboard-toggle").click(function(e) {
-    e.preventDefault();
-    $("#dashboard").toggleClass('toggled');
-  });
+$("#dashboard .sidebar-nav li").click(function(e) {
+    if ( $(this).hasClass('sidebar-brand') || $(this).hasClass('j-download') ){
+        $('#dashboard .sidebar-nav li').removeClass('active');
+    } else {
+        $('#dashboard .sidebar-nav li').removeClass('active');
+        $(this).addClass('active');
+    }
+});
 
 
 

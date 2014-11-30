@@ -85,10 +85,10 @@
                                 <option value="grado4">6º Preparatoria </option>
                             </select>
                             <?php } else { ?>
-                                <span><label for="q5">What Class are you in?</label></span>
+                                <span><label for="q5">What grade are you in?</label></span>
                                 <select class="[ form-control ]" id="q5" name="q5">
                                 <option>Class</option>
-                                <option value="grado1">Freshment </option>
+                                <option value="grado1">Freshman</option>
                                 <option value="grado2">Sophomore </option>
                                 <option value="grado3">Junior </option>
                                 <option value="grado4">Senior </option>
@@ -187,14 +187,14 @@
                                     <option value="leftHand">Left handed</option>
                                 </select>
                             <?php } ?>
-                            
+
                         </li>
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <span><label for="q12">¿Cuál es tu ranking FMT? (sólo jugadores mexicanos)</label></span>
                             <?php } else { ?>
                                 <span><label for="q12">What's your FMT ranking? (Mexican players only)</label></span>
-                            <?php } ?> 
+                            <?php } ?>
                             <input id="q12" name="q12" type="number"/>
                         </li>
                         <li class="[ js-sport js-tennis ]">
@@ -208,10 +208,10 @@
                                 <span><label for="q13">Have you ever played an ATP tournament?</label></span>
                                 <select class="[ form-control ]" id="q13" name="q13">
                                    <option value="yes">Yes </option>
-                                <option value="no">No </option> 
+                                <option value="no">No </option>
                                 </select>
                             <?php } ?>
-                            
+
                         </li>
                         <!-- SOCCER -->
                         <li class="[ js-sport js-soccer ]">
