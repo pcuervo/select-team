@@ -111,9 +111,9 @@ function pu_blank_login( $user ){
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
 		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
-
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
+		wp_localize_script( 'functions', 'site_url', site_url() );
 
 		// styles
 		wp_enqueue_style( 'styles', get_stylesheet_uri() );
@@ -131,12 +131,13 @@ function pu_blank_login( $user ){
 		                $(function(){
 		                    //On load
 		                    $( "#datepicker" ).datepicker({
-		                    	dateFormat: 'mm-dd-yy',
+		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
       							changeYear: true
-		                    }).datepicker('setDate', '01-01-1995');
+		                    });
+		                    $( "#datepicker" ).datepicker('setDate', '01-01-1995');
 		                    $( "#datepicker2" ).datepicker({
-		                    	dateFormat: 'mm-dd-yy',
+		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
       							changeYear: true
 		                    });
@@ -163,7 +164,7 @@ function pu_blank_login( $user ){
 		                           	var messageEl = theForm.querySelector( '.final-message' );
 	                                messageEl.innerHTML = 'Loading...';
 	                                classie.addClass( messageEl, 'show' );
-		                            location.replace(current_url+"/dashboard?"+ $("#theForm").serialize());
+		                            location.replace(current_url+"/register?"+ $("#theForm").serialize());
 		                            return false;
 		                        }
 		                    } );
@@ -230,11 +231,6 @@ function pu_blank_login( $user ){
 						$('#password_again').on('change', function(e){
 							console.log('cambio');
 						});
-						$('.j-register-user button').on('click', function(e){
-							e.preventDefault();
-							console.log('registrando usuario...');
-							registerUser();
-						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -252,6 +248,39 @@ function pu_blank_login( $user ){
 							changeYear: true,
 							showButtonPanel: true,
 							dateFormat: 'mm-yy',
+							onClose: function(dateText, inst) { 
+								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
+								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
+								$(this).datepicker('setDate', new Date(year, month, 1));
+							}
+						});
+					});
+				</script>
+			<?php } elseif (get_the_title()=='Register') { ?>
+				<script type="text/javascript">
+					$( function() {
+						$('.j-register-user button').on('click', function(e){
+							e.preventDefault();
+							console.log('registrando usuario...');
+							registerUser();
+						});
+						$("#datepicker-date-of-birth").datepicker({
+							changeMonth: true,
+							changeYear: true,
+							dateFormat: 'yy-mm-dd',
+							yearRange: "-100:+0"
+						});
+						$( "#datepicker-date-of-graduation" ).datepicker({
+							changeMonth: true,
+							changeYear: true,
+							dateFormat: 'yy-mm-dd',
+							yearRange: "-0:+10",
+						});
+						$( "#datepicker-date-of-tournament" ).datepicker({
+							changeMonth: true,
+							changeYear: true,
+							showButtonPanel: true,
+							dateFormat: 'yy-mm',
 							onClose: function(dateText, inst) { 
 								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
 								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
@@ -504,8 +533,8 @@ function pu_blank_login( $user ){
 				$username =  $_POST['username'];
 				$password =  wp_hash_password( $_POST['password'] );
 				$email =  $_POST['email'];
-				//$user_id = wp_create_user( $username, $password, $email );
-				$user_id = 8;
+				$user_id = wp_create_user( $username, $password, $email );
+				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
 					die();
@@ -558,8 +587,9 @@ function pu_blank_login( $user ){
 					'video_url'		=> '-',
 					);
 
-				//$st_user_id = add_st_user($st_user_data);
-				add_sport_answers(1, $sport_data);
+				$st_user_id = add_st_user($st_user_data);
+				add_sport_answers($st_user_id, $sport_data);
+				login_user($username, $password);
 				$msg = array(
 					"success" => "Usuario registrado"
 					);
@@ -591,6 +621,24 @@ function pu_blank_login( $user ){
 		return 1;
 	}// validate_user_data
 
+	/**
+	 * Loggear al usuario a la plataforma.
+	 * @param string $username, string $password
+	 * @return boolean
+	 */
+	function login_user($username, $password){
+		$creds = array();
+		$creds['user_login'] = $username;
+		$creds['user_password'] = $password;
+		$creds['remember'] = true;
+		$user = wp_signon( $creds, false );
+		if ( is_wp_error($user) ){
+			echo $user->get_error_message();
+			return 0;
+		}
+		echo 'success!';
+		return 1;
+	}// login_user
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
 	
@@ -615,7 +663,7 @@ function pu_blank_login( $user ){
 		global $wpdb;
 		$inserted = $wpdb->insert(
 			$wpdb->st_users,
-			$sport_data,
+			$st_user_data,
 			array (
 				'%d',
 				'%s',
@@ -640,14 +688,13 @@ function pu_blank_login( $user ){
 	 * @param int $user_id, string $sport_data
 	 * @return int $st_user_id or FALSE
 	 */
-	function add_sport_answers($user_id, $sport_data){
+	function add_sport_answers($st_user_id, $sport_data){
 		foreach ($sport_data as $question_id => $answer) {
 			$answer_data = array(
-				'st_user_id'	=> $user_id,
+				'st_user_id'	=> $st_user_id,
 				'question_id'	=> $question_id,
 				'answer'		=> $answer
 				);
-			var_dump($answer_data);
 			add_sport_answer($answer_data);
 		}
 	}// add_sport_answers
@@ -671,9 +718,10 @@ function pu_blank_login( $user ){
 		);
 
 		if( $inserted ){
-			$st_user_id = $wpdb->insert_id;
-			echo 'inserted!';
+			$answer_id = $wpdb->insert_id;
+			return 1;
 		}
+		return 0;
 	}// add_sport_answer
 
 

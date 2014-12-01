@@ -1,4 +1,10 @@
-<?php include_once('send-prospects.php'); ?>
+<?php
+    if ( ! is_user_logged_in() ) {
+        $location = site_url();
+        wp_redirect( $location );
+        exit;
+    }
+?>
 <?php get_header(); ?>
     <div id="dashboard">
         <div id="sidebar-wrapper">
@@ -28,7 +34,7 @@
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
                         <h3>Basic Profile</h3>
-                        <form id="userForm" role="form" class="[ row ] [ j-register-user ]" >
+                        <form id="userForm" role="form" class="[ row ] [  ]" >
                             <?php if ( ! is_user_logged_in() ) { ?>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>

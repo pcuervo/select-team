@@ -65,9 +65,9 @@
                                 </select>
                             <?php } else { ?>
                                 <label for="gender">Gender</label>
-                                <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender">
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
+                                <select class="[ form-control ]" id="q2" name="gender">
+                                    <option value="female" <?php if($_GET['q2']=='female') echo "selected"; ?> >Female</option>
+                                    <option value="male" <?php if($_GET['q2']=='male') echo "selected"; ?> >Male</option>
                                 </select>
                             <?php } ?>
                         </div>
@@ -357,9 +357,9 @@
                                     </select>
                                 <?php } ?>
                                 <label for="tennis_hand">Right or lef handed?</label>
-                                <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                    <option value="left">Left handed</option>
-                                    <option value="right">Right handed</option>
+                                <select class="[ form-control ]" id="tennisHand" name="tennis_hand" >
+                                    <option value="left" <?php if($_GET['q10']=="leftHand") echo "selected"; ?>>Left handed</option>
+                                    <option value="right" <?php if($_GET['q10']=="rightHand") echo "selected"; ?>>Right handed</option>
                                 </select>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
