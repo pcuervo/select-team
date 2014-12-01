@@ -44,9 +44,14 @@
 	                    <ul class="[ nav navbar-nav ]">
 	                        <li class="[ menu ]"><a href="<?php echo site_url('acerca'); ?>">About</a></li>
 	                        <li class="[ menu ]"><a href="<?php echo site_url('prospecto'); ?>">Prospects</a></li>
-	                    <!--<li class="[ menu ]"><a href="coaches.html">Coaches</a></li>-->
 	                        <li class="[ menu ]"><a href="<?php echo site_url('padre'); ?>">Parents</a></li>
 	                        <li class="[ menu ]"><a href="<?php echo site_url('contact'); ?>">Contact</a></li>
+	                        <li class="[ menu ]">
+								<?php own_wp_loginout(); ?>
+	                        </li>
+	                        <li class="[ menu ]">
+								<?php echo qtrans_generateLanguageSelectCode('text'); ?>
+	                        </li>
 	                    </ul>
 	                </div><!-- /.navbar-collapse -->
 	            </nav>
@@ -88,10 +93,9 @@
 						</a></li>
 	                </ul>
 	                <div class="[ registro ]">
-	                    <?php
-	                    	own_wp_loginout();
-							echo qtrans_generateLanguageSelectCode('text');
-						?>
+	                    <?php own_wp_loginout(); ?>
+	                    <br />
+						<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 	                </div>
 	            </div>
 	            <?php if(is_home()){ ?>

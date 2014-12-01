@@ -118,7 +118,6 @@ function pu_blank_login( $user ){
 		                    setAlturaWindowMenosHeader('figure');
 		                    setAlturaWindowMenosHeader('.cards');
 		                    setTimeout(function(){
-		                        console.log('ya');
 		                        setAlturaWindowMenosHeader('figure');
 		                        setAlturaWindowMenosHeader('.cards');
 		                    }, 500);
