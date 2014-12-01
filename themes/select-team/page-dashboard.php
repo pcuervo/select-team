@@ -104,6 +104,11 @@
                                 <select class="[ form-control ]" id="sport" name="sport" >
                                     <?php switch ($_GET['q7']) {
                                         case 'tennis': ?>
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <option value="" disabled>Selecciona uno</option>
+                                            <?php } else { ?>
+                                                <option value="" disabled>Choose one</option>
+                                            <?php } ?>
                                             <option value="tennis" selected>Tennis</option>
                                             <option value="golf">Golf</option>
                                             <option value="soccer">Soccer</option>
@@ -111,6 +116,11 @@
                                             <?php break;
                                         
                                         case 'golf': ?>
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <option value="" disabled>Selecciona uno</option>
+                                            <?php } else { ?>
+                                                <option value="" disabled>Choose one</option>
+                                            <?php } ?>
                                             <option value="tennis" >Tennis</option>
                                             <option value="golf" selected>Golf</option>
                                             <option value="soccer">Soccer</option>
@@ -118,6 +128,11 @@
                                             <?php break;
                                         
                                         case 'soccer': ?>
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <option value="" disabled>Selecciona uno</option>
+                                            <?php } else { ?>
+                                                <option value="" disabled>Choose one</option>
+                                            <?php } ?>
                                             <option value="tennis">Tennis</option>
                                             <option value="golf">Golf</option>
                                             <option value="soccer" selected>Soccer</option>
@@ -125,18 +140,28 @@
                                             <?php break;
                                         
                                         case 'volleyball': ?>
-                                        <option value="tennis" >Tennis</option>
-                                        <option value="golf">Golf</option>
-                                        <option value="soccer">Soccer</option>
-                                        <option value="volleyball" selected>Volleyball</option>                                        
-                                            <?php break;
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <option value="" disabled>Selecciona uno</option>
+                                            <?php } else { ?>
+                                                <option value="" disabled>Choose one</option>
+                                            <?php } ?>
+                                            <option value="tennis" >Tennis</option>
+                                            <option value="golf">Golf</option>
+                                            <option value="soccer">Soccer</option>
+                                            <option value="volleyball" selected>Volleyball</option>                                        
+                                        <?php break;
                                         
                                         default: ?>
-                                        <option value="tennis" >Tennis</option>
-                                        <option value="golf">Golf</option>
-                                        <option value="soccer">Soccer</option>
-                                        <option value="volleyball">Volleyball</option>                                        
-                                            <?php break;
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <option value="" disabled>Selecciona uno</option>
+                                            <?php } else { ?>
+                                                <option value="" disabled>Choose one</option>
+                                            <?php } ?>
+                                            <option value="tennis" >Tennis</option>
+                                            <option value="golf">Golf</option>
+                                            <option value="soccer">Soccer</option>
+                                            <option value="volleyball">Volleyball</option>                                        
+                                        <?php break;
                                     } ?>
                                 </select>
                             </div>
@@ -581,9 +606,9 @@
                                     <p class="help-block">School Name</p>
                                 <?php } ?>
                             </div>
-                             <div class="[ form-group ] [ col-xs-12 ]">
+                            <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <label for="midGrad" id="midGrad" name="q4" value="<?php echo $_GET['q5']; ?> ">¿En qué año vas?</label>
+                                    <label for="midGrad" id="midGrad" name="q4" value="<?php echo $_GET['q5']; ?> ">¿En qué año vas?</label>
                                     <select class="[ form-control ]" id="q4" name="q4">
                                         <option value="grado" selected disabled>Grado</option>
                                         <option value="grado1">3º Secundaria </option>
@@ -593,15 +618,15 @@
                                         <option value="graduated">Graduado</option>
                                     </select>
                                     <?php } else { ?>
-                                        <span><label for="q4">What Class are you in?</label></span>
+                                        <label for="midGrad" id="midGrad" name="q4" value="<?php echo $_GET['q5']; ?> ">What Class are you in?</label>
                                         <select class="[ form-control ]" id="q4" name="q5">
-                                        <option value="grado" selected disabled>Class</option>
-                                        <option value="grado1">Freshment </option>
-                                        <option value="grado2">Sophomore </option>
-                                        <option value="grado3">Junior </option>
-                                        <option value="grado4">Senior </option>
-                                        <option value="graduated">Already graduated</option>
-                                    </select>
+                                            <option value="grado" selected disabled>Class</option>
+                                            <option value="grado1">Freshment </option>
+                                            <option value="grado2">Sophomore </option>
+                                            <option value="grado3">Junior </option>
+                                            <option value="grado4">Senior </option>
+                                            <option value="graduated">Already graduated</option>
+                                        </select>
                                  <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
@@ -670,19 +695,20 @@
                         <form role="form" class="[ row ]">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="messageName">Nombre</label>
+                                    <label for="manager" id="manager" name="q30">Selecciona un agente.</label>
+                                    <select class="[ form-control ]" id="manager" name="q5">
+                                        <option value="" selected disabled>Selecciona un agente</option>
+                                        <option value="zurol@pcuervo.com">Luis Mendoza</option>
+                                        <option value="miguel@pcuervo.com">Nair Tolomeo</option>
+                                    </select>
                                 <?php } else { ?>
-                                    <label for="messageName">Name</label>
+                                    <label for="manager" id="manager" name="q30">Select a manager</label>
+                                    <select class="[ form-control ]" id="manager" name="q5">
+                                        <option value="" selected disabled>Choose a manager</option>
+                                        <option value="zurol@pcuervo.com">Luis Mendoza</option>
+                                        <option value="miguel@pcuervo.com">Nair Tolomeo</option>
+                                    </select>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="messageName">
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="messageEmail">Correo electrónico</label>
-                                <?php } else { ?>
-                                    <label for="messageEmail">Email</label>
-                                <?php } ?>
-                                <input type="email" class="[ form-control ]" id="messageEmail">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>

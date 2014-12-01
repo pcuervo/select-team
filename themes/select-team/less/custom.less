@@ -23,7 +23,7 @@ html{
 	height: 100%;
 }
 .home{ max-width: 100%; overflow: hidden; }
-.page-dashboard{ overflow: hidden; }
+
 
 
 
@@ -819,7 +819,7 @@ figure.effect-sadie:hover figcaption::before {
     left: 250px;
     top: 0;
     width: 0;
-    height: 100vh;
+    height: 100%;
     margin-left: -250px;
     overflow-y: auto;
     background: @brand-success;
@@ -834,12 +834,10 @@ figure.effect-sadie:hover figcaption::before {
 }
 
 #page-content-wrapper {
-	height: 87vh;
 	min-width: 320px;
     width: 100%;
+    height: auto;
     padding: 50px 15px 0 15px;
-    overflow-y: scroll;
-    overflow-x: hidden;
     button{ margin-left: 20px; }
 }
 
@@ -934,7 +932,6 @@ figure.effect-sadie:hover figcaption::before {
     }
 
     #page-content-wrapper {
-    	height: 75vh;
         padding: 50px 20px;
     }
 
