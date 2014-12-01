@@ -504,8 +504,8 @@ function pu_blank_login( $user ){
 				$username =  $_POST['username'];
 				$password =  wp_hash_password( $_POST['password'] );
 				$email =  $_POST['email'];
-				//$user_id = wp_create_user( $username, $password, $email );
-				$user_id = 8;
+				$user_id = wp_create_user( $username, $password, $email );
+				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
 					die();
@@ -558,8 +558,8 @@ function pu_blank_login( $user ){
 					'video_url'		=> '-',
 					);
 
-				//$st_user_id = add_st_user($st_user_data);
-				add_sport_answers(1, $sport_data);
+				$st_user_id = add_st_user($st_user_data);
+				add_sport_answers($st_user_id, $sport_data);
 				$msg = array(
 					"success" => "Usuario registrado"
 					);

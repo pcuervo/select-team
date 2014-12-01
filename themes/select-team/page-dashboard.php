@@ -28,7 +28,7 @@
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
                         <h3>Basic Profile</h3>
-                        <form id="userForm" role="form" class="[ row ] [ j-register-user ]" >
+                        <form id="userForm" role="form" class="[ row ] [  ]" >
                             <?php if ( ! is_user_logged_in() ) { ?>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <label for="username">Username</label>

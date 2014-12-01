@@ -9,7 +9,7 @@
                     <?php } else { ?>
                         <h3>Registrate</h3>
                     <?php } ?>
-                    <form id="userForm" role="form" class="[ row ] [ j-basic-profile ]" >
+                    <form id="userForm" role="form" class="[ row ] [ j-register-user ]" >
                         <?php if ( ! is_user_logged_in() ) { ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <label for="username">Username</label>
