@@ -43,9 +43,9 @@
                                 </select>
                             <?php } else { ?>
                                 <label for="gender">Gender</label>
-                                <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender">
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
+                                <select class="[ form-control ]" id="q2" name="gender">
+                                    <option value="female" <?php if($_GET['q2']=='female') echo "selected"; ?> >Female</option>
+                                    <option value="male" <?php if($_GET['q2']=='male') echo "selected"; ?> >Male</option>
                                 </select>
                             <?php } ?>
                         </div>
@@ -241,20 +241,20 @@
                         <?php if($_GET['q7']=='tennis') { ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <label for="tennis_hand">Right or lef handed?</label>
-                                <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                    <option value="left">Left handed</option>
-                                    <option value="right">Right handed</option>
+                                <select class="[ form-control ]" id="tennisHand" name="tennis_hand" >
+                                    <option value="left" <?php if($_GET['q10']=="leftHand") echo "selected"; ?>>Left handed</option>
+                                    <option value="right" <?php if($_GET['q10']=="rightHand") echo "selected"; ?>>Right handed</option>
                                 </select>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <label for="tennisHand">FMT ranking</label>
-                                <input type="number" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q12']; ?> ">
+                                <input type="text" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q12']; ?> ">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <label for="atpTournament">Played an ATP tournament?</label>
-                                <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?> ">
-                                    <option value="left">Left handed</option>
-                                    <option value="right">Right handed</option>
+                                <select class="[ form-control ]" id="atp" name="q12" >
+                                    <option value="yes" <?php if($_GET['q13']=='yes') echo "selected"; ?>>Yes</option>
+                                    <option value="no" <?php if($_GET['q13']=='no') echo "selected"; ?>>No</option>
                                 </select>
                             </div>
                         <?php } ?>

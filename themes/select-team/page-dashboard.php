@@ -34,7 +34,7 @@
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
                         <h3>Basic Profile</h3>
-                        <form id="userForm" role="form" class="[ row ] [ j-basic-profile ]" >
+                        <form id="userForm" role="form" class="[ row ] [ j-register-user ]" >
                             <?php if ( ! is_user_logged_in() ) { ?>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <label for="username">Username</label>
@@ -122,8 +122,8 @@
                             <!--GOLF-->
                             <?php if($_GET['q7']=='golf') { ?>
                                 <div class="[ form-group ] [ col-xs-6 ]">
-                                    <label for="golf_avg_score">Average score</label>
-                                    <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="golf_avg_score">
+                                    <label for="average_score">Average score</label>
+                                    <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="average_score">
                                         <?php switch ($_GET['q8']) {
                                             case '-66': ?>
                                                 <option value="-66" selected>Under 66</option>
@@ -272,14 +272,14 @@
                                     </select>
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="tennisHand">FMT ranking</label>
-                                    <input type="number" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q12']; ?> ">
+                                    <label for="fmt_ranking">FMT ranking</label>
+                                    <input type="number" class="[ form-control ]" id="fmtRank" name="fmt_ranking" value="<?php echo $_GET['q12']; ?> ">
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="atpTournament">Played an ATP tournament?</label>
-                                    <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?> ">
-                                        <option value="left">Left handed</option>
-                                        <option value="right">Right handed</option>
+                                    <label for="atp_tournament">Played an ATP tournament?</label>
+                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $_GET['q13']; ?> ">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
                                     </select>
                                 </div>
                             <?php } ?>
@@ -302,8 +302,8 @@
                             <!--VOLLEYBALL-->
                             <?php if($_GET['q7']=='volleyball') { ?>
                                 <div class="[ form-group ] [ col-xs-6 ]">
-                                    <label for="volleyPosition">Position</label>
-                                    <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="q9">
+                                    <label for="volley_position">Position</label>
+                                    <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="volley_position">
                                     <?php switch ($_GET['q9']) {
                                             case '1': ?>
                                                 <option value="1" selected>1</option>
@@ -364,8 +364,8 @@
                                     </select>
                                 </div>
                                 <div class="[ form-group ] [ col-xs-6 ]">
-                                    <label for="volleyHeight">Height (cm)</label>
-                                    <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q10']; ?>" name="q10">
+                                    <label for="volley_height">Height (cm)</label>
+                                    <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q10']; ?>" name="volley_height">
                                 </div>
                             <?php } ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
@@ -374,35 +374,23 @@
                                 <p class="help-block">File must be 500 x 500 pixels. No larger than 400 kb.</p>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="">Where does your video is hosted?</label>
+                                <label for="">Where is your video hosted?</label>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        <input type="radio" name="video_host" id="optionsRadios1" value="vimeo" checked>
                                         Vimeo
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        Youtube
+                                        <input type="radio" name="video_host" id="optionsRadios2" value="youtube">
+                                        YouTube
                                     </label>
                                 </div>
                                 <label for="playerVideo">Your video URL</label>
                                 <input type="text" class="[ form-control ]" id="playerVideo">
                                 <p class="help-block">Paste the entire url of the video ( www.youtube.com/watch?v=HT3diQX3i1I )</p>
                             </div>
-                            <?php if ( is_user_logged_in() ) { ?>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="password">New password</label>
-                                    <input type="password" class="[ form-control ]" id="password" name="q20">
-                                    <p class="help-block">Password must contain at least 8 characters.</p>
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="password">Confirm new password</label>
-                                    <input type="password" class="[ form-control ]" id="password_again" name="q21">
-                                    <label for="validate" id="validate"></label>
-                                </div>
-                            <?php } ?>
                             <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Guardar cambios</button>
                         </form>
                     </div>
