@@ -30,59 +30,58 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
+        <?php $prospect_info = get_user_basic_info(get_current_user_id()); ?>
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ]" id="page-content">
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
                         <h3>Basic Profile</h3>
                         <form id="userForm" role="form" class="[ row ] [  ]" >
-                            <?php if ( ! is_user_logged_in() ) { ?>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="username">Nombre de usuario</label>
-                                    <?php } else { ?>
-                                        <label for="username">Username</label>
-                                    <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="username">
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="email">Correo electrónico</label>
-                                    <?php } else { ?>
-                                        <label for="email">Email</label>
-                                    <?php } ?>
-                                    <input type="email" class="[ form-control ]" value="<?php echo $_GET['q6']; ?>" name="email" > 
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="[ form-control ]" name="password">
-                                    <p class="help-block">El password debe contener al menos 8 caracteres.</p>
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="password_confirmation">Confirmar password</label>
-                                    <?php } else { ?>
-                                        <label for="password_confirmation">Confirm password</label>
-                                    <?php } ?>
-                                        <input type="password" class="[ form-control ]" name="password_confirmation">
-                                        <label for="validate" id="validate"></label>                                 
-                                </div>
-                            <?php } ?>
+                            <div class="[ form-group ] [ col-xs-12 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="username">Nombre de usuario</label>
+                                <?php } else { ?>
+                                    <label for="username">Username</label>
+                                <?php } ?>
+                                <p><?php echo $prospect_info->user_login; ?></p>
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="email">Correo electrónico</label>
+                                <?php } else { ?>
+                                    <label for="email">Email</label>
+                                <?php } ?>
+                                <input type="email" class="[ form-control ]" value="<?php echo $prospect_info->user_email; ?>" name="email" > 
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 ] [ hidden ]">
+                                <label for="password">Password</label>
+                                <input type="password" class="[ form-control ]" name="password">
+                                <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 ] [ hidden ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="password_confirmation">Confirmar password</label>
+                                <?php } else { ?>
+                                    <label for="password_confirmation">Confirm password</label>
+                                <?php } ?>
+                                    <input type="password" class="[ form-control ]" name="password_confirmation">
+                                    <label for="validate" id="validate"></label>                                 
+                            </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="full_name">Nombre completo</label>
                                     <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
-                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php  ?>" name="full_name" >
+                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $prospect_info->full_name ?>" name="full_name" >
                                 <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="gender">Género</label>
                                     <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender" >
-                                        <option value="Mujer">Mujer</option>
-                                        <option value="Hombre">Hombre</option>
+                                        <option value="female">Mujer</option>
+                                        <option value="male">Hombre</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="gender">Gender</label>
@@ -95,11 +94,10 @@
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="date_of_birth">Fecha de nacimiento</label>
-                                    <input type="date" class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>  
                                 <?php } else { ?>
                                     <label for="date_of_birth">Date of birth</label>
-                                    <input type="date" class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>  
                                 <?php } ?>
+                                 <input class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $prospect_info->date_of_birth; ?>"/>  
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -107,70 +105,7 @@
                                 <?php } else { ?>
                                     <label for="sport">Sport you practice</label>
                                 <?php } ?>
-                                
-                                <select class="[ form-control ]" id="sport" name="sport" >
-                                    <?php switch ($_GET['q7']) {
-                                        case 'tennis': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis" selected>Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball">Volleyball</option>                                        
-                                            <?php break;
-                                        
-                                        case 'golf': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis" >Tennis</option>
-                                            <option value="golf" selected>Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball">Volleyball</option>                                        
-                                            <?php break;
-                                        
-                                        case 'soccer': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis">Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer" selected>Soccer</option>
-                                            <option value="volleyball">Volleyball</option>                                        
-                                            <?php break;
-                                        
-                                        case 'volleyball': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis" >Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball" selected>Volleyball</option>                                        
-                                        <?php break;
-                                        
-                                        default: ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis" >Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball">Volleyball</option>                                        
-                                        <?php break;
-                                    } ?>
-                                </select>
+                                <p><?php echo $prospect_info->sport; ?><p/>  
                             </div>
                             <!--GOLF-->
                             <?php if($_GET['q7']=='golf') { ?>
@@ -368,17 +303,10 @@
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="tennis_hand">¿Eres zurdo o derecho?</label>
-                                        <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                            <option value="left">Zurdo</option>
-                                            <option value="right">Derecho</option>
-                                        </select>
                                     <?php } else { ?>
                                         <label for="tennis_hand">Right or lef handed?</label>
-                                        <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                            <option value="left">Left handed</option>
-                                            <option value="right">Right handed</option>
-                                        </select>
                                     <?php } ?>
+                                     <p><?php ?></p>
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -702,14 +630,14 @@
                         <form role="form" class="[ row ]">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="manager" id="manager" name="q30">Selecciona un agente.</label>
+                                    <label for="manager" id="manager" name="agent">Selecciona un agente.</label>
                                     <select class="[ form-control ]" id="manager" name="q5">
                                         <option value="" selected disabled>Selecciona un agente</option>
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
                                 <?php } else { ?>
-                                    <label for="manager" id="manager" name="q30">Select a manager</label>
+                                    <label for="manager" id="manager" name="agent">Select a manager</label>
                                     <select class="[ form-control ]" id="manager" name="q5">
                                         <option value="" selected disabled>Choose a manager</option>
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>

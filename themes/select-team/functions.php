@@ -651,6 +651,12 @@ function pu_blank_login( $user ){
 	    $wpdb->st_answers = "st_answers";
 	}// st_register_answers_table
 
+	add_action( 'init', 'st_register_basic_profile_view', 1 );
+	function st_register_basic_profile_view() {
+	    global $wpdb;
+	    $wpdb->st_answers = "v_basic_profile";
+	}// st_register_basic_profile_view
+
 	/**
 	 * Inserta un usuario a la tabla st_users
 	 * @param string $st_user_data
@@ -721,6 +727,55 @@ function pu_blank_login( $user ){
 		return 0;
 	}// add_sport_answer
 
+	/**
+	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
+	function get_users_basic_info(){
+	    global $wpdb;
+	    $query = "SELECT * FROM v_basic_profile";
+	    $users = $wpdb->get_results($query);
+		
+		return $users_basic_info;
+	}// get_users_basic_info
+
+	/**
+	 * Jalar "basic profile" de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_basic_info
+	 */
+	function get_user_basic_info($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM v_basic_profile WHERE id = %d", $wp_user_id);
+	    $user_basic_info = $wpdb->get_results($query);
+		
+		return $user_basic_info[0];
+	}// get_users_basic_info
+
+	/**
+	 * Manda un correo a las personas relacionadas.
+	 * @param string $email_to, string $name, $message
+	 * @return int TRUE or FALSE
+	 */
+	function send_mail($mail_to, $name, $message){
+
+		$current_user = wp_get_current_user();
+		$user_id= $current_user->ID;
+		
+	    global $wpdb;
+	    $query = "SELECT full_name FROM st_users WHERE wp_user_id ='".$user_id."';";
+	    $myrows = $wpdb->get_results($query);
+
+		$subject = 'Select team message ';
+		$body_message = $message;
+		
+		$headers = 'From: '.$myrows[0]->full_name."\r\n";
+		$headers .= 'Reply-To: '.$current_user->user_email."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+	}// send_mail
+
 
 // ZUROL  //////////////////////////////////////////////////////
 
@@ -763,26 +818,3 @@ if(isset($_GET['login']) && $_GET['login'] == 'failed' && session_id()!='' ){
 	';
 }
 
-	/**
-	 * Manda un correo a las personas relacionadas.
-	 * @param string $email, string $name
-	 * @return int TRUE or FALSE
-	 */
-function send_mail($email_to, $name, $message){
-
-	$current_user = wp_get_current_user();
-	$user_id= $current_user->ID;
-	
-    global $wpdb;
-    $query = "SELECT full_name FROM st_users WHERE wp_user_id ='".$user_id."';";
-    $myrows = $wpdb->get_results($query);
-
-	$subject = 'Select team message ';
-	$body_message = $message;
-	
-	$headers = 'From: '.$myrows[0]->full_name."\r\n";
-	$headers .= 'Reply-To: '.$current_user->user_email."\r\n";
-
-	$mail_status = mail($mail_to, $subject, $body_message, $headers);
-
-}
