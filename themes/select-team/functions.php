@@ -174,7 +174,7 @@ function pu_blank_login( $user ){
 		                });
 		            }(jQuery));
 		        </script>
-			<?php } elseif ( get_the_title()=='Prospects' ) { ?>
+			<?php } elseif ( get_post_type() == 'prospecto' ) { ?>
 				<script type="text/javascript">
 				      correIsotope('.isotope-container-sports', '.player', 'masonry');
 				      filtrarIsotopeDefault('.isotope-container', 'none');
