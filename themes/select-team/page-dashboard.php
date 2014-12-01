@@ -7,9 +7,6 @@
                     <p><i class="fa fa-cogs"></i> My Dashboard </p>
                 </li>
                 <li>
-                    <a href="#accountInfo" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Account Info</a>
-                </li>
-                <li>
                     <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
                 </li>
                 <li>
@@ -73,7 +70,7 @@
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <label for="date_of_birth">Date of birth</label>
-                                <input type="text" class="[ form-control ]" id="datepicker" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>
+                                <input type="date" class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <label for="sport">Sport you practice</label>
@@ -444,7 +441,7 @@
                                 <?php } else { ?>
                                     <span><label for="q3">When are you graduating?</label></span>
                                 <?php } ?>
-                                <input name="q3" class="[ form-control ]" type="number" id="datepicker2"/>
+                                <input name="q3" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation"/>
                             </div>
                             <div class="clear"></div>
                             <h4 class="[ col-xs-12 ]">Sports Development</h4>
@@ -455,8 +452,8 @@
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <label for="tournamentDate">Date</label>
-                                <input type="text" class="[ form-control ]" id="tournamentDate">
-                                <p class="help-block">mm-yy</p>
+                                <input type="date" class="[ form-control ] [ j-datepicker ]" id="datepicker-date-of-tournament">
+                                <p class="help-block">mm-yyyy</p>
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <label for="tournamentRank">Ranking</label>
