@@ -39,63 +39,65 @@ include_once('send-prospects.php');
                         <div class="[ row ]">
                             <a href="#menu-toggle" id="dashboard-toggle" class="[ btn btn-success ]"><i class="[ fa fa-cogs ]"></i> Dashboard</a>
                         </div>
-                        <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="accountInfo">
-                            <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
-                                <h3>Account Info</h3>
-                                <form role="form" class="[ row ]">
-                                    <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="userName">User name</label>
-                                        <input type="text" class="[ form-control ]" id="userName" name="">
-                                    </div>
-                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="[ form-control ]" id="password" name="q20">
-                                        <p class="help-block">Password must contain at least 8 characters.</p>
-                                    </div>
 
-                                    <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="password">Confirm Password</label>
-                                        <input type="password" class="[ form-control ]" id="password_again" name="q21">
-                                        <label for="validate" id="validate"></label>
-                                    </div>
-                                    <button type="submit" class="[ btn btn-primary ] " id="subB">Save changes</button>
-                                </form>
+                        <?php if ( ! is_user_logged_in() ) { ?>
+                            <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="accountInfo">
+                                <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                                    <h3>Account Info</h3>
+                                    <form role="form" class="[ row ] [ j-register-user ]">
+                                        <div class="[ form-group ] [ col-xs-12 ]">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="[ form-control ]" name="username">
+                                        </div>
+                                        <div class="[ form-group ] [ col-xs-12 ]">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="[ form-control ]" value="<?php echo $_GET['q6']; ?>" name="email" > 
+                                        </div>
+                                         <div class="[ form-group ] [ col-xs-12 ]">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="[ form-control ]" name="password">
+                                            <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+                                        </div>
+                                        <div class="[ form-group ] [ col-xs-12 ]">
+                                            <label for="password_confirmation">Confirm Password</label>
+                                            <input type="password" class="[ form-control ]" name="password_confirmation">
+                                            <label for="validate" id="validate"></label>
+                                        </div>
+                                        <button type="submit" class="[ btn btn-primary ] ">Save changes</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                         <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                             <div class="[ col-xs-12 col-sm-7 center block ]">
                                 <h3>Basic Profile</h3>
-                                <form id="userForm" role="form" class="[ row ]" action="<?php echo site_url('dashboard'); ?> " method="POST">
+                                <form id="userForm" role="form" class="[ row ] [ j-basic-profile ]" >
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="exampleInputEmail1">Full name</label>
-                                        <input type="text" class="[ form-control ]" id="exampleInputEmail1" value="<?php echo $_GET['q1']; ?>" name="q1" >
+                                        <label for="full_name">Full name</label>
+                                        <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                            <label for="q2">Género</label>
-                                            <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="q2" >
+                                            <label for="gender">Género</label>
+                                            <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender" >
                                                 <option value="Mujer">Mujer</option>
                                                 <option value="Hombre">Hombre</option>
                                             </select>
                                         <?php } else { ?>
-                                            <label for="q2">Gender</label>
-                                            <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="q2">
+                                            <label for="gender">Gender</label>
+                                            <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender">
                                                 <option value="female">Female</option>
                                                 <option value="male">Male</option>
                                             </select>
                                         <?php } ?>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="fechaNacimiento">Date of birth</label>
-                                        <input type="text" class="[ form-control ]" id="datepicker" name="q3"  value="<?php echo $_GET['q3']; ?>" name="q3"></p>
-                                    </div>
-                                    <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="email">E-mail</label>
-                                        <input type="email" class="[ form-control ]" id="email" value="<?php echo $_GET['q6']; ?>" name="q6" > 
+                                        <label for="date_of_birth">Date of birth</label>
+                                        <input type="text" class="[ form-control ]" id="datepicker" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"></p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
                                         <label for="sport">Sport you practice</label>
-                                        <select class="[ form-control ]" id="sport" name="q7" >
+                                        <select class="[ form-control ]" id="sport" name="sport" >
                                             <?php switch ($_GET['q7']) {
                                                 case 'tennis': ?>
                                                         <option value="tennis" selected>Tennis</option>
@@ -137,8 +139,8 @@ include_once('send-prospects.php');
                                     <!--GOLF-->
                                     <?php if($_GET['q7']=='golf') { ?>
                                     <div class="[ form-group ] [ col-xs-6 ]">
-                                        <label for="sport">Average score</label>
-                                        <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="q8">
+                                        <label for="golf_avg_score">Average score</label>
+                                        <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="golf_avg_score">
                                         <?php switch ($_GET['q8']) {
                                                 case '-66': ?>
                                                         <option value="-66" selected>Under 66</option>
@@ -282,8 +284,8 @@ include_once('send-prospects.php');
                                     <!--VOLLEBALL-->
                                     <?php if($_GET['q7']=='volleyball') { ?>
                                     <div class="[ form-group ] [ col-xs-6 ]">
-                                        <label for="volleyPosition">Position</label>
-                                        <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="q9">
+                                        <label for="volley_position">Position</label>
+                                        <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="volley_position">
                                         <?php switch ($_GET['q9']) {
                                                 case '1': ?>
                                                     <option value="1" selected>1</option>
@@ -344,16 +346,16 @@ include_once('send-prospects.php');
                                         </select>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-6 ]">
-                                        <label for="volleyHeight">Height (cm)</label>
-                                        <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q10']; ?>" name="q10">
+                                        <label for="volley_height">Height (cm)</label>
+                                        <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q10']; ?>" name="volley_height">
                                     </div>
 
                                     <?php } ?>
                                     <!--TENNIS-->
                                     <?php if($_GET['q7']=='tennis') { ?>
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="tennisHand">Right or lef handed?</label>
-                                        <select class="[ form-control ]" id="tennisHand" name="q10" value="<?php echo $_GET['q11']; ?> ">
+                                        <label for="tennis_hand">Right or lef handed?</label>
+                                        <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
                                             <option value="left">Left handed</option>
                                             <option value="right">Right handed</option>
                                         </select>
@@ -373,8 +375,8 @@ include_once('send-prospects.php');
                                     <!--SOCCER-->
                                     <?php if($_GET['q7']=='soccer') { ?>
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
-                                        <label for="soccerPosition">Position</label>
-                                        <select class="[ form-control ]" id="q14" name="q14">
+                                        <label for="soccer_position">Position</label>
+                                        <select class="[ form-control ]" id="q14" name="soccer_position">
                                             <option value="goal-keeper" <?php if($_GET['q14']=='goal-keeper') echo " selected"; ?> >Goal keeper</option>
                                             <option value="defender" <?php if($_GET['q14']=='defender') echo " selected"; ?> >Defender</option>
                                             <option value="midfielder" <?php if($_GET['q14']=='midfielder') echo " selected"; ?> >Midfielder</option>
@@ -382,8 +384,8 @@ include_once('send-prospects.php');
                                         </select>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
-                                        <label for="soccerHeight">Height (cm)</label>
-                                        <input type="text" class="[ form-control ]" id="soccerHeight" name="q15" value="<?php echo $_GET['q15']; ?>">
+                                        <label for="soccer_height">Height (cm)</label>
+                                        <input type="text" class="[ form-control ]" id="soccer_height" name="q15" value="<?php echo $_GET['q15']; ?>">
                                     </div>
                                     <?php } ?>
                                     <div class="[ form-group ] [ col-xs-12 ]">
@@ -410,7 +412,7 @@ include_once('send-prospects.php');
                                         <p class="help-block">Paste the entire url of the video:<br> ( www.youtube.com/watch?v=HT3diQX3i1I )</p>
                                     </div>
                                     <div class="[ form-group ] [ col-xs-12 ]">
-                                        <label for="password">Cahnge Password</label>
+                                        <label for="password">Change Password</label>
                                         <input type="password" class="[ form-control ]" id="password" name="q20">
                                         <p class="help-block">Password must contain at least 8 characters.</p>
                                     </div>

@@ -173,9 +173,6 @@ function urlAbre(){
 
 
 
-
-
-
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -185,4 +182,41 @@ function getCookie(cname) {
         if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
     }
     return "";
+}
+
+
+function registerUser() {
+    var user_data = {};
+
+    user_data['action'] = 'register_user';
+    user_data['username'] = $('.j-register-user input[name="username"]').val();
+    user_data['password'] = $('.j-register-user input[name="password"]').val();
+    user_data['password_confirmation'] = $('.j-register-user input[name="password_confirmation"]').val();
+    user_data['email'] = $('.j-register-user input[name="email"]').val();
+
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+            updateBasicProfile();
+        }// response
+    ); 
+}
+
+function updateBasicProfile() {
+    var user_data = {};
+
+    user_data['action'] = 'update_basic_profile';
+    user_data['username'] = $('.j-register-user input[name="username"]').val();
+    user_data['password'] = $('.j-register-user input[name="password"]').val();
+    user_data['password_confirmation'] = $('.j-register-user input[name="password_confirmation"]').val();
+    user_data['email'] = $('.j-register-user input[name="email"]').val();
+
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+            updateBasicProfile();
+        }// response
+    ); 
 }

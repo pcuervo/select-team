@@ -92,7 +92,6 @@ function pu_blank_login( $user ){
 	});
 
 
-
 // FRONT END SCRIPTS FOOTER //////////////////////////////////////////////////////
 	function footerScripts(){
 		if( wp_script_is( 'functions', 'done' ) ) { 
@@ -214,15 +213,10 @@ function pu_blank_login( $user ){
 				      			console.log('cambio');
 				      		});
 
-							//var userForm = document.getElementById( 'userForm' );
-							$('#subB').on('click', function(e){
+							$('.j-register-user button').on('click', function(e){
 								e.preventDefault();
-								console.log('Sub');
-			                	var serializd = $('#userForm').serialize();
-			                	$.post("", $('#userForm').serialize(), function(response){
-			                		console.log('ajax done');
-			                	});
-
+								console.log('registrando usuario...');
+								registerUser();
 							});
 						});
 				</script>	
@@ -372,7 +366,6 @@ function pu_blank_login( $user ){
 	});
 
 
-
 // HELPER METHODS AND FUNCTIONS //////////////////////////////////////////////////////
 
 
@@ -413,7 +406,6 @@ function pu_blank_login( $user ){
 	}
 
 
-
 	/**
 	 * Regresa la url del attachment especificado
 	 * @param  int     $post_id
@@ -441,9 +433,74 @@ function pu_blank_login( $user ){
 			OR isset($query->rewrite) AND preg_match("/$string/i", $query->rewrite['slug'])
 			OR isset($query->post_title) AND preg_match("/$string/i", remove_accents(str_replace(' ', '-', $query->post_title) ) ) )
 			echo 'active';
+	} 
+
+	/**
+	 * Registra un usuario nuevo
+	 * @param  string  $username
+	 * @param  string  $password 
+	 * @param string  $email
+	 * @return boolean
+	 */
+	function register_user(){
+		
+		$is_valid = validate_user_data();
+		switch ($is_valid) {
+			case -1:
+				echo json_encode(array("error" => "Nombre de usuario inválido"), JSON_FORCE_OBJECT ); 
+				break;
+			case -2:
+				echo json_encode(array("error" => "Email inválido"), JSON_FORCE_OBJECT ); 
+				break;
+			case -3:
+				echo json_encode(array("error" => "Password inválido"), JSON_FORCE_OBJECT ); 
+				break;
+			case -4:
+				echo json_encode(array("error" => "Passwords diferentes"), JSON_FORCE_OBJECT ); 
+				break;
+			default:
+				$username =  $_POST['username'];
+				$password =  wp_hash_password( $_POST['password'] );
+				$email =  $_POST['email'];
+				$user_id = wp_create_user( $username, $password, $email );
+
+				if(is_wp_error($user_id)){
+					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
+					die();
+				}
+
+				$msg = array(
+					"success" => "Usuario registrado",
+					"usuario" => $user_id
+					);
+				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
+				break;
+		}// switch
+
+		die();
+	} // register_user
+	add_action("wp_ajax_nopriv_register_user", "register_user");
+
+	/**
+	 * Valida que los datos del usuario ha registrar sean correctos.
+	 * @return 1 si no hay errores, -1 username vacío, -2 email vacío, -3 password inválido, -4 passwords no son iguales
+	 */
+	function validate_user_data(){
+		if($_POST['username'] == '')
+			return -1; 
+
+		if($_POST['email'] == '')
+			return -2; 
+
+		if($_POST['password'] == '' || $_POST['password_confirmation'] == '' )
+			return -3; 
+
+		if($_POST['password'] != $_POST['password_confirmation'])
+			return -4; 
+
+		return 1;
 	}
 
-// HELPER METHODS AND FUNCTIONS //////////////////////////////////////////////////////
  $args = array(
         'echo' => true,
         //'redirect' => site_url(), 
@@ -476,10 +533,10 @@ function myEndSession() {
 
 //if(isset($_GET['login']) && $_GET['login'] == 'failed' && $user==''){
 if(isset($_GET['login']) && $_GET['login'] == 'failed' && session_id()!='' ){
-echo '
-	<div id="login-error" style="background-color: #FFEBE8;border:1px solid #C00;padding:5px;">
-		<p>Login failed: You have entered an incorrect Username or password, please try again.</p>
-	</div>
-';
+	echo '
+		<div id="login-error" style="background-color: #FFEBE8;border:1px solid #C00;padding:5px;">
+			<p>Login failed: You have entered an incorrect Username or password, please try again.</p>
+		</div>
+	';
 }
 
