@@ -129,7 +129,7 @@ function pu_blank_login( $user ){
 		                    new stepsForm( theForm, {
 		                        onSubmit : function( form ) {
 		                        	var current_url = document.getElementById('current_url').value;
-		                        	console.log(current_url);
+		                        	//console.log(current_url);
 		                            // hide form
 		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
 		                           	var messageEl = theForm.querySelector( '.final-message' );
