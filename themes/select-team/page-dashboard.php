@@ -5,7 +5,8 @@
         exit;
     }
 ?>
-<?php get_header(); ?>
+<?php get_header(); send_mail('zurol@pcuervo.com', 'Miguel Segura', "Mensaje Corto"); ?>
+
     <div id="dashboard">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
