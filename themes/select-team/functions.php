@@ -133,15 +133,17 @@ function pu_blank_login( $user ){
 		                    $( "#datepicker" ).datepicker({
 		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
-      							changeYear: true
+      							changeYear: true,
+								yearRange: "-100:+0"
 		                    });
-		                    $( "#datepicker" ).datepicker('setDate', '01-01-1995');
+		                    $( "#datepicker" ).datepicker('setDate', '1995-01-01');
+		                    console.log('date!');
 		                    $( "#datepicker2" ).datepicker({
 		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
-      							changeYear: true
+      							changeYear: true,
+		                    	yearRange: "+0:+20"
 		                    });
-
 		                    urlAbre();
 		                    var ancho = $(window).outerWidth();
 		                    toggleClassCards(ancho);
