@@ -131,12 +131,13 @@ function pu_blank_login( $user ){
 		                $(function(){
 		                    //On load
 		                    $( "#datepicker" ).datepicker({
-		                    	dateFormat: 'mm-dd-yy',
+		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
       							changeYear: true
-		                    }).datepicker('setDate', '01-01-1995');
+		                    });
+		                    $( "#datepicker" ).datepicker('setDate', '01-01-1995');
 		                    $( "#datepicker2" ).datepicker({
-		                    	dateFormat: 'mm-dd-yy',
+		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
       							changeYear: true
 		                    });
@@ -266,20 +267,20 @@ function pu_blank_login( $user ){
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'mm-dd-yy',
+							dateFormat: 'yy-mm-dd',
 							yearRange: "-100:+0"
 						});
 						$( "#datepicker-date-of-graduation" ).datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'mm-dd-yy',
+							dateFormat: 'yy-mm-dd',
 							yearRange: "-0:+10",
 						});
 						$( "#datepicker-date-of-tournament" ).datepicker({
 							changeMonth: true,
 							changeYear: true,
 							showButtonPanel: true,
-							dateFormat: 'mm-yy',
+							dateFormat: 'yy-mm',
 							onClose: function(dateText, inst) { 
 								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
 								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
