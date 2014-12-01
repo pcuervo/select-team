@@ -203,7 +203,7 @@ function pu_blank_login( $user ){
 		                });
 		            }(jQuery));
 		        </script>
-			<?php } elseif ( get_post_type() == 'prospecto' ) { ?>
+			<?php } elseif ( get_post_type() == 'prospecto') { ?>
 				<script type="text/javascript">
 				      correIsotope('.isotope-container-sports', '.player', 'masonry');
 				      filtrarIsotopeDefault('.isotope-container', 'none');
@@ -225,7 +225,29 @@ function pu_blank_login( $user ){
 				        return false;
 				      });
 				</script>
-			<?php } elseif (get_the_title()=='Dashboard') { ?>
+			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
+				<script type="text/javascript">
+				      correIsotope('.isotope-container-sports', '.player', 'masonry');
+				      filtrarIsotopeDefault('.isotope-container', 'none');
+				      $('.isotope-filters button').on( 'click', function(e) {
+				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+				      });
+				      $('#sportAll button').on('click', function(){
+				        var sport = $(this).attr('data-filter');
+				        console.log(sport);
+				        $('#sportAll').attr('data-active', sport);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				      });
+				      $('#genderAll button').on('click', function(){
+				        var gender = $(this).attr('data-filter');
+				        //console.log(gender);
+				        $('#genderAll').attr('data-active', gender);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				      });
+				</script>
+			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
 						$('#password_again').on('change', function(e){
