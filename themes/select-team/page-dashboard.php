@@ -5,7 +5,8 @@
         exit;
     }
 ?>
-<?php get_header(); ?>
+<?php get_header(); send_mail('zurol@pcuervo.com', 'Miguel Segura', "Mensaje Corto"); ?>
+
     <div id="dashboard">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -490,7 +491,7 @@
                                 <label for="message">Your message</label>
                                 <textarea class="form-control" rows="3" id="message"></textarea>
                             </div>
-                            <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Send Message</button>
+                            <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]" id="js-send-ms">Send Message</button>
                         </form>
                     </div>
                 </div>

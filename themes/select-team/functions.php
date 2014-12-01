@@ -227,10 +227,12 @@ function pu_blank_login( $user ){
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard') { ?>
 				<script type="text/javascript">
-					$( function() {
-						$('#password_again').on('change', function(e){
-							console.log('cambio');
+					$( function() {						
+						$("#js-send-ms").on('click', function(e){
+							e.preventDefault();
+							send_mail();
 						});
+
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -766,3 +768,31 @@ if(isset($_GET['login']) && $_GET['login'] == 'failed' && session_id()!='' ){
 	';
 }
 
+	/**
+	 * Manda un correo a las personas relacionadas.
+	 * @param string $email, string $name
+	 * @return int TRUE or FALSE
+	 */
+function send_mail($email_to, $name, $message){
+	$mail_to = 'zurol@pcuervo.com';
+	$name = 'Miguel Segura';
+
+	$current_user = wp_get_current_user();
+	$user_id= $current_user->ID;
+	$user_id= '8';
+
+	
+    global $wpdb;
+    $query = "SELECT full_name FROM st_users WHERE wp_user_id ='".$user_id."';";
+    $myrows = $wpdb->get_results($query);
+    var_dump($myrows[0]->full_name);
+
+	$subject = 'Select team message ';
+	$body_message = $message;
+	
+	$headers = 'From: '.$myrows[0]->full_name."\r\n";
+	$headers .= 'Reply-To: '.$current_user->user_email."\r\n";
+
+	$mail_status = mail($mail_to, $subject, $body_message, $headers);
+	var_dump($mail_status);
+}
