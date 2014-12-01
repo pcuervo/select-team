@@ -36,9 +36,11 @@
 			$genre 				= $genreTerm[1]->slug;;
 			?>
 			<div class="[ player <?php echo $sport.' '.$genre; ?> ] [ col-xs-5 col-sm-3 col-md-2 ] [ clearfix margin-bottom ]">
-				<img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
+				<a href="<?php the_permalink(); ?>">
+					<?php the_post_thumbnail(); ?>
+				</a>
 				<div class="info">
-					<h4 class="center-text"><?php the_title(); ?></h4>
+					<h4 class="center-text"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 					<p class="center-text">Sport: <span><?php echo $sport; ?></span></p>
 				</div>
 			</div>
