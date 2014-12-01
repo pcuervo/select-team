@@ -275,7 +275,7 @@ header{
 	p{ margin-bottom: 30px; color: @white; }
 }
 
-.container{  
+.container{
 			&.prospect-filters{ width: 80%; }
 			&.header-top{ width: 90%; }
 		}
@@ -295,7 +295,7 @@ header{
 
 	//HOME =========================
 
-	.start-screen{  
+	.start-screen{
 		width: 100%;
 		height: 100vh;
 		padding: 30px;
@@ -323,7 +323,7 @@ header{
 	//PROSPECTS***********************************
 
 	.prospects{
-		
+
 		button{
 			padding: 5px 8px;
 			min-height: 38px;
@@ -370,7 +370,7 @@ header{
 
 		.info{
 			padding: 5px;
-			
+
 			h4{
 				margin-top: 0;
 				margin-bottom: 5px;
@@ -554,7 +554,7 @@ header{
 }
 
 .bg-coach{
-	background: url('images/bg-home-soccer-alt.jpg') no-repeat center top;
+	background: url('images/bg-home-coach.jpg') no-repeat center top;
 	background-size: cover;
 }
 
@@ -771,7 +771,7 @@ figure.effect-sadie:hover figcaption::before {
 		}
 
 		.bg-coach{
-			background: url('images/bg-home-soccer-alt.jpg') no-repeat center top;
+			background: url('images/bg-home-coach.jpg') no-repeat center top;
 			background-size:  cover;
 		}
 
@@ -813,8 +813,8 @@ figure.effect-sadie:hover figcaption::before {
     transition: all 0.5s ease;
 }
 
-#dashboard-toggle{ 
-	margin-bottom: 20px; 
+#dashboard-toggle{
+	margin-bottom: 20px;
 	margin-left: 20px;
 	border: none;
 	&:active, &:focus{ background-color: @brand-success; }
@@ -874,20 +874,20 @@ figure.effect-sadie:hover figcaption::before {
     text-indent: 20px;
     line-height: 40px;
     border-top: 1px solid darken(@brand-success, 10%);
-    padding: 15px 0;
     .transition;
     &:first-child{ border-top: none; }
-} 
+}
 
 .sidebar-nav li a {
     display: block;
+    padding: 15px 0;
     text-decoration: none;
     color: lighten(@brand-success, 50%);
     .transition;
      i{ margin-right: 1%; }
 }
 
-.sidebar-nav li:hover {
+.sidebar-nav li:hover, .sidebar-nav li.active {
     text-decoration: none;
     color: @white ;
     background: darken(@brand-success, 10%);
@@ -909,6 +909,10 @@ figure.effect-sadie:hover figcaption::before {
     font-size: 18px;
     line-height: 60px;
     border-top: none;
+}
+
+.sidebar-nav > .sidebar-brand:hover{
+	background: @brand-success;
 }
 
 .sidebar-nav > .sidebar-brand p {
@@ -948,6 +952,6 @@ figure.effect-sadie:hover figcaption::before {
     }
 }
 
-.dashboard-profile{ border-top: 1px solid @brand-success; }
+.dashboard-profile{ border-bottom: 1px solid @brand-success; }
 
 //********************************************

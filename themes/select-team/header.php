@@ -87,20 +87,26 @@
 						</a></li>
 	                </ul>
 	                <div class="[ registro ]">
-	                    <?php own_wp_loginout(); ?>
-						<?php echo qtrans_generateLanguageSelectCode('text'); ?>
-	                </div> 
+	                    <?php
+	                    	own_wp_loginout();
+							echo qtrans_generateLanguageSelectCode('text');
+						?>
+	                </div>
 	            </div>
 	            <?php if(is_home()){ ?>
 	            	<div class="start-screen">
 	            		<img class="[ img-responsive ] [ center block ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
-	            		<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
+	            		<?php if (qtrans_getLanguage() == 'es'){ ?>
+	            			<h2 class="[ text-center ][ center block ]">¡Te ayudámos a obtener una beca deportiva en Estados Unidos!</h2>
+	            		<?php } else { ?>
+							<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
+						<?php } ?>
 	            	</div>
 		            <div class="[ header-bottom ]">
 		                <div class="[ container ]">
 		                    <p class="[ text-center ] [ col-xs-12 col-md-9 ] [ center block ]">
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									Select team crea oportunidades de beca para atletas estudiantes para jugar y estufdiar en universidades de Estados Unidos.  
+									Select team crea oportunidades de beca para atletas estudiantes para jugar y estufdiar en universidades de Estados Unidos.
 								<?php } else { ?>
 									Select Team creates scholarship opportunities for student athletes to play sports and study at universities in the United States.
 								<?php } ?>
@@ -108,6 +114,6 @@
 		                    <img class="[ col-xs-6 col-sm-5 col-md-2 ] [ center block ]" src="<?php echo THEMEPATH; ?>images/icon-sports.png" alt="">
 		                </div>
 		            </div>
-		        <?php } ?>    
+		        <?php } ?>
 	        </header>
 	        <div class="[ content clearfix ]">
