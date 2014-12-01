@@ -176,7 +176,7 @@ function pu_blank_login( $user ){
 		        </script>
 			<?php } elseif ( get_the_title()=='Prospects' ) { ?>
 				<script type="text/javascript">
-				      correIsotope('.isotope-container', '.isotope-item', 'masonry');
+				      correIsotope('.isotope-container-sports', '.player', 'masonry');
 				      filtrarIsotopeDefault('.isotope-container', 'none');
 				      $('.isotope-filters button').on( 'click', function(e) {
 				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
@@ -195,27 +195,10 @@ function pu_blank_login( $user ){
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				      });
-				    </script>
-				    <script type="text/javascript">
-				      $( function() {
-				        $('.sportContainer').isotope({
-				          itemSelector: '.player',
-				          layoutMode: 'masonry'
-				        });
-				      });
-				      $( function() {
-				        var $container = $('.sportContainer');
-				          $container.imagesLoaded(function(){
-				              $container.isotope({
-				                  itemSelector: '.player'
-				              });
-				          });
-				      });
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard') { ?>
 				<script type="text/javascript">
 				      $( function() {
-
 				      		$('#password_again').on('change', function(e){
 				      			console.log('cambio');
 				      		});

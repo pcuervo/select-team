@@ -26,10 +26,12 @@ setTimeout(function(){
 //ISOTOPE
 var $=jQuery.noConflict();
 function correIsotope(contenedor, item, layoutMode){
-  var $container = $(contenedor);
-  $container.isotope({
-    itemSelector: item,
-    layoutMode: layoutMode
+  var $container = $('.sportContainer');
+  $container.imagesLoaded(function(){
+    $container.isotope({
+      itemSelector: item,
+      layoutMode: layoutMode
+    });
   });
 }
 
