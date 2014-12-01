@@ -73,7 +73,7 @@
                                     <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
-                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
+                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php  ?>" name="full_name" >
                                 <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
