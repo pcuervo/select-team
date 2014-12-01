@@ -204,25 +204,8 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            updateBasicProfile();
+            console.log(response);
         }// response
     ); 
 }
 
-function updateBasicProfile() {
-    var user_data = {};
-
-    user_data['action'] = 'update_basic_profile';
-    user_data['username'] = $('.j-register-user input[name="username"]').val();
-    user_data['password'] = $('.j-register-user input[name="password"]').val();
-    user_data['password_confirmation'] = $('.j-register-user input[name="password_confirmation"]').val();
-    user_data['email'] = $('.j-register-user input[name="email"]').val();
-
-    $.post(
-        ajax_url,
-        user_data,
-        function(response){
-            updateBasicProfile();
-        }// response
-    ); 
-}

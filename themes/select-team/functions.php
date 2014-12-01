@@ -490,7 +490,19 @@ function pu_blank_login( $user ){
 			return -4; 
 
 		return 1;
+	}// validate_user_data
+
+
+// CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
+
+	add_action( 'init', 'st_register_users_table', 1 );
+	 
+	function st_register_users_table() {
+	    global $wpdb;
+	    $wpdb->st_users = "st_users";
 	}
+
+// ZUROL  //////////////////////////////////////////////////////
 
  $args = array(
         'echo' => true,
