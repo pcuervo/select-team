@@ -163,7 +163,7 @@ function pu_blank_login( $user ){
 		                           	var messageEl = theForm.querySelector( '.final-message' );
 	                                messageEl.innerHTML = 'Loading...';
 	                                classie.addClass( messageEl, 'show' );
-		                            location.replace(current_url+"/dashboard?"+ $("#theForm").serialize());
+		                            location.replace(current_url+"/register?"+ $("#theForm").serialize());
 		                            return false;
 		                        }
 		                    } );
