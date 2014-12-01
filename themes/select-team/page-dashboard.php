@@ -28,9 +28,12 @@
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
-
+        
+        <?php 
+            $prospect_info = get_user_basic_info(get_current_user_id()); 
+            $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
+        ?>
         <!-- Page Content -->
-        <?php $prospect_info = get_user_basic_info(get_current_user_id()); ?>
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ]" id="page-content">
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
@@ -108,7 +111,7 @@
                                 <p><?php echo $prospect_info->sport; ?><p/>  
                             </div>
                             <!--GOLF-->
-                            <?php if($_GET['q7']=='golf') { ?>
+                            <?php if($prospect_info->sport =='golf') { ?>
                                 <div class="[ form-group ] [ col-xs-6 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="average_score">Puntaje promedio</label>
@@ -299,14 +302,14 @@
                                 <div class="clear"></div>
                             <?php } ?>
                             <!--TENNIS-->
-                            <?php if($_GET['q7']=='tennis') { ?>
+                            <?php if($prospect_info->sport =='tennis') { ?>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="tennis_hand">¿Eres zurdo o derecho?</label>
                                     <?php } else { ?>
                                         <label for="tennis_hand">Right or lef handed?</label>
                                     <?php } ?>
-                                     <p><?php ?></p>
+                                     <p><?php echo $prospect_sport_answers[TENNIS_HAND-1]->answer; ?></p>
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -314,26 +317,26 @@
                                     <?php } else { ?>
                                         <label for="fmt_ranking">FMT ranking (mexicans only)</label>
                                     <?php } ?>
-                                    <input type="number" class="[ form-control ]" id="fmtRank" name="fmt_ranking" value="<?php echo $_GET['q12']; ?> ">
+                                    <input class="[ form-control ]" id="fmtRank" name="fmt_ranking" value="<?php echo $prospect_sport_answers[FMT_RANKING-1]->answer; ?> ">
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="atp_tournament">¿Has jugado en torneos de la ATP?</label>
-                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $_GET['q13']; ?> ">
-                                        <option value="1">Sí</option>
-                                        <option value="0">No</option>
+                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $prospect_sport_answers[ATP_TOURNAMENT-1]->answer; ?> ">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="atp_tournament">Played an ATP tournament?</label>
                                     <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $_GET['q13']; ?> ">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
                                     </select>
                                 <?php } ?>
                                 </div>
                             <?php } ?>
                             <!--SOCCER-->
-                            <?php if($_GET['q7']=='soccer') { ?>
+                            <?php if($prospect_info->sport =='soccer') { ?>
                                 <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="soccer_position">Posición</label>
@@ -363,7 +366,7 @@
                                 </div>
                             <?php } ?>
                             <!--VOLLEYBALL-->
-                            <?php if($_GET['q7']=='volleyball') { ?>
+                            <?php if($prospect_info->sport =='volleyball') { ?>
                                 <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="volley_position">Posición</label>

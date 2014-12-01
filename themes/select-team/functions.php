@@ -753,6 +753,19 @@ function pu_blank_login( $user ){
 	}// get_users_basic_info
 
 	/**
+	 * Jalar respuestas por deporte de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_answers
+	 */
+	function get_user_sport_answers($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM st_answers WHERE st_user_id = %d", $wp_user_id);
+	    $user_answers = $wpdb->get_results($query);
+		
+		return $user_answers;
+	}// get_users_basic_info
+
+	/**
 	 * Manda un correo a las personas relacionadas.
 	 * @param string $email_to, string $name, $message
 	 * @return int TRUE or FALSE
