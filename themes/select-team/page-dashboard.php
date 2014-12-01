@@ -54,7 +54,7 @@
                                 <?php } else { ?>
                                     <label for="email">Email</label>
                                 <?php } ?>
-                                <input type="email" class="[ form-control ]" value="<?php echo $prospect_info->user_email; ?>" name="email" > 
+                                <p><?php echo $prospect_info->user_email; ?></p> 
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ] [ hidden ]">
                                 <label for="password">Password</label>
@@ -81,26 +81,34 @@
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="gender">Género</label>
-                                    <select class="[ form-control ]" id="q2" name="gender" >
-                                        <option value="female" <?php if ($prospect_info->gender=='female')echo "selected" ?>>Mujer</option>
-                                        <option value="male" <?php if ($prospect_info->gender=='male')echo "selected" ?>>Hombre</option>
-                                    </select>
+                                    <label>Género</label>
+                                    <p>
+                                    <?php 
+                                        if($prospect_info->gender == 'male') 
+                                            echo 'hombre';
+                                        else
+                                            echo 'mujer';
+                                    ?>
+                                    </p>
                                 <?php } else { ?>
-                                    <label for="gender">Gender</label>
-                                    <select class="[ form-control ]" id="q2" name="gender">
-                                        <option value="female" <?php if ($prospect_info->gender=='female')echo "selected" ?>>Female</option>
-                                        <option value="male" <?php if ($prospect_info->gender=='male')echo "selected" ?>>Male</option>
-                                    </select>
+                                    <label>Gender</label>
+                                    <p>
+                                    <?php 
+                                        if($prospect_info->gender == 'male') 
+                                            echo 'male';
+                                        else
+                                            echo 'female';
+                                    ?>
+                                    </p>
                                 <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="date_of_birth">Fecha de nacimiento</label>
+                                    <label for="date_of_birth">Fecha de nacimiento (año-mes-día)</label>
                                 <?php } else { ?>
-                                    <label for="date_of_birth">Date of birth</label>
+                                    <label for="date_of_birth">Date of birth (year-month-day)</label>
                                 <?php } ?>
-                                 <input class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $prospect_info->date_of_birth; ?>"/>  
+                                <p><?php echo $prospect_info->date_of_birth; ?></p>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -306,10 +314,18 @@
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="tennis_hand">¿Eres zurdo o derecho?</label>
+                                        <p>
+                                    <?php 
+                                        if($prospect_sport_answers[TENNIS_HAND-1]->answer == 'right') 
+                                            echo 'derecho';
+                                        else
+                                            echo 'zurdo';
+                                    ?>
+                                    </p>
                                     <?php } else { ?>
                                         <label for="tennis_hand">Right or lef handed?</label>
+                                        <p><?php echo $prospect_sport_answers[TENNIS_HAND-1]->answer; ?></p>
                                     <?php } ?>
-                                     <p><?php echo $prospect_sport_answers[TENNIS_HAND-1]->answer; ?></p>
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -607,9 +623,9 @@
                             </div>
                             <div class="clear"></div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button class="[ btn btn-primary ] [ margin-bottom ]">Agregar <i class="fa fa-plus"></i></button>
+                                <button class="[ btn btn-primary ] [ margin-bottom ]">Agregar torneo <i class="fa fa-plus"></i></button>
                             <?php } else { ?>
-                                <button class="[ btn btn-primary ] [ margin-bottom ]">Add <i class="fa fa-plus"></i></button>
+                                <button class="[ btn btn-primary ] [ margin-bottom ]">Add tournament <i class="fa fa-plus"></i></button>
                             <?php } ?>
                             <div class="clear"></div>
                             <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
@@ -633,16 +649,14 @@
                         <form role="form" class="[ row ]">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="manager" id="manager" name="agent">Selecciona un agente.</label>
+                                    <label for="manager" id="manager" name="agent">Selecciona un agente:</label>
                                     <select class="[ form-control ]" id="manager" name="q5">
-                                        <option value="" selected disabled>Selecciona un agente</option>
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
                                 <?php } else { ?>
-                                    <label for="manager" id="manager" name="agent">Select a manager</label>
+                                    <label for="manager" id="manager" name="agent">Select an advisor:</label>
                                     <select class="[ form-control ]" id="manager" name="q5">
-                                        <option value="" selected disabled>Choose a manager</option>
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
