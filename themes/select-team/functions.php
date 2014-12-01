@@ -1,4 +1,33 @@
 <?php
+// CONSTANTS /////////////////////////////////////
+// mensajes de error al registrar usuario
+define('USUARIO_INVALIDO', -1);
+define('EMAIL_INVALIDO', -2);
+define('PASSWORD_INVALIDO', -3);
+define('PASSWORD_DIFERENTE', -4);
+// deportes
+define('TENNIS', 1);
+define('SOCCER', 2);
+define('GOLF', 3);
+define('VOLLEYBALL', 4);
+// id preguntas tennis
+define('TENNIS_HAND', 1);
+define('FMT_RANKING', 2);
+define('ATP_TOURNAMENT', 3);
+// id preguntas soccer
+define('SOCCER_POSITION', 4);
+define('SOCCER_HEIGHT', 5);
+// id preguntas golf
+define('AVERAGE_SCORE', 6);
+// id preguntas volley
+define('VOLLEY_POSITION', 7);
+define('VOLLEY_HEIGHT', 8);
+
+
+
+
+
+
 // Block access to the admin area. ////////////////////////////////////////////////////////////////////////
 function restrict_admin()
 {
@@ -434,35 +463,85 @@ function pu_blank_login( $user ){
 	 * @return boolean
 	 */
 	function register_user(){
-		
+
 		$is_valid = validate_user_data();
 		switch ($is_valid) {
-			case -1:
+			case USUARIO_INVALIDO:
 				echo json_encode(array("error" => "Nombre de usuario inválido"), JSON_FORCE_OBJECT ); 
 				break;
-			case -2:
+			case EMAIL_INVALIDO:
 				echo json_encode(array("error" => "Email inválido"), JSON_FORCE_OBJECT ); 
 				break;
-			case -3:
+			case PASSWORD_INVALIDO:
 				echo json_encode(array("error" => "Password inválido"), JSON_FORCE_OBJECT ); 
 				break;
-			case -4:
+			case PASSWORD_DIFERENTE:
 				echo json_encode(array("error" => "Passwords diferentes"), JSON_FORCE_OBJECT ); 
 				break;
 			default:
+				//var_dump($_POST);
+				// Create wp_user
 				$username =  $_POST['username'];
 				$password =  wp_hash_password( $_POST['password'] );
 				$email =  $_POST['email'];
-				$user_id = wp_create_user( $username, $password, $email );
-
+				//$user_id = wp_create_user( $username, $password, $email );
+				$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
 					die();
 				}
 
+				// Create st_user
+				$full_name = $_POST['full_name'];
+				$gender = $_POST['gender'];
+				$date_of_birth = $_POST['date_of_birth'];
+				$sport = $_POST['sport'];
+
+				switch ($sport) {
+					case 'tennis':
+						$sport_id = TENNIS;
+						$sport_data = array(
+							TENNIS_HAND 	=> $_POST['tennis_hand'],
+							FMT_RANKING		=> $_POST['fmt_ranking'],
+							ATP_TOURNAMENT	=> $_POST['atp_tournament'],
+							);
+						break;
+					case 'soccer':
+						$sport_id = SOCCER;
+						$sport_data = array(
+							SOCCER_POSITION => $_POST['soccer_position'],
+							SOCCER_HEIGHT	=> $_POST['soccer_height'],
+							);
+						break;
+					case 'golf':
+						$sport_id = GOLF;
+						$sport_data = array(
+							AVERAGE_SCORE => $_POST['average_score']
+							);
+						break;
+					case 'volleyball':
+						$sport_id = VOLLEYBALL;
+						$sport_data = array(
+							VOLLEY_POSITION => $_POST['volley_position'],
+							VOLLEY_HEIGHT	=> $_POST['volley_height'],
+							);
+						break;
+				}// switch
+
+				$st_user_data = array(
+					'wp_user_id'	=> $user_id,
+					'full_name'		=> $full_name,
+					'gender'		=> $gender,
+					'date_of_birth'	=> $date_of_birth,
+					'sport_id'		=> $sport_id,
+					'video_host'	=> '-',
+					'video_url'		=> '-',
+					);
+
+				//$st_user_id = add_st_user($st_user_data);
+				add_sport_answers(1, $sport_data);
 				$msg = array(
-					"success" => "Usuario registrado",
-					"usuario" => $user_id
+					"success" => "Usuario registrado"
 					);
 				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
 				break;
@@ -478,29 +557,105 @@ function pu_blank_login( $user ){
 	 */
 	function validate_user_data(){
 		if($_POST['username'] == '')
-			return -1; 
+			return USUARIO_INVALIDO; 
 
 		if($_POST['email'] == '')
-			return -2; 
+			return EMAIL_INVALIDO; 
 
 		if($_POST['password'] == '' || $_POST['password_confirmation'] == '' )
-			return -3; 
+			return PASSWORD_INVALIDO; 
 
 		if($_POST['password'] != $_POST['password_confirmation'])
-			return -4; 
+			return PASSWORD_DIFERENTE; 
 
 		return 1;
 	}// validate_user_data
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
-
+	
 	add_action( 'init', 'st_register_users_table', 1 );
-	 
 	function st_register_users_table() {
 	    global $wpdb;
 	    $wpdb->st_users = "st_users";
-	}
+	}// st_register_users_table
+
+	add_action( 'init', 'st_register_answers_table', 1 );
+	function st_register_answers_table() {
+	    global $wpdb;
+	    $wpdb->st_answers = "st_answers";
+	}// st_register_answers_table
+
+	/**
+	 * Inserta un usuario a la tabla st_users
+	 * @param string $st_user_data
+	 * @return int $st_user_id or FALSE
+	 */
+	function add_st_user($st_user_data){
+		global $wpdb;
+		$inserted = $wpdb->insert(
+			$wpdb->st_users,
+			$sport_data,
+			array (
+				'%d',
+				'%s',
+				'%s',
+				'%s',
+				'%d',
+				'%s',
+				'%s',
+			)
+		);
+
+		if( $inserted ){
+			$st_user_id = $wpdb->insert_id;
+			return $st_user_id;
+		}
+		
+		return 0;
+	}// add_st_user
+
+	/**
+	 * Inserta las respuestas del deporte que práctica el usuario.
+	 * @param int $user_id, string $sport_data
+	 * @return int $st_user_id or FALSE
+	 */
+	function add_sport_answers($user_id, $sport_data){
+		foreach ($sport_data as $question_id => $answer) {
+			$answer_data = array(
+				'st_user_id'	=> $user_id,
+				'question_id'	=> $question_id,
+				'answer'		=> $answer
+				);
+			var_dump($answer_data);
+			add_sport_answer($answer_data);
+		}
+	}// add_sport_answers
+
+	/**
+	 * Inserta una respuesta del deporte que práctica el usuario.
+	 * @param mixed $answer_data
+	 * @return boolean
+	 */
+	function add_sport_answer($answer_data){
+		global $wpdb;
+		
+		$inserted = $wpdb->insert(
+			$wpdb->st_answers,
+			$answer_data,
+			array (
+				'%d',
+				'%d',
+				'%s',
+			)
+		);
+
+		if( $inserted ){
+			$st_user_id = $wpdb->insert_id;
+			echo 'inserted!';
+		}
+	}// add_sport_answer
+
 
 // ZUROL  //////////////////////////////////////////////////////
 
