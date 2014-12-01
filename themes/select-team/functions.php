@@ -198,18 +198,39 @@ function pu_blank_login( $user ){
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard') { ?>
 				<script type="text/javascript">
-				      $( function() {
-				      		$('#password_again').on('change', function(e){
-				      			console.log('cambio');
-				      		});
-
-							$('.j-register-user button').on('click', function(e){
-								e.preventDefault();
-								
-								console.log('registrando usuario...');
-								registerUser();
-							});
+					$( function() {
+						$('#password_again').on('change', function(e){
+							console.log('cambio');
 						});
+						$('.j-register-user button').on('click', function(e){
+							e.preventDefault();
+							console.log('registrando usuario...');
+							registerUser();
+						});
+						$("#datepicker-date-of-birth").datepicker({
+							changeMonth: true,
+							changeYear: true,
+							dateFormat: 'mm-dd-yy',
+							yearRange: "-100:+0"
+						});
+						$( "#datepicker-date-of-graduation" ).datepicker({
+							changeMonth: true,
+							changeYear: true,
+							dateFormat: 'mm-dd-yy',
+							yearRange: "-0:+10",
+						});
+						$( "#datepicker-date-of-tournament" ).datepicker({
+							changeMonth: true,
+							changeYear: true,
+							showButtonPanel: true,
+							dateFormat: 'mm-yy',
+							onClose: function(dateText, inst) { 
+								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
+								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
+								$(this).datepicker('setDate', new Date(year, month, 1));
+							}
+						});
+					});
 				</script>
 			<?php } ?>
     	<?php } }
