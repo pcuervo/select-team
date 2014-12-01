@@ -111,9 +111,9 @@ function pu_blank_login( $user ){
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
 		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
-
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
+		wp_localize_script( 'functions', 'site_url', site_url() );
 
 		// styles
 		wp_enqueue_style( 'styles', get_stylesheet_uri() );
@@ -589,6 +589,7 @@ function pu_blank_login( $user ){
 
 				$st_user_id = add_st_user($st_user_data);
 				add_sport_answers($st_user_id, $sport_data);
+				login_user($username, $password);
 				$msg = array(
 					"success" => "Usuario registrado"
 					);
@@ -620,6 +621,24 @@ function pu_blank_login( $user ){
 		return 1;
 	}// validate_user_data
 
+	/**
+	 * Loggear al usuario a la plataforma.
+	 * @param string $username, string $password
+	 * @return boolean
+	 */
+	function login_user($username, $password){
+		$creds = array();
+		$creds['user_login'] = $username;
+		$creds['user_password'] = $password;
+		$creds['remember'] = true;
+		$user = wp_signon( $creds, false );
+		if ( is_wp_error($user) ){
+			echo $user->get_error_message();
+			return 0;
+		}
+		echo 'success!';
+		return 1;
+	}// login_user
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
 	

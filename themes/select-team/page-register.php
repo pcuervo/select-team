@@ -10,26 +10,24 @@
                         <h3>Registrate</h3>
                     <?php } ?>
                     <form id="userForm" role="form" class="[ row ] [ j-register-user ]" >
-                        <?php if ( ! is_user_logged_in() ) { ?>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="username">Username</label>
-                                <input type="text" class="[ form-control ]" name="username">
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="email">Email</label>
-                                <input type="email" class="[ form-control ]" value="<?php echo $_GET['q6']; ?>" name="email" > 
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="password">Password</label>
-                                <input type="password" class="[ form-control ]" name="password">
-                                <p class="help-block">El password debe contener al menos 8 caracteres.</p>
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="password_confirmation">Confirm password</label>
-                                <input type="password" class="[ form-control ]" name="password_confirmation">
-                                <label for="validate" id="validate"></label>
-                            </div>
-                        <?php } ?>
+                        <div class="[ form-group ] [ col-xs-12 ]">
+                            <label for="username">Username</label>
+                            <input type="text" class="[ form-control ]" name="username">
+                        </div>
+                        <div class="[ form-group ] [ col-xs-12 ]">
+                            <label for="email">Email</label>
+                            <input type="email" class="[ form-control ]" value="<?php echo $_GET['q6']; ?>" name="email" > 
+                        </div>
+                        <div class="[ form-group ] [ col-xs-12 ]">
+                            <label for="password">Password</label>
+                            <input type="password" class="[ form-control ]" name="password">
+                            <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+                        </div>
+                        <div class="[ form-group ] [ col-xs-12 ]">
+                            <label for="password_confirmation">Confirm password</label>
+                            <input type="password" class="[ form-control ]" name="password_confirmation">
+                            <label for="validate" id="validate"></label>
+                        </div>
                         <div class="[ form-group ] [ col-xs-12 ]">
                             <label for="full_name">Full name</label>
                             <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
@@ -247,12 +245,12 @@
                                 </select>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="tennisHand">FMT ranking</label>
-                                <input type="text" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q12']; ?> ">
+                                <label for="fmt_ranking">FMT ranking</label>
+                                <input type="text" class="[ form-control ]" id="fmtRank" name="fmt_ranking" value="<?php echo $_GET['q12']; ?> ">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="atpTournament">Played an ATP tournament?</label>
-                                <select class="[ form-control ]" id="atp" name="q12" >
+                                <label for="atp_tournament">Played an ATP tournament?</label>
+                                <select class="[ form-control ]" id="atp" name="atp_tournament" >
                                     <option value="yes" <?php if($_GET['q13']=='yes') echo "selected"; ?>>Yes</option>
                                     <option value="no" <?php if($_GET['q13']=='no') echo "selected"; ?>>No</option>
                                 </select>
@@ -277,8 +275,8 @@
                         <!--VOLLEYBALL-->
                         <?php if($_GET['q7']=='volleyball') { ?>
                             <div class="[ form-group ] [ col-xs-6 ]">
-                                <label for="volleyPosition">Position</label>
-                                <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="q9">
+                                <label for="volley_position">Position</label>
+                                <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="volley_position">
                                 <?php switch ($_GET['q9']) {
                                         case '1': ?>
                                             <option value="1" selected>1</option>
@@ -339,8 +337,8 @@
                                 </select>
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
-                                <label for="volleyHeight">Height (cm)</label>
-                                <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q10']; ?>" name="q10">
+                                <label for="volley_height">Height (cm)</label>
+                                <input type="text" class="[ form-control ]" id="volley_height" value="<?php echo $_GET['q10']; ?>" name="q10">
                             </div>
                         <?php } ?>
                         <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Guardar cambios</button>
