@@ -5,7 +5,7 @@
         exit;
     }
 ?>
-<?php get_header(); send_mail('zurol@pcuervo.com', 'Miguel Segura', "Mensaje Corto"); ?>
+<?php get_header();?>
 
     <div id="dashboard">
         <div id="sidebar-wrapper">
@@ -82,15 +82,15 @@
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="gender">Género</label>
-                                    <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender" >
-                                        <option value="female">Mujer</option>
-                                        <option value="male">Hombre</option>
+                                    <select class="[ form-control ]" id="q2" name="gender" >
+                                        <option value="female" <?php if ($prospect_info->gender=='female')echo "selected" ?>>Mujer</option>
+                                        <option value="male" <?php if ($prospect_info->gender=='male')echo "selected" ?>>Hombre</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="gender">Gender</label>
-                                    <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender">
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
+                                    <select class="[ form-control ]" id="q2" name="gender">
+                                        <option value="female" <?php if ($prospect_info->gender=='female')echo "selected" ?>>Female</option>
+                                        <option value="male" <?php if ($prospect_info->gender=='male')echo "selected" ?>>Male</option>
                                     </select>
                                 <?php } ?>
                             </div>
