@@ -1,4 +1,10 @@
-<?php include_once('send-prospects.php'); ?>
+<?php
+    if ( ! is_user_logged_in() ) {
+        $location = site_url();
+        wp_redirect( $location );
+        exit;
+    }
+?>
 <?php get_header(); ?>
     <div id="dashboard">
         <div id="sidebar-wrapper">
