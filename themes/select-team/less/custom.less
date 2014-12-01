@@ -23,7 +23,7 @@ html{
 	height: 100%;
 }
 .home{ max-width: 100%; overflow: hidden; }
-.page-dashboard{ overflow: hidden; }
+
 
 
 
@@ -791,6 +791,7 @@ figure.effect-sadie:hover figcaption::before {
 /* Toggle Styles */
 
 #dashboard {
+	height: auto;
     padding-left: 0;
     overflow: hidden;
     position: relative;
@@ -833,11 +834,10 @@ figure.effect-sadie:hover figcaption::before {
 }
 
 #page-content-wrapper {
-	height: 80vh;
 	min-width: 320px;
     width: 100%;
+    height: auto;
     padding: 50px 15px 0 15px;
-    overflow-y: scroll;
     button{ margin-left: 20px; }
 }
 
@@ -852,9 +852,11 @@ figure.effect-sadie:hover figcaption::before {
     position: absolute;
     top: 50px;
     width: 250px;
+    min-height: 400px;
     margin: 0;
     padding: 0;
     list-style: none;
+    overflow-y: scroll;
 }
 
 .sidebar-nav li {
