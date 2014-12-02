@@ -1,4 +1,3 @@
-<?php include_once('send-prospects.php'); ?>
 <?php get_header(); ?>
     <div id="page-content-wrapper">
         <div class="[ container-fluid ]" id="page-content">
