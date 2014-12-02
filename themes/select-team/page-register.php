@@ -9,7 +9,7 @@
                     <?php } else { ?>
                         <h3>Register</h3>
                     <?php } ?>
-                    <form id="userForm" role="form" class="[ row ] [ j-basic-profile ]" >
+                    <form id="userForm" role="form" class="[ row ] [ j-register-user ]" >
                         <?php if ( ! is_user_logged_in() ) { ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -77,7 +77,7 @@
                             <?php } else { ?>
                                 <label for="date_of_birth">Date of birth</label>
                             <?php } ?>
-                            <input type="date" class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>
+                            <input class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
