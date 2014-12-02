@@ -280,10 +280,21 @@ function pu_blank_login( $user ){
 							console.log('actualizando perfil...');
 							updateUser();
 						});
-						$('.j-update-curriculum button').on('click', function(e){
+						$('.j-update-curriculum-update').on('click', function(e){
 							e.preventDefault();
 							console.log('actualizando curriculum...');
 							updateCurriculum();
+						});
+						$('.j-add-tournament').on('click', function(e){
+							e.preventDefault();
+							console.log('agregando Tournaments...');
+							addTournament();
+						});
+
+						$('.j-update-curriculum-create').on('click', function(e){
+							e.preventDefault();
+							console.log('creando curriculum...');
+							createCurriculum();  //Llamar a func que haga el INSERT
 						});
 					});
 				</script>
