@@ -251,6 +251,16 @@ function pu_blank_login( $user ){
 								$(this).datepicker('setDate', new Date(year, month, 1));
 							}
 						});
+						$('.j-update-basic-profile button').on('click', function(e){
+							e.preventDefault();
+							console.log('actualizando perfil...');
+							updateUser();
+						});
+						$('.j-update-curriculum button').on('click', function(e){
+							e.preventDefault();
+							console.log('actualizando curriculum...');
+							updateCurriculum();
+						});
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>

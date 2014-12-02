@@ -39,7 +39,7 @@
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
                         <h3>Basic Profile</h3>
-                        <form id="userForm" role="form" class="[ row ] [  ]" >
+                        <form id="userForm" role="form" class="[ row ] [ j-update-basic-profile ]" >
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="username">Nombre de usuario</label>
