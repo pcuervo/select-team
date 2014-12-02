@@ -46,7 +46,11 @@
             <div class="[ container-fluid ]" id="page-content">
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
-                        <h3>Basic Profile</h3>
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <h3>Perfil</h3>
+                        <?php } else { ?>
+                            <h3>Basic Profile</h3>
+                        <?php } ?>
                         <form id="userForm" role="form" class="[ row ] [  ]" >
                             
                                 <div class="[ form-group ] [ col-xs-12 ]">

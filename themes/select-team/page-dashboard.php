@@ -10,21 +10,39 @@
     <div id="dashboard">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <p><i class="fa fa-cogs"></i> My Dashboard </p>
-                </li>
-                <li>
-                    <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
-                </li>
-                <li>
-                    <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
-                </li>
-                <li>
-                    <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
-                </li>
-                <li class="j-download">
-                    <a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
-                </li>
+                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                    <li class="sidebar-brand">
+                        <p><i class="fa fa-cogs"></i> Dashboard </p>
+                    </li>
+                    <li>
+                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Mi perfil</a>
+                    </li>
+                    <li>
+                        <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
+                    </li>
+                    <li>
+                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+                    </li>
+                    <li class="j-download">
+                        <a href="#" type="download"><i class="fa fa-download"></i> Muanual de aplicante</a>
+                    </li>
+                <?php } else { ?>
+                    <li class="sidebar-brand">
+                        <p><i class="fa fa-cogs"></i> My Dashboard </p>
+                    </li>
+                    <li>
+                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+                    <li>
+                        <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
+                    </li>
+                    <li>
+                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
+                    </li>
+                    <li class="j-download">
+                        <a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -38,7 +56,11 @@
             <div class="[ container-fluid ]" id="page-content">
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
-                        <h3>Basic Profile</h3>
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <h3>Perfil</h3>
+                        <?php } else { ?>
+                            <h3>Basic Profile</h3>
+                        <?php } ?>
                         <form id="userForm" role="form" class="[ row ] [  ]" >
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
