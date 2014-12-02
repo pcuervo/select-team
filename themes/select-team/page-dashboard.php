@@ -73,10 +73,10 @@
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="full_name">Nombre completo</label>
-                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
+                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $prospect_info->full_name; ?>" name="full_name" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
-                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $prospect_info->full_name ?>" name="full_name" >
+                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $prospect_info->full_name; ?>" name="full_name" >
                                 <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
@@ -159,14 +159,14 @@
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="atp_tournament">¿Has jugado en torneos de la ATP?</label>
                                     <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $prospect_sport_answers[ATP_TOURNAMENT-1]->answer; ?> ">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
+                                        <option value="yes" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?>>Sí</option>
+                                        <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?>>No</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="atp_tournament">Played an ATP tournament?</label>
-                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $_GET['q13']; ?> ">
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
+                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $prospect_sport_answers[ATP_TOURNAMENT-1]->answer; ?> ">
+                                        <option value="yes"> <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?>Yes</option>
+                                        <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?>>No</option>
                                     </select>
                                 <?php } ?>
                                 </div>
