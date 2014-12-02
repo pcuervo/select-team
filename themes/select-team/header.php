@@ -47,7 +47,14 @@
 	                        <li class="[ menu ]"><a href="<?php echo site_url('padre'); ?>">Parents</a></li>
 	                        <li class="[ menu ]"><a href="<?php echo site_url('contact'); ?>">Contact</a></li>
 	                        <li class="[ menu ]">
-								<?php own_wp_loginout(); ?>
+								<?php if ( ! is_user_logged_in() ) { ?>
+									<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a>
+									<br/>
+									<a href="'<?php site_url('register') ?>'">Register</a>
+								<?php } else { ?>
+									<p><a href="'.site_url('dashboard').'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
+									<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php esc_url( wp_logout_url(site_url()) ); ?>'"> Logout</a> </p>
+								<?php } ?>
 	                        </li>
 	                        <li class="[ menu ]">
 								<?php echo qtrans_generateLanguageSelectCode('text'); ?>
