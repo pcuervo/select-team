@@ -1,4 +1,3 @@
-<?php include_once('send-prospects.php'); ?>
 <?php get_header(); ?>
     <div id="page-content-wrapper">
         <div class="[ container-fluid ]" id="page-content">
@@ -77,7 +76,7 @@
                             <?php } else { ?>
                                 <label for="date_of_birth">Date of birth</label>
                             <?php } ?>
-                            <input type="date" class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>
+                            <input class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>

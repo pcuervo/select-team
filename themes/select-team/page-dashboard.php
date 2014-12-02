@@ -5,7 +5,7 @@
         exit;
     }
 ?>
-<?php get_header(); send_mail('zurol@pcuervo.com', 'Miguel Segura', "Mensaje Corto"); ?>
+<?php get_header();?>
 
     <div id="dashboard">
         <div id="sidebar-wrapper">
@@ -28,7 +28,11 @@
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
-
+        
+        <?php 
+            $prospect_info = get_user_basic_info(get_current_user_id()); 
+            $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
+        ?>
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ]" id="page-content">
@@ -36,70 +40,75 @@
                     <div class="[ col-xs-12 col-sm-7 center block ]">
                         <h3>Basic Profile</h3>
                         <form id="userForm" role="form" class="[ row ] [  ]" >
-                            <?php if ( ! is_user_logged_in() ) { ?>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="username">Nombre de usuario</label>
-                                    <?php } else { ?>
-                                        <label for="username">Username</label>
-                                    <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="username">
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="email">Correo electrónico</label>
-                                    <?php } else { ?>
-                                        <label for="email">Email</label>
-                                    <?php } ?>
-                                    <input type="email" class="[ form-control ]" value="<?php echo $_GET['q6']; ?>" name="email" > 
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="[ form-control ]" name="password">
-                                    <p class="help-block">El password debe contener al menos 8 caracteres.</p>
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="password_confirmation">Confirmar password</label>
-                                    <?php } else { ?>
-                                        <label for="password_confirmation">Confirm password</label>
-                                    <?php } ?>
-                                        <input type="password" class="[ form-control ]" name="password_confirmation">
-                                        <label for="validate" id="validate"></label>                                 
-                                </div>
-                            <?php } ?>
+                            <div class="[ form-group ] [ col-xs-12 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="username">Nombre de usuario</label>
+                                <?php } else { ?>
+                                    <label for="username">Username</label>
+                                <?php } ?>
+                                <p><?php echo $prospect_info->user_login; ?></p>
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="email">Correo electrónico</label>
+                                <?php } else { ?>
+                                    <label for="email">Email</label>
+                                <?php } ?>
+                                <p><?php echo $prospect_info->user_email; ?></p> 
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 ] [ hidden ]">
+                                <label for="password">Password</label>
+                                <input type="password" class="[ form-control ]" name="password">
+                                <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 ] [ hidden ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="password_confirmation">Confirmar password</label>
+                                <?php } else { ?>
+                                    <label for="password_confirmation">Confirm password</label>
+                                <?php } ?>
+                                    <input type="password" class="[ form-control ]" name="password_confirmation">
+                                    <label for="validate" id="validate"></label>                                 
+                            </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="full_name">Nombre completo</label>
-                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
+                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $prospect_info->full_name; ?>" name="full_name" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
-                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
+                                    <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $prospect_info->full_name; ?>" name="full_name" >
                                 <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="gender">Género</label>
-                                    <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender" >
-                                        <option value="Mujer">Mujer</option>
-                                        <option value="Hombre">Hombre</option>
-                                    </select>
+                                    <label>Género</label>
+                                    <p>
+                                    <?php 
+                                        if($prospect_info->gender == 'male') 
+                                            echo 'hombre';
+                                        else
+                                            echo 'mujer';
+                                    ?>
+                                    </p>
                                 <?php } else { ?>
-                                    <label for="gender">Gender</label>
-                                    <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender">
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
-                                    </select>
+                                    <label>Gender</label>
+                                    <p>
+                                    <?php 
+                                        if($prospect_info->gender == 'male') 
+                                            echo 'male';
+                                        else
+                                            echo 'female';
+                                    ?>
+                                    </p>
                                 <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="date_of_birth">Fecha de nacimiento</label>
-                                    <input type="date" class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>  
+                                    <label for="date_of_birth">Fecha de nacimiento (año-mes-día)</label>
                                 <?php } else { ?>
-                                    <label for="date_of_birth">Date of birth</label>
-                                    <input type="date" class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>  
+                                    <label for="date_of_birth">Date of birth (year-month-day)</label>
                                 <?php } ?>
+                                <p><?php echo $prospect_info->date_of_birth; ?></p>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -107,277 +116,51 @@
                                 <?php } else { ?>
                                     <label for="sport">Sport you practice</label>
                                 <?php } ?>
-                                
-                                <select class="[ form-control ]" id="sport" name="sport" >
-                                    <?php switch ($_GET['q7']) {
-                                        case 'tennis': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis" selected>Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball">Volleyball</option>                                        
-                                            <?php break;
-                                        
-                                        case 'golf': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis" >Tennis</option>
-                                            <option value="golf" selected>Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball">Volleyball</option>                                        
-                                            <?php break;
-                                        
-                                        case 'soccer': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis">Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer" selected>Soccer</option>
-                                            <option value="volleyball">Volleyball</option>                                        
-                                            <?php break;
-                                        
-                                        case 'volleyball': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis" >Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball" selected>Volleyball</option>                                        
-                                        <?php break;
-                                        
-                                        default: ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="" disabled>Selecciona uno</option>
-                                            <?php } else { ?>
-                                                <option value="" disabled>Choose one</option>
-                                            <?php } ?>
-                                            <option value="tennis" >Tennis</option>
-                                            <option value="golf">Golf</option>
-                                            <option value="soccer">Soccer</option>
-                                            <option value="volleyball">Volleyball</option>                                        
-                                        <?php break;
-                                    } ?>
-                                </select>
+                                <p><?php echo $prospect_info->sport; ?><p/>  
                             </div>
                             <!--GOLF-->
-                            <?php if($_GET['q7']=='golf') { ?>
+                            <?php if($prospect_info->sport =='golf') { ?>
                                 <div class="[ form-group ] [ col-xs-6 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="average_score">Puntaje promedio</label>
                                     <?php } else { ?>
                                         <label for="average_score">Average score</label>
                                     <?php } ?>
-                                    <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="average_score">
-                                        <?php switch ($_GET['q8']) {
-                                            case '-66': ?>
-                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                <option value="-66" selected>Menor a 66</option>
-                                            <?php } else { ?>
-                                                <option value="-66" selected>Under 66</option>
-                                            <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79">77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '66-67': ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67" selected>66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79">77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '68-70': ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70" selected>68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79">77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '71-73': ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73" selected>71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79">77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '74-76': ?>
-                                               <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76" selected>74-76</option>
-                                                <option value="77-79">77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '77-79': ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79" selected>77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '80-82': ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79" >77-79</option>
-                                                <option value="80-82" selected>80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '83-85': ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79" >77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85" selected>83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '86-88': ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79" >77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88" selected>86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                            case '89-90': ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79" >77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90" selected>89-90</option>
-                                                <?php break;
-                                            default: ?>
-                                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                                    <option value="-66" selected>Menor a 66</option>
-                                                <?php } else { ?>
-                                                    <option value="-66" selected>Under 66</option>
-                                                <?php } ?>
-                                                <option value="66-67">66-67</option>
-                                                <option value="68-70">68-70</option>
-                                                <option value="71-73">71-73</option>
-                                                <option value="74-76">74-76</option>
-                                                <option value="77-79">77-79</option>
-                                                <option value="80-82">80-82</option>
-                                                <option value="83-85">83-85</option>
-                                                <option value="86-88">86-88</option>
-                                                <option value="89-90">89-90</option>
-                                                <?php break;
-                                        } ?>
+                                    <select class="[ form-control ]" id="averageScore" value="<?php echo $prospect_sport_answers[0]->asnwer; ?>" name="average_score">
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        <option value="-66" <?php if($prospect_sport_answers[0]->answer=='-66')echo "selected"; ?>>Menor a 66</option>
+                                    <?php } else { ?>
+                                        <option value="-66" <?php if($prospect_sport_answers[0]->answer=='-66')echo "selected"; ?>>Under 66</option>
+                                    <?php } ?>
+                                        <option value="66-67" <?php if($prospect_sport_answers[0]->answer=='66-67')echo "selected"; ?>>66-67</option>
+                                        <option value="68-70" <?php if($prospect_sport_answers[0]->answer=='68-70')echo "selected"; ?>>68-70</option>
+                                        <option value="71-73" <?php if($prospect_sport_answers[0]->answer=='71-73')echo "selected"; ?>>71-73</option>
+                                        <option value="74-76" <?php if($prospect_sport_answers[0]->answer=='74-76')echo "selected"; ?>>74-76</option>
+                                        <option value="77-79" <?php if($prospect_sport_answers[0]->answer=='77-79')echo "selected"; ?>>77-79</option>
+                                        <option value="80-82" <?php if($prospect_sport_answers[0]->answer=='80-82')echo "selected"; ?>>80-82</option>
+                                        <option value="83-85" <?php if($prospect_sport_answers[0]->answer=='83-85')echo "selected"; ?>>83-85</option>
+                                        <option value="86-88" <?php if($prospect_sport_answers[0]->answer=='86-88')echo "selected"; ?>>86-88</option>
+                                        <option value="89-90" <?php if($prospect_sport_answers[0]->answer=='89-90')echo "selected"; ?>>89-90</option>                                        
                                     </select>
                                 </div>
                                 <div class="clear"></div>
                             <?php } ?>
                             <!--TENNIS-->
-                            <?php if($_GET['q7']=='tennis') { ?>
+                            <?php if($prospect_info->sport =='tennis') { ?>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="tennis_hand">¿Eres zurdo o derecho?</label>
-                                        <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                            <option value="left">Zurdo</option>
-                                            <option value="right">Derecho</option>
-                                        </select>
+                                        <p>
+                                    <?php 
+                                        if($prospect_sport_answers[TENNIS_HAND-1]->answer == 'right') 
+                                            echo 'derecho';
+                                        else
+                                            echo 'zurdo';
+                                    ?>
+                                    </p>
                                     <?php } else { ?>
                                         <label for="tennis_hand">Right or lef handed?</label>
-                                        <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                            <option value="left">Left handed</option>
-                                            <option value="right">Right handed</option>
-                                        </select>
+                                        <p><?php echo $prospect_sport_answers[TENNIS_HAND-1]->answer; ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
@@ -386,42 +169,42 @@
                                     <?php } else { ?>
                                         <label for="fmt_ranking">FMT ranking (mexicans only)</label>
                                     <?php } ?>
-                                    <input type="number" class="[ form-control ]" id="fmtRank" name="fmt_ranking" value="<?php echo $_GET['q12']; ?> ">
+                                    <input class="[ form-control ]" id="fmtRank" name="fmt_ranking" value="<?php echo $prospect_sport_answers[FMT_RANKING-1]->answer; ?> ">
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="atp_tournament">¿Has jugado en torneos de la ATP?</label>
-                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $_GET['q13']; ?> ">
-                                        <option value="1">Sí</option>
-                                        <option value="0">No</option>
+                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $prospect_sport_answers[ATP_TOURNAMENT-1]->answer; ?> ">
+                                        <option value="yes" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?>>Sí</option>
+                                        <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?>>No</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="atp_tournament">Played an ATP tournament?</label>
-                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $_GET['q13']; ?> ">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $prospect_sport_answers[ATP_TOURNAMENT-1]->answer; ?> ">
+                                        <option value="yes"> <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?>Yes</option>
+                                        <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?>>No</option>
                                     </select>
                                 <?php } ?>
                                 </div>
                             <?php } ?>
                             <!--SOCCER-->
-                            <?php if($_GET['q7']=='soccer') { ?>
+                            <?php if($prospect_info->sport =='soccer') { ?>
                                 <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="soccer_position">Posición</label>
                                         <select class="[ form-control ]" id="q14" name="soccer_position">
-                                            <option value="goal-keeper" <?php if($_GET['q14']=='goal-keeper') echo " selected"; ?> >Portero</option>
-                                            <option value="defender" <?php if($_GET['q14']=='defender') echo " selected"; ?> >Defensa</option>
-                                            <option value="midfielder" <?php if($_GET['q14']=='midfielder') echo " selected"; ?> >Medio</option>
-                                            <option value="forward" <?php if($_GET['q14']=='forward') echo " selected"; ?> >Delantero</option>
+                                            <option value="goal-keeper" <?php if($prospect_sport_answers[0]->answer=='goal-keeper') echo " selected"; ?> >Portero</option>
+                                            <option value="defender" <?php if($prospect_sport_answers[0]->answer=='defender') echo " selected"; ?> >Defensa</option>
+                                            <option value="midfielder" <?php if($prospect_sport_answers[0]->answer=='midfielder') echo " selected"; ?> >Medio</option>
+                                            <option value="forward" <?php if($prospect_sport_answers[0]->answer=='forward') echo " selected"; ?> >Delantero</option>
                                         </select>
                                     <?php } else { ?>
                                         <label for="soccer_position">Position</label>
                                         <select class="[ form-control ]" id="q14" name="soccer_position">
-                                            <option value="goal-keeper" <?php if($_GET['q14']=='goal-keeper') echo " selected"; ?> >Goal keeper</option>
-                                            <option value="defender" <?php if($_GET['q14']=='defender') echo " selected"; ?> >Defender</option>
-                                            <option value="midfielder" <?php if($_GET['q14']=='midfielder') echo " selected"; ?> >Midfielder</option>
-                                            <option value="forward" <?php if($_GET['q14']=='forward') echo " selected"; ?> >Forward</option>
+                                            <option value="goal-keeper" <?php if($prospect_sport_answers[0]->answer=='goal-keeper') echo " selected"; ?> >Goal keeper</option>
+                                            <option value="defender" <?php if($prospect_sport_answers[0]->answer=='defender') echo " selected"; ?> >Defender</option>
+                                            <option value="midfielder" <?php if($prospect_sport_answers[0]->answer=='midfielder') echo " selected"; ?> >Midfielder</option>
+                                            <option value="forward" <?php if($prospect_sport_answers[0]->answer=='forward') echo " selected"; ?> >Forward</option>
                                         </select>
                                     <?php } ?>
                                 </div>
@@ -431,75 +214,25 @@
                                     <?php } else { ?>
                                         <label for="soccer_height">Height (cm)</label>
                                     <?php } ?>
-                                    <input type="text" class="[ form-control ]" id="soccer_height" name="q15" value="<?php echo $_GET['q15']; ?>">
+                                    <p> <?php echo $prospect_sport_answers[1]->answer; ?> </p>
+                                    <!--<input type="text" class="[ form-control ]" id="soccer_height" name="q15" value="<?php echo $prospect_sport_answers[1]->answer; ?>">-->
                                 </div>
                             <?php } ?>
                             <!--VOLLEYBALL-->
-                            <?php if($_GET['q7']=='volleyball') { ?>
+                            <?php if($prospect_info->sport =='volleyball') { ?>
                                 <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="volley_position">Posición</label>
                                 <?php } else { ?>
                                     <label for="volley_position">Position</label>
                                 <?php } ?>
-                                    <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="volley_position">
-                                    <?php switch ($_GET['q9']) {
-                                            case '1': ?>
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                      <?php break;
-                                            case '2': ?>
-                                                <option value="1">1</option>
-                                                <option value="2" selected>2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                      <?php break;
-                                            case '3': ?>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3" selected>3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                      <?php break;
-                                            case '4': ?>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4" selected>4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                      <?php break;
-                                            case '5': ?>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5" selected>5</option>
-                                                <option value="6">6</option>
-                                      <?php break;
-                                            case '6': ?>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6" selected>6</option>
-                                        <?php break;
-                                            default: ?>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                    <?php } ?>
+                                    <select class="[ form-control ]" id="volleyPosition" value="<?php echo $prospect_sport_answers[1]->answer; ?>" name="volley_position">                                       
+                                        <option value="1" <?php if($prospect_sport_answers[0]->answer=='1') echo "selected";?>>1</option>
+                                        <option value="2" <?php if($prospect_sport_answers[0]->answer=='2') echo "selected";?>>2</option>
+                                        <option value="3" <?php if($prospect_sport_answers[0]->answer=='3') echo "selected";?>>3</option>
+                                        <option value="4" <?php if($prospect_sport_answers[0]->answer=='4') echo "selected";?>>4</option>
+                                        <option value="5" <?php if($prospect_sport_answers[0]->answer=='5') echo "selected";?>>5</option>
+                                        <option value="6" <?php if($prospect_sport_answers[0]->answer=='6') echo "selected";?>>6</option>
                                     </select>
                                 </div>
                                 <div class="[ form-group ] [ col-xs-6 ]">
@@ -508,7 +241,7 @@
                                     <?php } else { ?>
                                         <label for="volley_height">Height (cm)</label>
                                     <?php } ?>
-                                    <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q10']; ?>" name="volley_height">
+                                    <p class="[form-control]"> <?php echo $prospect_sport_answers[1]->answer; ?> </p>
                                 </div>
                             <?php } ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
@@ -554,11 +287,13 @@
                                     <p class="help-block">Paste the entire url of the video ( www.youtube.com/watch?v=HT3diQX3i1I )</p>
                                 <?php } ?>
                             </div>
-                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Guardar cambios</button>
-                            <?php } else { ?>
-                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Save changes</button>
-                            <?php } ?>
+                            <div class="[ form-group ] [ col-xs-12 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Guardar cambios</button>
+                                <?php } else { ?>
+                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Save changes</button>
+                                <?php } ?>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -676,9 +411,9 @@
                             </div>
                             <div class="clear"></div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button class="[ btn btn-primary ] [ margin-bottom ]">Agregar <i class="fa fa-plus"></i></button>
+                                <button class="[ btn btn-primary ] [ margin-bottom ]">Agregar torneo <i class="fa fa-plus"></i></button>
                             <?php } else { ?>
-                                <button class="[ btn btn-primary ] [ margin-bottom ]">Add <i class="fa fa-plus"></i></button>
+                                <button class="[ btn btn-primary ] [ margin-bottom ]">Add tournament <i class="fa fa-plus"></i></button>
                             <?php } ?>
                             <div class="clear"></div>
                             <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
@@ -702,16 +437,14 @@
                         <form role="form" class="[ row ]">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="manager" id="manager" name="q30">Selecciona un agente.</label>
+                                    <label for="manager" id="manager" name="agent">Selecciona un agente:</label>
                                     <select class="[ form-control ]" id="manager" name="q5">
-                                        <option value="" selected disabled>Selecciona un agente</option>
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
                                 <?php } else { ?>
-                                    <label for="manager" id="manager" name="q30">Select a manager</label>
+                                    <label for="manager" id="manager" name="agent">Select an advisor:</label>
                                     <select class="[ form-control ]" id="manager" name="q5">
-                                        <option value="" selected disabled>Choose a manager</option>
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
