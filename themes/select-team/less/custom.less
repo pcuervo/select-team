@@ -7,22 +7,16 @@
 
 //ALINGMENT************
 
-.right{
-	float: right !important;
-}
-
-.left{
-	float: left !important;
-}
-
+.right{ float: right !important; }
+.left{ float: left !important; }
 .clear { clear:both; height:1px; margin:0; padding:0; font-size: 1px; line-height: 0; }
 
 //********************
 
-html{
-	height: 100%;
-}
+html{ height: 100%; }
 .home{ max-width: 100%; overflow: hidden; }
+
+.content__dashboard{ padding-left: 0; .transition; }
 
 
 
@@ -162,11 +156,7 @@ button, a{
  }
 
 //HEADER*******
-header{
-	background-color: @brand-primary;
-	position: relative;
-	z-index: 2;
-}
+.header__frontend{ background-color: @brand-primary; position: relative; z-index: 2; }
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
 	margin: 0;
@@ -247,8 +237,6 @@ header{
 	}
 }
 
-
-
 .header-bottom{
 	padding: 35px 15px 20px 15px;
 	border-top: 1px solid  @white;
@@ -265,14 +253,30 @@ header{
 }
 
 .container{
-			&.prospect-filters{ width: 80%; }
-			&.header-top{ width: 90%; }
-		}
-
-
+	&.prospect-filters{ width: 80%; }
+	&.header-top{ width: 90%; }
+}
 
 //***********************************************
 
+
+//HEADER DASHBOARD*******
+.header__dashboard{
+	h1{ margin: 0;  }
+	img{ width: 50%; margin: 0 auto; }
+	.qtrans_language_chooser{ padding: 0; .clearfix;
+		li{ width: 50%; border: none; float: left;
+			&:hover, &.active{ background: darken(@brand-primary, 10%); }
+			a{ text-indent: 0; }
+		}
+	}
+}
+
+.header__dashboard__top{ text-indent: 0px !important; background: @brand-primary;
+	&:hover{ background: @brand-primary !important; }
+	li{  }
+	a{ padding: 4px !important; text-align: center; color: @white !important; }
+}
 
 
 
@@ -680,15 +684,13 @@ figure.effect-sadie:hover figcaption::before {
 
 // 768px *************
 @media (min-width: @screen-md-min) {
-	h2{
-		font-size: 1.8em;
-	}
+	.content__dashboard{ padding-left: 250px; .transition; }
 	//MENU DESKTOP ======
-	header{
+	.header__frontend{
 		background-color: @brand-primary;
 		padding: 20px 0 0 0;
 	}
-
+	h2{ font-size: 1.8em; }
 	.jumbotron{
 		height: 350px;
 	}
@@ -818,7 +820,6 @@ figure.effect-sadie:hover figcaption::before {
 
 #sidebar-wrapper {
     z-index: 0;
-    padding-top: 50px;
     position: absolute;
     left: 250px;
     top: 0;
@@ -854,7 +855,6 @@ figure.effect-sadie:hover figcaption::before {
 
 .sidebar-nav {
     position: absolute;
-    top: 10%;
     width: 250px;
     min-height: 400px;
     margin: 0;
@@ -901,7 +901,6 @@ figure.effect-sadie:hover figcaption::before {
     padding: 0;
     font-size: 18px;
     line-height: 60px;
-    border-top: none;
 }
 
 .sidebar-nav > .sidebar-brand:hover{

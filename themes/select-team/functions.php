@@ -124,24 +124,23 @@ function pu_blank_login( $user ){
 // FRONT END SCRIPTS FOOTER //////////////////////////////////////////////////////
 	function footerScripts(){
 		if( wp_script_is( 'functions', 'done' ) ) {
-			if (is_home()) { ?>
-		        <script type="text/javascript">
-		            (function( $ ) {
-		                "use strict";
-		                $(function(){
-		                    //On load
-		                    $( "#datepicker" ).datepicker({
-		                    	dateFormat: 'yy-mm-dd',
-		                    	changeMonth: true,
-      							changeYear: true,
+			if ( is_home() ) { ?>
+				<script type="text/javascript">
+					(function( $ ) {
+						"use strict";
+						$(function(){
+							//On load
+							$( "#datepicker" ).datepicker({
+								dateFormat: 'yy-mm-dd',
+								changeMonth: true,
+								changeYear: true,
 								yearRange: "-100:+0"
 		                    });
 		                    $( "#datepicker" ).datepicker('setDate', '1995-01-01');
-		                    console.log('date!');
 		                    $( "#datepicker2" ).datepicker({
 		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
-      							changeYear: true,
+								changeYear: true,
 		                    	yearRange: "+0:+20"
 		                    });
 		                    urlAbre();
@@ -326,7 +325,6 @@ function pu_blank_login( $user ){
 
 
 // ADMIN SCRIPTS AND STYLES //////////////////////////////////////////////////////////
-
 
 
 	add_action( 'admin_enqueue_scripts', function(){

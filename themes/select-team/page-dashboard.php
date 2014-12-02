@@ -4,9 +4,8 @@
         wp_redirect( $location );
         exit;
     }
+    get_header();
 ?>
-<?php get_header();?>
-
     <div id="dashboard">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -26,9 +25,7 @@
                     <a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
                 </li>
             </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        
+        </div><!-- /#sidebar-wrapper -->
         <?php 
             $prospect_info = get_user_basic_info(get_current_user_id()); 
             $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
