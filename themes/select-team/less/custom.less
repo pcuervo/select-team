@@ -792,7 +792,7 @@ figure.effect-sadie:hover figcaption::before {
 
 #dashboard {
 	height: auto;
-    padding-left: 0;
+    padding-left: 50px;
     overflow: hidden;
     position: relative;
     -webkit-transition: all 0.5s ease;
@@ -822,10 +822,11 @@ figure.effect-sadie:hover figcaption::before {
     position: absolute;
     left: 250px;
     top: 0;
-    width: 0;
+    width: 50px;
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
+    overflow-x: hidden;
     background: @brand-success;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -854,24 +855,29 @@ figure.effect-sadie:hover figcaption::before {
 
 .sidebar-nav {
     position: fixed;
-    top: 10%;
+    top: 25%;
     width: 250px;
     min-height: 400px;
     margin: 0;
     padding: 0;
     list-style: none;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .sidebar-nav li {
-    text-indent: 20px;
+	width: 50px;
+    text-indent: 5px;
     line-height: 40px;
     border-top: 1px solid darken(@brand-success, 10%);
     .transition;
     &:first-child{ border-top: none; }
+    span{ display: none; }
+    i{ font-size: 1.5em; }
 }
 
 .sidebar-nav li a {
+	width: 50px;
     display: block;
     padding: 15px 0;
     text-decoration: none;
@@ -931,17 +937,40 @@ figure.effect-sadie:hover figcaption::before {
     }
 
     #dashboard.toggled #sidebar-wrapper {
-        width: 0;
+        width: 250px;
         left: -250px;
     }
 
     .sidebar-nav {
     position: fixed;
     top: 30%;
+    width: 250px;
+    min-height: 400px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.sidebar-nav li {
+	width: 250px;
+    text-indent: 15px;
+    line-height: 40px;
+    border-top: 1px solid darken(@brand-success, 10%);
+    .transition;
+    &:first-child{ border-top: none; }
+    span{ display: inline-block; }
+    i{ font-size: 1.5em; }
+}
+
+.sidebar-nav li a {
+	width: 250px;
 }
 
     #page-content-wrapper {
         padding: 50px 20px;
+
     }
 
     #wrapper.toggled #page-content-wrapper {

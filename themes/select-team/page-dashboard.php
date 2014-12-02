@@ -12,32 +12,32 @@
             <ul class="sidebar-nav">
                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                     <li class="sidebar-brand">
-                        <p><i class="fa fa-cogs"></i> Dashboard </p>
+                        <p><i class="fa fa-cogs"></i> <span>Dashboard</span> </p>
                     </li>
                     <li>
-                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Mi perfil</a>
+                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> <span>Mi perfil</span></a>
                     </li>
                     <li>
-                        <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
+                        <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> <span>Curriculum</span></a>
                     </li>
                     <li>
-                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> <span>Mensajes</span></a>
                     </li>
                     <li class="j-download">
-                        <a href="#" type="download"><i class="fa fa-download"></i> Muanual de aplicante</a>
+                        <a href="#" type="download"><i class="fa fa-download"></i> <span>Muanual de aplicante</span></a>
                     </li>
                 <?php } else { ?>
                     <li class="sidebar-brand">
-                        <p><i class="fa fa-cogs"></i> My Dashboard </p>
+                        <p><i class="fa fa-cogs"></i> <span>My Dashboard</span> </p>
                     </li>
                     <li>
-                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> <span>Profile</span></a>
                     </li>
                     <li>
-                        <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
+                        <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> <span>Curriculum</span></a>
                     </li>
                     <li>
-                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
+                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> <span>Messages</span></a>
                     </li>
                     <li class="j-download">
                         <a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
