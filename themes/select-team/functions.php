@@ -225,7 +225,7 @@ function pu_blank_login( $user ){
 				        return false;
 				      });
 				</script>
-			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
+			<?php } elseif ( get_the_title()=='Dashboard-admin') { ?>
 				<script type="text/javascript">
 				      correIsotope('.isotope-container-sports', '.player', 'masonry');
 				      filtrarIsotopeDefault('.isotope-container', 'none');
@@ -253,20 +253,20 @@ function pu_blank_login( $user ){
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'mm-dd-yy',
+							dateFormat: 'yy-mm-dd',
 							yearRange: "-100:+0"
 						});
 						$( "#datepicker-date-of-graduation" ).datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'mm-dd-yy',
+							dateFormat: 'yy-mm-dd',
 							yearRange: "-0:+10",
 						});
 						$( "#datepicker-date-of-tournament" ).datepicker({
 							changeMonth: true,
 							changeYear: true,
 							showButtonPanel: true,
-							dateFormat: 'mm-yy',
+							dateFormat: 'yy-mm',
 							onClose: function(dateText, inst) { 
 								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
 								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
@@ -280,7 +280,6 @@ function pu_blank_login( $user ){
 					$( function() {
 						$('.j-register-user button').on('click', function(e){
 							e.preventDefault();
-							console.log('registrando usuario...');
 							registerUser();
 						});
 						$("#datepicker-date-of-birth").datepicker({
