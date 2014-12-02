@@ -111,9 +111,9 @@ function pu_blank_login( $user ){
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
 		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
-
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
+		wp_localize_script( 'functions', 'site_url', site_url() );
 
 		// styles
 		wp_enqueue_style( 'styles', get_stylesheet_uri() );
@@ -229,10 +229,7 @@ function pu_blank_login( $user ){
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard') { ?>
 				<script type="text/javascript">
-					$( function() {
-						$('#password_again').on('change', function(e){
-							console.log('cambio');
-						});
+					$( function() {						
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -591,6 +588,7 @@ function pu_blank_login( $user ){
 
 				$st_user_id = add_st_user($st_user_data);
 				add_sport_answers($st_user_id, $sport_data);
+				login_user($username, $password);
 				$msg = array(
 					"success" => "Usuario registrado"
 					);
@@ -622,6 +620,24 @@ function pu_blank_login( $user ){
 		return 1;
 	}// validate_user_data
 
+	/**
+	 * Loggear al usuario a la plataforma.
+	 * @param string $username, string $password
+	 * @return boolean
+	 */
+	function login_user($username, $password){
+		$creds = array();
+		$creds['user_login'] = $username;
+		$creds['user_password'] = $password;
+		$creds['remember'] = true;
+		$user = wp_signon( $creds, false );
+		if ( is_wp_error($user) ){
+			echo $user->get_error_message();
+			return 0;
+		}
+		echo 'success!';
+		return 1;
+	}// login_user
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
 	
@@ -636,6 +652,12 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 	    $wpdb->st_answers = "st_answers";
 	}// st_register_answers_table
+
+	add_action( 'init', 'st_register_basic_profile_view', 1 );
+	function st_register_basic_profile_view() {
+	    global $wpdb;
+	    $wpdb->st_answers = "v_basic_profile";
+	}// st_register_basic_profile_view
 
 	/**
 	 * Inserta un usuario a la tabla st_users
@@ -706,6 +728,68 @@ function pu_blank_login( $user ){
 		}
 		return 0;
 	}// add_sport_answer
+
+	/**
+	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
+	function get_users_basic_info(){
+	    global $wpdb;
+	    $query = "SELECT * FROM v_basic_profile";
+	    $users = $wpdb->get_results($query);
+		
+		return $users_basic_info;
+	}// get_users_basic_info
+
+	/**
+	 * Jalar "basic profile" de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_basic_info
+	 */
+	function get_user_basic_info($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM v_basic_profile WHERE id = %d", $wp_user_id);
+	    $user_basic_info = $wpdb->get_results($query);
+		
+		return $user_basic_info[0];
+	}// get_users_basic_info
+
+	/**
+	 * Jalar respuestas por deporte de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_answers
+	 */
+	function get_user_sport_answers($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM st_answers WHERE st_user_id = %d", $wp_user_id);
+	    $user_answers = $wpdb->get_results($query);
+		
+		return $user_answers;
+	}// get_users_basic_info
+
+	/**
+	 * Manda un correo a las personas relacionadas.
+	 * @param string $email_to, string $name, $message
+	 * @return int TRUE or FALSE
+	 */
+	function send_mail($mail_to, $name, $message){
+
+		$current_user = wp_get_current_user();
+		$user_id= $current_user->ID;
+		
+	    global $wpdb;
+	    $query = "SELECT full_name FROM st_users WHERE wp_user_id ='".$user_id."';";
+	    $myrows = $wpdb->get_results($query);
+
+		$subject = 'Select team message ';
+		$body_message = $message;
+		
+		$headers = 'From: '.$myrows[0]->full_name."\r\n";
+		$headers .= 'Reply-To: '.$current_user->user_email."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+	}// send_mail
 
 
 // ZUROL  //////////////////////////////////////////////////////
