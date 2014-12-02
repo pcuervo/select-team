@@ -11,29 +11,29 @@
             <ul class="sidebar-nav">
                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                     <li class="sidebar-brand">
-                        <p><i class="fa fa-cogs"></i> Admin Dashboard </p>
+                        <p><i class="fa fa-cogs"></i> <span>Admin Dashboard</span> </p>
                     </li>
                     <li>
-                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Mi perfil</a>
+                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> <span>Mi perfil</span></a>
                     </li>
                     <li>
-                        <a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-folder-open"></i> Prospectos</a>
+                        <a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-folder-open"></i> <span>Prospectos</span></a>
                     </li>
                     <li>
-                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-briefcase"></i> Agentes</a>
+                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-briefcase"></i> <span>Agentes</span></a>
                     </li>
                 <?php } else { ?>
                     <li class="sidebar-brand">
-                        <p><i class="fa fa-cogs"></i> Admin Dashboard </p>
+                        <p><i class="fa fa-cogs"></i> <span>Admin Dashboard</span> </p>
                     </li>
                     <li>
-                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> <span>Profile</span></a>
                     </li>
                     <li>
-                        <a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-folder-open"></i> Prospects</a>
+                        <a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-folder-open"></i> <span>Prospects</span></a>
                     </li>
                     <li>
-                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-briefcase"></i> Advisors</a>
+                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-briefcase"></i> <span>Advisors</span></a>
                     </li>
                 <?php } ?>
             </ul>

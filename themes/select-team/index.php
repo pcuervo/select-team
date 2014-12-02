@@ -47,8 +47,8 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q2">Género</label></span>
                                 <select class="[ form-control ]" id="q2" name="q2">
-                                    <option value="Mujer">Mujer</option>
-                                    <option value="Hombre">Hombre</option>
+                                    <option value="female">Mujer</option>
+                                    <option value="male">Hombre</option>
                                 </select>
                             <?php } else { ?>
                                 <span><label for="q2">Gender</label></span>
@@ -201,7 +201,7 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <span><label for="q13">¿Has jugado un torneo ATP?</label></span>
                             <select class="[ form-control ]" id="q13" name="q13">
-                                <option value="si">Sí </option>
+                                <option value="yes">Sí </option>
                                 <option value="no">No </option>
                             </select>
                             <?php } else { ?>
