@@ -30,14 +30,67 @@
         <!-- /#sidebar-wrapper -->
         
         <?php 
+            if(isset($_SESSION['name'])){
+                add_profile_picture($_SESSION['st_user_id'], $_SESSION['name']);
+                unset($_SESSION['name']);
+            }
+
             $prospect_info = get_user_basic_info(get_current_user_id()); 
             $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
         ?>
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ]" id="page-content">
+                <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="upload_picture">
+                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <h3>Foto de perfil</h3>
+                        <?php } else { ?>
+                            <h3>Profile Picture</h3>
+                        <?php } ?>
+                        <?php if ( $prospect_info->profile_picture != '' ) { ?>
+                            <img src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
+                        <?php } ?>
+                        <img src="" />
+                        <form action="<?php echo THEMEPATH; ?>upload_picture.php" method="POST" role="form" class="[ row ] [ j-upload-profile-picture ]" enctype="multipart/form-data">
+                            <div class="[ form-group ] [ col-xs-12 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="exampleInputFile">Sube una foto de perfil</label>
+                                <?php } else { ?>
+                                    <label for="exampleInputFile">Upload your profile picture</label>
+                                <?php } ?>
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <p class="help-block">Tu archivo debe ser de 500 x 500 pixels. Peso máximo 400 kb.</p>
+                                <?php } else { ?>
+                                    <p class="help-block">File must be 500 x 500 pixels. No larger than 400 kb.</p>
+                                <?php } ?>
+                                <input type="hidden" name="site_url" value="<?php echo site_url(); ?>">
+                                <input type="hidden" name="st_user_id" value="<?php echo $prospect_info->st_user_id ?>">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="400000" />
+                                <input class="columna xsmall-12 medium-4 center block" type="file" name="filename" id="filename">
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Subir foto</button>
+                                <?php } else { ?>
+                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Upload file</button>
+                                <?php } ?>
+                            </div>
+                        </form>
+                        <?php 
+                            if(isset($_GET['err'])){
+                                foreach ($_SESSION['upload_message'] as $message) {
+                                    echo $message;
+                                }
+                            }
+                        ?>
+                    </div>
+                </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
+                        <form id="userForm" role="form" class="[ row ] [ j-update-basic-profile ]" >
+                        </form>
+
                         <h3>Basic Profile</h3>
                         <form id="userForm" role="form" class="[ row ] [ j-update-basic-profile ]" >
                             <div class="[ form-group ] [ col-xs-12 ]">

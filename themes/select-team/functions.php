@@ -652,6 +652,22 @@ function pu_blank_login( $user ){
 	}// validate_user_data
 
 	/**
+	 * Agrega foto de perfil de usuario.
+	 * @param int $wp_user_id, string $profile_pic
+	 * @return 1 si no hay errores, -1 username vacío, -2 email vacío, -3 password inválido, -4 passwords no son iguales
+	 */
+	function add_profile_picture($wp_user_id, $profile_pic){
+		global $wpdb;
+		$updated = $wpdb->update(
+		     $wpdb->st_users,
+		     array('profile_picture' => $profile_pic),
+		     array('id' => $wp_user_id),
+		     array( '%s'),
+		     array( '%d')
+		 );
+	}// validate_user_data
+
+	/**
 	 * Loggear al usuario a la plataforma.
 	 * @param string $username, string $password
 	 * @return boolean
