@@ -133,15 +133,17 @@ function pu_blank_login( $user ){
 		                    $( "#datepicker" ).datepicker({
 		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
-      							changeYear: true
+      							changeYear: true,
+								yearRange: "-100:+0"
 		                    });
-		                    $( "#datepicker" ).datepicker('setDate', '01-01-1995');
+		                    $( "#datepicker" ).datepicker('setDate', '1995-01-01');
+		                    console.log('date!');
 		                    $( "#datepicker2" ).datepicker({
 		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
-      							changeYear: true
+      							changeYear: true,
+		                    	yearRange: "+0:+20"
 		                    });
-
 		                    urlAbre();
 		                    var ancho = $(window).outerWidth();
 		                    toggleClassCards(ancho);
@@ -203,7 +205,7 @@ function pu_blank_login( $user ){
 		                });
 		            }(jQuery));
 		        </script>
-			<?php } elseif ( get_post_type() == 'prospecto' ) { ?>
+			<?php } elseif ( get_post_type() == 'prospecto') { ?>
 				<script type="text/javascript">
 				      correIsotope('.isotope-container-sports', '.player', 'masonry');
 				      filtrarIsotopeDefault('.isotope-container', 'none');
@@ -225,26 +227,48 @@ function pu_blank_login( $user ){
 				        return false;
 				      });
 				</script>
-			<?php } elseif (get_the_title()=='Dashboard') { ?>
+			<?php } elseif ( get_the_title()=='Dashboard-admin') { ?>
+				<script type="text/javascript">
+				      correIsotope('.isotope-container-sports', '.player', 'masonry');
+				      filtrarIsotopeDefault('.isotope-container', 'none');
+				      $('.isotope-filters button').on( 'click', function(e) {
+				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+				      });
+				      $('#sportAll button').on('click', function(){
+				        var sport = $(this).attr('data-filter');
+				        console.log(sport);
+				        $('#sportAll').attr('data-active', sport);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				      });
+				      $('#genderAll button').on('click', function(){
+				        var gender = $(this).attr('data-filter');
+				        //console.log(gender);
+				        $('#genderAll').attr('data-active', gender);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				      });
+				</script>
+			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {						
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'mm-dd-yy',
+							dateFormat: 'yy-mm-dd',
 							yearRange: "-100:+0"
 						});
 						$( "#datepicker-date-of-graduation" ).datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'mm-dd-yy',
+							dateFormat: 'yy-mm-dd',
 							yearRange: "-0:+10",
 						});
 						$( "#datepicker-date-of-tournament" ).datepicker({
 							changeMonth: true,
 							changeYear: true,
 							showButtonPanel: true,
-							dateFormat: 'mm-yy',
+							dateFormat: 'yy-mm',
 							onClose: function(dateText, inst) { 
 								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
 								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
@@ -268,7 +292,6 @@ function pu_blank_login( $user ){
 					$( function() {
 						$('.j-register-user button').on('click', function(e){
 							e.preventDefault();
-							console.log('registrando usuario...');
 							registerUser();
 						});
 						$("#datepicker-date-of-birth").datepicker({
