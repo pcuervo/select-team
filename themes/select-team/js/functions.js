@@ -177,6 +177,11 @@ $("#dashboard .sidebar-nav li").click(function(e) {
     }
 });
 
+$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#dashboard, #sidebar-wrapper").toggleClass("toggled");
+    });
+
 
 
 function getCookie(cname) {

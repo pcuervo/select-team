@@ -7,36 +7,16 @@
     get_header();
 ?>
     <div id="dashboard">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <p><i class="fa fa-cogs"></i> My Dashboard </p>
-                </li>
-                <li>
-                    <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
-                </li>
-                <li>
-                    <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
-                </li>
-                <li>
-                    <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
-                </li>
-                <li class="j-download">
-                    <a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ]" id="page-content">
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
+                        <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <h3>Perfil básico</h3>
+                            <h3>Registrar agente</h3>
                         <?php } else { ?>
-                            <h3>Basic Profile</h3>
+                            <h3>Register advisor</h3>
                         <?php } ?>
                         <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
                             <div class="[ form-group ] [ col-xs-12 ]">

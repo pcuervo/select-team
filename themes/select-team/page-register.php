@@ -3,6 +3,7 @@
         <div class="[ container-fluid ]" id="page-content">
             <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                 <div class="[ col-xs-12 col-sm-7 center block ]">
+                    <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" alt=""></a>
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                         <h3>Registrate</h3>
                     <?php } else { ?>

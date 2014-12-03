@@ -14,7 +14,14 @@
             </div>
         </div>
     </div><!--CONTAINER-FLUID-->
-    <footer></footer>
+    <footer>
+        <div class="[ row ]">
+            <div class=" [  col-xs-8 center block ] [ text-center ]">
+                <a class="[ btn btn-success ] [ col-md-8 center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
+                <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. Select Team Becas 2014</p>
+            </div>
+        </div>
+    </footer>
     <?php wp_footer(); ?>
   </body>
 </html>

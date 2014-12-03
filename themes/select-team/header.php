@@ -151,20 +151,61 @@
 							<?php } ?>
 							<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 						</li>
-						<li class="sidebar-brand">
-							<p><i class="fa fa-cogs"></i> My Dashboard </p>
+						
+						<!-- Para el dashboard de usario -->
+						<li>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
+							<?php } else { ?>
+								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+							<?php } ?>
 						</li>
 						<li>
-							<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Currículum</a>
+							<?php } else { ?>
+								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
+							<?php } ?>
 						</li>
 						<li>
-							<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
-						</li>
-						<li>
-							<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+							<?php } else { ?>
+								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
+							<?php } ?>
 						</li>
 						<li class="j-download">
-							<a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<a href="#" type="download"><i class="fa fa-download"></i> Manual de aplicante</a>
+							<?php } else { ?>
+								<a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
+							<?php } ?>
+						</li>
+						<!-- Para el dashboard de admin -->
+						<li>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
+							<?php } else { ?>
+								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+							<?php } ?>
+						</li>
+						<li>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospectos</a>
+							<?php } else { ?>
+								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospects</a>
+							<?php } ?>
+						</li>
+						<li>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Agentes</a>
+							<?php } else { ?>
+								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
+							<?php } ?>
+						</li>
+						<!-- Para el register usuario o advisor -->
+						<li class="sidebar-brand">
+							<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
 						</li>
 					</ul>
 	        	</header> <!-- /#sidebar-wrapper -->
