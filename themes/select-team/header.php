@@ -153,7 +153,7 @@
 						</li>
 						
 						<!-- Para el dashboard de usario -->
-						<li>
+						<!-- <li>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
 								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
 							<?php } else { ?>
@@ -180,9 +180,9 @@
 							<?php } else { ?>
 								<a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
 							<?php } ?>
-						</li>
+						</li> -->
 						<!-- Para el dashboard de admin -->
-						<li>
+						<!-- <li>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
 								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
 							<?php } else { ?>
@@ -202,11 +202,16 @@
 							<?php } else { ?>
 								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
 							<?php } ?>
-						</li>
+						</li> -->
 						<!-- Para el register usuario o advisor -->
 						<li class="sidebar-brand">
 							<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
 						</li>
+
+						<div class="dashboard__privacy-policy">
+				            <a class="[ btn btn-success ] [ center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
+				            <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+						</div>
 					</ul>
 	        	</header> <!-- /#sidebar-wrapper -->
 	        	<div class="[ content content__dashboard ] [ clearfix ]">
