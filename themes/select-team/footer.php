@@ -16,10 +16,10 @@
     </div><!--CONTAINER-FLUID-->
     <footer>
         <div class="[ row ]">
-            <div class=" [  col-xs-8 center block ] [ text-center ]">
-                <a class="[ btn btn-success ] [ col-md-8 center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
-                <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. Select Team Becas 2014</p>
+            <div class=" [  col-xs-8 col-sm-6 col-md-4 center block ] [ text-center ]">
+                <a class="[ btn btn-success ] [ center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
             </div>
+            <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
         </div>
     </footer>
     <?php wp_footer(); ?>
