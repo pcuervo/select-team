@@ -16,12 +16,24 @@
 
             $prospect_info = get_user_basic_info(get_current_user_id()); 
             $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
-            $created_curriculum= false; //Aquí se debe checar si tiene o no información registrada.
+            $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
+            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = ' ';
+            
+            if (sizeof($created_curriculum)>0) {
+                $address        =  $created_curriculum->address;
+                $phone          =  $created_curriculum->phone;
+                $mob_phone      =  $created_curriculum->mobile_phone;
+                $grad_year      =  $created_curriculum->graduate_year;
+                $high_school    =  $created_curriculum->high_school;
+                //$grad_date      =  $created_curriculum->graduation_date;
+                $grad_dateArr = explode(' ', $created_curriculum->graduation_date);
+                $grad_date = $grad_dateArr[0];
+            }
+            
             if(sizeof($_GET)>0)
             {
                 //var_dump($_GET);
                 send_prospects_email("zurol@pcuervo.com", $_GET);
-
             }
         ?>
         <!-- Page Content -->
@@ -353,7 +365,7 @@
                                 <?php } else { ?>
                                     <label for="address">Address</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="address" name="curriculum_address">
+                                <input type="text" class="[ form-control ]" id="address" name="curriculum_address" value="<?php echo $address; ?>">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -361,7 +373,7 @@
                                 <?php } else { ?>
                                     <label for="phone">Phone</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="phone" name="curriculum_phone">
+                                <input type="text" class="[ form-control ]" id="phone" name="curriculum_phone" value="<?php echo $phone; ?>">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -369,7 +381,7 @@
                                 <?php } else { ?>
                                     <label for="mPhone">Mobile Phone</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="mPhone" name="curriculum_mobile_phone">
+                                <input type="text" class="[ form-control ]" id="mPhone" name="curriculum_mobile_phone" value="<?php echo $mob_phone; ?>">
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h4 class="[ col-xs-12 ]">Educación</h4>
@@ -382,7 +394,7 @@
                                 <?php } else { ?>
                                     <label for="highSchool">Highschool</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="highSchool" name="high_school">
+                                <input type="text" class="[ form-control ]" id="highSchool" name="high_school" value="<?php echo $high_school; ?>">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <p class="help-block">Nombre de la escuela</p>
                                 <?php } else { ?>
@@ -394,21 +406,21 @@
                                     <label for="midGrad" id="midGrad" name="q4" ?> ">¿En qué año vas?</label>
                                     <select class="[ form-control ]" id="q4" name="grade">
                                         <option value="grado" selected disabled>Grado</option>
-                                        <option value="freshment">3º Secundaria </option>
-                                        <option value="sphomore">4º Preparatoria </option>
-                                        <option value="junior">5º Preparatoria </option>
-                                        <option value="senior">6º Preparatoria </option>
-                                        <option value="graduated">Graduado</option>
+                                        <option value="freshment" <?php if($grad_year=='freshment') echo "selected"; ?>>3º Secundaria </option>
+                                        <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>4º Preparatoria </option>
+                                        <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>5º Preparatoria </option>
+                                        <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>6º Preparatoria </option>
+                                        <option value="graduated" <?php if($grad_year=='graduated') echo "selected"; ?>>Graduado</option>
                                     </select>
                                     <?php } else { ?>
                                         <label for="midGrad" id="midGrad" name="q4" >What Class are you in?</label>
                                         <select class="[ form-control ]" id="q4" name="grade">
                                             <option value="grado" selected disabled>Class</option>
-                                            <option value="freshment">Freshment </option>
-                                            <option value="sphomore">Sophomore </option>
-                                            <option value="junior">Junior </option>
-                                            <option value="senior">Senior </option>
-                                            <option value="graduated">Already graduated</option>
+                                            <option value="freshment" <?php if($grad_year=='freshment') echo "selected"; ?>>Freshment </option>
+                                            <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>Sophomore </option>
+                                            <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>Junior </option>
+                                            <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>Senior </option>
+                                            <option value="graduated" <?php if($grad_year=='graduated') echo "selected"; ?>>Already graduated</option>
                                         </select>
                                  <?php } ?>
                             </div>
@@ -419,7 +431,7 @@
                                 <?php } else { ?>
                                     <span><label for="q3">When are you graduating?</label></span>
                                 <?php } ?>
-                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation"/>
+                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation" value="<?php echo $grad_date; ?>"/>
                             </div>
                             <div class="clear"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -465,9 +477,9 @@
                             <div class="clear"></div>
                             <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if($created_curriculum)echo "-update"; else echo "-create"; ?> ] ">Guardar cambios</button>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if(sizeof($created_curriculum)>0)echo "-update"; else echo "-create"; ?> ] ">Guardar cambios</button>
                                 <?php } else { ?>
-                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if($created_curriculum)echo "-update"; else echo "-create"; ?> ] ">Save changes</button>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if(sizeof($created_curriculum)>0)echo "-update"; else echo "-create"; ?> ] ">Save changes</button>
                                 <?php } ?>
                         </form>
                     </div>

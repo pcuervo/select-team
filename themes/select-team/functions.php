@@ -820,7 +820,23 @@ function pu_blank_login( $user ){
 	    $user_answers = $wpdb->get_results($query);
 		
 		return $user_answers;
-	}// get_users_basic_info
+	}// get_user_sport_answers
+
+	/**
+	 * Jalar curriculum de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_curriculum, 0 en caso de no encontrar resultados.
+	 */
+	function get_user_curriculum_info($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM st_curriculum WHERE st_user_id = %d", $wp_user_id);
+	    $user_curriculum = $wpdb->get_results($query);
+		if (sizeof($user_curriculum)>0) {
+			return $user_curriculum[0];
+		}
+		else
+			return $user_curriculum;
+	}// get_user_curriculum_info
 
 	/**
 	 * Manda un correo a las personas relacionadas.

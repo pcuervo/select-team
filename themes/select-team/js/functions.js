@@ -216,8 +216,6 @@ function addTournament(){
 }
 
 
-
-
 function registerUser() {
     var user_data = {};
 
