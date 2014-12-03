@@ -864,6 +864,7 @@ figure.effect-sadie:hover figcaption::before {
     margin: 0;
     padding: 0;
     list-style: none;
+    position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -925,6 +926,14 @@ figure.effect-sadie:hover figcaption::before {
     background: none;
 }
 
+.dashboard__privacy-policy{ 
+	position: relative;
+	bottom: 0;
+	color: #fff;
+	margin-top: 20px;
+	a, p{ border: none; font-size: .8em; }						
+}
+
 @media(min-width:768px) {
     #dashboard {
         padding-left: 0;
@@ -976,17 +985,16 @@ figure.effect-sadie:hover figcaption::before {
         position: relative;
         margin-right: 0;
     }
+
+    .dashboard__privacy-policy{ 
+		position: absolute;
+		bottom: 0;					
+	}
 }
 
 .dashboard-profile{ border-bottom: 1px solid @brand-success; }
 
-.dashboard__privacy-policy{ 
-	position: absolute;
-	bottom: 0;
-	color: #fff;
-	margin-top: 20px;
-	a, p{ border: none; font-size: .8em; }						
-}
+
 
 //********************************************
 
