@@ -207,12 +207,11 @@
 						<li class="sidebar-brand">
 							<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
 						</li>
-
-						<div class="dashboard__privacy-policy">
-				            <a class="[ btn btn-success ] [ center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
-				            <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
-						</div>
 					</ul>
+					<div class="[ dashboard__privacy-policy ] [ clearfix ]">
+			            <a class="[ btn btn-success ] [ center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
+			            <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+					</div>
 	        	</header> <!-- /#sidebar-wrapper -->
 	        	<div class="[ content content__dashboard ] [ clearfix ]">
 	        <?php } ?>
