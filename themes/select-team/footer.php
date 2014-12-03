@@ -14,14 +14,20 @@
             </div>
         </div>
     </div><!--CONTAINER-FLUID-->
-    <footer>
-        <div class="[ row ]">
-            <div class=" [  col-xs-8 col-sm-6 col-md-4 center block ] [ text-center ]">
-                <a class="[ btn btn-success ] [ center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
+    <?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') ) { ?>
+        <footer>
+            <div class="[ row ]">
+                <div class=" [  col-xs-8 col-sm-6 col-md-4 center block ] [ text-center ]">
+                    <a class="[ btn btn-success ] [ center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
+                </div>
+                <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
             </div>
-            <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
-        </div>
-    </footer>
+        </footer>
+    <?php } else { ?>
+        <footer style="display: none;">
+        </footer>
+    <?php } ?>
+    
     <?php wp_footer(); ?>
   </body>
 </html>
