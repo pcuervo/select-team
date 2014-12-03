@@ -825,10 +825,10 @@ function pu_blank_login( $user ){
 
 	/**
 	 * Manda un correo a las personas relacionadas.
-	 * @param string $email_to, string $name, $message
+	 * @param string $email_to, $message
 	 * @return int TRUE or FALSE
 	 */
-	function send_mail($mail_to, $name, $message){
+	function send_email($mail_to, $message){
 
 		$current_user = wp_get_current_user();
 		$user_id= $current_user->ID;
@@ -845,7 +845,150 @@ function pu_blank_login( $user ){
 
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
 
-	}// send_mail
+	}// send_email
+
+
+	/**
+	 * Manda un correo sobre las preferencias del coach. // Sacada la base del archivo maqueta/send-coach.php
+	 * @param string $email_to, string $message
+	 * @return int TRUE or FALSE
+	 */
+
+	function send_coach_email($mail_to, $form_info){
+		$q1 = $q2 = $q3 = $q4 = $q5 = $q6 = $q7 = $q8 = $q9 = $q10 = '';
+
+		$q1 	= ( isset($form_info['q1']) ) ? $form_info['q1'] : ''; //What's your name?
+		$q2 	= ( isset($form_info['q2']) ) ? $form_info['q2'] : ''; //What's your email address?
+		$q3 	= ( isset($form_info['q3']) ) ? $form_info['q3'] : ''; //Which sport are you interested in?
+		$q4 	= ( isset($form_info['q4']) ) ? $form_info['q4'] : ''; //What's the average score you are looking for?
+		$q5 	= ( isset($form_info['q5']) ) ? $form_info['q5'] : ''; //What position does the player have to play?
+		$q7 	= ( isset($form_info['q6']) ) ? $form_info['q6'] : ''; //Do you prefer a left or right handed player?
+		$q8 	= ( isset($form_info['q7']) ) ? $form_info['q7'] : ''; //What FMT ranking are you looking for? (for mexican players only)
+		$q9 	= ( isset($form_info['q8']) ) ? $form_info['q8'] : ''; //What position does the player have to play?
+
+		//$mail_to = 'raul@pcuervo.com, alejandro@pcuervo.com'; //Comentar luego.
+		$subject = 'Select team coach '.$q1;
+
+		if ( $q1 !== '' ){
+			$body_message = "What's your name?: ".$q1."\n";
+		}
+		if ( $q2 !== '' ){
+			$body_message .= "What's your email address?: ".$q2."\n";
+		}
+		if ( $q3 !== '' ){
+			$body_message .= "Which sport are you interested in?: ".$q3."\n";
+		}
+		if ( $q4 !== '' ){
+			$body_message .= "What's the average score you are looking for?: ".$q4."\n";
+		}
+		if ( $q5 !== '' ){
+			$body_message .= "What position does the player have to play?: ".$q5."\n";
+		}
+		if ( $q6 !== '' ){
+			$body_message .= "Are you left or right handed?: ".$q6."\n";
+		}
+		if ( $q7 !== '' ){
+			$body_message .= "Do you prefer a left or right handed player?: ".$q7."\n";
+		}
+		if ( $q8 !== '' ){
+			$body_message .= "What FMT ranking are you looking for?: ".$q8."\n";
+		}
+		if ( $q9 !== '' ){
+			$body_message .= "What position does the player have to play?: ".$q9."\n";
+		}
+		$body_message .= "";
+
+		$headers = 'From: '.$q1."\r\n";
+		$headers .= 'Reply-To: '.$q2."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+	}//send_coach_email
+
+
+	/**
+	 * Manda un correo sobre las características del prospecto. // Sacada la base del archivo maqueta/send-prospects.php
+	 * por el momento está comentada pero tengo entendido que se usaría al caer en el Dashboard, luego de crear un nuevo usuario.
+	 * @param string $email_to, string $message
+	 * @return int TRUE or FALSE
+	 */
+
+	function send_prospects_email($mail_to, $form_info){
+		$q1 = $q2 = $q3 = $q4 = $q5 = $q6 = $q7 = $q8 = $q9 = $q10 = $q11 = $q12 = $q13 = $q14 = $q15 = '';
+
+		$q1 	= ( isset($form_info['q1']) ) ? $form_info['q1'] : ''; //What's your name?
+		$q2 	= ( isset($form_info['q2']) ) ? $form_info['q2'] : ''; //Gender
+		$q3 	= ( isset($form_info['q3']) ) ? $form_info['q3'] : ''; //When were you born?
+		$q4 	= ( isset($form_info['q4']) ) ? $form_info['q4'] : ''; //When are you graduating?
+		$q5 	= ( isset($form_info['q5']) ) ? $form_info['q5'] : ''; //What year are you studying?
+		$q6 	= ( isset($form_info['q6']) ) ? $form_info['q6'] : ''; //What's your email address?
+		$q7 	= ( isset($form_info['q7']) ) ? $form_info['q7'] : ''; //What sport do you practice?
+		// - Golf -
+		$q8 	= ( isset($form_info['q8']) ) ? $form_info['q8'] : ''; //What's your average score?
+		// - Volleyball -
+		$q9 	= ( isset($form_info['q9']) ) ? $form_info['q9'] : ''; //What's your position?
+		$q10 	= ( isset($form_info['q10']) ) ? $form_info['q10'] : ''; //What's your height?
+		// - Tennis -
+		$q11 	= ( isset($form_info['q11']) ) ? $form_info['q11'] : ''; //Are you left or right handed?
+		$q12 	= ( isset($form_info['q12']) ) ? $form_info['q12'] : ''; //What's your FMT ranking?
+		$q13 	= ( isset($form_info['q13']) ) ? $form_info['q13'] : ''; //Have you ever played an ATP tournament?
+		// - Soccer -
+		$q14 	= ( isset($form_info['q13']) ) ? $form_info['q14'] : ''; //What's your position?
+		$q15 	= ( isset($form_info['q15']) ) ? $form_info['q15'] : ''; //What's your height?
+
+		//$mail_to = 'raul@pcuervo.com, alejandro@pcuervo.com';
+		$subject = 'Select team prospect '.$q1;
+
+		if ( $q1 !== '' ){
+			$body_message = "What's your name?: ".$q1."\n";
+		}
+		if ( $q2 !== '' ){
+			$body_message .= "When were you born?: ".$q2."\n";
+		}
+		if ( $q3 !== '' ){
+			$body_message .= "When are you graduating?: ".$q3."\n";
+		}
+		if ( $q4 !== '' ){
+			$body_message .= "What year are you studying?: ".$q4."\n";
+		}
+		if ( $q5 !== '' ){
+			$body_message .= "What's your email address?: ".$q5."\n";
+		}
+		if ( $q6 !== '' ){
+			$body_message .= "What sport do you practice?: ".$q6."\n";
+		}
+		if ( $q7 !== '' ){
+			$body_message .= "What's your average score?: ".$q7."\n";
+		}
+		if ( $q8 !== '' ){
+			$body_message .= "What's your position?: ".$q8."\n";
+		}
+		if ( $q9 !== '' ){
+			$body_message .= "What's your height?: ".$q9."\n";
+		}
+		if ( $q10 !== '' ){
+			$body_message .= "Are you left or right handed?: ".$q10."\n";
+		}
+		if ( $q11 !== '' ){
+			$body_message .= "What's your FMT ranking?: ".$q11."\n";
+		}
+		if ( $q12 !== '' ){
+			$body_message .= "Have you ever played an ATP tournament?: ".$q12."\n";
+		}
+		if ( $q13 !== '' ){
+			$body_message .= "What's your position?: ".$q13."\n";
+		}
+		if ( $q14 !== '' ){
+			$body_message .= "What's your height?: ".$q14."\n";
+		}
+		$body_message .= "";
+
+		$headers = 'From: '.$q1."\r\n";
+		$headers .= 'Reply-To: '.$q6."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+	} //send_prospects_email
+
 
 
 // ZUROL  //////////////////////////////////////////////////////

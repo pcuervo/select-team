@@ -17,7 +17,12 @@
             $prospect_info = get_user_basic_info(get_current_user_id()); 
             $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
             $created_curriculum= true; //Aquí se debe checar si tiene o no información registrada.
+            if(sizeof($_GET)>0)
+            {
+                //var_dump($_GET);
+                send_prospects_email("zurol@pcuervo.com", $_GET);
 
+            }
         ?>
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">

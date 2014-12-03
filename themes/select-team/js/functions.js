@@ -253,6 +253,7 @@ function registerUser() {
         function(response){
             console.log(response);
             window.location = site_url + '/dashboard';
+            //window.location = site_url + '/dashboard?' + $("#j-register-user").serialize();
         }// response
     ); 
 }// registerUser
