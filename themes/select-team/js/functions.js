@@ -210,7 +210,7 @@ function addTournament(){
   $('.j-user_curriculum input[name="tournament"]').val("");
   $('.j-user_curriculum input[name="tournament_date"]').val("");
   $('.j-user_curriculum input[name="tournament_rank"]').val("");
-  
+
 }
 
 
@@ -274,6 +274,25 @@ function createCurriculum() {
   user_curriculum_data['tournament_data'] = $('.j-user_curriculum input[name="tournament_data"]').val();
   user_curriculum_data['tournament_date_data'] = $('.j-user_curriculum select[name="tournament_date_data"]').val();
   user_curriculum_data['tournament_rank_data'] = $('.j-user_curriculum select[name="tournament_rank_data"]').val();
+
+  var tournament_data = new Array();
+  var values = $("input[name='tournament_data\[\]']").each(function() {
+    tournament_data.push($(this).val());
+  });
+  user_curriculum_data['tournament']= tournament_data;
+  
+  var tournament_date_data = new Array();
+  var values = $("input[name='tournament_date_data\[\]']").each(function() {
+    tournament_date_data.push($(this).val());
+  });
+  user_curriculum_data['tournament_date']= tournament_date_data;
+
+  var tournament_rank_data = new Array();
+  var values = $("input[name='tournament_rank_data\[\]']").each(function() {
+    tournament_rank_data.push($(this).val());
+  });
+  user_curriculum_data['tournament_rank']= tournament_rank_data;
+
 
   console.log(user_curriculum_data);
 //  $.post(
