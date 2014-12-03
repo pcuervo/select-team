@@ -267,7 +267,7 @@ function pu_blank_login( $user ){
 							changeMonth: true,
 							changeYear: true,
 							showButtonPanel: true,
-							dateFormat: 'yy-mm',
+							dateFormat: 'yy-mm-dd',
 							onClose: function(dateText, inst) { 
 								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
 								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
@@ -286,7 +286,6 @@ function pu_blank_login( $user ){
 						});
 						$('.j-add-tournament').on('click', function(e){
 							e.preventDefault();
-							console.log('agregando Tournaments...');
 							addTournament();
 						});
 

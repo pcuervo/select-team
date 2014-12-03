@@ -394,20 +394,20 @@
                                     <label for="midGrad" id="midGrad" name="q4" ?> ">¿En qué año vas?</label>
                                     <select class="[ form-control ]" id="q4" name="grade">
                                         <option value="grado" selected disabled>Grado</option>
-                                        <option value="grado1">3º Secundaria </option>
-                                        <option value="grado2">4º Preparatoria </option>
-                                        <option value="grado3">5º Preparatoria </option>
-                                        <option value="grado4">6º Preparatoria </option>
+                                        <option value="freshment">3º Secundaria </option>
+                                        <option value="sphomore">4º Preparatoria </option>
+                                        <option value="junior">5º Preparatoria </option>
+                                        <option value="senior">6º Preparatoria </option>
                                         <option value="graduated">Graduado</option>
                                     </select>
                                     <?php } else { ?>
                                         <label for="midGrad" id="midGrad" name="q4" >What Class are you in?</label>
                                         <select class="[ form-control ]" id="q4" name="grade">
                                             <option value="grado" selected disabled>Class</option>
-                                            <option value="grado1">Freshment </option>
-                                            <option value="grado2">Sophomore </option>
-                                            <option value="grado3">Junior </option>
-                                            <option value="grado4">Senior </option>
+                                            <option value="freshment">Freshment </option>
+                                            <option value="sphomore">Sophomore </option>
+                                            <option value="junior">Junior </option>
+                                            <option value="senior">Senior </option>
                                             <option value="graduated">Already graduated</option>
                                         </select>
                                  <?php } ?>
@@ -440,14 +440,17 @@
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="tournamentDate">Fecha</label>
-                                    <input type="date" class="[ form-control ] [ j-datepicker ]" id="datepicker-date-of-tournament" name="tournament_date">
                                 <?php } else { ?>
                                     <label for="tournamentDate">Date</label>
-                                    <input type="date" class="[ form-control ] [ j-datepicker ]" id="datepicker-date-of-tournament" name="tournament_date">
                                 <?php } ?>
+                                <input type="date" class="[ form-control ] [ j-datepicker ]" id="datepicker-date-of-tournament" name="tournament_date">
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
-                                <label for="tournamentRank">Ranking</label>
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="tournamentRank">Posición</label>
+                                <?php } else { ?>
+                                    <label for="tournamentRank">Position</label>
+                                <?php } ?>
                                 <input type="text" class="[ form-control ]" id="tournamentRank" name="tournament_rank">
                             </div>
                             <div class="clear"></div>
@@ -456,6 +459,9 @@
                             <?php } else { ?>
                                 <button class="[ btn btn-primary ] [ margin-bottom ] [ j-add-tournament ] ">Add tournament <i class="fa fa-plus"></i></button>
                             <?php } ?>
+                            <div class="clear"></div>
+                            <div class="[ form-group ] [ col-xs-12 ] [ j-registed-tournaments ]">
+                            </div>
                             <div class="clear"></div>
                             <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>

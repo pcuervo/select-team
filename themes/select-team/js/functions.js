@@ -197,15 +197,17 @@ function getCookie(cname) {
 
 
 function addTournament(){
-  console.log(" addTornament ");
+  
   $tournament_name= $('.j-user_curriculum input[name="tournament"]').val();
   $tournament_date= $('.j-user_curriculum input[name="tournament_date"]').val();
   $tournament_rank= $('.j-user_curriculum input[name="tournament_rank"]').val();
-  console.log($tournament_name, $tournament_date, $tournament_rank);
 
   $('.j-user_curriculum').append('<input type="hidden" name="tournament_data[]" value="'+$tournament_name+'"/> ');
   $('.j-user_curriculum').append('<input type="hidden" name="tournament_date_data[]" value="'+$tournament_date+'"/> ');
   $('.j-user_curriculum').append('<input type="hidden" name="tournament_rank_data[]" value="'+$tournament_rank+'"/> ');
+
+  $('.j-registed-tournaments').append('<p>Tournament: '+$tournament_name+'</p>');
+  $('.j-registed-tournaments').append('<p>Date: '+$tournament_date+'   Position: '+$tournament_rank+'</p>');
 
   $('.j-user_curriculum input[name="tournament"]').val("");
   $('.j-user_curriculum input[name="tournament_date"]').val("");
