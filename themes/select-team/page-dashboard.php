@@ -16,7 +16,7 @@
 
             $prospect_info = get_user_basic_info(get_current_user_id()); 
             $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
-            $created_curriculum= true; //Aquí se debe checar si tiene o no información registrada.
+            $created_curriculum= false; //Aquí se debe checar si tiene o no información registrada.
             if(sizeof($_GET)>0)
             {
                 //var_dump($_GET);
@@ -459,9 +459,9 @@
                             <div class="clear"></div>
                             <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if($created_curriculum)echo "-create"; else echo "-update"; ?> ] ">Guardar cambios</button>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if($created_curriculum)echo "-update"; else echo "-create"; ?> ] ">Guardar cambios</button>
                                 <?php } else { ?>
-                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if($created_curriculum)echo "-create"; else echo "-update"; ?> ] ">Save changes</button>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if($created_curriculum)echo "-update"; else echo "-create"; ?> ] ">Save changes</button>
                                 <?php } ?>
                         </form>
                     </div>
