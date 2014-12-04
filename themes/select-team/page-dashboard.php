@@ -16,6 +16,7 @@
 
             $prospect_info = get_user_basic_info(get_current_user_id()); 
             $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
+            //$created_curriculum= get_user_curriculum_info("0");
             $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
             $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = ' ';
             
@@ -441,7 +442,9 @@
                                 <?php } else { ?>
                                     <h4 class="[ col-xs-12 ]">Sports Development</h4>
                                 <?php } ?>
-                                <?php if(sizeof($tournament_info)>0) { ?>
+                                
+                                <?php  if (sizeof($created_curriculum)>0)
+                                     if(sizeof($tournament_info)>0) { ?>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="tournament">Torneos</label>
