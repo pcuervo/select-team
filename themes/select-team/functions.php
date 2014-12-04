@@ -644,14 +644,6 @@ function pu_blank_login( $user ){
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
 
-	//////////////	TEST  //////////////
-	function update_curriculum(){
-		return 1;
-	}
-	add_action("wp_ajax_nopriv_update_curriculum", "update_curriculum");
-	//////////////	TEST  //////////////
-
-
 	/**
 	 * Valida que los datos del usuario ha registrar sean correctos.
 	 * @return 1 si no hay errores, -1 username vacío, -2 email vacío, -3 password inválido, -4 passwords no son iguales

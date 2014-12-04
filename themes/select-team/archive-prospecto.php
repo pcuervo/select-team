@@ -31,7 +31,6 @@
 			$argsGenre = array(
 				'slug' => 'genero',
 			);
-			var_dump($genreTerm);
 			$genreTerm = get_terms( 'genero', $args );
 			$sport 				= $sportTerm[1]->slug;
 			$genre 				= $genreTerm[1]->slug;;

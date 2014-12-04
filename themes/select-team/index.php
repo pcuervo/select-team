@@ -87,7 +87,7 @@
                             <?php } else { ?>
                                 <span><label for="q5">What grade are you in?</label></span>
                                 <select class="[ form-control ]" id="q5" name="q5">
-                                <option>Class</option>
+                                <option value="" disabled>Class</option>
                                 <option value="grado1">Freshman</option>
                                 <option value="grado2">Sophomore </option>
                                 <option value="grado3">Junior </option>
