@@ -32,12 +32,6 @@
 
                 $tournament_info = get_user_tournament($prospect_info->st_user_id);
             }
-            
-
-            if(sizeof($_GET)>0)
-            {
-                //send_prospects_email("zurol@pcuervo.com", $_GET);
-            }
         ?>
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">
