@@ -28,12 +28,14 @@
                 //$grad_date      =  $created_curriculum->graduation_date;
                 $grad_dateArr = explode(' ', $created_curriculum->graduation_date);
                 $grad_date = $grad_dateArr[0];
+
+                $tournament_info = get_user_tournament($prospect_info->st_user_id);
             }
             
+
             if(sizeof($_GET)>0)
             {
-                //var_dump($_GET);
-                send_prospects_email("zurol@pcuervo.com", $_GET);
+                //send_prospects_email("zurol@pcuervo.com", $_GET);
             }
         ?>
         <!-- Page Content -->
@@ -436,11 +438,37 @@
                             <div class="clear"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <h4 class="[ col-xs-12 ]">Desa_grollo deportivo</h4>
-                                    <p class="[ col-xs-12 ] [ help-block ]">Puedes agregar más de un torneo</p>
                                 <?php } else { ?>
                                     <h4 class="[ col-xs-12 ]">Sports Development</h4>
+                                <?php } ?>
+                                <?php if(sizeof($tournament_info)>0) { ?>
+                                <div class="[ form-group ] [ col-xs-12 ]">
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        <label for="tournament">Torneos</label>
+                                    <?php } else { ?>
+                                        <label for="tournament">Tournaments</label>
+                                    <?php } ?>
+                                        <?php foreach ($tournament_info as $key => $value) { ?>
+                                            <div class="[ form-group ] [ col-xs-12 ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
+                                                <input type="hidden" value="<?php echo $tournament_info[$key]->name;?>" name="torneo">
+                                                <p>
+                                                    <label> <?php echo $tournament_info[$key]->name; ?> </label>
+                                                    <p > <?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?> 
+                                                    <?php echo $tournament_info[$key]->ranking; ?> </p> 
+                                                    <input type="hidden" value="<?php echo $tournament_info[$key]->ranking; ?>" name="torneo-rank">
+                                                    <input type="hidden" value="<?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?>" name="torneo-fecha">
+                                                    <button class="[ btn btn-primary ] [ margin-bottom ] [ j-delete-tournament ]"> <i class="fa fa-times"></i></button>
+                                                </p>
+                                            </div>
+                                        <?php } ?>
+                                </div>
+                                <?php } ?>
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <p class="[ col-xs-12 ] [ help-block ]">Puedes agregar más de un torneo</p>
+                                <?php } else { ?>
                                     <p class="[ col-xs-12 ] [ help-block ]">You can add more than one tournament.</p>
                                 <?php } ?>
+
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="tournament">Torneo</label>

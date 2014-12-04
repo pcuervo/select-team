@@ -289,6 +289,11 @@ function pu_blank_login( $user ){
 							addTournament();
 						});
 
+						$('.j-delete-tournament').on('click', function(e){
+							e.preventDefault();
+							deleteTournament(e);
+						});
+
 						$('.j-update-curriculum-create').on('click', function(e){
 							e.preventDefault();
 							console.log('creando curriculum...');
@@ -713,7 +718,7 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 	    $wpdb->st_answers = "v_basic_profile";
 	}// st_register_basic_profile_view
-
+	
 	/**
 	 * Inserta un usuario a la tabla st_users
 	 * @param string $st_user_data
@@ -839,6 +844,20 @@ function pu_blank_login( $user ){
 	}// get_user_curriculum_info
 
 	/**
+	 * Jalar de los torneos de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_tournaments_info
+	 */
+	function get_user_tournament($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT name, tournament_date, ranking FROM st_tournament WHERE st_user_id = %d", $wp_user_id);
+	    $user_tournaments_info = $wpdb->get_results($query);
+		
+		return $user_tournaments_info;
+	}// get_user_tournament
+
+
+	/**
 	 * Manda un correo a las personas relacionadas.
 	 * @param string $email_to, $message
 	 * @return int TRUE or FALSE
@@ -864,7 +883,7 @@ function pu_blank_login( $user ){
 
 
 	/**
-	 * Manda un correo sobre las preferencias del coach. // Sacada la base del archivo maqueta/send-coach.php
+	 * Manda un correo sobre las preferencias del coach. // Basada en el archivo maqueta/send-coach.php
 	 * @param string $email_to, string $message
 	 * @return int TRUE or FALSE
 	 */
@@ -922,7 +941,7 @@ function pu_blank_login( $user ){
 
 
 	/**
-	 * Manda un correo sobre las características del prospecto. // Sacada la base del archivo maqueta/send-prospects.php
+	 * Manda un correo sobre las características del prospecto. // Basada en el archivo maqueta/send-prospects.php
 	 * por el momento está comentada pero tengo entendido que se usaría al caer en el Dashboard, luego de crear un nuevo usuario.
 	 * @param string $email_to, string $message
 	 * @return int TRUE or FALSE
