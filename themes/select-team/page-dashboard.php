@@ -406,7 +406,7 @@
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="midGrad" id="midGrad" name="q4" ?> ">¿En qué año vas?</label>
+                                    <label for="midGrad" id="midGrad" name="q4">¿En qué año vas?</label>
                                     <select class="[ form-control ]" id="q4" name="grade">
                                         <option value="grado" selected disabled>Grado</option>
                                         <option value="freshment" <?php if($grad_year=='freshment') echo "selected"; ?>>3º Secundaria </option>
@@ -438,7 +438,7 @@
                             </div>
                             <div class="clear"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <h4 class="[ col-xs-12 ]">Desa_grollo deportivo</h4>
+                                    <h4 class="[ col-xs-12 ]">Desarrollo deportivo</h4>
                                 <?php } else { ?>
                                     <h4 class="[ col-xs-12 ]">Sports Development</h4>
                                 <?php } ?>
