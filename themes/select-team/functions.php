@@ -364,24 +364,6 @@ function pu_blank_login( $user ){
 
 
 
-// FRONT PAGE DISPLAYS A STATIC PAGE /////////////////////////////////////////////////
-
-
-
-	/*add_action( 'after_setup_theme', function () {
-
-		$frontPage = get_page_by_path('home', OBJECT);
-		$blogPage  = get_page_by_path('blog', OBJECT);
-
-		if ( $frontPage AND $blogPage ){
-			update_option('show_on_front', 'page');
-			update_option('page_on_front', $frontPage->ID);
-			update_option('page_for_posts', $blogPage->ID);
-		}
-	});*/
-
-
-
 // REMOVE ADMIN BAR FOR NON ADMINS ///////////////////////////////////////////////////
 
 
@@ -651,12 +633,6 @@ function pu_blank_login( $user ){
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
 	
-
-
-	add_action("wp_ajax_nopriv_update_curriculum", "update_curriculum");
-	add_action("wp_ajax_update_curriculum", "update_curriculum");
-
-	
 	/**
 	 * Actualiza los datos del curriculum del usuario.
 	 * @param  string  $address
@@ -706,11 +682,8 @@ function pu_blank_login( $user ){
 		echo "string";	
 		die();
 	}
-
-
-	add_action("wp_ajax_nopriv_create_curriculum", "create_curriculum");
-	add_action("wp_ajax_create_curriculum", "create_curriculum");
-
+	add_action("wp_ajax_nopriv_update_curriculum", "update_curriculum");
+	add_action("wp_ajax_update_curriculum", "update_curriculum");
 	
 	/**
 	 * Introduce los datos del curriculum del usuario.
@@ -762,11 +735,8 @@ function pu_blank_login( $user ){
 		echo "string";	
 		die();
 	}
-
-
-
-	add_action("wp_ajax_nopriv_delete_tournament", "delete_tournament");
-	add_action("wp_ajax_delete_tournament", "delete_tournament");
+	add_action("wp_ajax_nopriv_create_curriculum", "create_curriculum");
+	add_action("wp_ajax_create_curriculum", "create_curriculum");
 
 	
 	/**
@@ -805,6 +775,9 @@ function pu_blank_login( $user ){
 		var_dump($deleted);
 		die();
 	}
+	add_action("wp_ajax_nopriv_delete_tournament", "delete_tournament");
+	add_action("wp_ajax_delete_tournament", "delete_tournament");
+
 
 	/**
 	 * Valida que los datos del curriculum ha registrar sean correctos. No usada por el momento.
@@ -889,6 +862,7 @@ function pu_blank_login( $user ){
 		echo 'success!';
 		return 1;
 	}// login_user
+
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
 	

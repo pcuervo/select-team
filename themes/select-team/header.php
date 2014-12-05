@@ -53,7 +53,7 @@
 										<a href="'<?php site_url('register') ?>'">Register</a>
 									<?php } else { ?>
 										<p><a href="'.site_url('dashboard').'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
-										<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php esc_url( wp_logout_url(site_url()) ); ?>"> Logout</a> </p>
+										<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo  wp_logout_url(site_url()); ?>"> Logout</a> </p>
 									<?php } ?>
 								</li>
 								<li class="[ menu ]">
@@ -61,6 +61,7 @@
 								</li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
+						
 					</nav>
 					<div class="[ container ] [ hidden-xs hidden-sm ] [ header-top ] [ clearfix ]">
 						<input type="hidden" id="current_url" value="<?php echo site_url(); ?>"/>
@@ -106,7 +107,7 @@
 								<a href="'<?php site_url('register') ?>'">Register</a>
 							<?php } else { ?>
 								<p><a href="'.site_url('dashboard').'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
-								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php esc_url( wp_logout_url(site_url()) ); ?>'"> Logout</a> </p>
+								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>'"> Logout</a> </p>
 							<?php } ?>
 							<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 						</div>

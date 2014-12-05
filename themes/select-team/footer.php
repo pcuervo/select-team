@@ -9,7 +9,6 @@
                         <h4 class="[ modal-title ] [ center-text ]" id="myModalLabel">Login</h4>
                     </div>
                     <div class="[ modal-body ]">
-                    <?php own_wp_login_form(); ?>
                 </div>
             </div>
         </div>
