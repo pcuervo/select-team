@@ -18,7 +18,7 @@
             $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
             //$created_curriculum= get_user_curriculum_info("0");
             $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
-            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = ' ';
+            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = '';
             
             if (sizeof($created_curriculum)>0) {
                 $address        =  $created_curriculum->address;

@@ -218,14 +218,24 @@ function addTournament(){
 function deleteTournament(e){
   var x= e.target.parentNode.id;
   if(x==''){ x= e.target.parentNode.parentNode.id;}
-
-  $tournament_name  = $('.j-'+x+' input[name="torneo"]').val();
-  $tournament_date  = $('.j-'+x+' input[name="torneo-fecha"]').val();
-  $tournament_rank  = $('.j-'+x+' input[name="torneo-rank"]').val();
+  var tournament_data={};
+  tournament_data['action'] = 'delete_tournament';
+  tournament_data['tournament_name']  = $('.j-'+x+' input[name="torneo"]').val();
+  tournament_data['tournament_date']  = $('.j-'+x+' input[name="torneo-fecha"]').val();
+  tournament_data['tournament_rank']  = $('.j-'+x+' input[name="torneo-rank"]').val();
   $('.j-'+x ).hide();
 
-  console.log($tournament_name, $tournament_date, $tournament_rank);
+  //console.log($tournament_name, $tournament_date, $tournament_rank);
+  console.log(tournament_data);
 
+  $.post(
+        ajax_url,
+        tournament_data,
+        function(response){
+            console.log(response);
+            //window.location = site_url + '/dashboard';
+        }// response
+    ); 
 }
 
 
@@ -274,7 +284,7 @@ function registerUser() {
 function createCurriculum() {
   var user_curriculum_data = {};
 
-  user_curriculum_data['action'] = 'register_curriculum';
+  user_curriculum_data['action'] = 'create_curriculum';
   user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
   user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
   user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
@@ -310,7 +320,7 @@ function createCurriculum() {
       user_curriculum_data,
       function(response){
           console.log(response);
-          window.location = site_url + '/dashboard';
+          //window.location = site_url + '/dashboard';
       } //response
   ); 
 }// createCurriculum
@@ -328,9 +338,6 @@ function updateCurriculum() {
   user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
   
   //Sports Development
-  //user_curriculum_data['tournament_data'] = $('.j-user_curriculum input[name="tournament"]').val();
-  //user_curriculum_data['tournament_date_data'] = $('.j-user_curriculum select[name="tournament_date"]').val();
-  //user_curriculum_data['tournament_rank_data'] = $('.j-user_curriculum select[name="tournament_rank"]').val();
   if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
   addTournament();
 
@@ -358,6 +365,7 @@ function updateCurriculum() {
       ajax_url,
       user_curriculum_data,
       function(response){
+          console.log("response:");
           console.log(response);
           //window.location = site_url + '/dashboard';
       } //response

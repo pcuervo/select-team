@@ -5,6 +5,13 @@ define('USUARIO_INVALIDO', -1);
 define('EMAIL_INVALIDO', -2);
 define('PASSWORD_INVALIDO', -3);
 define('PASSWORD_DIFERENTE', -4);
+// mensajes de error al registrar/modificar un curriculum
+define('DIRECCION_INVALIDA', -1);
+define('ESCUELA_INVALIDA', -2);
+define('GRADO_INVALIDO', -3);
+define('TELEFONO_INVALIDO', -4);
+define('CELULAR_INVALIDO', -5);
+define('FECHA_GRAD_INVALIDA', -6);
 // deportes
 define('TENNIS', 1);
 define('SOCCER', 2);
@@ -643,6 +650,190 @@ function pu_blank_login( $user ){
 		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
+	
+
+
+	add_action("wp_ajax_nopriv_update_curriculum", "update_curriculum");
+	add_action("wp_ajax_update_curriculum", "update_curriculum");
+
+	
+	/**
+	 * Actualiza los datos del curriculum del usuario.
+	 * @param  string  $address
+	 * @param  string  $phone
+	 * @param string  $mobile_phone
+	 * @param string  $high_school
+	 * @param string  $grade
+	 * @param string  $high_grad
+	 * @return boolean
+	 */
+
+	function update_curriculum(){
+		global $wpdb;
+
+	   	$address 		= $_POST['address'];
+	   	$phone 			= $_POST['phone'];
+	   	$mobile_phone	= $_POST['mobile_phone'];
+	   	$high_school	= $_POST['high_school'];
+	   	$grade 			= $_POST['grade'];
+	   	$high_grad		= $_POST['high_grad'];
+
+	   	
+	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+		$updated = $wpdb->update(
+		    $wpdb->st_curriculum,
+			    array(
+			     	'address' 			=> $address,
+			     	'phone' 			=> $phone,
+			     	'mobile_phone' 		=> $mobile_phone,
+			     	'graduate_year' 	=> $grade,
+			     	'high_school' 		=> $high_school,		     
+			     	'graduation_date' 	=> $high_grad
+		 		),
+			    array('id' => get_current_user_id()),
+			    array(
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s'
+			     )
+		);
+		var_dump($updated);
+		echo "string";	
+		die();
+	}
+
+
+	add_action("wp_ajax_nopriv_create_curriculum", "create_curriculum");
+	add_action("wp_ajax_create_curriculum", "create_curriculum");
+
+	
+	/**
+	 * Introduce los datos del curriculum del usuario.
+	 * @param  string  $address
+	 * @param  string  $phone
+	 * @param string  $mobile_phone
+	 * @param string  $high_school
+	 * @param string  $grade
+	 * @param string  $high_grad
+	 * @return boolean
+	 */
+
+	function create_curriculum(){
+		global $wpdb;
+
+	   	$address 		= $_POST['address'];
+	   	$phone 			= $_POST['phone'];
+	   	$mobile_phone	= $_POST['mobile_phone'];
+	   	$high_school	= $_POST['high_school'];
+	   	$grade 			= $_POST['grade'];
+	   	$high_grad		= $_POST['high_grad'];
+
+	   	
+	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+		$inserted = $wpdb->insert(
+		    $wpdb->st_curriculum,
+			    array(
+			    	'st_user_id' 		=> $st_users_id,
+			     	'address' 			=> $address,
+			     	'phone' 			=> $phone,
+			     	'mobile_phone' 		=> $mobile_phone,
+			     	'graduate_year' 	=> $grade,
+			     	'high_school' 		=> $high_school,		     
+			     	'graduation_date' 	=> $high_grad
+		 		),
+			    array(
+			    	'%d',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s'
+			     )
+		);
+		var_dump($inserted);
+		echo "string";	
+		die();
+	}
+
+
+
+	add_action("wp_ajax_nopriv_delete_tournament", "delete_tournament");
+	add_action("wp_ajax_delete_tournament", "delete_tournament");
+
+	
+	/**
+	 * Introduce los datos del curriculum del usuario.
+	 * @param  string  $address
+	 * @param  string  $phone
+	 * @param string  $mobile_phone
+	 * @param string  $high_school
+	 * @param string  $grade
+	 * @param string  $high_grad
+	 * @return boolean
+	 */
+
+	function delete_tournament(){
+		global $wpdb;
+		var_dump($_POST);
+		
+		$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+        $tournament_name = $_POST['tournament_name'];
+        $tournament_date = $_POST['tournament_date'];
+        $tournament_rank = $_POST['tournament_rank'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->st_tournament,
+			    array(
+			    	'st_user_id'		=> $st_users_id,
+			    	'name'				=> $tournament_name,
+			    	//'tournament_date'	=> $tournament_date,
+			    	'ranking'	=> $tournament_rank
+			    	),
+			    array('%d')
+		);
+
+		var_dump($deleted);
+		die();
+	}
+
+	/**
+	 * Valida que los datos del curriculum ha registrar sean correctos. No usada por el momento.
+	 * @return 1 si no hay errores, -1 username vacío, -2 email vacío, -3 password inválido, -4 passwords no son iguales
+	 */
+	function validate_curriculum_data(){
+		if($_POST['address'] == '')
+			return DIRECCION_INVALIDA; 
+
+		if($_POST['phone'] == '')
+			return TELEFONO_INVALIDO; 
+
+		if($_POST['mobile_phone'] == '')
+			return CELULAR_INVALIDO; 
+
+		if($_POST['high_school'] == '')
+			return ESCUELA_INVALIDA; 
+
+		if($_POST['grade'] == '')
+			return GRADO_INVALIDO; 
+
+		if($_POST['high_grad'] == '')
+			return FECHA_GRAD_INVALIDA; 
+
+		return 1;
+	}// validate_user_data
+
+
+
 
 	/**
 	 * Valida que los datos del usuario ha registrar sean correctos.
@@ -678,7 +869,7 @@ function pu_blank_login( $user ){
 		     array( '%s'),
 		     array( '%d')
 		 );
-	}// validate_user_data
+	}// add_profile_picture
 
 	/**
 	 * Loggear al usuario a la plataforma.
@@ -701,6 +892,18 @@ function pu_blank_login( $user ){
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
 	
+	add_action( 'init', 'st_register_tournament_table', 1 );
+	function st_register_tournament_table() {
+	    global $wpdb;
+	    $wpdb->st_tournament = "st_tournament";
+	}// st_register_tournament_table
+
+	add_action( 'init', 'st_register_curriculum_table', 1 );
+	function st_register_curriculum_table() {
+	    global $wpdb;
+	    $wpdb->st_curriculum = "st_curriculum";
+	}// st_register_users_table
+
 	add_action( 'init', 'st_register_users_table', 1 );
 	function st_register_users_table() {
 	    global $wpdb;
