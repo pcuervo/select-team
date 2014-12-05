@@ -658,6 +658,8 @@ function pu_blank_login( $user ){
 	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
 		
+		var_dump($prospect_info, $st_users_id);
+
 		$updated = $wpdb->update(
 		    $wpdb->st_curriculum,
 			    array(
