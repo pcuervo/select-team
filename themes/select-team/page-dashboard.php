@@ -234,7 +234,7 @@
                                 <?php } else { ?>
                                     <label for="atp_tournament">Played an ATP tournament?</label>
                                     <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $prospect_sport_answers[ATP_TOURNAMENT-1]->answer; ?> ">
-                                        <option value="yes"> <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?>Yes</option>
+                                        <option value="yes"<?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?>>Yes</option>
                                         <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?>>No</option>
                                     </select>
                                 <?php } ?>
@@ -299,19 +299,6 @@
                             <?php } ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="exampleInputFile">Sube una foto de perfil</label>
-                                <?php } else { ?>
-                                    <label for="exampleInputFile">Upload your profile picture</label>
-                                <?php } ?>
-                                <input type="file" id="exampleInputFile" name="q19">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <p class="help-block">Tu archivo debe ser de 500 x 500 pixels. Peso máximo 400 kb.</p>
-                                <?php } else { ?>
-                                    <p class="help-block">File must be 500 x 500 pixels. No larger than 400 kb.</p>
-                                <?php } ?>
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="">Selecciona el sitio dónde está tu video.</label>
                                 <?php } else { ?>
                                     <label for="">Where is your video hosted?</label>
@@ -333,7 +320,7 @@
                                 <?php } else { ?>
                                     <label for="playerVideo">Your video URL</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="playerVideo">
+                                <input type="text" class="[ form-control ]" id="playerVideo" name="video_url">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <p class="help-block">Pega completa la url de tu video ( www.youtube.com/watch?v=HT3diQX3i1I )</p>
                                 <?php } else { ?>
@@ -347,6 +334,7 @@
                                     <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Save changes</button>
                                 <?php } ?>
                             </div>
+                            <input type="hidden" name="sport" value="<?php echo $prospect_info->sport; ?>">
                         </form>
                     </div>
                 </div>

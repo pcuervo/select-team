@@ -233,36 +233,32 @@ function registerUser() {
 }// registerUser
 
 function updateUser() {
-    // var user_data = {};
+    var user_data = {};
 
-    // user_data['action'] = 'update_user';
-    // user_data['username'] = $('.j-register-user input[name="username"]').val();
-    // user_data['password'] = $('.j-register-user input[name="password"]').val();
-    // user_data['password_confirmation'] = $('.j-register-user input[name="password_confirmation"]').val();
-    // user_data['email'] = $('.j-register-user input[name="email"]').val();
-    // user_data['gender'] = $('.j-register-user select[name="gender"]').val();
-    // user_data['full_name'] = $('.j-register-user input[name="full_name"]').val();
-    // user_data['date_of_birth'] = $('.j-register-user input[name="date_of_birth"]').val();
-    // user_data['sport'] = $('.j-register-user select[name="sport"]').val();
+    user_data['action'] = 'update_user';
+    user_data['full_name'] = $('.j-register-user input[name="full_name"]').val();
+    user_data['video_host'] = $('.j-register-user input[name="video_host"]').val();
+    user_data['video_url'] = $('.j-register-user input[name="video_url"]').val();
+    user_data['sport'] = $('.j-register-user select[name="sport"]').val();
 
-    // switch(user_data['sport']){
-    //     case 'tennis': 
-    //         user_data['tennis_hand'] = $('.j-register-user select[name="tennis_hand"]').val();
-    //         user_data['fmt_ranking'] = $('.j-register-user input[name="fmt_ranking"]').val();
-    //         user_data['atp_tournament'] = $('.j-register-user select[name="atp_tournament"]').val();
-    //         break;
-    //     case 'golf':
-    //         user_data['average_score'] = $('.j-register-user select[name="average_score"]').val();
-    //         break;
-    //     case 'soccer':
-    //         user_data['soccer_position'] = $('.j-register-user select[name="soccer_position"]').val();
-    //         user_data['soccer_height'] = $('.j-register-user input[name="soccer_height"]').val();
-    //         break;
-    //     case 'volleyball':
-    //         user_data['volley_position'] = $('.j-register-user select[name="volley_position"]').val();
-    //         user_data['volley_height'] = $('.j-register-user input[name="volley_height"]').val();
-    // }
-    // console.log(user_data);
+    switch(user_data['sport']){
+        case 'tennis': 
+            user_data['tennis_hand'] = $('.j-register-user select[name="tennis_hand"]').val();
+            user_data['fmt_ranking'] = $('.j-register-user input[name="fmt_ranking"]').val();
+            user_data['atp_tournament'] = $('.j-register-user select[name="atp_tournament"]').val();
+            break;
+        case 'golf':
+            user_data['average_score'] = $('.j-register-user select[name="average_score"]').val();
+            break;
+        case 'soccer':
+            user_data['soccer_position'] = $('.j-register-user select[name="soccer_position"]').val();
+            user_data['soccer_height'] = $('.j-register-user input[name="soccer_height"]').val();
+            break;
+        case 'volleyball':
+            user_data['volley_position'] = $('.j-register-user select[name="volley_position"]').val();
+            user_data['volley_height'] = $('.j-register-user input[name="volley_height"]').val();
+    }// switch
+    console.log(user_data);
     // $.post(
     //     ajax_url,
     //     user_data,
