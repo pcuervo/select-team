@@ -8,45 +8,17 @@
 <?php get_header(); ?>
 
     <div id="dashboard">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                    <li class="sidebar-brand">
-                    <p><i class="fa fa-cogs"></i> Admin Dashboard </p>
-                </li>
-                <li>
-                    <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Mi perfil</a>
-                </li>
-                <li>
-                    <a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-folder-open"></i> Prospectos</a>
-                </li>
-                <li>
-                    <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-briefcase"></i> Agentes</a>
-                </li>
-                <?php } else { ?>
-                    <li class="sidebar-brand">
-                    <p><i class="fa fa-cogs"></i> Admin Dashboard </p>
-                </li>
-                <li>
-                    <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
-                </li>
-                <li>
-                    <a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-folder-open"></i> Prospects</a>
-                </li>
-                <li>
-                    <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-briefcase"></i> Advisors</a>
-                </li>
-                <?php } ?>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ]" id="page-content">
+                <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
-                        <h3>Basic Profile</h3>
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <h3>Perfil</h3>
+                        <?php } else { ?>
+                            <h3>Basic Profile</h3>
+                        <?php } ?>
                         <form id="userForm" role="form" class="[ row ] [  ]" >
                             
                                 <div class="[ form-group ] [ col-xs-12 ]">

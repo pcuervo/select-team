@@ -7,22 +7,16 @@
 
 //ALINGMENT************
 
-.right{
-	float: right !important;
-}
-
-.left{
-	float: left !important;
-}
-
+.right{ float: right !important; }
+.left{ float: left !important; }
 .clear { clear:both; height:1px; margin:0; padding:0; font-size: 1px; line-height: 0; }
 
 //********************
 
-html{
-	height: 100%;
-}
+html{ height: 100%; }
 .home{ max-width: 100%; overflow: hidden; }
+
+.content__dashboard{ padding-left: 0; .transition; }
 
 
 
@@ -162,11 +156,7 @@ button, a{
  }
 
 //HEADER*******
-header{
-	background-color: @brand-primary;
-	position: relative;
-	z-index: 2;
-}
+.header__frontend{ background-color: @brand-primary; position: relative; z-index: 2; }
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
 	margin: 0;
@@ -247,8 +237,6 @@ header{
 	}
 }
 
-
-
 .header-bottom{
 	padding: 35px 15px 20px 15px;
 	border-top: 1px solid  @white;
@@ -265,14 +253,31 @@ header{
 }
 
 .container{
-			&.prospect-filters{ width: 80%; }
-			&.header-top{ width: 90%; }
-		}
-
-
+	&.prospect-filters{ width: 80%; }
+	&.header-top{ width: 90%; }
+}
 
 //***********************************************
 
+
+//HEADER DASHBOARD*******
+.header__dashboard{
+	position: relative;
+	h1{ margin: 0;  }
+	img{ width: 50%; margin: 0 auto; }
+	.qtrans_language_chooser{ padding: 0; .clearfix;
+		li{ width: 50%; border: none; float: left;
+			&:hover, &.active{ background: darken(@brand-primary, 10%); }
+			a{ text-indent: 0; width: 100%; }
+		}
+	}
+}
+
+.header__dashboard__top{ text-indent: 0px !important; background: @brand-primary;
+	&:hover{ background: @brand-primary !important; }
+	li{  }
+	a{ padding: 4px !important; text-align: center; color: @white !important; }
+}
 
 
 
@@ -680,15 +685,13 @@ figure.effect-sadie:hover figcaption::before {
 
 // 768px *************
 @media (min-width: @screen-md-min) {
-	h2{
-		font-size: 1.8em;
-	}
+	.content__dashboard{ padding-left: 250px; .transition; }
 	//MENU DESKTOP ======
-	header{
+	.header__frontend{
 		background-color: @brand-primary;
 		padding: 20px 0 0 0;
 	}
-
+	h2{ font-size: 1.8em; }
 	.jumbotron{
 		height: 350px;
 	}
@@ -792,7 +795,7 @@ figure.effect-sadie:hover figcaption::before {
 
 #dashboard {
 	height: auto;
-    padding-left: 0;
+	min-width: 320px;
     overflow: hidden;
     position: relative;
     -webkit-transition: all 0.5s ease;
@@ -814,18 +817,19 @@ figure.effect-sadie:hover figcaption::before {
 
 #dashboard.toggled {
     padding-left: 250px;
+    overflow-x: hidden;
 }
 
 #sidebar-wrapper {
-    z-index: 0;
-    padding-top: 50px;
-    position: absolute;
+    z-index: 4;
+    position: fixed;
     left: 250px;
     top: 0;
     width: 0;
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
+    overflow-x: hidden;
     background: @brand-success;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -833,7 +837,7 @@ figure.effect-sadie:hover figcaption::before {
     transition: all 0.5s ease;
 }
 
-#dashboard.toggled #sidebar-wrapper {
+#sidebar-wrapper.toggled  {
     width: 250px;
 }
 
@@ -841,37 +845,43 @@ figure.effect-sadie:hover figcaption::before {
 	min-width: 320px;
     width: 100%;
     height: auto;
-    padding: 50px 15px 0 15px;
+    padding: 30px 15px 0 15px;
     button{ margin-left: 20px; }
 }
+
+#menu-toggle{ color: @brand-success; }
 
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
     margin-right: -250px;
+
 }
 
 /* Sidebar Styles */
 
 .sidebar-nav {
-    position: absolute;
-    top: 10%;
     width: 250px;
     min-height: 400px;
     margin: 0;
     padding: 0;
     list-style: none;
+    position: relative;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .sidebar-nav li {
-    text-indent: 20px;
+	width: 250px;
+    text-indent: 5px;
     line-height: 40px;
     border-top: 1px solid darken(@brand-success, 10%);
     .transition;
     &:first-child{ border-top: none; }
+    i{ font-size: 1.5em; }
 }
 
 .sidebar-nav li a {
+	width: 250px;
     display: block;
     padding: 15px 0;
     text-decoration: none;
@@ -901,7 +911,7 @@ figure.effect-sadie:hover figcaption::before {
     padding: 0;
     font-size: 18px;
     line-height: 60px;
-    border-top: none;
+    a{ color: #fff; }
 }
 
 .sidebar-nav > .sidebar-brand:hover{
@@ -913,13 +923,21 @@ figure.effect-sadie:hover figcaption::before {
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-    color: rgba(255, 255, 255, .4);
+    color: rgba(255, 255, 255, 1);
     background: none;
+}
+
+.dashboard__privacy-policy{ 
+	
+	color: #fff;
+	margin-top: 20px;
+	background-color: darken(@brand-success, 30%);
+	a, p{ border: none; font-size: .8em; background: none; }						
 }
 
 @media(min-width:768px) {
     #dashboard {
-        padding-left: 250px;
+        padding-left: 0;
     }
 
     #dashboard.toggled {
@@ -931,9 +949,34 @@ figure.effect-sadie:hover figcaption::before {
     }
 
     #dashboard.toggled #sidebar-wrapper {
-        width: 0;
+        width: 250px;
         left: -250px;
     }
+
+    .sidebar-nav {
+	    width: 250px;
+	    min-height: 400px;
+	    margin: 0;
+	    padding: 0;
+	    list-style: none;
+	    overflow-y: scroll;
+	    overflow-x: hidden;
+	}
+
+	.sidebar-nav li {
+		width: 250px;
+	    text-indent: 15px;
+	    line-height: 40px;
+	    border-top: 1px solid darken(@brand-success, 10%);
+	    .transition;
+	    &:first-child{ border-top: none; }
+	    span{ display: inline-block; }
+	    i{ font-size: 1.5em; }
+	}
+
+	.sidebar-nav li a {
+		width: 250px;
+	}
 
     #page-content-wrapper {
         padding: 50px 20px;
@@ -943,8 +986,26 @@ figure.effect-sadie:hover figcaption::before {
         position: relative;
         margin-right: 0;
     }
+
+    .dashboard__privacy-policy{ 
+    	width: 250px;
+		position: fixed;
+		bottom: 0;	
+		left: 0;				
+	}
 }
 
 .dashboard-profile{ border-bottom: 1px solid @brand-success; }
 
+
+
 //********************************************
+
+
+
+// footer{ position: absolute; bottom: 0; clear: both; }
+footer{ background-color: @brand-primary; width: 100%; padding: 15px; position: absolute; overflow-x: hidden; z-index: 999;
+		a,p{ color: #fff; text-decoration: none; }
+		a:hover{ color: rgba(255, 255, 255, 0.5); text-decoration: none; }
+		span{ margin: 0 5px; }
+}

@@ -14,7 +14,20 @@
             </div>
         </div>
     </div><!--CONTAINER-FLUID-->
-    <footer></footer>
+    <?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') ) { ?>
+        <footer>
+            <div class="[ row ]">
+                <div class=" [  col-xs-12 col-sm-6 col-md-12 center block ] [ text-center ]">
+                    
+                    <p class="[ col-xs-12 col-md-8 ] [ center block ] [ text-center ]" href=""> <a href="">Aviso de Privacidad </a> <span>/</span> Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014.</p>
+                </div>
+            </div>
+        </footer>
+    <?php } else { ?>
+        <footer style="display: none;">
+        </footer>
+    <?php } ?>
+    
     <?php wp_footer(); ?>
   </body>
 </html>

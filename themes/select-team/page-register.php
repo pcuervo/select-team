@@ -3,6 +3,7 @@
         <div class="[ container-fluid ]" id="page-content">
             <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                 <div class="[ col-xs-12 col-sm-7 center block ]">
+                    <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" alt=""></a>
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                         <h3>Registrate</h3>
                     <?php } else { ?>
@@ -345,21 +346,16 @@
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="tennis_hand">¿Zurdo o derecho?</label>
                                     <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                        <option value="left">Zurdo</option>
-                                        <option value="right">Derecho</option>
+                                        <option value="left" <?php if($_GET['q10']=="leftHand") echo "selected"; ?>>Zurdo</option>
+                                        <option value="right" <?php if($_GET['q10']=="rightHand") echo "selected"; ?>>Derecho</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="tennis_hand">Right or lef handed?</label>
                                     <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                        <option value="left">Left handed</option>
-                                        <option value="right">Right handed</option>
+                                        <option value="left" <?php if($_GET['q10']=="leftHand") echo "selected"; ?>>Left handed</option>
+                                        <option value="right" <?php if($_GET['q10']=="rightHand") echo "selected"; ?>>Right handed</option>
                                     </select>
                                 <?php } ?>
-                                <label for="tennis_hand">Right or lef handed?</label>
-                                <select class="[ form-control ]" id="tennisHand" name="tennis_hand" >
-                                    <option value="left" <?php if($_GET['q10']=="leftHand") echo "selected"; ?>>Left handed</option>
-                                    <option value="right" <?php if($_GET['q10']=="rightHand") echo "selected"; ?>>Right handed</option>
-                                </select>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -367,20 +363,20 @@
                                 <?php } else { ?>
                                     <label for="tennisHand">FMT ranking (mexicans only)</label>
                                 <?php } ?>
-                                <input type="number" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q12']; ?> ">
+                                <input type="text" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q12']; ?>">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="atpTournament">¿Has jugado en torneos de la ATP?</label>
-                                    <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?> ">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
+                                    <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?>">
+                                        <option value="yes" <?php if($_GET['q13']=='yes')echo "selected"; ?> >Sí</option>
+                                        <option value="no" <?php if($_GET['q13']=='no')echo "selected"; ?> >No</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="atpTournament">Played an ATP tournament?</label>
-                                    <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?> ">
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
+                                    <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?>">
+                                        <option value="yes" <?php if($_GET['q13']=='yes')echo "selected"; ?> >Yes</option>
+                                        <option value="no" <?php if($_GET['q13']=='no')echo "selected"; ?> >No</option>
                                     </select>
                                 <?php } ?>
                             </div>

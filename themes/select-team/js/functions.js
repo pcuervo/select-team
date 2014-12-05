@@ -177,6 +177,11 @@ $("#dashboard .sidebar-nav li").click(function(e) {
     }
 });
 
+$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#dashboard, #sidebar-wrapper").toggleClass("toggled");
+    });
+
 
 
 function getCookie(cname) {
@@ -188,6 +193,49 @@ function getCookie(cname) {
         if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
     }
     return "";
+}
+
+
+function addTournament(){
+  
+  $tournament_name= $('.j-user_curriculum input[name="tournament"]').val();
+  $tournament_date= $('.j-user_curriculum input[name="tournament_date"]').val();
+  $tournament_rank= $('.j-user_curriculum input[name="tournament_rank"]').val();
+
+  $('.j-user_curriculum').append('<input type="hidden" name="tournament_data[]" value="'+$tournament_name+'"/> ');
+  $('.j-user_curriculum').append('<input type="hidden" name="tournament_date_data[]" value="'+$tournament_date+'"/> ');
+  $('.j-user_curriculum').append('<input type="hidden" name="tournament_rank_data[]" value="'+$tournament_rank+'"/> ');
+
+  $('.j-registed-tournaments').append('<p>Tournament: '+$tournament_name+'</p>');
+  $('.j-registed-tournaments').append('<p>Date: '+$tournament_date+'   Position: '+$tournament_rank+'</p>');
+
+  $('.j-user_curriculum input[name="tournament"]').val("");
+  $('.j-user_curriculum input[name="tournament_date"]').val("");
+  $('.j-user_curriculum input[name="tournament_rank"]').val("");
+
+}
+
+function deleteTournament(e){
+  var x= e.target.parentNode.id;
+  if(x==''){ x= e.target.parentNode.parentNode.id;}
+  var tournament_data={};
+  tournament_data['action'] = 'delete_tournament';
+  tournament_data['tournament_name']  = $('.j-'+x+' input[name="torneo"]').val();
+  tournament_data['tournament_date']  = $('.j-'+x+' input[name="torneo-fecha"]').val();
+  tournament_data['tournament_rank']  = $('.j-'+x+' input[name="torneo-rank"]').val();
+  $('.j-'+x ).hide();
+
+  //console.log($tournament_name, $tournament_date, $tournament_rank);
+  console.log(tournament_data);
+
+  $.post(
+        ajax_url,
+        tournament_data,
+        function(response){
+            console.log(response);
+            //window.location = site_url + '/dashboard';
+        }// response
+    ); 
 }
 
 
@@ -231,6 +279,101 @@ function registerUser() {
         }// response
     ); 
 }// registerUser
+
+
+function createCurriculum() {
+  var user_curriculum_data = {};
+
+  user_curriculum_data['action'] = 'create_curriculum';
+  user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
+  user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
+  user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
+  user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
+  user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
+  user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
+  
+  //Sports Development
+  addTournament();
+
+  var tournament_data = new Array();
+  var values = $("input[name='tournament_data\[\]']").each(function() {
+    tournament_data.push($(this).val());
+  });
+  user_curriculum_data['tournament']= tournament_data;
+  
+  var tournament_date_data = new Array();
+  var values = $("input[name='tournament_date_data\[\]']").each(function() {
+    tournament_date_data.push($(this).val());
+  });
+  user_curriculum_data['tournament_date']= tournament_date_data;
+
+  var tournament_rank_data = new Array();
+  var values = $("input[name='tournament_rank_data\[\]']").each(function() {
+    tournament_rank_data.push($(this).val());
+  });
+  user_curriculum_data['tournament_rank']= tournament_rank_data;
+
+
+  console.log(user_curriculum_data);
+  $.post(
+      ajax_url,
+      user_curriculum_data,
+      function(response){
+          console.log(response);
+          //window.location = site_url + '/dashboard';
+      } //response
+  ); 
+}// createCurriculum
+
+
+function updateCurriculum() {
+  var user_curriculum_data = {};
+
+  user_curriculum_data['action'] = 'update_curriculum';
+  user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
+  user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
+  user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
+  user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
+  user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
+  user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
+  
+  //Sports Development
+  if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
+  addTournament();
+
+  var tournament_data = new Array();
+  var values = $("input[name='tournament_data\[\]']").each(function() {
+    tournament_data.push($(this).val());
+  });
+  user_curriculum_data['tournament']= tournament_data;
+  
+  var tournament_date_data = new Array();
+  var values = $("input[name='tournament_date_data\[\]']").each(function() {
+    tournament_date_data.push($(this).val());
+  });
+  user_curriculum_data['tournament_date']= tournament_date_data;
+
+  var tournament_rank_data = new Array();
+  var values = $("input[name='tournament_rank_data\[\]']").each(function() {
+    tournament_rank_data.push($(this).val());
+  });
+  user_curriculum_data['tournament_rank']= tournament_rank_data;
+
+
+  console.log(user_curriculum_data);
+  $.post(
+      ajax_url,
+      user_curriculum_data,
+      function(response){
+          console.log("response:");
+          console.log(response);
+          //window.location = site_url + '/dashboard';
+      } //response
+  ); 
+
+}// updateCurriculum
+
+
 
 function updateUser() {
     var user_data = {};

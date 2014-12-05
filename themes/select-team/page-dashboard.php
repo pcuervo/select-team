@@ -4,30 +4,9 @@
         wp_redirect( $location );
         exit;
     }
+    get_header();
 ?>
-<?php get_header();?>
-
     <div id="dashboard">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <p><i class="fa fa-cogs"></i> My Dashboard </p>
-                </li>
-                <li>
-                    <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
-                </li>
-                <li>
-                    <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
-                </li>
-                <li>
-                    <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
-                </li>
-                <li class="j-download">
-                    <a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
         
         <?php 
             if(isset($_SESSION['name'])){
@@ -37,10 +16,27 @@
 
             $prospect_info = get_user_basic_info(get_current_user_id()); 
             $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
+            //$created_curriculum= get_user_curriculum_info("0");
+            $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
+            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = '';
+            
+            if (sizeof($created_curriculum)>0) {
+                $address        =  $created_curriculum->address;
+                $phone          =  $created_curriculum->phone;
+                $mob_phone      =  $created_curriculum->mobile_phone;
+                $grad_year      =  $created_curriculum->graduate_year;
+                $high_school    =  $created_curriculum->high_school;
+                //$grad_date      =  $created_curriculum->graduation_date;
+                $grad_dateArr = explode(' ', $created_curriculum->graduation_date);
+                $grad_date = $grad_dateArr[0];
+
+                $tournament_info = get_user_tournament($prospect_info->st_user_id);
+            }
         ?>
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ]" id="page-content">
+                <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="upload_picture">
                     <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -88,11 +84,12 @@
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
-                        <form id="userForm" role="form" class="[ row ] [ j-update-basic-profile ]" >
-                        </form>
-
-                        <h3>Basic Profile</h3>
-                        <form id="userForm" role="form" class="[ row ] [ j-update-basic-profile ]" >
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <h3>Perfil</h3>
+                        <?php } else { ?>
+                            <h3>Basic Profile</h3>
+                        <?php } ?>
+                        <form id="userForm" role="form" class="[ row ] [  ]" >
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="username">Nombre de usuario</label>
@@ -346,14 +343,14 @@
                         <?php } else { ?>
                             <p class="help-block">This section will not appear on your public profile.</p>
                         <?php } ?>
-                        <form role="form" class="[ row ]">
+                        <form role="form" class="[ row ][ j-user_curriculum ]">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="address">Dirección</label>
                                 <?php } else { ?>
                                     <label for="address">Address</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="address" name="q22">
+                                <input type="text" class="[ form-control ]" id="address" name="curriculum_address" value="<?php echo $address; ?>">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -361,7 +358,7 @@
                                 <?php } else { ?>
                                     <label for="phone">Phone</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="phone" name="q23">
+                                <input type="text" class="[ form-control ]" id="phone" name="curriculum_phone" value="<?php echo $phone; ?>">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -369,7 +366,7 @@
                                 <?php } else { ?>
                                     <label for="mPhone">Mobile Phone</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="mPhone" name="q24">
+                                <input type="text" class="[ form-control ]" id="mPhone" name="curriculum_mobile_phone" value="<?php echo $mob_phone; ?>">
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h4 class="[ col-xs-12 ]">Educación</h4>
@@ -382,7 +379,7 @@
                                 <?php } else { ?>
                                     <label for="highSchool">Highschool</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="highSchool" name="q27">
+                                <input type="text" class="[ form-control ]" id="highSchool" name="high_school" value="<?php echo $high_school; ?>">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <p class="help-block">Nombre de la escuela</p>
                                 <?php } else { ?>
@@ -391,77 +388,111 @@
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="midGrad" id="midGrad" name="q4" value="<?php echo $_GET['q5']; ?> ">¿En qué año vas?</label>
-                                    <select class="[ form-control ]" id="q4" name="q4">
+                                    <label for="midGrad" id="midGrad" name="q4">¿En qué año vas?</label>
+                                    <select class="[ form-control ]" id="q4" name="grade">
                                         <option value="grado" selected disabled>Grado</option>
-                                        <option value="grado1">3º Secundaria </option>
-                                        <option value="grado2">4º Preparatoria </option>
-                                        <option value="grado3">5º Preparatoria </option>
-                                        <option value="grado4">6º Preparatoria </option>
-                                        <option value="graduated">Graduado</option>
+                                        <option value="freshment" <?php if($grad_year=='freshment') echo "selected"; ?>>3º Secundaria </option>
+                                        <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>4º Preparatoria </option>
+                                        <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>5º Preparatoria </option>
+                                        <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>6º Preparatoria </option>
+                                        <option value="graduated" <?php if($grad_year=='graduated') echo "selected"; ?>>Graduado</option>
                                     </select>
                                     <?php } else { ?>
-                                        <label for="midGrad" id="midGrad" name="q4" value="<?php echo $_GET['q5']; ?> ">What Class are you in?</label>
-                                        <select class="[ form-control ]" id="q4" name="q5">
+                                        <label for="midGrad" id="midGrad" name="q4" >What Class are you in?</label>
+                                        <select class="[ form-control ]" id="q4" name="grade">
                                             <option value="grado" selected disabled>Class</option>
-                                            <option value="grado1">Freshment </option>
-                                            <option value="grado2">Sophomore </option>
-                                            <option value="grado3">Junior </option>
-                                            <option value="grado4">Senior </option>
-                                            <option value="graduated">Already graduated</option>
+                                            <option value="freshment" <?php if($grad_year=='freshment') echo "selected"; ?>>Freshment </option>
+                                            <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>Sophomore </option>
+                                            <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>Junior </option>
+                                            <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>Senior </option>
+                                            <option value="graduated" <?php if($grad_year=='graduated') echo "selected"; ?>>Already graduated</option>
                                         </select>
                                  <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="highGrad" id="highGrad" name="q4" value="<?php echo $_GET['q4']; ?> ">Graduation Year</label>
+                                <label for="highGrad" id="highGrad" name="high_grad">Graduation Year</label>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <span><label for="q3">¿Cuándo te vas a graduar?</label></span>
                                 <?php } else { ?>
                                     <span><label for="q3">When are you graduating?</label></span>
                                 <?php } ?>
-                                <input name="q3" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation"/>
+                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation" value="<?php echo $grad_date; ?>"/>
                             </div>
                             <div class="clear"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <h4 class="[ col-xs-12 ]">Desarrollo deportivo</h4>
-                                    <p class="[ col-xs-12 ] [ help-block ]">Puedes agregar más de un torneo</p>
                                 <?php } else { ?>
                                     <h4 class="[ col-xs-12 ]">Sports Development</h4>
+                                <?php } ?>
+                                
+                                <?php  if (sizeof($created_curriculum)>0)
+                                     if(sizeof($tournament_info)>0) { ?>
+                                <div class="[ form-group ] [ col-xs-12 ]">
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        <label for="tournament">Torneos</label>
+                                    <?php } else { ?>
+                                        <label for="tournament">Tournaments</label>
+                                    <?php } ?>
+                                        <?php foreach ($tournament_info as $key => $value) { ?>
+                                            <div class="[ form-group ] [ col-xs-12 ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
+                                                <input type="hidden" value="<?php echo $tournament_info[$key]->name;?>" name="torneo">
+                                                <p>
+                                                    <label> <?php echo $tournament_info[$key]->name; ?> </label>
+                                                    <p > <?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?> 
+                                                    <?php echo $tournament_info[$key]->ranking; ?> </p> 
+                                                    <input type="hidden" value="<?php echo $tournament_info[$key]->ranking; ?>" name="torneo-rank">
+                                                    <input type="hidden" value="<?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?>" name="torneo-fecha">
+                                                    <button class="[ btn btn-primary ] [ margin-bottom ] [ j-delete-tournament ]"> <i class="fa fa-times"></i></button>
+                                                </p>
+                                            </div>
+                                        <?php } ?>
+                                </div>
+                                <?php } ?>
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <p class="[ col-xs-12 ] [ help-block ]">Puedes agregar más de un torneo</p>
+                                <?php } else { ?>
                                     <p class="[ col-xs-12 ] [ help-block ]">You can add more than one tournament.</p>
                                 <?php } ?>
+
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="tournament">Torneo</label>
                                 <?php } else { ?>
                                     <label for="tournament">Tournament</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="tournament" name="q29">
+                                <input type="text" class="[ form-control ]" id="tournament" name="tournament">
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="tournamentDate">Fecha</label>
-                                    <input type="date" class="[ form-control ] [ j-datepicker ]" id="datepicker-date-of-tournament">
                                 <?php } else { ?>
                                     <label for="tournamentDate">Date</label>
-                                    <input type="date" class="[ form-control ] [ j-datepicker ]" id="datepicker-date-of-tournament">
                                 <?php } ?>
+                                <input type="date" class="[ form-control ] [ j-datepicker ]" id="datepicker-date-of-tournament" name="tournament_date">
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
-                                <label for="tournamentRank">Ranking</label>
-                                <input type="text" class="[ form-control ]" id="tournamentRank">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="tournamentRank">Posición</label>
+                                <?php } else { ?>
+                                    <label for="tournamentRank">Position</label>
+                                <?php } ?>
+                                <input type="text" class="[ form-control ]" id="tournamentRank" name="tournament_rank">
                             </div>
                             <div class="clear"></div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button class="[ btn btn-primary ] [ margin-bottom ]">Agregar torneo <i class="fa fa-plus"></i></button>
+                                <button class="[ btn btn-primary ] [ margin-bottom ] [ j-add-tournament ] ">Agregar torneo <i class="fa fa-plus"></i></button>
                             <?php } else { ?>
-                                <button class="[ btn btn-primary ] [ margin-bottom ]">Add tournament <i class="fa fa-plus"></i></button>
+                                <button class="[ btn btn-primary ] [ margin-bottom ] [ j-add-tournament ] ">Add tournament <i class="fa fa-plus"></i></button>
                             <?php } ?>
+                            <div class="clear"></div>
+                            <div class="[ form-group ] [ col-xs-12 ] [ j-registed-tournaments ]">
+                            </div>
                             <div class="clear"></div>
                             <div class="[ tournaments-added ] [ col-xs-12 ]"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Guardar cambios</button>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if(sizeof($created_curriculum)>0)echo "-update"; else echo "-create"; ?> ] ">Guardar cambios</button>
                                 <?php } else { ?>
-                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Save changes</button>
+                                    <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if(sizeof($created_curriculum)>0)echo "-update"; else echo "-create"; ?> ] ">Save changes</button>
                                 <?php } ?>
                         </form>
                     </div>

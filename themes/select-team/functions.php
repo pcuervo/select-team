@@ -5,6 +5,13 @@ define('USUARIO_INVALIDO', -1);
 define('EMAIL_INVALIDO', -2);
 define('PASSWORD_INVALIDO', -3);
 define('PASSWORD_DIFERENTE', -4);
+// mensajes de error al registrar/modificar un curriculum
+define('DIRECCION_INVALIDA', -1);
+define('ESCUELA_INVALIDA', -2);
+define('GRADO_INVALIDO', -3);
+define('TELEFONO_INVALIDO', -4);
+define('CELULAR_INVALIDO', -5);
+define('FECHA_GRAD_INVALIDA', -6);
 // deportes
 define('TENNIS', 1);
 define('SOCCER', 2);
@@ -124,24 +131,23 @@ function pu_blank_login( $user ){
 // FRONT END SCRIPTS FOOTER //////////////////////////////////////////////////////
 	function footerScripts(){
 		if( wp_script_is( 'functions', 'done' ) ) {
-			if (is_home()) { ?>
-		        <script type="text/javascript">
-		            (function( $ ) {
-		                "use strict";
-		                $(function(){
-		                    //On load
-		                    $( "#datepicker" ).datepicker({
-		                    	dateFormat: 'yy-mm-dd',
-		                    	changeMonth: true,
-      							changeYear: true,
+			if ( is_home() ) { ?>
+				<script type="text/javascript">
+					(function( $ ) {
+						"use strict";
+						$(function(){
+							//On load
+							$( "#datepicker" ).datepicker({
+								dateFormat: 'yy-mm-dd',
+								changeMonth: true,
+								changeYear: true,
 								yearRange: "-100:+0"
 		                    });
 		                    $( "#datepicker" ).datepicker('setDate', '1995-01-01');
-		                    console.log('date!');
 		                    $( "#datepicker2" ).datepicker({
 		                    	dateFormat: 'yy-mm-dd',
 		                    	changeMonth: true,
-      							changeYear: true,
+								changeYear: true,
 		                    	yearRange: "+0:+20"
 		                    });
 		                    urlAbre();
@@ -268,7 +274,7 @@ function pu_blank_login( $user ){
 							changeMonth: true,
 							changeYear: true,
 							showButtonPanel: true,
-							dateFormat: 'yy-mm',
+							dateFormat: 'yy-mm-dd',
 							onClose: function(dateText, inst) { 
 								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
 								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
@@ -280,10 +286,25 @@ function pu_blank_login( $user ){
 							console.log('actualizando perfil...');
 							updateUser();
 						});
-						$('.j-update-curriculum button').on('click', function(e){
+						$('.j-update-curriculum-update').on('click', function(e){
 							e.preventDefault();
 							console.log('actualizando curriculum...');
 							updateCurriculum();
+						});
+						$('.j-add-tournament').on('click', function(e){
+							e.preventDefault();
+							addTournament();
+						});
+
+						$('.j-delete-tournament').on('click', function(e){
+							e.preventDefault();
+							deleteTournament(e);
+						});
+
+						$('.j-update-curriculum-create').on('click', function(e){
+							e.preventDefault();
+							console.log('creando curriculum...');
+							createCurriculum();  //Llamar a func que haga el INSERT
 						});
 					});
 				</script>
@@ -326,7 +347,6 @@ function pu_blank_login( $user ){
 
 
 // ADMIN SCRIPTS AND STYLES //////////////////////////////////////////////////////////
-
 
 
 	add_action( 'admin_enqueue_scripts', function(){
@@ -630,6 +650,190 @@ function pu_blank_login( $user ){
 		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
+	
+
+
+	add_action("wp_ajax_nopriv_update_curriculum", "update_curriculum");
+	add_action("wp_ajax_update_curriculum", "update_curriculum");
+
+	
+	/**
+	 * Actualiza los datos del curriculum del usuario.
+	 * @param  string  $address
+	 * @param  string  $phone
+	 * @param string  $mobile_phone
+	 * @param string  $high_school
+	 * @param string  $grade
+	 * @param string  $high_grad
+	 * @return boolean
+	 */
+
+	function update_curriculum(){
+		global $wpdb;
+
+	   	$address 		= $_POST['address'];
+	   	$phone 			= $_POST['phone'];
+	   	$mobile_phone	= $_POST['mobile_phone'];
+	   	$high_school	= $_POST['high_school'];
+	   	$grade 			= $_POST['grade'];
+	   	$high_grad		= $_POST['high_grad'];
+
+	   	
+	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+		$updated = $wpdb->update(
+		    $wpdb->st_curriculum,
+			    array(
+			     	'address' 			=> $address,
+			     	'phone' 			=> $phone,
+			     	'mobile_phone' 		=> $mobile_phone,
+			     	'graduate_year' 	=> $grade,
+			     	'high_school' 		=> $high_school,		     
+			     	'graduation_date' 	=> $high_grad
+		 		),
+			    array('id' => get_current_user_id()),
+			    array(
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s'
+			     )
+		);
+		var_dump($updated);
+		echo "string";	
+		die();
+	}
+
+
+	add_action("wp_ajax_nopriv_create_curriculum", "create_curriculum");
+	add_action("wp_ajax_create_curriculum", "create_curriculum");
+
+	
+	/**
+	 * Introduce los datos del curriculum del usuario.
+	 * @param  string  $address
+	 * @param  string  $phone
+	 * @param string  $mobile_phone
+	 * @param string  $high_school
+	 * @param string  $grade
+	 * @param string  $high_grad
+	 * @return boolean
+	 */
+
+	function create_curriculum(){
+		global $wpdb;
+
+	   	$address 		= $_POST['address'];
+	   	$phone 			= $_POST['phone'];
+	   	$mobile_phone	= $_POST['mobile_phone'];
+	   	$high_school	= $_POST['high_school'];
+	   	$grade 			= $_POST['grade'];
+	   	$high_grad		= $_POST['high_grad'];
+
+	   	
+	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+		$inserted = $wpdb->insert(
+		    $wpdb->st_curriculum,
+			    array(
+			    	'st_user_id' 		=> $st_users_id,
+			     	'address' 			=> $address,
+			     	'phone' 			=> $phone,
+			     	'mobile_phone' 		=> $mobile_phone,
+			     	'graduate_year' 	=> $grade,
+			     	'high_school' 		=> $high_school,		     
+			     	'graduation_date' 	=> $high_grad
+		 		),
+			    array(
+			    	'%d',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s'
+			     )
+		);
+		var_dump($inserted);
+		echo "string";	
+		die();
+	}
+
+
+
+	add_action("wp_ajax_nopriv_delete_tournament", "delete_tournament");
+	add_action("wp_ajax_delete_tournament", "delete_tournament");
+
+	
+	/**
+	 * Introduce los datos del curriculum del usuario.
+	 * @param  string  $address
+	 * @param  string  $phone
+	 * @param string  $mobile_phone
+	 * @param string  $high_school
+	 * @param string  $grade
+	 * @param string  $high_grad
+	 * @return boolean
+	 */
+
+	function delete_tournament(){
+		global $wpdb;
+		var_dump($_POST);
+		
+		$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+        $tournament_name = $_POST['tournament_name'];
+        $tournament_date = $_POST['tournament_date'];
+        $tournament_rank = $_POST['tournament_rank'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->st_tournament,
+			    array(
+			    	'st_user_id'		=> $st_users_id,
+			    	'name'				=> $tournament_name,
+			    	//'tournament_date'	=> $tournament_date,
+			    	'ranking'	=> $tournament_rank
+			    	),
+			    array('%d')
+		);
+
+		var_dump($deleted);
+		die();
+	}
+
+	/**
+	 * Valida que los datos del curriculum ha registrar sean correctos. No usada por el momento.
+	 * @return 1 si no hay errores, -1 username vacío, -2 email vacío, -3 password inválido, -4 passwords no son iguales
+	 */
+	function validate_curriculum_data(){
+		if($_POST['address'] == '')
+			return DIRECCION_INVALIDA; 
+
+		if($_POST['phone'] == '')
+			return TELEFONO_INVALIDO; 
+
+		if($_POST['mobile_phone'] == '')
+			return CELULAR_INVALIDO; 
+
+		if($_POST['high_school'] == '')
+			return ESCUELA_INVALIDA; 
+
+		if($_POST['grade'] == '')
+			return GRADO_INVALIDO; 
+
+		if($_POST['high_grad'] == '')
+			return FECHA_GRAD_INVALIDA; 
+
+		return 1;
+	}// validate_user_data
+
+
+
 
 	/**
 	 * Valida que los datos del usuario ha registrar sean correctos.
@@ -665,7 +869,7 @@ function pu_blank_login( $user ){
 		     array( '%s'),
 		     array( '%d')
 		 );
-	}// validate_user_data
+	}// add_profile_picture
 
 	/**
 	 * Loggear al usuario a la plataforma.
@@ -688,6 +892,18 @@ function pu_blank_login( $user ){
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
 	
+	add_action( 'init', 'st_register_tournament_table', 1 );
+	function st_register_tournament_table() {
+	    global $wpdb;
+	    $wpdb->st_tournament = "st_tournament";
+	}// st_register_tournament_table
+
+	add_action( 'init', 'st_register_curriculum_table', 1 );
+	function st_register_curriculum_table() {
+	    global $wpdb;
+	    $wpdb->st_curriculum = "st_curriculum";
+	}// st_register_users_table
+
 	add_action( 'init', 'st_register_users_table', 1 );
 	function st_register_users_table() {
 	    global $wpdb;
@@ -705,7 +921,7 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 	    $wpdb->st_answers = "v_basic_profile";
 	}// st_register_basic_profile_view
-
+	
 	/**
 	 * Inserta un usuario a la tabla st_users
 	 * @param string $st_user_data
@@ -812,14 +1028,44 @@ function pu_blank_login( $user ){
 	    $user_answers = $wpdb->get_results($query);
 		
 		return $user_answers;
-	}// get_users_basic_info
+	}// get_user_sport_answers
+
+	/**
+	 * Jalar curriculum de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_curriculum, 0 en caso de no encontrar resultados.
+	 */
+	function get_user_curriculum_info($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM st_curriculum WHERE st_user_id = %d", $wp_user_id);
+	    $user_curriculum = $wpdb->get_results($query);
+		if (sizeof($user_curriculum)>0) {
+			return $user_curriculum[0];
+		}
+		else
+			return $user_curriculum;
+	}// get_user_curriculum_info
+
+	/**
+	 * Jalar de los torneos de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_tournaments_info
+	 */
+	function get_user_tournament($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT name, tournament_date, ranking FROM st_tournament WHERE st_user_id = %d", $wp_user_id);
+	    $user_tournaments_info = $wpdb->get_results($query);
+		
+		return $user_tournaments_info;
+	}// get_user_tournament
+
 
 	/**
 	 * Manda un correo a las personas relacionadas.
-	 * @param string $email_to, string $name, $message
+	 * @param string $email_to, $message
 	 * @return int TRUE or FALSE
 	 */
-	function send_mail($mail_to, $name, $message){
+	function send_email($mail_to, $message){
 
 		$current_user = wp_get_current_user();
 		$user_id= $current_user->ID;
@@ -836,7 +1082,150 @@ function pu_blank_login( $user ){
 
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
 
-	}// send_mail
+	}// send_email
+
+
+	/**
+	 * Manda un correo sobre las preferencias del coach. // Basada en el archivo maqueta/send-coach.php
+	 * @param string $email_to, string $message
+	 * @return int TRUE or FALSE
+	 */
+
+	function send_coach_email($mail_to, $form_info){
+		$q1 = $q2 = $q3 = $q4 = $q5 = $q6 = $q7 = $q8 = $q9 = $q10 = '';
+
+		$q1 	= ( isset($form_info['q1']) ) ? $form_info['q1'] : ''; //What's your name?
+		$q2 	= ( isset($form_info['q2']) ) ? $form_info['q2'] : ''; //What's your email address?
+		$q3 	= ( isset($form_info['q3']) ) ? $form_info['q3'] : ''; //Which sport are you interested in?
+		$q4 	= ( isset($form_info['q4']) ) ? $form_info['q4'] : ''; //What's the average score you are looking for?
+		$q5 	= ( isset($form_info['q5']) ) ? $form_info['q5'] : ''; //What position does the player have to play?
+		$q7 	= ( isset($form_info['q6']) ) ? $form_info['q6'] : ''; //Do you prefer a left or right handed player?
+		$q8 	= ( isset($form_info['q7']) ) ? $form_info['q7'] : ''; //What FMT ranking are you looking for? (for mexican players only)
+		$q9 	= ( isset($form_info['q8']) ) ? $form_info['q8'] : ''; //What position does the player have to play?
+
+		//$mail_to = 'raul@pcuervo.com, alejandro@pcuervo.com'; //Comentar luego.
+		$subject = 'Select team coach '.$q1;
+
+		if ( $q1 !== '' ){
+			$body_message = "What's your name?: ".$q1."\n";
+		}
+		if ( $q2 !== '' ){
+			$body_message .= "What's your email address?: ".$q2."\n";
+		}
+		if ( $q3 !== '' ){
+			$body_message .= "Which sport are you interested in?: ".$q3."\n";
+		}
+		if ( $q4 !== '' ){
+			$body_message .= "What's the average score you are looking for?: ".$q4."\n";
+		}
+		if ( $q5 !== '' ){
+			$body_message .= "What position does the player have to play?: ".$q5."\n";
+		}
+		if ( $q6 !== '' ){
+			$body_message .= "Are you left or right handed?: ".$q6."\n";
+		}
+		if ( $q7 !== '' ){
+			$body_message .= "Do you prefer a left or right handed player?: ".$q7."\n";
+		}
+		if ( $q8 !== '' ){
+			$body_message .= "What FMT ranking are you looking for?: ".$q8."\n";
+		}
+		if ( $q9 !== '' ){
+			$body_message .= "What position does the player have to play?: ".$q9."\n";
+		}
+		$body_message .= "";
+
+		$headers = 'From: '.$q1."\r\n";
+		$headers .= 'Reply-To: '.$q2."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+	}//send_coach_email
+
+
+	/**
+	 * Manda un correo sobre las características del prospecto. // Basada en el archivo maqueta/send-prospects.php
+	 * por el momento está comentada pero tengo entendido que se usaría al caer en el Dashboard, luego de crear un nuevo usuario.
+	 * @param string $email_to, string $message
+	 * @return int TRUE or FALSE
+	 */
+
+	function send_prospects_email($mail_to, $form_info){
+		$q1 = $q2 = $q3 = $q4 = $q5 = $q6 = $q7 = $q8 = $q9 = $q10 = $q11 = $q12 = $q13 = $q14 = $q15 = '';
+
+		$q1 	= ( isset($form_info['q1']) ) ? $form_info['q1'] : ''; //What's your name?
+		$q2 	= ( isset($form_info['q2']) ) ? $form_info['q2'] : ''; //Gender
+		$q3 	= ( isset($form_info['q3']) ) ? $form_info['q3'] : ''; //When were you born?
+		$q4 	= ( isset($form_info['q4']) ) ? $form_info['q4'] : ''; //When are you graduating?
+		$q5 	= ( isset($form_info['q5']) ) ? $form_info['q5'] : ''; //What year are you studying?
+		$q6 	= ( isset($form_info['q6']) ) ? $form_info['q6'] : ''; //What's your email address?
+		$q7 	= ( isset($form_info['q7']) ) ? $form_info['q7'] : ''; //What sport do you practice?
+		// - Golf -
+		$q8 	= ( isset($form_info['q8']) ) ? $form_info['q8'] : ''; //What's your average score?
+		// - Volleyball -
+		$q9 	= ( isset($form_info['q9']) ) ? $form_info['q9'] : ''; //What's your position?
+		$q10 	= ( isset($form_info['q10']) ) ? $form_info['q10'] : ''; //What's your height?
+		// - Tennis -
+		$q11 	= ( isset($form_info['q11']) ) ? $form_info['q11'] : ''; //Are you left or right handed?
+		$q12 	= ( isset($form_info['q12']) ) ? $form_info['q12'] : ''; //What's your FMT ranking?
+		$q13 	= ( isset($form_info['q13']) ) ? $form_info['q13'] : ''; //Have you ever played an ATP tournament?
+		// - Soccer -
+		$q14 	= ( isset($form_info['q13']) ) ? $form_info['q14'] : ''; //What's your position?
+		$q15 	= ( isset($form_info['q15']) ) ? $form_info['q15'] : ''; //What's your height?
+
+		//$mail_to = 'raul@pcuervo.com, alejandro@pcuervo.com';
+		$subject = 'Select team prospect '.$q1;
+
+		if ( $q1 !== '' ){
+			$body_message = "What's your name?: ".$q1."\n";
+		}
+		if ( $q2 !== '' ){
+			$body_message .= "When were you born?: ".$q2."\n";
+		}
+		if ( $q3 !== '' ){
+			$body_message .= "When are you graduating?: ".$q3."\n";
+		}
+		if ( $q4 !== '' ){
+			$body_message .= "What year are you studying?: ".$q4."\n";
+		}
+		if ( $q5 !== '' ){
+			$body_message .= "What's your email address?: ".$q5."\n";
+		}
+		if ( $q6 !== '' ){
+			$body_message .= "What sport do you practice?: ".$q6."\n";
+		}
+		if ( $q7 !== '' ){
+			$body_message .= "What's your average score?: ".$q7."\n";
+		}
+		if ( $q8 !== '' ){
+			$body_message .= "What's your position?: ".$q8."\n";
+		}
+		if ( $q9 !== '' ){
+			$body_message .= "What's your height?: ".$q9."\n";
+		}
+		if ( $q10 !== '' ){
+			$body_message .= "Are you left or right handed?: ".$q10."\n";
+		}
+		if ( $q11 !== '' ){
+			$body_message .= "What's your FMT ranking?: ".$q11."\n";
+		}
+		if ( $q12 !== '' ){
+			$body_message .= "Have you ever played an ATP tournament?: ".$q12."\n";
+		}
+		if ( $q13 !== '' ){
+			$body_message .= "What's your position?: ".$q13."\n";
+		}
+		if ( $q14 !== '' ){
+			$body_message .= "What's your height?: ".$q14."\n";
+		}
+		$body_message .= "";
+
+		$headers = 'From: '.$q1."\r\n";
+		$headers .= 'Reply-To: '.$q6."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+	} //send_prospects_email
+
 
 
 // ZUROL  //////////////////////////////////////////////////////
