@@ -50,9 +50,9 @@
 									<?php if ( ! is_user_logged_in() ) { ?>
 										<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a>
 										<br/>
-										<a href="'<?php site_url('register') ?>'">Register</a>
+										<a href="'<?php echo site_url('register') ?>'">Register</a>
 									<?php } else { ?>
-										<p><a href="'.site_url('dashboard').'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
+										<p><a href="'<?php echo site_url('dashboard'); ?>'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
 										<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo  wp_logout_url(site_url()); ?>"> Logout</a> </p>
 									<?php } ?>
 								</li>
@@ -104,9 +104,9 @@
 							<?php if ( ! is_user_logged_in() ) { ?>
 								<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a>
 								<br/>
-								<a href="'<?php site_url('register') ?>'">Register</a>
+								<a href="'<?php echo site_url('register') ?>'">Register</a>
 							<?php } else { ?>
-								<p><a href="'.site_url('dashboard').'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
+								<p><a href="<?php echo site_url().'/dashboard';?>"><i class="fa fa-user"></i> Nombre de usuario</a></p>
 								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>'"> Logout</a> </p>
 							<?php } ?>
 							<?php echo qtrans_generateLanguageSelectCode('text'); ?>
@@ -148,7 +148,7 @@
 							<?php if ( ! is_user_logged_in() ) { ?>
 								<a class="[ text-center ]" href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a>
 							<?php } else { ?>
-								<a class="[ text-center ]" href="<?php esc_url( wp_logout_url(site_url()) ); ?>"><i class="[ fa fa-sign-out ]"></i> Logout</a>
+								<a class="[ text-center ]" href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>"><i class="[ fa fa-sign-out ]"></i> Logout</a>
 							<?php } ?>
 							<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 						</li>

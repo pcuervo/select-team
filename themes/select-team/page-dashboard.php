@@ -14,11 +14,15 @@
                 unset($_SESSION['name']);
             }
 
+            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = $video_host = $video_url = '';
+            $created_curriculum = false;
+
             $prospect_info = get_user_basic_info(get_current_user_id()); 
-            $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
-            //$created_curriculum= get_user_curriculum_info("0");
-            $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
-            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = '';
+
+            if($prospect_info){
+                $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
+                $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
+            }
             
             if (sizeof($created_curriculum)>0) {
                 $address        =  $created_curriculum->address;
@@ -89,7 +93,7 @@
                         <?php } else { ?>
                             <h3>Basic Profile</h3>
                         <?php } ?>
-                        <form id="userForm" role="form" class="[ row ] [  ]" >
+                        <form id="userForm" role="form" class="[ row ] [ j-update-basic-profile button ]" >
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="username">Nombre de usuario</label>
@@ -302,13 +306,14 @@
                                 <?php } ?>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="video_host" id="optionsRadios1" value="vimeo" checked>
+                                        <input type="radio" name="video_host" id="optionsRadios1" value="vimeo" <?php if($prospect_info->video_host=='vimeo') echo " checked"; ?> >
                                         Vimeo
                                     </label>
                                 </div>
+                                <input type="hidden" name="sport" value="<?php echo $prospect_info->sport; ?>">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="video_host" id="optionsRadios2" value="youtube">
+                                        <input type="radio" name="video_host" id="optionsRadios2" value="youtube" <?php if($prospect_info->video_host=='youtube')echo " checked"; ?> >
                                         YouTube
                                     </label>
                                 </div>
@@ -317,7 +322,7 @@
                                 <?php } else { ?>
                                     <label for="playerVideo">Your video URL</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="playerVideo" name="video_url">
+                                <input type="text" class="[ form-control ]" id="playerVideo" name="video_url" value="<?php echo $prospect_info->video_url;?>">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <p class="help-block">Pega completa la url de tu video ( www.youtube.com/watch?v=HT3diQX3i1I )</p>
                                 <?php } else { ?>
@@ -326,12 +331,12 @@
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Guardar cambios</button>
+                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]">Guardar cambios</button>
                                 <?php } else { ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Save changes</button>
+                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]">Save changes</button>
                                 <?php } ?>
                             </div>
-                            <input type="hidden" name="sport" value="<?php echo $prospect_info->sport; ?>">
+                            
                         </form>
                     </div>
                 </div>
