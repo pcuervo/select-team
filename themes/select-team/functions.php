@@ -1106,10 +1106,11 @@ function pu_blank_login( $user ){
 	 */
 	function get_users_basic_info(){
 	    global $wpdb;
-	    $query = "SELECT * FROM v_basic_profile";
+	    //$query = "SELECT * FROM v_basic_profile";
+	    $query = "SELECT full_name, sport, gender, profile_picture FROM v_basic_profile";
 	    $users = $wpdb->get_results($query);
 		
-		return $users_basic_info;
+		return $users;
 	}// get_users_basic_info
 
 	/**

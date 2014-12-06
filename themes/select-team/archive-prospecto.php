@@ -23,7 +23,23 @@
 			</div>
 		</div><!-- isotope-filters -->
 		<div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
+		<?php 
+			$users = get_users_basic_info(); 
+
+			for ($i=0; $i < sizeof($users); $i++) {  ?>
+
+				<div class="<?php echo $users[$i]->gender.' '.$users[$i]->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
+		  			<img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
+		  			<div class=" info">
+		  			  <h4 class="center-text"> <?php echo $users[$i]->full_name; ?> </h4>
+		  			  <p class="center-text">Sport: <span><?php echo $users[$i]->sport; ?></span></p>
+		  			</div>
+		  		</div>
+
+			<?php } ?>
+
+
+<!-- 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
 			$argsSport = array(
 				'slug' => 'deporte',
 			);
@@ -46,6 +62,8 @@
 			</div>
 		<?php  endwhile; endif; wp_reset_query(); ?>
 		  
+
+ 
 		  <div class="male tennis player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
 		  			<img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
 		  			<div class=" info">
@@ -123,6 +141,7 @@
 		  			  <p class="center-text">Sport: <span>Soccer</span></p>
 		  			</div>
 		  </div>
+		  -->
 		</div>
 	</div><!--CONTAINER-FLUID-->
 
