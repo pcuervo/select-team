@@ -18,8 +18,8 @@
 			</div>
 			<div class="[ prospects ] [ center margin-bottom ] [ block ] [ clearfix ] [ genderFilter button-group text-center ]" id="genderAll" data-active="">
 				<button type="button" class="btn btn-primary gender" data-filter="*">All</button>
-				<button type="button" class="btn btn-primary gender" data-filter=".hombre">Male</button>
-				<button type="button" class="btn btn-primary gender" data-filter=".mujer">Female</button>
+				<button type="button" class="btn btn-primary gender" data-filter=".male">Male</button>
+				<button type="button" class="btn btn-primary gender" data-filter=".female">Female</button>
 			</div>
 		</div><!-- isotope-filters -->
 		<div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
@@ -134,6 +134,7 @@
 		  			  <p class="center-text">Sport: <span>Tennis</span></p>
 		  			</div>
 		  </div>
+		  
 		  <div class="female soccer player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
 		  			<img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
 		  			<div class=" info">
