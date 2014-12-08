@@ -407,21 +407,23 @@ function updateUserInfo() {
 
 
 function login(){
-  var user_data = {};
-  user_data['action'] = 'user_login';
-  user_data['user'] = $('.j-login input[name="j-email"]').val();
-  user_data['pass'] = $('.j-login input[name="j-password"]').val();
+    var user_data = {};
+    user_data['action'] = 'site_login';
+    user_data['username'] = $('.j-login input[name="j-email"]').val();
+    user_data['password'] = $('.j-login input[name="j-password"]').val();
   
-  console.log(user_data);
-  $.post(
-      ajax_url,
-      user_data,
-      function(response){
-          console.log("response:");
-          //console.log(response);
-          //window.location = site_url + '/dashboard';
-      } //response
-  ); 
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){        
+            console.log(response);  
+            if(response == '1'){
+                window.location = site_url + '/dashboard';
+            }
+
+            alert('Credenciales inválidas, intenta nuevamente.');
+        } //response
+    ); 
 }
 
 function sendMail(){
