@@ -39,7 +39,6 @@
 						  </button>
 						  <a class="[ navbar-brand ]" href="<?php echo site_url(); ?>"><img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" alt=""></a>
 						</div>
-						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="[ collapse navbar-collapse navbar-mobile ]" id="bs-example-navbar-collapse-1">
 							<ul class="[ nav navbar-nav ]">
 								<li class="[ menu ]"><a href="<?php echo site_url('acerca'); ?>">About</a></li>
@@ -49,21 +48,17 @@
 								<li class="[ menu ]">
 									<?php if ( ! is_user_logged_in() ) { ?>
 										<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
-										
-										<a href="<?php echo site_url().'/register';?>">Register</a>
-										<br/>
+										<a href="<?php echo site_url('register') ?>">Register</a>
 									<?php } else { ?>
 										<p><a href="'<?php echo site_url('dashboard'); ?>'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
 										<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo  wp_logout_url(site_url()); ?>"> Logout</a> </p>
 									<?php } ?>
 								</li>
-								
 								<li class="[ menu ]">
 									<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 								</li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
-						
 					</nav>
 					<div class="[ container ] [ hidden-xs hidden-sm ] [ header-top ] [ clearfix ]">
 						<input type="hidden" id="current_url" value="<?php echo site_url(); ?>"/>
@@ -86,7 +81,6 @@
 									Prospects
 								<?php } ?>
 							</a></li>
-						<!--<li class="clearfix"><a class="[ center block ]" href="coaches.html">Coaches</a></li>-->
 							<li><a class="[ center block ]" href="<?php echo site_url('padre'); ?>">
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									Padres
