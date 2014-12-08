@@ -28,7 +28,7 @@
 		}
 		?> >
 	    <div class="[ container-fluid ]">
-	    	<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') ) { ?>
+	    	<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') ) { ?>
 				<header class="[ clearfix ] [ header__frontend ]">
 					<nav class="[ hidden-md hidden-lg ] [ navbar navbar-default ]" role="navigation">
 						<!-- Brand and toggle get grouped for better mobile display -->

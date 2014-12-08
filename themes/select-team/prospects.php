@@ -20,13 +20,15 @@
             </div><!-- isotope-filters -->
         </div>
         <div class="[ container ] [ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
-          <div class="female soccer player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-            <img src="images/profile-02.png" alt="" class="">
-            <div class="info">
-              <h4 class="center-text">Julia Zegër</h4>
-              <p class="center-text">Sport: <span>Soccer</span></p>
+          <a href="">
+            <div class="female soccer player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
+              <img src="images/profile-02.png" alt="" class="">
+              <div class="info">
+                <h4 class="center-text">Julia Zegër</h4>
+                <p class="center-text">Sport: <span>Soccer</span></p>
+              </div>
             </div>
-          </div>
+          </a>
           <div class="male tennis player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
             <img src="images/profile-01.png" alt="" class="">
             <div class=" info">

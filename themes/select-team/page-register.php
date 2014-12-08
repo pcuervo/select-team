@@ -103,9 +103,9 @@
 
                                     case 'golf': ?>
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                            <option value="" selected disabled>Selecciona uno</option>
+                                            <option value="chooseOne" selected disabled>Selecciona uno</option>
                                         <?php } else { ?>
-                                            <option value="" selected disabled>Choose one</option>
+                                            <option value="chooseOne" selected disabled>Choose one</option>
                                         <?php } ?>
                                         <option value="tennis" >Tennis</option>
                                         <option value="golf" selected>Golf</option>
@@ -115,9 +115,9 @@
 
                                     case 'soccer': ?>
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                            <option value="" selected disabled>Selecciona uno</option>
+                                            <option value="chooseOne" selected disabled>Selecciona uno</option>
                                         <?php } else { ?>
-                                            <option value="" selected disabled>Choose one</option>
+                                            <option value="chooseOne" selected disabled>Choose one</option>
                                         <?php } ?>
                                         <option value="tennis">Tennis</option>
                                         <option value="golf">Golf</option>
@@ -127,9 +127,9 @@
 
                                     case 'volleyball': ?>
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                            <option value="" selected disabled>Selecciona uno</option>
+                                            <option value="chooseOne" selected disabled>Selecciona uno</option>
                                         <?php } else { ?>
-                                            <option value="" selected disabled>Choose one</option>
+                                            <option value="chooseOne" selected disabled>Choose one</option>
                                         <?php } ?>
                                         <option value="tennis" >Tennis</option>
                                         <option value="golf">Golf</option>
@@ -139,9 +139,9 @@
 
                                     default: ?>
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                            <option value="" selected disabled>Selecciona uno</option>
+                                            <option value="chooseOne" selected disabled>Selecciona uno</option>
                                         <?php } else { ?>
-                                            <option value="" selected disabled>Choose one</option>
+                                            <option value="chooseOne" selected disabled>Choose one</option>
                                         <?php } ?>
                                         <option value="tennis" >Tennis</option>
                                         <option value="golf">Golf</option>
