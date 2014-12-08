@@ -51,11 +51,13 @@
 										<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a>
 										<br/>
 										<a href="'<?php echo site_url('register') ?>'">Register</a>
+										<br/>
 									<?php } else { ?>
 										<p><a href="'<?php echo site_url('dashboard'); ?>'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
 										<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo  wp_logout_url(site_url()); ?>"> Logout</a> </p>
 									<?php } ?>
 								</li>
+								
 								<li class="[ menu ]">
 									<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 								</li>
@@ -109,6 +111,7 @@
 								<p><a href="<?php echo site_url().'/dashboard';?>"><i class="fa fa-user"></i> Nombre de usuario</a></p>
 								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>'"> Logout</a> </p>
 							<?php } ?>
+								<div class="clear"></div>
 							<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 						</div>
 					</div>

@@ -749,7 +749,6 @@ function pu_blank_login( $user ){
 	 * @param  string  $tournament_rank
 	 * @return boolean
 	 */
-
 	function delete_tournament(){
 		global $wpdb;
 		
@@ -774,19 +773,6 @@ function pu_blank_login( $user ){
 	}
 	add_action("wp_ajax_nopriv_delete_tournament", "delete_tournament");
 	add_action("wp_ajax_delete_tournament", "delete_tournament");
-
-
-	function user_login(){
-		//global $wpdb;
-		
-		echo "string";
-		die();
-	}
-	add_action("wp_ajax_nopriv_user_login", "user_login");
-	add_action("wp_ajax_user_login", "user_login");
-	
-
-
 
 	/**
 	 * Crea un torneo.
@@ -935,7 +921,6 @@ function pu_blank_login( $user ){
 	add_action("wp_ajax_update_user", "update_user");
 
 
-
 	/**
 	 * Valida que los datos del usuario ha registrar sean correctos.
 	 * @return 1 si no hay errores, -1 username vacío, -2 email vacío, -3 password inválido, -4 passwords no son iguales
@@ -987,9 +972,24 @@ function pu_blank_login( $user ){
 			echo $user->get_error_message();
 			return 0;
 		}
-		echo 'success!';
 		return 1;
 	}// login_user
+
+	/**
+	 * Loggear a un usuario a la plataforma desde la página.
+	 * @return boolean
+	 */
+	function site_login(){
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+
+		$logged_in = login_user($username, $password);
+		echo $logged_in;
+
+		die();
+	}// site_login
+	add_action("wp_ajax_nopriv_site_login", "site_login");
+	add_action("wp_ajax_site_login", "site_login");
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
