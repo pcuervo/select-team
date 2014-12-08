@@ -27,13 +27,15 @@
 			$users = get_users_basic_info(); 
 			foreach ($users as $key => $user) {
 		?>
-				<div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
-		  			  <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
-		  			</div>
-		  		</div>
+				<a href="<?php echo site_url('prospects'); ?>">
+					<div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
+			  			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
+			  			<div class=" info">
+			  			  <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
+			  			  <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
+			  			</div>
+			  		</div>
+			  	</a>
 		<?php } ?>
 
 
