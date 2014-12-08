@@ -29,7 +29,7 @@
             </div>
         </div>
     </div><!--CONTAINER-FLUID-->
-    <?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') ) { ?>
+    <?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
         <footer>
             <div class="[ row ]">
                 <div class=" [  col-xs-12 col-sm-6 col-md-12 center block ] [ text-center ]">

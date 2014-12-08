@@ -60,12 +60,14 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <label for="gender">Género</label>
                                 <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender" >
+                                    <option value="chooseOne">Selecciona uno</option>
                                     <option value="Mujer">Mujer</option>
                                     <option value="Hombre">Hombre</option>
                                 </select>
                             <?php } else { ?>
                                 <label for="gender">Gender</label>
                                 <select class="[ form-control ]" id="q2" name="gender">
+                                    <option value="chooseOne">Choose one</option>
                                     <option value="female" <?php if($_GET['q2']=='female') echo "selected"; ?> >Female</option>
                                     <option value="male" <?php if($_GET['q2']=='male') echo "selected"; ?> >Male</option>
                                 </select>
@@ -89,9 +91,9 @@
                                 <?php switch ($_GET['q7']) {
                                     case 'tennis': ?>
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                            <option value="" selected disabled>Selecciona uno</option>
+                                            <option value="chooseOne" selected disabled>Selecciona uno</option>
                                         <?php } else { ?>
-                                            <option value="" selected disabled>Choose one</option>
+                                            <option value="chooseOne" selected disabled>Choose one</option>
                                         <?php } ?>
                                         <option value="tennis" selected>Tennis</option>
                                         <option value="golf">Golf</option>

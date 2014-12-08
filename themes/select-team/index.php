@@ -230,6 +230,7 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q14">¿Qué posición eres?</label></span>
                                 <select class="[ form-control ]" id="q14" name="q14">
+                                    <option value="chooseOne">Selecciona uno</option>
                                     <option value="goal-keeper">Portero</option>
                                     <option value="defender">Defensa</option>
                                     <option value="midfielder">Medio</option>
@@ -238,6 +239,7 @@
                             <?php } else { ?>
                                 <span><label for="q14">What's your position?</label></span>
                                 <select class="[ form-control ]" id="q14" name="q14">
+                                    <option value="chooseOne">Choose one</option>
                                     <option value="goal-keeper">Goal keeper</option>
                                     <option value="defender">Defender</option>
                                     <option value="midfielder">Midfielder</option>
@@ -318,11 +320,11 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q3">¿En qué deporte estás interesado/a?</label></span>
                                 <select class="[ form-control ]" id="q3" name="q3">
-                                    <option disabled>Deporte</option>
+                                    <option value="chooseOne" selected disabled>Deporte</option>
                             <?php } else { ?>
                                 <span><label for="q3">Which sport are you interested in?</label></span>
                                 <select class="[ form-control ]" id="q3" name="q3">
-                                    <option disabled>Sport</option>
+                                    <option value="chooseOne" selected disabled>Sport</option>
                             <?php } ?>
                                     <option value="tennis">Tennis</option>
                                     <option value="golf">Golf</option>
@@ -339,8 +341,10 @@
                             <?php } ?>
                             <select class="[ form-control ]" id="q4" name="q4">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <option value="chooseOne" selected disabled>Selecciona uno</option>
                                     <option value="-66">Menos de 66</option>
                                 <?php } else { ?>
+                                    <option value="chooseOne" selected disabled>Choose one</option>
                                     <option value="-66">Under 66</option>
                                 <?php } ?>
                                 <option value="66-67">66-67</option>
@@ -362,6 +366,11 @@
                                 <span><label for="q5">What position does the player have to play?</label></span>
                             <?php } ?>
                             <select class="[ form-control ]" id="q5" name="q5">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <option value="chooseOne" selected disabled>Selecciona uno</option>
+                                <?php } else { ?>
+                                    <option value="chooseOne" selected disabled>Choose One</option>
+                                <?php } ?>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -375,12 +384,14 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q6">¿Prefieres un jugar diestro o zurdo?</label></span>
                                 <select class="[ form-control ]" id="q6" name="q6">
+                                    <option value="chooseOne" selected disabled>Selecciona uno</option>
                                     <option value="rightHand">Diestro</option>
                                     <option value="leftHand">Zurdo</option>
                                 </select>
                             <?php } else { ?>
                                 <span><label for="q6">Do you prefer a left or right handed player?</label></span>
                                 <select class="[ form-control ]" id="q6" name="q6">
+                                    <option value="chooseOne" selected disabled>Choose one</option>
                                     <option value="rightHand">Right handed</option>
                                     <option value="leftHand">Left handed</option>
                                 </select>
@@ -399,6 +410,7 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <span><label for="q8">¿Qué posición debe ser el jugador?</label></span>
                                 <select class="[ form-control ]" id="q8" name="q8">
+                                    <option value="chooseOne" selected disabled>Selecciona uno</option>
                                     <option value="goal-keeper">Portero</option>
                                     <option value="defender">Defensa</option>
                                     <option value="midfielder">Medio</option>
@@ -407,6 +419,7 @@
                             <?php } else { ?>
                                 <span><label for="q8">What position does the player have to play?</label></span>
                                 <select class="[ form-control ]" id="q8" name="q8">
+                                    <option value="chooseOne" selected disabled>Choose one</option>
                                     <option value="goal-keeper">Goal keeper</option>
                                     <option value="defender">Defender</option>
                                     <option value="midfielder">Midfielder</option>
