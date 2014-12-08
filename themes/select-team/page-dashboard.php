@@ -7,43 +7,6 @@
     get_header();
 ?>
     <div id="dashboard">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                    <li class="sidebar-brand">
-                        <p><i class="fa fa-cogs"></i> <span>Dashboard</span> </p>
-                    </li>
-                    <li>
-                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> <span>Mi perfil</span></a>
-                    </li>
-                    <li>
-                        <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> <span>Curriculum</span></a>
-                    </li>
-                    <li>
-                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> <span>Mensajes</span></a>
-                    </li>
-                    <li class="j-download">
-                        <a href="#" type="download"><i class="fa fa-download"></i> <span>Muanual de aplicante</span></a>
-                    </li>
-                <?php } else { ?>
-                    <li class="sidebar-brand">
-                        <p><i class="fa fa-cogs"></i> <span>My Dashboard</span> </p>
-                    </li>
-                    <li>
-                        <a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> <span>Profile</span></a>
-                    </li>
-                    <li>
-                        <a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> <span>Curriculum</span></a>
-                    </li>
-                    <li>
-                        <a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> <span>Messages</span></a>
-                    </li>
-                    <li class="j-download">
-                        <a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
-                    </li>
-                <?php } ?>
-            </ul>
-        </div><!-- /#sidebar-wrapper -->
         <?php 
             if(isset($_SESSION['name'])){
                 add_profile_picture($_SESSION['st_user_id'], $_SESSION['name']);
