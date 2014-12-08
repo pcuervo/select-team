@@ -24,8 +24,12 @@
                                     <label for="email">Correo electrónico</label>
                                 <?php } else { ?>
                                     <label for="email">Email</label>
-                                <?php } ?>
-                                <input type="email" class="[ form-control ]" value="<?php echo $_GET['q6']; ?>" name="email" > 
+                                <?php } 
+                                $email = '';
+                                if(isset($_GET['q6']))
+                                    $email = $_GET['q6'];
+                                ?>
+                                <input type="email" class="[ form-control ]" value="<?php echo $email; ?>" name="email" > 
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -53,10 +57,15 @@
                                 <label for="full_name">Nombre completo</label>
                             <?php } else { ?>
                                 <label for="full_name">Full name</label>
-                            <?php } ?>
-                            <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $_GET['q1']; ?>" name="full_name" >
+                            <?php } 
+                            $full_name = '';
+                            if(isset($_GET['q1']))
+                                $full_name = $_GET['q1'];
+                            ?>
+                            <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $full_name; ?>" name="full_name" >
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">
+                            <?php if(isset($_GET['q2']))
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <label for="gender">Género</label>
                                 <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender" >
@@ -68,7 +77,9 @@
                                 <label for="gender">Gender</label>
                                 <select class="[ form-control ]" id="q2" name="gender">
                                     <option value="chooseOne">Choose one</option>
-                                    <option value="female" <?php if($_GET['q2']=='female') echo "selected"; ?> >Female</option>
+                                    <option value="female" 
+                                        <?php if($_GET['q2']=='female') echo "selected"; ?> 
+                                    >Female</option>
                                     <option value="male" <?php if($_GET['q2']=='male') echo "selected"; ?> >Male</option>
                                 </select>
                             <?php } ?>
@@ -491,9 +502,9 @@
                             </div>
                         <?php } ?>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Guardar cambios</button>
+                            <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Registrar usuario</button>
                         <?php } else { ?>
-                            <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Save changes</button>
+                            <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Register user</button>
                         <?php } ?>
                         
                     </form>
