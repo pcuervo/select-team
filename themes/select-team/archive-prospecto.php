@@ -25,18 +25,16 @@
 		<div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
 		<?php 
 			$users = get_users_basic_info(); 
-
-			for ($i=0; $i < sizeof($users); $i++) {  ?>
-
-				<div class="<?php echo $users[$i]->gender.' '.$users[$i]->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
+			foreach ($users as $key => $user) {
+		?>
+				<div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
+		  			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
 		  			<div class=" info">
-		  			  <h4 class="center-text"> <?php echo $users[$i]->full_name; ?> </h4>
-		  			  <p class="center-text">Sport: <span><?php echo $users[$i]->sport; ?></span></p>
+		  			  <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
+		  			  <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
 		  			</div>
 		  		</div>
-
-			<?php } ?>
+		<?php } ?>
 
 
 <!-- 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
