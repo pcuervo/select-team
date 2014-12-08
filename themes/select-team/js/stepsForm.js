@@ -113,7 +113,7 @@
 			}
 		} );
 	};
-
+	
 	stepsForm.prototype._nextQuestion = function() {
 		if( !this._validade() ) {
 			return false;
@@ -203,6 +203,7 @@
 	stepsForm.prototype._validade = function() {
 		// current question´s input
 		var input = this.questions[ this.current ].querySelector( 'input, select' ).value;
+		console.log(input);
 		if( input === '' ) {
 			this._showError( 'EMPTYSTR' );
 			return false;
@@ -213,6 +214,7 @@
 	// TODO (next version..)
 	stepsForm.prototype._showError = function( err ) {
 		var message = '';
+		console.log('showerroe');
 		switch( err ) {
 			case 'EMPTYSTR' :
 				message = 'Please fill the field before continuing';

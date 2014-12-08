@@ -236,6 +236,10 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 			this._showError( 'EMPTYSTR' );
 			return false;
 		}
+		if( input === 'chooseOne' ) {
+			this._showError( 'CHOOSEONE' );
+			return false;
+		}
 
 		return true;
 	}
@@ -250,11 +254,14 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 			case 'INVALIDEMAIL' :
 				message = 'Please fill a valid email address';
 				break;
-			// ...
+			case 'CHOOSEONE' :
+				message = 'Please choose one from the list';
+				break;
 		};
 		this.error.innerHTML = message;
 		classie.addClass( this.error, 'show' );
 	}
+	
 
 	// clears/hides the current error message
 	stepsForm.prototype._clearError = function() {
