@@ -178,9 +178,16 @@ $("#dashboard .sidebar-nav li").click(function(e) {
 });
 
 $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#dashboard, #sidebar-wrapper").toggleClass("toggled");
-    });
+    e.preventDefault();
+    $("#dashboard, #sidebar-wrapper").toggleClass("toggled");
+});
+
+// FOOTER
+function footerBottom(){
+    var alturaFooter = $('footer').height();
+    $('.container-fluid').css('padding-bottom', alturaFooter );
+    alert("HOLA");
+}
 
 
 

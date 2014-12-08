@@ -348,6 +348,17 @@ function pu_blank_login( $user ){
 					});
 				</script>
 			<?php } ?>
+			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
+				<script>
+					function footerBottom(){
+					    var alturaFooter = $('footer').height();
+					    $('.container-fluid').css('padding-bottom', alturaFooter );
+					    alert("HOLA");
+					}
+					
+				</script>
+			<?php } else { ?>
+			<?php } ?>
     	<?php } }
     add_action( 'wp_footer', 'footerScripts', 21 );
 
