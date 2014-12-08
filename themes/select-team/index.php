@@ -107,7 +107,7 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q7">¿Qué deporte practicas?</label></span>
                                 <select class="[ form-control ]" id="q7" name="q7">
-                                    <option value="" disabled>Selecciona uno</option>
+                                    <option value="chooseOne" selected disabled>Selecciona uno</option>
                                     <option value="tennis">Tennis</option>
                                     <option value="golf">Golf</option>
                                     <option value="soccer">Soccer</option>
@@ -116,7 +116,7 @@
                             <?php } else { ?>
                                 <span><label for="q7">What sport do you practice?</label></span>
                                 <select class="[ form-control ]" id="q7" name="q7">
-                                    <option value="chooseOne" disabled>Choose one</option>
+                                    <option value="chooseOne" selected disabled>Choose one</option>
                                     <option value="tennis">Tennis</option>
                                     <option value="golf">Golf</option>
                                     <option value="soccer">Soccer</option>

@@ -33,8 +33,11 @@
         <footer>
             <div class="[ row ]">
                 <div class=" [  col-xs-12 col-sm-6 col-md-12 center block ] [ text-center ]">
-                    
-                    <p class="[ col-xs-12 col-md-8 ] [ center block ] [ text-center ]" href=""> <a href="">Aviso de Privacidad </a> <span>/</span> Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014.</p>
+                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                        <p class="[ col-xs-12 col-md-8 ] [ center block ] [ text-center ]" href=""> <a href="">Aviso de Privacidad </a> <span>/</span> Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014.</p>
+                    <?php } else { ?>
+                        <p class="[ col-xs-12 col-md-8 ] [ center block ] [ text-center ]" href=""> <a href="">Privacy policy </a> <span>/</span> All rights reserved. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014.</p>
+                    <?php } ?>
                 </div>
             </div>
         </footer>
