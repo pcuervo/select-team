@@ -7,7 +7,6 @@
     get_header();
 ?>
     <div id="dashboard">
-        
         <?php 
             if(isset($_SESSION['name'])){
                 add_profile_picture($_SESSION['st_user_id'], $_SESSION['name']);
