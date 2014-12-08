@@ -78,7 +78,7 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q5">¿En qué año vas?</label></span>
                                 <select class="[ form-control ]" id="q5" name="q5">
-                                <option>Grado</option>
+                                <option value="" disabled>Grado</option>
                                 <option value="grado1">3º Secundaria </option>
                                 <option value="grado2">4º Preparatoria </option>
                                 <option value="grado3">5º Preparatoria </option>
@@ -87,7 +87,7 @@
                             <?php } else { ?>
                                 <span><label for="q5">What grade are you in?</label></span>
                                 <select class="[ form-control ]" id="q5" name="q5">
-                                <option>Class</option>
+                                <option value="" disabled>Class</option>
                                 <option value="grado1">Freshman</option>
                                 <option value="grado2">Sophomore </option>
                                 <option value="grado3">Junior </option>
@@ -177,8 +177,8 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q11">¿Eres zurdo o diestro?</label></span>
                                 <select class="[ form-control ]" id="q10" name="q10">
-                                    <option value="rightHand">Right handed</option>
-                                    <option value="leftHand">Left handed</option>
+                                    <option value="rightHand">Diestro</option>
+                                    <option value="leftHand">Zurdo</option>
                                 </select>
                             <?php } else { ?>
                                 <span><label for="q11">Are you left or right handed?</label></span>
@@ -187,7 +187,6 @@
                                     <option value="leftHand">Left handed</option>
                                 </select>
                             <?php } ?>
-
                         </li>
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -307,21 +306,16 @@
                                 <span><label for="q3">¿En qué deporte estás interesado/a?</label></span>
                                 <select class="[ form-control ]" id="q3" name="q3">
                                     <option disabled>Deporte</option>
-                                    <option value="tennis">Tennis</option>
-                                    <option value="golf">Golf</option>
-                                    <option value="soccer">Soccer</option>
-                                    <option value="volleyball">Volleyball</option>
-                                </select>
                             <?php } else { ?>
                                 <span><label for="q3">Which sport are you interested in?</label></span>
                                 <select class="[ form-control ]" id="q3" name="q3">
                                     <option disabled>Sport</option>
+                            <?php } ?>
                                     <option value="tennis">Tennis</option>
                                     <option value="golf">Golf</option>
                                     <option value="soccer">Soccer</option>
                                     <option value="volleyball">Volleyball</option>
                                 </select>
-                            <?php } ?>
                         </li>
                         <!-- GOLF -->
                         <li class="[ js-sport js-golf ]">
@@ -367,10 +361,17 @@
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <span><label for="q6">¿Prefieres un jugar diestro o zurdo?</label></span>
+                                <select class="[ form-control ]" id="q6" name="q6">
+                                    <option value="rightHand">Diestro</option>
+                                    <option value="leftHand">Zurdo</option>
+                                </select>
                             <?php } else { ?>
                                 <span><label for="q6">Do you prefer a left or right handed player?</label></span>
+                                <select class="[ form-control ]" id="q6" name="q6">
+                                    <option value="rightHand">Right handed</option>
+                                    <option value="leftHand">Left handed</option>
+                                </select>
                             <?php } ?>
-                            <input id="q6" name="q6" type="text"/>
                         </li>
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
