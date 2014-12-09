@@ -5,6 +5,7 @@
         exit;
     }
     get_header();
+
 ?>
     <div id="dashboard">
         <?php 

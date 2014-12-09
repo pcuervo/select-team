@@ -7,7 +7,10 @@
 ?>
 <?php get_header(); ?>
 
+
+
     <div id="dashboard">
+        <?php $advisor_info = get_advisor_basic_info(get_current_user_id()); ?>
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ]" id="page-content">
@@ -27,7 +30,7 @@
                                     <?php } else { ?>
                                         <label for="username">Username</label>
                                     <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="username">
+                                    <p><?php echo $advisor_info->user_login; ?></p>
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -35,25 +38,7 @@
                                     <?php } else { ?>
                                         <label for="email">Email</label>
                                     <?php } ?>
-                                    <input type="email" class="[ form-control ]"  name="email" > 
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="[ form-control ]" name="password">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <p class="help-block">El password debe contener al menos 8 caracteres.</p>
-                                    <?php } else { ?>
-                                        <p class="help-block">Password must contain at least 8 characters.</p>
-                                    <?php } ?>
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="password_confirmation">Confirmar password</label>
-                                    <?php } else { ?>
-                                        <label for="password_confirmation">Confirm password</label>
-                                    <?php } ?>
-                                        <input type="password" class="[ form-control ]" name="password_confirmation">
-                                        <label for="validate" id="validate"></label>                                 
+                                    <p><?php echo $advisor_info->user_email; ?></p>
                                 </div>
                             
                             <div class="[ form-group ] [ col-xs-12 ]">
@@ -98,28 +83,17 @@
                                     </div>
                                 </div><!-- isotope-filters -->
                                 <div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
-                                <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-                                    $argsSport = array(
-                                        'slug' => 'deporte',
-                                    );
-                                    $sportTerm = get_terms( 'deporte', $args );
-                                    $argsGenre = array(
-                                        'slug' => 'genero',
-                                    );
-                                    $genreTerm = get_terms( 'genero', $args );
-                                    $sport              = $sportTerm[1]->slug;
-                                    $genre              = $genreTerm[1]->slug;;
-                                    ?>
+
                                     <div class="[ player <?php echo $sport.' '.$genre; ?> ] [ col-xs-5 col-sm-3 col-md-3 col-lg-2 ] [ clearfix margin-bottom ]">
-                                        <a href="<?php the_permalink(); ?>">
-                                            <?php the_post_thumbnail(); ?>
+                                        <a href="#">
+
                                         </a>
                                         <div class="info">
-                                            <h4 class="center-text"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                                            <p class="center-text">Sport: <span><?php echo $sport; ?></span></p>
+                                            <h4 class="center-text"><a href="<?php the_permalink(); ?>"></a></h4>
+                                            <p class="center-text">Sport: <span></span></p>
                                         </div>
                                     </div>
-                                <?php  endwhile; endif; wp_reset_query(); ?>
+
                                   
                                     <div class="male tennis player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
                                             <img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">

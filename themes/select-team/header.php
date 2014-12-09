@@ -26,6 +26,19 @@
 		} else {
 			body_class();
 		}
+
+		if ( is_user_logged_in() ){
+			$role = get_current_user_role();
+
+			if ( $role == 'subscriber' ){
+				$dashboard = 'dashboard';
+				$user = get_user_basic_info(get_current_user_id()); 
+			} else {
+				$dashboard = 'dashboard-admin';
+				$user = get_advisor_basic_info(get_current_user_id()); 
+			}
+		}
+
 		?> >
 	    <div class="[ container-fluid ]">
 	    	<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') ) { ?>
@@ -55,9 +68,10 @@
 												<i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
 												<a href="<?php echo site_url('register') ?>">Register</a>
 											<?php } ?>
-									<?php } else { ?>
-										<p><a href="'<?php echo site_url('dashboard'); ?>'"><i class="fa fa-user"></i> Nombre de usuario</a></p>
-										<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo  wp_logout_url(site_url()); ?>"> Logout</a> </p>
+									<?php } else { 
+									?>
+										<p><a href="'<?php echo site_url('.$dashboard.'); ?>'"><i class="fa fa-user"></i></a></p>
+										<p> <i class="[ fa fa-sign-out ]"></i> <?php echo $user->user_login ?><a href="<?php echo  wp_logout_url(site_url()); ?>"> Logout</a> </p>
 									<?php } ?>
 								</li>
 								<li class="[ menu ]">
@@ -112,8 +126,9 @@
 									<i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
 									<a href="<?php echo site_url('register') ?>">Register</a>
 								<?php } ?>
-							<?php } else { ?>
-								<p><a href="<?php echo site_url().'/dashboard';?>"><i class="fa fa-user"></i> Nombre de usuario</a></p>
+							<?php } else { 
+							?>
+								<p><a href="<?php echo site_url().'/'.$dashboard ?>"><i class="fa fa-user"></i> <?php echo $user->user_login; ?></a></p>
 								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>'"> Logout</a> </p>
 							<?php } ?>
 								<div class="clear"></div>
@@ -162,34 +177,38 @@
 						</li>
 						
 						<!-- Para el dashboard de usario -->
-						<li>
-							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
-							<?php } else { ?>
-								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
-							<?php } ?>
-						</li>
-						<li>
-							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Currículum</a>
-							<?php } else { ?>
-								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
-							<?php } ?>
-						</li>
-						<li>
-							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
-							<?php } else { ?>
-								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
-							<?php } ?>
-						</li>
-						<li class="j-download">
-							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#" type="download"><i class="fa fa-download"></i> Manual de aplicante</a>
-							<?php } else { ?>
-								<a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
-							<?php } ?>
-						</li>
+						<?php 
+						if($role == 'subscriber'){
+						?>
+							<li>
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
+								<?php } else { ?>
+									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+								<?php } ?>
+							</li>
+							<li>
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Currículum</a>
+								<?php } else { ?>
+									<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
+								<?php } ?>
+							</li>
+							<li>
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+								<?php } else { ?>
+									<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
+								<?php } ?>
+							</li>
+							<li class="j-download">
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									<a href="#" type="download"><i class="fa fa-download"></i> Manual de aplicante</a>
+								<?php } else { ?>
+									<a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
+								<?php } ?>
+							</li>
+						<?php } else { ?>
 						<!-- Para el dashboard de admin -->
 						<li>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -212,6 +231,7 @@
 								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
 							<?php } ?>
 						</li>
+						<?php }  ?>
 						<!-- Para el register usuario o advisor -->
 						<li class="sidebar-brand">
 							<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>

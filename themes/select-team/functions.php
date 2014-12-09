@@ -760,7 +760,6 @@ function pu_blank_login( $user ){
 	add_action("wp_ajax_nopriv_create_curriculum", "create_curriculum");
 	add_action("wp_ajax_create_curriculum", "create_curriculum");
 
-	
 	/**
 	 * Elimina un torneo.
 	 * @param  string  $tournament_name
@@ -845,7 +844,6 @@ function pu_blank_login( $user ){
 	 * @param string  $high_grad
 	 * @return boolean
 	 */
-
 	function update_user(){
 		global $wpdb;
 	   	
@@ -1009,6 +1007,28 @@ function pu_blank_login( $user ){
 	add_action("wp_ajax_nopriv_site_login", "site_login");
 	add_action("wp_ajax_site_login", "site_login");
 
+	/**
+	 * Obtener el rol del usuario.
+	 * @return $role
+	 */
+	function get_current_user_role(){
+		global $wpdb;
+
+		$user = get_userdata( get_current_user_id() );
+	    $capabilities = $user->{$wpdb->prefix . 'capabilities'};
+
+	    if ( !isset( $wp_roles ) )
+	        $wp_roles = new WP_Roles();
+
+	    foreach ( $wp_roles->role_names as $role => $name ) :
+
+	        if ( array_key_exists( $role, $capabilities ) )
+	            return $role;
+
+	    endforeach;
+	}// site_login
+
+
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
 	
@@ -1132,6 +1152,19 @@ function pu_blank_login( $user ){
 	function get_user_basic_info($wp_user_id){
 	    global $wpdb;
 	    $query = $wpdb->prepare("SELECT * FROM v_basic_profile WHERE id = %d", $wp_user_id);
+	    $user_basic_info = $wpdb->get_results($query);
+		
+		return $user_basic_info[0];
+	}// get_users_basic_info
+
+	/**
+	 * Jalar "basic profile" de un advisor/admin
+	 * @param int $wp_user_id
+	 * @return mixed $user_basic_info
+	 */
+	function get_advisor_basic_info($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM wp_users WHERE id = %d", $wp_user_id);
 	    $user_basic_info = $wpdb->get_results($query);
 		
 		return $user_basic_info[0];
