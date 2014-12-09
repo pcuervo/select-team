@@ -269,7 +269,30 @@ function pu_blank_login( $user ){
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
-					$( function() {						
+					$( function() {
+                        
+                        $(".profile_picture_preview").load(function() {
+                                
+                                 var width_picture = $(this).width();
+                                 var height_picture = $(this).height();
+
+                                    alert($(this).height());
+                                    alert($(this).width());
+
+                                 if (width_picture > 300) {
+
+                                    $(".profile_picture_preview").css("width", "300px");
+                                     $(".profile_picture_preview").css("border", "1px solid #002147");
+
+                                 } else {
+
+                                    $(".profile_picture_preview").css("height", "300px");
+                                    $(".profile_picture_preview").css("border", "1px solid #002147");
+
+                                 } 
+                             
+                        });
+                        
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,

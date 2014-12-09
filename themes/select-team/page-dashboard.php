@@ -49,7 +49,7 @@
                             <h3>Profile Picture</h3>
                         <?php } ?>
                         <?php if ( $prospect_info->profile_picture != '' ) { ?>
-                            <img src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
+                            <img class="profile_picture_preview" src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
                         <?php } ?>
                         <img src="" />
                         <form action="<?php echo THEMEPATH; ?>upload_picture.php" method="POST" role="form" class="[ row ] [ j-upload-profile-picture ]" enctype="multipart/form-data">
