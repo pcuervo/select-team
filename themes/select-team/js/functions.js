@@ -426,12 +426,13 @@ function login(){
         ajax_url,
         user_data,
         function(response){        
-            console.log(response);  
             if(response == '1'){
                 window.location = site_url + '/dashboard';
+            } else {
+                alert('Credenciales inválidas, intenta nuevamente.');
             }
 
-            alert('Credenciales inválidas, intenta nuevamente.');
+            
         } //response
     ); 
 }

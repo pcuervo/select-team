@@ -200,12 +200,10 @@ function pu_blank_login( $user ){
 		                    $('.card-close').on('click', function(){
 		                        cerrarCards( $(this) );
 		                    });
-
 	   						$('.j-login button').on('click', function(e){
 								e.preventDefault();
 								login();//addTournament();
 							});
-
 
 		                    //Responsive
 		                    $(window).resize(function(){
@@ -220,25 +218,27 @@ function pu_blank_login( $user ){
 		        </script>
 			<?php } elseif ( get_post_type() == 'prospecto') { ?>
 				<script type="text/javascript">
-				      correIsotope('.isotope-container-sports', '.player', 'masonry');
-				      filtrarIsotopeDefault('.isotope-container', 'none');
-				      $('.isotope-filters button').on( 'click', function(e) {
-				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
-				      });
-				      $('#sportAll button').on('click', function(){
-				        var sport = $(this).attr('data-filter');
-				        //console.log(sport);
-				        $('#sportAll').attr('data-active', sport);
-				        reorder($(this), '.isotope-container-sports');
-				        return false;
-				      });
-				      $('#genderAll button').on('click', function(){
-				        var gender = $(this).attr('data-filter');
-				        //console.log(gender);
-				        $('#genderAll').attr('data-active', gender);
-				        reorder($(this), '.isotope-container-sports');
-				        return false;
-				      });
+					correIsotope('.isotope-container-sports', '.player', 'masonry');
+					filtrarIsotopeDefault('.isotope-container', 'none');
+					$('.isotope-filters button').on( 'click', function(e) {
+						filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+					});
+					$('#sportAll button').on('click', function(){
+						var sport = $(this).attr('data-filter');
+						$('#sportAll').attr('data-active', sport);
+						reorder($(this), '.isotope-container-sports');
+						return false;
+					});
+					$('#genderAll button').on('click', function(){
+						var gender = $(this).attr('data-filter');
+						$('#genderAll').attr('data-active', gender);
+						reorder($(this), '.isotope-container-sports');
+						return false;
+					});
+				    $('.j-login button').on('click', function(e){
+						e.preventDefault();
+						login();//addTournament();
+					});
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard-admin') { ?>
 				<script type="text/javascript">
@@ -345,6 +345,10 @@ function pu_blank_login( $user ){
 								$(this).datepicker('setDate', new Date(year, month, 1));
 							}
 						});
+						$('.j-login button').on('click', function(e){
+							e.preventDefault();
+							login();//addTournament();
+						});
 					});
 				</script>
 			<?php } ?>
@@ -355,6 +359,10 @@ function pu_blank_login( $user ){
 					    $('.container-fluid').css('padding-bottom', alturaFooter );
 					    alert("HOLA");
 					}
+					$('.j-login button').on('click', function(e){
+						e.preventDefault();
+						login();//addTournament();
+					});
 					
 				</script>
 			<?php } else { ?>
@@ -981,8 +989,7 @@ function pu_blank_login( $user ){
 		$creds['remember'] = true;
 		$user = wp_signon( $creds, false );
 		if ( is_wp_error($user) ){
-			echo $user->get_error_message();
-			return 0;
+			return $user->get_error_message();
 		}
 		return 1;
 	}// login_user
