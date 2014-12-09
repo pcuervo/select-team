@@ -10,48 +10,47 @@
                         <h3>Register</h3>
                     <?php } ?>
                     <form id="userForm" role="form" class="[ row ] [ j-register-user ]" >
-                        <?php if ( ! is_user_logged_in() ) { ?>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="username">Usuario</label>
-                                <?php } else { ?>
-                                    <label for="username">Username</label>
-                                <?php } ?>
-                                <input type="text" class="[ form-control ]" name="username">
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="email">Correo electrónico</label>
-                                <?php } else { ?>
-                                    <label for="email">Email</label>
-                                <?php } 
-                                $email = '';
-                                if(isset($_GET['q6']))
-                                    $email = $_GET['q6'];
-                                ?>
-                                <input type="email" class="[ form-control ]" value="<?php echo $email; ?>" name="email" > 
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="password">Contraseña</label>
-                                    <input type="password" class="[ form-control ]" name="password">
-                                    <p class="help-block">El password debe contener al menos 8 caracteres.</p>
-                                <?php } else { ?>
-                                    <label for="password">Password</label>
-                                    <input type="password" class="[ form-control ]" name="password">
-                                    <p class="help-block">Password must be at leat 8 characters.</p>
-                                <?php } ?>
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="password_confirmation">Confirmar contraseña</label>
-                                <?php } else { ?>
-                                    <label for="password_confirmation">Confirm password</label>
-                                <?php } ?>
-                                <input type="password" class="[ form-control ]" name="password_confirmation">
-                                <label for="validate" id="validate"></label>
-                            </div>
-                        <?php } ?>
+                        <div class="[ form-group ] [ col-xs-12 ]">
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <label for="username">Usuario</label>
+                            <?php } else { ?>
+                                <label for="username">Username</label>
+                            <?php } ?>
+                            <input type="text" class="[ form-control ]" name="username">
+                        </div>
+                        <div class="[ form-group ] [ col-xs-12 ]">
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <label for="email">Correo electrónico</label>
+                            <?php } else { ?>
+                                <label for="email">Email</label>
+                            <?php } 
+                            $email = '';
+                            if(isset($_GET['q6']))
+                                $email = $_GET['q6'];
+                            ?>
+                            <input type="email" class="[ form-control ]" value="<?php echo $email; ?>" name="email" > 
+                        </div>
+                        <div class="[ form-group ] [ col-xs-12 ]">
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <label for="password">Contraseña</label>
+                                <input type="password" class="[ form-control ]" name="password">
+                                <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+                            <?php } else { ?>
+                                <label for="password">Password</label>
+                                <input type="password" class="[ form-control ]" name="password">
+                                <p class="help-block">Password must be at leat 8 characters.</p>
+                            <?php } ?>
+                        </div>
+                        <div class="[ form-group ] [ col-xs-12 ]">
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <label for="password_confirmation">Confirmar contraseña</label>
+                            <?php } else { ?>
+                                <label for="password_confirmation">Confirm password</label>
+                            <?php } ?>
+                            <input type="password" class="[ form-control ]" name="password_confirmation">
+                            <label for="validate" id="validate"></label>
+                        </div>
+
                         <div class="[ form-group ] [ col-xs-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <label for="full_name">Nombre completo</label>
@@ -111,8 +110,8 @@
                             <select class="[ form-control ]" id="sport" name="sport" >
                                 <?php 
                                 $sport = '';
-                                if(isset($sport))
-                                    $sport = $sport;
+                                if(isset($_GET['q7']))
+                                    $sport = $_GET['q7'];
 
                                 switch ($sport) {
                                     case 'tennis': ?>
@@ -172,20 +171,19 @@
                                         <option value="tennis" >Tennis</option>
                                         <option value="golf">Golf</option>
                                         <option value="soccer">Soccer</option>
-                                        <option value="volleyball">Volleyball</option>                                        
-                                    <?php break;
-                                } ?>
+                                        <option value="volleyball">Volleyball</option>
+                                <?php } ?>
                             </select>
                         </div>
                         <!--GOLF-->
                         <?php if($sport=='golf') { ?>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="golf_avg_score">Puntaje promedio</label>
+                                    <label for="average_score">Puntaje promedio</label>
                                 <?php } else { ?>
-                                    <label for="golf_avg_score">Average score</label>
+                                    <label for="average_score">Average score</label>
                                 <?php } ?>
-                                <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="golf_avg_score">
+                                <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="average_score">
                                     <?php switch ($_GET['q8']) {
                                         case '-66': ?>
                                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -436,7 +434,7 @@
                                 <?php } else { ?>
                                     <label for="soccer_height">Height (cm)</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="soccer_height" name="q15" value="<?php echo $_GET['q15']; ?>">
+                                <input type="text" class="[ form-control ]" id="soccer_height" name="soccer_height" value="<?php echo $_GET['q15']; ?>">
                             </div>
                         <?php } ?>
                         <!--VOLLEYBALL-->

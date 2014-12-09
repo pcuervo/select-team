@@ -347,7 +347,7 @@ function pu_blank_login( $user ){
 						});
 						$('.j-login button').on('click', function(e){
 							e.preventDefault();
-							login();//addTournament();
+							login();
 						});
 					});
 				</script>
@@ -586,7 +586,6 @@ function pu_blank_login( $user ){
 				echo json_encode(array("error" => "Passwords diferentes"), JSON_FORCE_OBJECT ); 
 				break;
 			default:
-				//var_dump($_POST);
 				// Create wp_user
 				$username =  $_POST['username'];
 				$password =  wp_hash_password( $_POST['password'] );
@@ -878,7 +877,7 @@ function pu_blank_login( $user ){
 		switch ($sport) {
 			case 'soccer':
 				$updated = $wpdb->update(
-				    $wpdb->st_answer,
+				    $wpdb->st_answers,
 					    array('answer' 	=> $_POST['soccer_position']),
 					    array(
 					    	'st_user_id' => $st_users_id,
@@ -889,7 +888,7 @@ function pu_blank_login( $user ){
 				break;
 			case 'volleyball':
 				$updated = $wpdb->update(
-				    $wpdb->st_answer,
+				    $wpdb->st_answers,
 					    array('answer' 	=> $_POST['volley_position']),
 					    array(
 					    	'st_user_id' => $st_users_id,
@@ -900,7 +899,7 @@ function pu_blank_login( $user ){
 				break;
 			case 'golf':
 				$updated = $wpdb->update(
-				    $wpdb->st_answer,
+				    $wpdb->st_answers,
 					    array('answer' 	=> $_POST['average_score']),
 					    array(
 					    	'st_user_id' => $st_users_id,
@@ -911,7 +910,7 @@ function pu_blank_login( $user ){
 				break;
 			case 'tennis':
 				$updated = $wpdb->update(
-				    $wpdb->st_answer,
+				    $wpdb->st_answers,
 					    array('answer' 	=> $_POST['fmt_ranking']),
 					    array(
 					    	'st_user_id' => $st_users_id,
@@ -920,7 +919,7 @@ function pu_blank_login( $user ){
 					    array('%s')
 				);
 				$updated = $wpdb->update(
-					    $wpdb->st_answer,
+					    $wpdb->st_answers,
 						    array('answer' 	=> $_POST['atp_tournament']),
 						    array(
 						    	'st_user_id' => $st_users_id,
@@ -1031,23 +1030,17 @@ function pu_blank_login( $user ){
 	    $wpdb->st_users = "st_users";
 	}// st_register_users_table
 
-	add_action( 'init', 'st_register_answers_table', 1 );
-	function st_register_answers_table() {
-	    global $wpdb;
-	    $wpdb->st_answers = "st_answers";
-	}// st_register_answers_table
-
 	add_action( 'init', 'st_register_basic_profile_view', 1 );
 	function st_register_basic_profile_view() {
 	    global $wpdb;
-	    $wpdb->st_answers = "v_basic_profile";
+	    $wpdb->v_basic_profile = "v_basic_profile";
 	}// st_register_basic_profile_view
-	
-	add_action( 'init', 'st_update_basic_profile', 1 );
-	function st_update_basic_profile() {
+
+	add_action( 'init', 'st_register_st_answers', 1 );
+	function st_register_st_answers() {
 	    global $wpdb;
-	    $wpdb->st_answer = "st_answers";
-	}// st_update_basic_profile
+	    $wpdb->st_answers = "st_answers";
+	}// st_register_st_answers
 	
 	/**
 	 * Inserta un usuario a la tabla st_users
@@ -1101,7 +1094,6 @@ function pu_blank_login( $user ){
 	 */
 	function add_sport_answer($answer_data){
 		global $wpdb;
-		
 		$inserted = $wpdb->insert(
 			$wpdb->st_answers,
 			$answer_data,

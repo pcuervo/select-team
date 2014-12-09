@@ -311,8 +311,9 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            console.log(response);
+            
             var msg = $.parseJSON(response);
+            console.log(response);
             if(msg.error == 0)
                 window.location = site_url + '/dashboard';
 
@@ -459,8 +460,6 @@ function sendMail(){
         case 'volleyball':
             coach_data['volley_position'] = $('#theForm2 select[name="q5"]').val();
     }// switch
-
-    console.log(coach_data);
 
      $.post(
          ajax_url,

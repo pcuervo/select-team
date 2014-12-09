@@ -179,7 +179,7 @@
                                     <?php } else { ?>
                                         <label for="average_score">Average score</label>
                                     <?php } ?>
-                                    <select class="[ form-control ]" id="averageScore" value="<?php echo $prospect_sport_answers[0]->asnwer; ?>" name="average_score">
+                                    <select class="[ form-control ]" id="averageScore" value="<?php echo $prospect_sport_answers[0]->answer; ?>" name="average_score">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <option value="-66" <?php if($prospect_sport_answers[0]->answer=='-66')echo "selected"; ?>>Menor a 66</option>
                                     <?php } else { ?>
