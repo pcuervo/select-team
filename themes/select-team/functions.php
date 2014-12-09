@@ -240,7 +240,7 @@ function pu_blank_login( $user ){
 						login();//addTournament();
 					});
 				</script>
-			<?php } elseif ( get_the_title()=='Dashboard-admin') { ?>
+			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
 				      correIsotope('.isotope-container-sports', '.player', 'masonry');
 				      filtrarIsotopeDefault('.isotope-container', 'none');
@@ -261,6 +261,11 @@ function pu_blank_login( $user ){
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				      });
+				    $('.j-register-advisor button').on('click', function(e){
+				    	e.preventDefault();
+				    	console.log('registrando advisor');
+				    	registerAdvisor();
+				    });
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
@@ -561,6 +566,78 @@ function pu_blank_login( $user ){
 			OR isset($query->post_title) AND preg_match("/$string/i", remove_accents(str_replace(' ', '-', $query->post_title) ) ) )
 			echo 'active';
 	} 
+
+	/**
+	 * Registra un usuario advisor
+	 * @param  string  $username
+	 * @param  string  $password 
+	 * @param string  $email
+	 * @return boolean
+	 */
+	function register_advisor(){
+
+		// Create wp_user
+		$username =  $_POST['username'];
+		$password =  $_POST['password'];
+		$email =  $_POST['email'];
+
+		$userdata = array(
+		    'user_login'  	=> $username,
+		    'user_pass'   	=> $password, 
+		    'user_email'	=> $email,
+		    'role'			=> 'advisor'
+		);
+
+		$user_id = wp_insert_user( $userdata ) ;
+
+		//On success
+		if( !is_wp_error($user_id) ) {
+		 echo "User created : ". $user_id;
+		} 
+
+		// Create st_user
+		$full_name = $_POST['full_name'];
+
+		$advisor_data = array(
+			'wp_user_id'	=> $user_id,
+			'full_name'		=> $full_name,
+			);
+				
+		$st_user_id = add_advisor_user($advisor_data);
+		login_user($username, $password);
+		$msg = array(
+			"success" 	=> "Usuario registrado",
+			"error"	  	=> 0,
+			);
+		echo json_encode( $msg, JSON_FORCE_OBJECT ); 
+
+		die();
+	} // register_advisor
+	add_action("wp_ajax_nopriv_register_advisor", "register_advisor");
+
+	/**
+	 * Inserta un usuario a la tabla st_advisors
+	 * @param string $advisor_data
+	 * @return int $advisor_id or FALSE
+	 */
+	function add_advisor_user($advisor_data){
+		global $wpdb;
+		$inserted = $wpdb->insert(
+			$wpdb->st_advisors,
+			$advisor_data,
+			array (
+				'%d',
+				'%s',
+			)
+		);
+
+		if( $inserted ){
+			$st_user_id = $wpdb->insert_id;
+			return $st_user_id;
+		}
+		
+		return 0;
+	}// add_advisor_user
 
 	/**
 	 * Registra un usuario nuevo
@@ -1048,6 +1125,12 @@ function pu_blank_login( $user ){
 	function st_register_users_table() {
 	    global $wpdb;
 	    $wpdb->st_users = "st_users";
+	}// st_register_users_table
+
+	add_action( 'init', 'st_register_advisors_table', 1 );
+	function st_register_advisors_table() {
+	    global $wpdb;
+	    $wpdb->st_users = "st_advisors";
 	}// st_register_users_table
 
 	add_action( 'init', 'st_register_basic_profile_view', 1 );

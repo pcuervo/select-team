@@ -321,6 +321,31 @@ function registerUser() {
     ); 
 }// registerUser
 
+function registerAdvisor() {
+    var user_data = {};
+
+    user_data['action'] = 'register_advisor';
+    user_data['username'] = $('.j-register-advisor input[name="username"]').val();
+    user_data['password'] = $('.j-register-advisor input[name="password"]').val();
+    user_data['password_confirmation'] = $('.j-register-advisor input[name="password_confirmation"]').val();
+    user_data['email'] = $('.j-register-advisor input[name="email"]').val();
+    user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
+   
+    console.log(user_data);
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+            console.log(response);
+            var msg = $.parseJSON(response);
+
+            if(msg.error == 0)
+                window.location = site_url + '/dashboard';
+
+        }// response
+    ); 
+}// registerAdvisor
+
 
 function createCurriculum() {
   var user_curriculum_data = {};
