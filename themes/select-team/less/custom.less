@@ -35,6 +35,12 @@ html{ height: 100%; }
 
 //GENERAL*******************************
 
+.color-success{ 
+	color: @brand-success;
+	.transition;
+	&:hover{ color: darken(@brand-success, 15%); }	
+}
+
 p{
 	font-family: @font-family-museo;
 	font-weight: 1.2em;
