@@ -305,7 +305,10 @@ function registerUser() {
         user_data,
         function(response){
             console.log(response);
-            window.location = site_url + '/dashboard';
+            var msg = $.parseJSON(response);
+            if(msg.error == 0)
+                window.location = site_url + '/dashboard';
+
         }// response
     ); 
 }// registerUser

@@ -65,22 +65,28 @@
                             <input type="text" class="[ form-control ]" id="full_name" value="<?php echo $full_name; ?>" name="full_name" >
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">
-                            <?php if(isset($_GET['q2']))
+                            <?php 
+                            $gender = '';
+                            if(isset($_GET['q2'])) 
+                                $gender = $_GET['q2'];
+                            ?>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <label for="gender">Género</label>
-                                <select class="[ form-control ]" id="q2" value="<?php echo $_GET['q2']; ?>" name="gender" >
+                                <select class="[ form-control ]" id="q2" value="<?php echo $gender; ?>" name="gender" >
                                     <option value="chooseOne">Selecciona uno</option>
-                                    <option value="Mujer">Mujer</option>
-                                    <option value="Hombre">Hombre</option>
+                                    <option value="female" 
+                                        <?php if($gender=='female') echo "selected"; ?> 
+                                    >Mujger</option>
+                                    <option value="male" <?php if($gender=='male') echo "selected"; ?> >Hombre</option>
                                 </select>
                             <?php } else { ?>
                                 <label for="gender">Gender</label>
                                 <select class="[ form-control ]" id="q2" name="gender">
                                     <option value="chooseOne">Choose one</option>
                                     <option value="female" 
-                                        <?php if($_GET['q2']=='female') echo "selected"; ?> 
+                                        <?php if($gender=='female') echo "selected"; ?> 
                                     >Female</option>
-                                    <option value="male" <?php if($_GET['q2']=='male') echo "selected"; ?> >Male</option>
+                                    <option value="male" <?php if($gender=='male') echo "selected"; ?> >Male</option>
                                 </select>
                             <?php } ?>
                         </div>
@@ -89,8 +95,12 @@
                                 <label for="date_of_birth">Fecha de nacimiento</label>
                             <?php } else { ?>
                                 <label for="date_of_birth">Date of birth</label>
-                            <?php } ?>
-                            <input class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $_GET['q3']; ?>"/>
+                            <?php } 
+                            $date_of_birth = '';
+                            if(isset($_GET['q3']))
+                                $date_of_birth = $_GET['q3'];
+                            ?>
+                            <input class="[ form-control ] [ .j-datepicker ]" id="datepicker-date-of-birth" name="date_of_birth"  value="<?php echo $date_of_birth; ?>"/>
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -99,7 +109,12 @@
                                 <label for="sport">Sport you practice</label>
                             <?php } ?>
                             <select class="[ form-control ]" id="sport" name="sport" >
-                                <?php switch ($_GET['q7']) {
+                                <?php 
+                                $sport = '';
+                                if(isset($sport))
+                                    $sport = $sport;
+
+                                switch ($sport) {
                                     case 'tennis': ?>
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                                             <option value="chooseOne" selected disabled>Selecciona uno</option>
@@ -163,7 +178,7 @@
                             </select>
                         </div>
                         <!--GOLF-->
-                        <?php if($_GET['q7']=='golf') { ?>
+                        <?php if($sport=='golf') { ?>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="golf_avg_score">Puntaje promedio</label>
@@ -354,7 +369,7 @@
                             <div class="clear"></div>
                         <?php } ?>
                         <!--TENNIS-->
-                        <?php if($_GET['q7']=='tennis') { ?>
+                        <?php if($sport=='tennis') { ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="tennis_hand">¿Zurdo o derecho?</label>
@@ -395,7 +410,7 @@
                             </div>
                         <?php } ?>
                         <!--SOCCER-->
-                        <?php if($_GET['q7']=='soccer') { ?>
+                        <?php if($sport=='soccer') { ?>
                             <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="soccer_position">Posición</label>
@@ -425,7 +440,7 @@
                             </div>
                         <?php } ?>
                         <!--VOLLEYBALL-->
-                        <?php if($_GET['q7']=='volleyball') { ?>
+                        <?php if($sport=='volleyball') { ?>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="volleyPosition">Posición</label>
@@ -506,7 +521,6 @@
                         <?php } else { ?>
                             <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Register user</button>
                         <?php } ?>
-                        
                     </form>
                 </div>
             </div>

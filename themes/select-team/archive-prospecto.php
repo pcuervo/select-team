@@ -26,8 +26,9 @@
 		<?php 
 			$users = get_users_basic_info(); 
 			foreach ($users as $key => $user) {
+
 		?>
-				<a href="<?php echo site_url('prospects'); ?>">
+				<a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
 					<div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
 			  			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
 			  			<div class=" info">
@@ -38,111 +39,6 @@
 			  	</a>
 		<?php } ?>
 
-
-<!-- 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post();
-			$argsSport = array(
-				'slug' => 'deporte',
-			);
-			$sportTerm = get_terms( 'deporte', $args );
-			$argsGenre = array(
-				'slug' => 'genero',
-			);
-			$genreTerm = get_terms( 'genero', $args );
-			$sport 				= $sportTerm[1]->slug;
-			$genre 				= $genreTerm[1]->slug;;
-			?>
-			<div class="[ player <?php echo $sport.' '.$genre; ?> ] [ col-xs-5 col-sm-3 col-md-2 ] [ clearfix margin-bottom ]">
-				<a href="<?php the_permalink(); ?>">
-					<?php the_post_thumbnail(); ?>
-				</a>
-				<div class="info">
-					<h4 class="center-text"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-					<p class="center-text">Sport: <span><?php echo $sport; ?></span></p>
-				</div>
-			</div>
-		<?php  endwhile; endif; wp_reset_query(); ?>
-		  
-
- 
-		  <div class="male tennis player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Carlos H.</h4>
-		  			  <p class="center-text">Sport: <span>Tennis</span></p>
-		  			</div>
-		  </div>
-		  <div class="female tennis player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Tania Ruiz</h4>
-		  			  <p class="center-text">Sport: <span>Tennis</span></p>
-		  			</div>
-		  </div>
-		  <div class="male soccer player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Antonio Villa</h4>
-		  			  <p class="center-text">Sport: <span>Soccer</span></p>
-		  			</div>
-		  </div>
-		  <div class="male tennis player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Diego Mozas</h4>
-		  			  <p class="center-text">Sport: <span>Tennis</span></p>
-		  			</div>
-		  </div>
-		  <div class="female volleyball player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Gabriela M.</h4>
-		  			  <p class="center-text">Sport: <span>Volleyball</span></p>
-		  			</div>
-		  </div>
-		  <div class="male volleyball player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Julio Peres</h4>
-		  			  <p class="center-text">Sport: <span>Volleyball</span></p>
-		  			</div>
-		  </div>
-		  <div class="female volleyball player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Aislin Barreto</h4>
-		  			  <p class="center-text">Sport: <span>Volleyball</span></p>
-		  			</div>
-		  </div>
-		  <div class="female volleyball player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Karla Bustillos</h4>
-		  			  <p class="center-text">Sport: <span>Volleyball</span></p>
-		  			</div>
-		  </div>
-		  <div class="male tennis player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Aldo M.</h4>
-		  			  <p class="center-text">Sport: <span>Tennis</span></p>
-		  			</div>
-		  </div>
-		  <div class="female tennis player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Estefania G.</h4>
-		  			  <p class="center-text">Sport: <span>Tennis</span></p>
-		  			</div>
-		  </div>
-		  
-		  <div class="female soccer player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-		  			<img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-		  			<div class=" info">
-		  			  <h4 class="center-text">Shadia S.</h4>
-		  			  <p class="center-text">Sport: <span>Soccer</span></p>
-		  			</div>
-		  </div>
-		  -->
 		</div>
 	</div><!--CONTAINER-FLUID-->
 

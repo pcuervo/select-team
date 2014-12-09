@@ -630,7 +630,8 @@ function pu_blank_login( $user ){
 				add_sport_answers($st_user_id, $sport_data);
 				login_user($username, $password);
 				$msg = array(
-					"success" => "Usuario registrado"
+					"success" => "Usuario registrado",
+					"error"	  => 0
 					);
 				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
 				break;
@@ -1107,7 +1108,7 @@ function pu_blank_login( $user ){
 	function get_users_basic_info(){
 	    global $wpdb;
 
-	    $query = "SELECT full_name, sport, gender, profile_picture FROM v_basic_profile";
+	    $query = "SELECT id, full_name, sport, gender, profile_picture FROM v_basic_profile";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
@@ -1125,6 +1126,19 @@ function pu_blank_login( $user ){
 		
 		return $user_basic_info[0];
 	}// get_users_basic_info
+
+	/**
+	 * Jalar curriculum de usuario
+	 * @param int $st_user_id
+	 * @return mixed $user_basic_info
+	 */
+	function get_user_curriculum($st_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM st_curriculum WHERE st_user_id = %d", $st_user_id);
+	    $user_curriculum = $wpdb->get_results($query);
+		
+		return $user_curriculum[0];
+	}// get_user_curriculum
 
 	/**
 	 * Jalar respuestas por deporte de un usuario
