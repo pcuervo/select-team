@@ -67,28 +67,28 @@
 								<img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
 							</a>
 						</h1><ul class="[ desktop-nav ] [ clearfix ]">
-							<li><a class="[ center block ]" href="<?php echo site_url('acerca'); ?>">
+							<li><a class="[ center block ] <?php if( get_post_type() == 'acerca' ){ echo 'active'; } ?>" href="<?php echo site_url('acerca'); ?>">
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									Acerca
 								<?php } else { ?>
 									About
 								<?php } ?>
 							</a></li>
-							<li><a class="[ center block ]" href="<?php echo site_url('prospecto'); ?>">
+							<li><a class="[ center block ] <?php if( get_post_type() == 'prospecto' ){ echo 'active'; } ?>" href="<?php echo site_url('prospecto'); ?>">
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									Prospectos
 								<?php } else { ?>
 									Prospects
 								<?php } ?>
 							</a></li>
-							<li><a class="[ center block ]" href="<?php echo site_url('padre'); ?>">
+							<li><a class="[ center block ] <?php if( get_post_type() == 'padre' ){ echo 'active'; } ?>" href="<?php echo site_url('padre'); ?>">
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									Padres
 								<?php } else { ?>
 									Parents
 								<?php } ?>
 							</a></li>
-							<li><a class="[ center block ]" href="<?php echo site_url('contact'); ?>">
+							<li><a class="[ center block ] <?php if( is_page('contacto') ){ echo 'active'; } ?>" href="<?php echo site_url('contact'); ?>">
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									Contacto
 								<?php } else { ?>
