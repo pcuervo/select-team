@@ -598,7 +598,6 @@ function pu_blank_login( $user ){
 	 * @return boolean
 	 */
 	function register_advisor(){
-
 		// Create wp_user
 		$username =  $_POST['username'];
 		$password =  $_POST['password'];
@@ -613,11 +612,6 @@ function pu_blank_login( $user ){
 
 		$user_id = wp_insert_user( $userdata ) ;
 
-		//On success
-		if( !is_wp_error($user_id) ) {
-		 echo "User created : ". $user_id;
-		} 
-
 		// Create st_user
 		$full_name = $_POST['full_name'];
 
@@ -630,13 +624,14 @@ function pu_blank_login( $user ){
 		login_user($username, $password);
 		$msg = array(
 			"success" 	=> "Usuario registrado",
-			"error"	  	=> 0,
-			);
+		 	"error"	  	=> 0,
+		 	);
 		echo json_encode( $msg, JSON_FORCE_OBJECT ); 
 
 		die();
 	} // register_advisor
-	add_action("wp_ajax_nopriv_register_advisor", "register_advisor");
+	add_action("wp_ajax_register_advisor", "register_advisor");
+
 
 	/**
 	 * Inserta un usuario a la tabla st_advisors
@@ -1153,7 +1148,7 @@ function pu_blank_login( $user ){
 	add_action( 'init', 'st_register_advisors_table', 1 );
 	function st_register_advisors_table() {
 	    global $wpdb;
-	    $wpdb->st_users = "st_advisors";
+	    $wpdb->st_advisors = "st_advisors";
 	}// st_register_users_table
 
 	add_action( 'init', 'st_register_basic_profile_view', 1 );
