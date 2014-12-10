@@ -290,9 +290,6 @@ function pu_blank_login( $user ){
                                  var width_picture = $(this).width();
                                  var height_picture = $(this).height();
 
-                                    alert($(this).height());
-                                    alert($(this).width());
-
                                  if (width_picture > 300) {
 
                                     $(".profile_picture_preview").css("width", "300px");
@@ -395,7 +392,14 @@ function pu_blank_login( $user ){
 							e.preventDefault();
 							elegirDeporte($('#sport').val());
 						});
+
+						$('body').on('DOMNodeInserted', function(e){
+							e.preventDefault();
+							elegirDeporte('');
+							elegirDeporte($('#sport').val());
+						});
 						elegirDeporte('');
+						elegirDeporte($('#sport').val());						
 					});
 				</script>
 			<?php } ?>
@@ -404,13 +408,12 @@ function pu_blank_login( $user ){
 					function footerBottom(){
 					    var alturaFooter = $('footer').height();
 					    $('.container-fluid').css('padding-bottom', alturaFooter );
-					    alert("HOLA");
 					}
 					
 					
 					$('.j-login button').on('click', function(e){
 						e.preventDefault();
-						login();//addTournament();
+						login();
 					});
 					
 				</script>
@@ -629,7 +632,7 @@ function pu_blank_login( $user ){
 		    'user_login'  	=> $username,
 		    'user_pass'   	=> $password, 
 		    'user_email'	=> $email,
-		    'role'			=> 'advisor'
+		    'role'			=> 'author'
 		);
 
 		$user_id = wp_insert_user( $userdata ) ;
@@ -1177,6 +1180,27 @@ function pu_blank_login( $user ){
 
 	    endforeach;
 	}// site_login
+
+	/**
+	 * Devuelve la url del video de acuerdo al host.
+	 * @param string $advisor_data
+	 * @return int $advisor_id or FALSE
+	 */
+	function get_video_src($url, $host){
+		if($host == 'vimeo'){
+			$id = (int) substr(parse_url($url, PHP_URL_PATH), 1);
+			return '//player.vimeo.com/video/'.$id;
+		}
+
+		$id = explode('v=', $url)[1];
+		$ampersand_position = strpos($id, '&');
+		if( $ampersand_position > 0 )
+			$id = substr($id, $ampersand_position);
+
+		parse_str( parse_url( $url, PHP_URL_QUERY ), $url_array );
+		$id = $url_array['v']; 
+		return '//www.youtube.com/embed/'.$id;
+	}// get_video_src
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
