@@ -26,7 +26,6 @@
 		<?php 
 			$users = get_users_basic_info(); 
 			foreach ($users as $key => $user) {
-
 		?>
 				<a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
 					<div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
