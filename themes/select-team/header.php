@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title><?php print_title(); ?></title>
-		<link rel="shortcut icon" href="<?php echo THEMEPATH; ?>images/favicon.ico">
+		<link rel="shortcut icon" href="<?php echo THEMEPATH; ?>images/favicon.png">
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -145,7 +145,7 @@
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-04.jpg" alt="">
 							</div>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<h2 class="[ text-center ][ center block ]">¡Te ayudámos a obtener una beca deportiva en Estados Unidos!</h2>
+								<h2 class="[ text-center ][ center block ]">Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.</h2>
 							<?php } else { ?>
 								<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
 							<?php } ?>

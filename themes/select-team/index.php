@@ -81,21 +81,21 @@
                                 <span><label for="q5">¿En qué año vas?</label></span>
                                 <select class="[ form-control ]" id="q5" name="q5">
                                 <option value="chooseOne">Grado</option>
-                                <option value="grado1">3º Secundaria </option>
-                                <option value="grado2">4º Preparatoria </option>
-                                <option value="grado3">5º Preparatoria </option>
-                                <option value="grado4">6º Preparatoria </option>
-                                <option value="graduated">Graduado </option>
+                                <option value="freshman">3º Secundaria </option>
+                                <option value="sophmore">1º Preparatoria </option>
+                                <option value="junior">2º Preparatoria </option>
+                                <option value="senior">3º Preparatoria </option>
+                                <option value="graduated">Graduado</option>
                             </select>
                             <?php } else { ?>
                                 <span><label for="q5">What grade are you in?</label></span>
                                 <select class="[ form-control ]" id="q5" name="q5">
                                 <option value="chooseOne">Class</option>
-                                <option value="grado1">Freshman</option>
-                                <option value="grado2">Sophomore </option>
-                                <option value="grado3">Junior </option>
-                                <option value="grado4">Senior </option>
-                                <option value="graduated">Graduated </option>
+                                <option value="freshman">Freshman</option>
+                                <option value="sophmore">Sophomore </option>
+                                <option value="junior">Junior </option>
+                                <option value="senior">Senior </option>
+                                <option value="graduated">Graduated</option>
                             </select>
                             <?php } ?>
                         </li>

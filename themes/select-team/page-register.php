@@ -184,15 +184,20 @@ get_header(); ?>
                             </select>
                         </div>
                         <!--GOLF-->
-                        <?php if($sport=='golf') { ?>
+                        <?php if($sport=='golf' || $sport=='') { ?>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="average_score">Puntaje promedio</label>
                                 <?php } else { ?>
                                     <label for="average_score">Average score</label>
                                 <?php } ?>
-                                <select class="[ form-control ]" id="averageScore" value="<?php echo $_GET['q8']; ?>" name="average_score">
-                                    <?php switch ($_GET['q8']) {
+                                <?php 
+                                $average_score = '';
+                                if(isset($_GET['q8']))
+                                    $average_score = $_GET['q8']; ?>
+
+                                <select class="[ form-control ]" id="averageScore" value="<?php echo $average_score; ?>" name="average_score">
+                                    <?php switch ($average_score) {
                                         case '-66': ?>
                                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                                 <option value="-66" >Menor a 66</option>
@@ -375,19 +380,24 @@ get_header(); ?>
                             <div class="clear"></div>
                         <?php } ?>
                         <!--TENNIS-->
-                        <?php if($sport=='tennis') { ?>
+                        <?php 
+                            $tennis_hand = '';
+                            if(isset($_GET['q10']))
+                                $tennis_hand = $_GET['q10']; ?>
+
+                        <?php if($sport=='tennis' || $sport=='') { ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="tennis_hand">¿Zurdo o derecho?</label>
-                                    <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                        <option value="left" <?php if($_GET['q10']=="leftHand") echo "selected"; ?>>Zurdo</option>
-                                        <option value="right" <?php if($_GET['q10']=="rightHand") echo "selected"; ?>>Derecho</option>
+                                    <select class="[ form-control ]" id="tennisHand" name="tennis_hand">
+                                        <option value="left" <?php if($tennis_hand=="leftHand") echo "selected"; ?>>Zurdo</option>
+                                        <option value="right" <?php if($tennis_hand=="rightHand") echo "selected"; ?>>Derecho</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="tennis_hand">Right or lef handed?</label>
-                                    <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="<?php echo $_GET['q11']; ?> ">
-                                        <option value="left" <?php if($_GET['q10']=="leftHand") echo "selected"; ?>>Left handed</option>
-                                        <option value="right" <?php if($_GET['q10']=="rightHand") echo "selected"; ?>>Right handed</option>
+                                    <select class="[ form-control ]" id="tennisHand" name="tennis_hand" value="">
+                                        <option value="left" <?php if($tennis_hand=="leftHand") echo "selected"; ?>>Left handed</option>
+                                        <option value="right" <?php if($tennis_hand=="rightHand") echo "selected"; ?>>Right handed</option>
                                     </select>
                                 <?php } ?>
                             </div>
@@ -396,43 +406,54 @@ get_header(); ?>
                                     <label for="tennisHand">Ranking en la FMT (solo mexicanos)</label>
                                 <?php } else { ?>
                                     <label for="tennisHand">FMT ranking (mexicans only)</label>
-                                <?php } ?>
-                                <input type="text" class="[ form-control ]" id="fmtRank" name="q11" value="<?php echo $_GET['q12']; ?>">
+                                <?php } 
+                                    $fmtRank = '';    
+                                    if(isset($_GET['q12']))  
+                                        $fmtRank = $_GET['q12']; ?>
+
+                                <input type="text" class="[ form-control ]" id="fmtRank" name="fmt_ranking" value="<?php echo $fmtRank; ?>">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
+                                <?php $ATPrank='';
+                                    if(isset($_GET['q13']))  
+                                        $ATPrank = $_GET['q13']; ?>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="atpTournament">¿Has jugado en torneos de la ATP?</label>
-                                    <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?>">
-                                        <option value="yes" <?php if($_GET['q13']=='yes')echo "selected"; ?> >Sí</option>
-                                        <option value="no" <?php if($_GET['q13']=='no')echo "selected"; ?> >No</option>
+                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $ATPrank; ?>">
+                                        <option value="yes" <?php if($ATPrank=='yes')echo "selected"; ?> >Sí</option>
+                                        <option value="no" <?php if($ATPrank=='no')echo "selected"; ?> >No</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="atpTournament">Played an ATP tournament?</label>
-                                    <select class="[ form-control ]" id="atp" name="q12" value="<?php echo $_GET['q13']; ?>">
-                                        <option value="yes" <?php if($_GET['q13']=='yes')echo "selected"; ?> >Yes</option>
-                                        <option value="no" <?php if($_GET['q13']=='no')echo "selected"; ?> >No</option>
+                                    <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $ATPrank; ?>">
+                                        <option value="yes" <?php if($ATPrank=='yes')echo "selected"; ?> >Yes</option>
+                                        <option value="no" <?php if($ATPrank=='no')echo "selected"; ?> >No</option>
                                     </select>
                                 <?php } ?>
                             </div>
                         <?php } ?>
                         <!--SOCCER-->
-                        <?php if($sport=='soccer') { ?>
+                        <?php 
+                            $soccer_position = '';    
+                            if(isset($_GET['q14']))  
+                                $soccer_position = $_GET['q14']; ?>
+                        <?php if($sport=='soccer' || $sport=='') { ?>
                             <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="soccer_position">Posición</label>
                                     <select class="[ form-control ]" id="q14" name="soccer_position">
-                                        <option value="goal-keeper" <?php if($_GET['q14']=='goal-keeper') echo " selected"; ?> >Portero</option>
-                                        <option value="defender" <?php if($_GET['q14']=='defender') echo " selected"; ?> >Defensa</option>
-                                        <option value="midfielder" <?php if($_GET['q14']=='midfielder') echo " selected"; ?> >Medio</option>
-                                        <option value="forward" <?php if($_GET['q14']=='forward') echo " selected"; ?> >Delantero</option>
+                                        <option value="goal-keeper" <?php if($soccer_position=='goal-keeper') echo " selected"; ?> >Portero</option>
+                                        <option value="defender" <?php if($soccer_position=='defender') echo " selected"; ?> >Defensa</option>
+                                        <option value="midfielder" <?php if($soccer_position=='midfielder') echo " selected"; ?> >Medio</option>
+                                        <option value="forward" <?php if($soccer_position=='forward') echo " selected"; ?> >Delantero</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="soccer_position">Position</label>
                                     <select class="[ form-control ]" id="q14" name="soccer_position">
-                                        <option value="goal-keeper" <?php if($_GET['q14']=='goal-keeper') echo " selected"; ?> >Goal keeper</option>
-                                        <option value="defender" <?php if($_GET['q14']=='defender') echo " selected"; ?> >Defender</option>
-                                        <option value="midfielder" <?php if($_GET['q14']=='midfielder') echo " selected"; ?> >Midfielder</option>
-                                        <option value="forward" <?php if($_GET['q14']=='forward') echo " selected"; ?> >Forward</option>
+                                        <option value="goal-keeper" <?php if($soccer_position=='goal-keeper') echo " selected"; ?> >Goal keeper</option>
+                                        <option value="defender" <?php if($soccer_position=='defender') echo " selected"; ?> >Defender</option>
+                                        <option value="midfielder" <?php if($soccer_position=='midfielder') echo " selected"; ?> >Midfielder</option>
+                                        <option value="forward" <?php if($soccer_position=='forward') echo " selected"; ?> >Forward</option>
                                     </select>
                                 <?php } ?>
                             </div>
@@ -441,20 +462,29 @@ get_header(); ?>
                                     <label for="soccer_height">Estatura (cm)</label>
                                 <?php } else { ?>
                                     <label for="soccer_height">Height (cm)</label>
-                                <?php } ?>
-                                <input type="text" class="[ form-control ]" id="soccer_height" name="soccer_height" value="<?php echo $_GET['q15']; ?>">
+                                <?php } 
+                                    $soccer_height = '';    
+                                    if(isset($_GET['q15']))  
+                                        $soccer_height = $_GET['q15']; ?>
+
+                                <input type="text" class="[ form-control ]" id="soccer_height" name="soccer_height" value="<?php echo $soccer_height; ?>">
                             </div>
                         <?php } ?>
                         <!--VOLLEYBALL-->
-                        <?php if($sport=='volleyball') { ?>
+                        <?php 
+                            $volley_position = '';    
+                            if(isset($_GET['q9']))  
+                                $volley_position = $_GET['q9']; ?>
+
+                        <?php if($sport=='volleyball' || $sport=='') { ?>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="volleyPosition">Posición</label>
                                 <?php } else { ?>
                                     <label for="volleyPosition">Position</label>
                                 <?php } ?>
-                                <select class="[ form-control ]" id="volleyPosition" value="<?php echo $_GET['q9']; ?>" name="q9">
-                                <?php switch ($_GET['q9']) {
+                                <select class="[ form-control ]" id="volleyPosition" value="<?php echo $volley_position; ?>" name="volley_position">
+                                <?php switch ($volley_position) {
                                         case '1': ?>
                                             <option value="1" selected>1</option>
                                             <option value="2">2</option>
@@ -518,8 +548,12 @@ get_header(); ?>
                                     <label for="volleyHeight">Estatura (cm)</label>
                                 <?php } else { ?>
                                     <label for="volleyHeight">Height (cm)</label>
-                                <?php } ?>
-                                <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $_GET['q10']; ?>" name="q10">
+                                <?php }
+                                    $volley_height = '';    
+                                    if(isset($_GET['q10']))  
+                                       $volley_height = $_GET['q10']; ?>
+
+                                <input type="text" class="[ form-control ]" id="volleyHeight" value="<?php echo $volley_height; ?>" name="volley_height">
                             </div>
                         <?php } ?>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
