@@ -488,17 +488,16 @@ function login(){
     user_data['username'] = $('.j-login input[name="j-email"]').val();
     user_data['password'] = $('.j-login input[name="j-password"]').val();
   
+    $('.j-login .alert').remove();
     $.post(
         ajax_url,
         user_data,
         function(response){   
-            console.log(response);
-
             if(response == 1){
                 redirectUserDashoard();
             }
             else{
-                var html_error = '<div class="text-center" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+                var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
                 $(html_error).prependTo('.modal-footer');
             }
         } //response
