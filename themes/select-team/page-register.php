@@ -190,7 +190,7 @@ get_header(); ?>
                             </select>
                         </div>
                         <!--GOLF-->
-                        <?php if($sport=='golf' || $sport=='') { ?>
+                        <?php if(1) { ?>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="average_score">Puntaje promedio</label>
@@ -391,7 +391,7 @@ get_header(); ?>
                             if(isset($_GET['q10']))
                                 $tennis_hand = $_GET['q10']; ?>
 
-                        <?php if($sport=='tennis' || $sport=='') { ?>
+                        <?php if(1) { ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="tennis_hand">¿Zurdo o derecho?</label>
@@ -443,7 +443,7 @@ get_header(); ?>
                             $soccer_position = '';    
                             if(isset($_GET['q14']))  
                                 $soccer_position = $_GET['q14']; ?>
-                        <?php if($sport=='soccer' || $sport=='') { ?>
+                        <?php if(1) { ?>
                             <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="soccer_position">Posición</label>
@@ -482,7 +482,7 @@ get_header(); ?>
                             if(isset($_GET['q9']))  
                                 $volley_position = $_GET['q9']; ?>
 
-                        <?php if($sport=='volleyball' || $sport=='') { ?>
+                        <?php if(1) { ?>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="volleyPosition">Posición</label>
