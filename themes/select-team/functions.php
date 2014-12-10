@@ -793,13 +793,11 @@ function pu_blank_login( $user ){
 					"error"	  => 0
 					);
 				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
-				break;
 		}// switch
 
 		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
-	add_action("wp_ajax_register_user", "register_user");
 
 	/**
 	 * Actualiza los datos del curriculum del usuario.

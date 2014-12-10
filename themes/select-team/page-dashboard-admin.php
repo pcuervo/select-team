@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <?php if ( $role != 'author' ) { ?>
-                    <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="advisors">
+                    <div class="[ row ] [ margin-bottom ]" id="advisors">
                         <div class="[ col-xs-12 col-sm-12 center block ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h3 class="[ margin-bottom ]">Agentes</h3>
@@ -128,10 +128,15 @@
                             <?php } ?>
                             <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
+<<<<<<< HEAD
                                 <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
+=======
+                                <button class="[ btn btn-primary ] [ margin-bottom ]"><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</button>
+>>>>>>> 5db9841b123d2fe36c2c95459bccb1e3651d020d
                             <?php } else { ?>
-                                <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Register advisor</p>
+                                <button class="[ btn btn-primary ] [ margin-bottom ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
                             <?php } ?>
+                            <div class="clear"></div>
                             <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
                                 <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
                                     <div class="[ form-group ] [ col-xs-12 ]">
@@ -172,7 +177,6 @@
                                             <input type="password" class="[ form-control ]" name="password_confirmation">
                                             <label for="validate" id="validate"></label>                                 
                                     </div>
->>>>>>> ccd5f963d4829163613880b7ed1bd7f7139f79a4
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Agregar agente</button>
                                     <?php } else { ?>
