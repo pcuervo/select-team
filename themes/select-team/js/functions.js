@@ -345,6 +345,7 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
+            console.log(response);
             var msg = $.parseJSON(response);
             if(msg.error == 0)
                 window.location = site_url + '/dashboard/';
@@ -508,16 +509,7 @@ function login(){
 function formValidation(forma){
     $(forma).validate({
         rules: {
-          password: {
-            min:{
-              param: 8
-            }
-          },
-          password_confirmation: {
-            min:{
-              param: 8
-            }
-          }
+          
         },
         submitHandler:function(){
             switch(forma){

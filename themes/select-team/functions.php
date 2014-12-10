@@ -790,7 +790,6 @@ function pu_blank_login( $user ){
 					"error"	  => 0
 					);
 				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
-				break;
 		}// switch
 
 		die();
