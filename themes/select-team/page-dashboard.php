@@ -464,11 +464,16 @@
                                                 <input type="hidden" value="<?php echo $tournament_info[$key]->name;?>" name="torneo">
                                                 <p class="[ col-xs-12 ]"> <b> <?php echo $tournament_info[$key]->name; ?> </b> </p>
                                                 <p class="[ col-xs-6 ]">
-                                                    Date: <br/>
+                                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                        Fecha: 
+                                                    <?php } else { ?>
+                                                        Date: 
+                                                    <?php } ?>
+                                                    <br/>
                                                     <b><?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?></b>
                                                 </p> 
                                                 <p class="[ col-xs-4 ]">
-                                                    Ranked: <br/>
+                                                    Ranking: <br/>
                                                     <b><?php echo $tournament_info[$key]->ranking; ?></b>
                                                 </p> 
                                                 <input type="hidden" value="<?php echo $tournament_info[$key]->ranking; ?>" name="torneo-rank">

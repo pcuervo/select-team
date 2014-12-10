@@ -507,6 +507,18 @@ function login(){
 **/
 function formValidation(forma){
     $(forma).validate({
+        rules: {
+          password: {
+            min:{
+              param: 8
+            }
+          },
+          password_confirmation: {
+            min:{
+              param: 8
+            }
+          }
+        },
         submitHandler:function(){
             switch(forma){
                 case '.j-register-user':
