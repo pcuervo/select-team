@@ -186,6 +186,10 @@
 						<?php 
 						if($role == 'subscriber'){
 						?>
+							<li class="sidebar-brand">
+								<a class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
+							</li>
+
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
@@ -239,13 +243,15 @@
 						</li>
 						<?php }  ?>
 						<!-- Para el register usuario o advisor -->
-						<li class="sidebar-brand">
-							<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
-						</li>
 					</ul>
 					<div class="[ dashboard__privacy-policy ] [ clearfix ]">
-			            <a class="[ btn btn-success ] [ center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
-			            <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+						<?php if (qtrans_getLanguage() == 'es'){ ?>
+							<a class="[ btn btn-success ] [ center block ]" href="<?php echo site_url('privacy-policy'); ?>">Aviso de Privacidad.</a>
+			            	<p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+						<?php } else { ?>
+							<a class="[ btn btn-success ] [ center block ]" href="<?php echo site_url('privacy-policy'); ?>">Privacy Policy</a>
+			            	<p class="[ col-xs-12 ] [ text-center ]" href="">All rights reserved. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+						<?php } ?>
 					</div>
 	        	</header> <!-- /#sidebar-wrapper -->
 	        	<div class="[ content content__dashboard ] [ clearfix ]">

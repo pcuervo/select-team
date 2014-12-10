@@ -251,7 +251,7 @@ function addTournament(){
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_date_data[]" value="'+$tournament_date+'"/> ');
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_rank_data[]" value="'+$tournament_rank+'"/> ');
     
-    $('.j-registed-tournaments').append('<p style="padding: 7px 10px; margin-right: 30px; background: #8d0e2f; color: #ffffff;"><b>Tournament name:</b> '+$tournament_name+' <span style="padding: 8px 15px 9px 15px; background: #002147; color: #ffffff; margin-left: 20px;"><i class="fa fa-calendar"></i> &nbsp;'+$tournament_date+'   &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trophy"></i><b>#</b> '+$tournament_rank+'</span><span style="color: #ffffff; float: right; cursor: pointer;" class="delete_tournament_profile">Delete <i class="fa fa-minus-circle"></i></span></p>');
+    $('.j-registed-tournaments').append( '<div class="[ border-bottom ] [ row ]"><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$tournament_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
   
     $('.j-user_curriculum input[name="tournament"]').val("");
     $('.j-user_curriculum input[name="tournament_date"]').val("");

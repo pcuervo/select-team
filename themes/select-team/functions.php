@@ -390,7 +390,6 @@ function pu_blank_login( $user ){
 					function footerBottom(){
 					    var alturaFooter = $('footer').height();
 					    $('.container-fluid').css('padding-bottom', alturaFooter );
-					    alert("HOLA");
 					}
 					$('.j-login button').on('click', function(e){
 						e.preventDefault();

@@ -440,16 +440,20 @@
                                         <label for="tournament">Tournaments</label>
                                     <?php } ?>
                                         <?php foreach ($tournament_info as $key => $value) { ?>
-                                            <div class="[ form-group ] [ col-xs-12 ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
+                                            <div class="[ form-group ] [ row ] [ border-bottom ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
                                                 <input type="hidden" value="<?php echo $tournament_info[$key]->name;?>" name="torneo">
-                                                <p>
-                                                    <label> <?php echo $tournament_info[$key]->name; ?> </label>
-                                                    <p > <?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?> 
-                                                    <?php echo $tournament_info[$key]->ranking; ?> </p> 
-                                                    <input type="hidden" value="<?php echo $tournament_info[$key]->ranking; ?>" name="torneo-rank">
-                                                    <input type="hidden" value="<?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?>" name="torneo-fecha">
-                                                    <button class="[ btn btn-primary ] [ margin-bottom ] [ j-delete-tournament ]"> <i class="fa fa-times"></i></button>
-                                                </p>
+                                                <p class="[ col-xs-12 ]"> <b> <?php echo $tournament_info[$key]->name; ?> </b> </p>
+                                                <p class="[ col-xs-6 ]">
+                                                    Date: <br/>
+                                                    <b><?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?></b>
+                                                </p> 
+                                                <p class="[ col-xs-4 ]">
+                                                    Ranked: <br/>
+                                                    <b><?php echo $tournament_info[$key]->ranking; ?></b>
+                                                </p> 
+                                                <input type="hidden" value="<?php echo $tournament_info[$key]->ranking; ?>" name="torneo-rank">
+                                                <input type="hidden" value="<?php  $tmp= explode(' ', $tournament_info[$key]->tournament_date); echo $tmp[0];?>" name="torneo-fecha">
+                                                <a class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a>
                                             </div>
                                         <?php } ?>
                                 </div>
