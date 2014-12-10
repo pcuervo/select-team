@@ -39,10 +39,17 @@ define('VOLLEY_HEIGHT', 8);
 function restrict_admin()
 {
 	if ( ! current_user_can( 'manage_options' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
-                wp_redirect( site_url() );
+        wp_redirect( site_url() );
 	}
 }
 add_action( 'admin_init', 'restrict_admin', 1 );
+
+function my_filter_head() {
+    remove_action('wp_head', '_admin_bar_bump_cb');
+}
+add_action('get_header', 'my_filter_head');
+
+  
 
 // Redirect back to the custom login page on a failed login attempt.. /////////////////////////////////////
 function pu_login_failed( $user ) {

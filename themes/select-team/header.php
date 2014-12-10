@@ -60,14 +60,13 @@
 								<li class="[ menu ]"><a href="<?php echo site_url('contact'); ?>">Contact</a></li>
 								<li class="[ menu ]">
 									<?php if ( ! is_user_logged_in() ) { ?>
-										<a href="" data-toggle="modal" data-target="#Login">
-											<?php if (qtrans_getLanguage() == 'es'){ ?>
-												<i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
-												<a href="<?php echo site_url('register') ?>">Regístrate</a>
-											<?php } else { ?>
-												<i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
-												<a href="<?php echo site_url('register') ?>">Register</a>
-											<?php } ?>
+										<?php if (qtrans_getLanguage() == 'es'){ ?>
+											<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
+											<a href="<?php echo site_url('es/register') ?>">Regístrate</a>
+										<?php } else { ?>
+											<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
+											<a href="<?php echo site_url('en/register') ?>">Register</a>
+										<?php } ?>
 									<?php } else { 
 									?>
 										<p><a href="'<?php echo site_url('.$dashboard.'); ?>'"><i class="fa fa-user"></i></a></p>
@@ -83,7 +82,13 @@
 					<div class="[ container ] [ hidden-xs hidden-sm ] [ header-top ] [ clearfix ]">
 						<input type="hidden" id="current_url" value="<?php echo site_url(); ?>"/>
 						<h1>
-							<a href="<?php echo site_url('index.php'); ?>">
+							<a
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									href="<?php echo site_url('es'); ?>"
+								<?php } else { ?>
+									href="<?php echo site_url('en'); ?>"
+								<?php } ?>
+							>
 								<img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
 							</a>
 						</h1><ul class="[ desktop-nav ] [ clearfix ]">
@@ -118,13 +123,12 @@
 						</ul>
 						<div class="[ registro ]">
 							<?php if ( ! is_user_logged_in() ) { ?>
-								<a href="" data-toggle="modal" data-target="#Login">
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
-									<a href="<?php echo site_url('register') ?>">Regístrate</a>
+									<a href="" data-toggle="modal" data-target="#Login"> <i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
+									<a href="<?php echo site_url('es/register') ?>">Regístrate</a>
 								<?php } else { ?>
-									<i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
-									<a href="<?php echo site_url('register') ?>">Register</a>
+									<a href="" data-toggle="modal" data-target="#Login"> <i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
+									<a href="<?php echo site_url('en/register') ?>">Register</a>
 								<?php } ?>
 							<?php } else { 
 							?>
