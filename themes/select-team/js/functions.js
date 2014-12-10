@@ -203,7 +203,6 @@ function getCookie(cname) {
 
 
 function elegirDeporte(deporte){
-  console.log(deporte);
 
   $('.j-register-user select[name="tennis_hand"]').parent().hide();
   $('.j-register-user input[name="fmt_ranking"]').parent().hide();
@@ -432,14 +431,13 @@ function updateCurriculum() {
   addTournament();
   registerTournament();
 
-  console.log(user_curriculum_data);
   $.post(
       ajax_url,
       user_curriculum_data,
       function(response){
           console.log("response:");
           console.log(response);
-          //window.location = site_url + '/dashboard';
+          
       } //response
   ); 
 
@@ -495,11 +493,13 @@ function login(){
         function(response){   
             console.log(response);
 
-            if(response){
+            if(response == 1){
                 redirectUserDashoard();
             }
-            else
-                alert('Nombre de usuario o contraseña inválidos.');   
+            else{
+                var html_error = '<div class="text-center" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+                $(html_error).prependTo('.modal-footer');
+            }
         } //response
     ); 
 }

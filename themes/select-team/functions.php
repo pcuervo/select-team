@@ -386,13 +386,13 @@ function pu_blank_login( $user ){
 							elegirDeporte($('#sport').val());
 						});
 
-						$('.j-login').load( function(e){
+						$('body').on('DOMNodeInserted', function(e){
 							e.preventDefault();
-							alert();
+							elegirDeporte('');
 							elegirDeporte($('#sport').val());
 						});
-
-						//elegirDeporte('');
+						elegirDeporte('');
+						elegirDeporte($('#sport').val());						
 					});
 				</script>
 			<?php } ?>
