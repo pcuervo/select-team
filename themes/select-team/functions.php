@@ -266,6 +266,13 @@ function pu_blank_login( $user ){
 				    	console.log('registrando advisor');
 				    	registerAdvisor();
 				    });
+					
+					$('.hide-form-advisor').hide();
+					
+					$('.color-success').on('click', function(){
+				        $('.hide-form-advisor').show('slow');
+				    });
+					
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
@@ -387,6 +394,8 @@ function pu_blank_login( $user ){
 					    $('.container-fluid').css('padding-bottom', alturaFooter );
 					    alert("HOLA");
 					}
+					
+					
 					$('.j-login button').on('click', function(e){
 						e.preventDefault();
 						login();//addTournament();
@@ -598,12 +607,13 @@ function pu_blank_login( $user ){
 	 * @return boolean
 	 */
 	function register_advisor(){
-
+		
 		// Create wp_user
 		$username =  $_POST['username'];
 		$password =  $_POST['password'];
 		$email =  $_POST['email'];
-
+		$full_name = $_POST['full_name'];
+		
 		$userdata = array(
 		    'user_login'  	=> $username,
 		    'user_pass'   	=> $password, 
@@ -612,31 +622,36 @@ function pu_blank_login( $user ){
 		);
 
 		$user_id = wp_insert_user( $userdata ) ;
-
+		
 		//On success
 		if( !is_wp_error($user_id) ) {
-		 echo "User created : ". $user_id;
-		} 
+			// Create st_user
+			$advisor_data = array(
+				'wp_user_id'	=> $user_id,
+				'full_name'		=> $full_name,
+				);
 
-		// Create st_user
-		$full_name = $_POST['full_name'];
-
-		$advisor_data = array(
-			'wp_user_id'	=> $user_id,
-			'full_name'		=> $full_name,
-			);
-				
-		$st_user_id = add_advisor_user($advisor_data);
-		login_user($username, $password);
-		$msg = array(
-			"success" 	=> "Usuario registrado",
-			"error"	  	=> 0,
-			);
-		echo json_encode( $msg, JSON_FORCE_OBJECT ); 
-
+			$st_user_id = add_advisor_user($advisor_data);
+			login_user($username, $password);
+			$msg = array(
+				"success" 	=> "Usuario registrado",
+				"error"	  	=> 0,
+				"user_id" => $user_id,
+				"st_user" => $st_user_id,
+				"full_name" => $full_name
+				);
+			echo json_encode( $msg); 
+		}else{
+			$msg = array(
+				"msg" => "Usuario duplicado",
+				"error"	  	=> 1
+				);
+			echo json_encode( $msg ); 
+		}
 		die();
 	} // register_advisor
 	add_action("wp_ajax_nopriv_register_advisor", "register_advisor");
+	add_action("wp_ajax_register_advisor", "register_advisor");
 
 	/**
 	 * Inserta un usuario a la tabla st_advisors
@@ -1153,7 +1168,7 @@ function pu_blank_login( $user ){
 	add_action( 'init', 'st_register_advisors_table', 1 );
 	function st_register_advisors_table() {
 	    global $wpdb;
-	    $wpdb->st_users = "st_advisors";
+	    $wpdb->st_advisors = "st_advisors";
 	}// st_register_users_table
 
 	add_action( 'init', 'st_register_basic_profile_view', 1 );
