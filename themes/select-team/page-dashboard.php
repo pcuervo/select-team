@@ -4,6 +4,12 @@
         wp_redirect( $location );
         exit;
     }
+    $role = get_current_user_role();
+    if( $role != 'subscriber' ) {
+        $location = site_url().'/dashboard-admin';
+        wp_redirect( $location );
+        exit;
+    }
     get_header();
 
 ?>

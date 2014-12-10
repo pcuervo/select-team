@@ -266,6 +266,13 @@ function pu_blank_login( $user ){
 				    	console.log('registrando advisor');
 				    	registerAdvisor();
 				    });
+					
+					$('.hide-form-advisor').hide();
+					
+					$('.color-success').on('click', function(){
+				        $('.hide-form-advisor').show('slow');
+				    });
+					
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
@@ -378,7 +385,14 @@ function pu_blank_login( $user ){
 							e.preventDefault();
 							elegirDeporte($('#sport').val());
 						});
-						elegirDeporte('');
+
+						$('.j-login').load( function(e){
+							e.preventDefault();
+							alert();
+							elegirDeporte($('#sport').val());
+						});
+
+						//elegirDeporte('');
 					});
 				</script>
 			<?php } ?>
@@ -387,11 +401,12 @@ function pu_blank_login( $user ){
 					function footerBottom(){
 					    var alturaFooter = $('footer').height();
 					    $('.container-fluid').css('padding-bottom', alturaFooter );
-					    alert("HOLA");
 					}
+					
+					
 					$('.j-login button').on('click', function(e){
 						e.preventDefault();
-						login();//addTournament();
+						login();
 					});
 					
 				</script>
@@ -604,16 +619,17 @@ function pu_blank_login( $user ){
 		$username =  $_POST['username'];
 		$password =  $_POST['password'];
 		$email =  $_POST['email'];
-
+		$full_name = $_POST['full_name'];
+		
 		$userdata = array(
 		    'user_login'  	=> $username,
 		    'user_pass'   	=> $password, 
 		    'user_email'	=> $email,
-		    'role'			=> 'advisor'
+		    'role'			=> 'author'
 		);
 
 		$user_id = wp_insert_user( $userdata ) ;
-
+		if( !is_wp_error($user_id) ) {
 		// Create st_user
 		$full_name = $_POST['full_name'];
 
@@ -621,19 +637,36 @@ function pu_blank_login( $user ){
 			'wp_user_id'	=> $user_id,
 			'full_name'		=> $full_name,
 			);
-				
-		$st_user_id = add_advisor_user($advisor_data);
-		login_user($username, $password);
-		$msg = array(
-			"success" 	=> "Usuario registrado",
-		 	"error"	  	=> 0,
-		 	);
-		echo json_encode( $msg, JSON_FORCE_OBJECT ); 
-
+			$st_user_id = add_advisor_user($advisor_data);
+			login_user($username, $password);
+			$msg = array(
+				"success" 	=> "Usuario registrado",
+				"error"	  	=> 0
+				);
+			echo json_encode( $msg); 
+		}else{
+			$msg = array(
+				"msg" => "Usuario duplicado",
+				"error"	  	=> 1
+				);
+			echo json_encode( $msg ); 
+		}
 		die();
 	} // register_advisor
 	add_action("wp_ajax_register_advisor", "register_advisor");
+	
+	/**
+	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
+	function get_advisors_basic_info(){
+	    global $wpdb;
 
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id";
+	    $users = $wpdb->get_results($query);
+		
+		return $users;
+	}// get_users_basic_info
 
 	/**
 	 * Inserta un usuario a la tabla st_advisors
@@ -1140,6 +1173,27 @@ function pu_blank_login( $user ){
 
 	    endforeach;
 	}// site_login
+
+	/**
+	 * Devuelve la url del video de acuerdo al host.
+	 * @param string $advisor_data
+	 * @return int $advisor_id or FALSE
+	 */
+	function get_video_src($url, $host){
+		if($host == 'vimeo'){
+			$id = (int) substr(parse_url($url, PHP_URL_PATH), 1);
+			return '//player.vimeo.com/video/'.$id;
+		}
+
+		$id = explode('v=', $url)[1];
+		$ampersand_position = strpos($id, '&');
+		if( $ampersand_position > 0 )
+			$id = substr($id, $ampersand_position);
+
+		parse_str( parse_url( $url, PHP_URL_QUERY ), $url_array );
+		$id = $url_array['v']; 
+		return '//www.youtube.com/embed/'.$id;
+	}// get_video_src
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////

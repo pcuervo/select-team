@@ -137,37 +137,45 @@
 				}// switch
 			?>
 
-			<?php if (qtrans_getLanguage() == 'es'){ ?>
-				<p><b>Dirección:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->address) ? $user_curriculum->address : '-'; ?></p>
-				<hr>
-			<?php } else { ?>
-				<p><b>Address:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->address) ? $user_curriculum->address : '-'; ?></p>
-				<hr>
-			<?php } ?>
-
-			<?php if (qtrans_getLanguage() == 'es'){ ?>
-				<p><b>Teléfono:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->phone) ? $user_curriculum->phone : '-'; ?></p>
-				<hr>
-			<?php } else { ?>
-				<p><b>Phone:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->phone) ? $user_curriculum->phone : '-'; ?></p>
-				<hr>
-			<?php } ?>
-
-			<?php if (qtrans_getLanguage() == 'es'){ ?>
-				<p><b>Celular:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->mobile_phone) ? $user_curriculum->mobile_phone : '-'; ?></p>
-				<hr>
-			<?php } else { ?>
-				<p><b>Mobile Phone:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->mobile_phone) ? $user_curriculum->mobile_phone : '-'; ?></p>
-				<hr>
-			<?php } ?>
-
-			<?php if(sizeof($tournament_info)>0) { ?>
+			<?php if( $role != 'subscriber') { ?>
 				<?php if (qtrans_getLanguage() == 'es'){ ?>
-					<p><b>Torneos:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
+					<p><b>Dirección:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->address) ? $user_curriculum->address : '-'; ?></p>
 					<hr>
 				<?php } else { ?>
-					<p><b>Tournaments:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
+					<p><b>Address:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->address) ? $user_curriculum->address : '-'; ?></p>
 					<hr>
+				<?php } ?>
+
+				<?php if (qtrans_getLanguage() == 'es'){ ?>
+					<p><b>Teléfono:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->phone) ? $user_curriculum->phone : '-'; ?></p>
+					<hr>
+				<?php } else { ?>
+					<p><b>Phone:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->phone) ? $user_curriculum->phone : '-'; ?></p>
+					<hr>
+				<?php } ?>
+
+				<?php if (qtrans_getLanguage() == 'es'){ ?>
+					<p><b>Celular:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->mobile_phone) ? $user_curriculum->mobile_phone : '-'; ?></p>
+					<hr>
+				<?php } else { ?>
+					<p><b>Mobile Phone:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->mobile_phone) ? $user_curriculum->mobile_phone : '-'; ?></p>
+					<hr>
+				<?php } ?>
+
+				<?php if(sizeof($tournament_info)>0) { ?>
+					<?php if (qtrans_getLanguage() == 'es'){ ?>
+						<p><b>Torneos:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
+						<hr>
+					<?php } else { ?>
+						<p><b>Tournaments:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
+						<hr>
+					<?php } ?>
+					<ul>
+					<?php foreach ($tournament_info as $tournament) { ?>
+						<li><?php echo $tournament->name ?>, <?php echo substr($tournament->tournament_date , 0, 10) ?>, <?php echo $tournament->ranking ?></li>
+					<?php } ?>
+					</ul>
+
 				<?php } ?>
 			<?php } ?>
 
@@ -184,10 +192,7 @@
 				<div class="modal-body">
 					<div class="embed-responsive embed-responsive-16by9">
 						<?php 
-					  	$video_src = 'https://www.youtube.com/embed/6UhXAHmCxHw';
-						if($user->video_host == 'vimeo') { 
-						  
-						} 
+					  	$video_src = get_video_src($user->video_url, $user->video_host);
 						?>
 						<iframe class="embed-responsive-item" src="<?php echo $video_src ?>" frameborder="0" allowfullscreen></iframe>
 					</div>

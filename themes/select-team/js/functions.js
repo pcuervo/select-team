@@ -186,7 +186,6 @@ $("#menu-toggle").click(function(e) {
 function footerBottom(){
     var alturaFooter = $('footer').height();
     $('.container-fluid').css('padding-bottom', alturaFooter );
-    alert("HOLA");
 }
 
 
@@ -372,11 +371,16 @@ function registerAdvisor() {
         ajax_url,
         user_data,
         function(response){
-            console.log(response);
-            // var msg = $.parseJSON(response);
+			
+			console.log(response);
+            var msg = $.parseJSON(response);
 
-            // if(msg.error == 0)
-            //     window.location = site_url + '/dashboard';
+            if(msg.error == 0)
+                window.location = site_url + '/dashboard-admin';
+			else if(msg.error == 1)
+				alert('El usuario ya existe');
+			else
+				alert('Error, porfavor revisa los datos');
 
         }// response
     ); 
