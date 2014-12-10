@@ -346,10 +346,9 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            console.log(response);
             var msg = $.parseJSON(response);
             if(msg.error == 0)
-                window.location = site_url + '/dashboard';
+                window.location = site_url + '/dashboard/';
 
         }// response
     ); 
