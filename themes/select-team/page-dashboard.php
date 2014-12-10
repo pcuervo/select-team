@@ -83,18 +83,28 @@
                                 <?php } ?>
                             </div>
                         </form>
-                        <?php 
+                        
+                            <?php 
+                            echo $_GET['err'];
                             if(isset($_GET['err'])){
                                 foreach ($_SESSION['upload_message'] as $message) {
                                     // error
-                                    if(isset($_GET['err']) == 1){
+                                    if($_GET['err'] === 1){
+                                        ?>
+                                        <div class="alert alert-danger" role="alert">
+                                         <?php echo $message; ?>
+                                        </div>
                                     
-                                    } else{
+                                   <?php } else{ ?>
                                         
-                                    }
+                                        <div class="alert alert-success" role="alert">
+                                           <?php echo $message; ?>
+                                        </div>
+                                        
+                                   <?php }
                                 }
                             }
-                        ?>
+                        ?>   
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
