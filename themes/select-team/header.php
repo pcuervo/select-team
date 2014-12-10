@@ -230,16 +230,16 @@
 						</li>
 						<li>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospectos</a>
+								<a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospectos</a>
 							<?php } else { ?>
-								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospects</a>
+								<a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospects</a>
 							<?php } ?>
 						</li>
 						<li>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Agentes</a>
+								<a href="#advisors" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Agentes</a>
 							<?php } else { ?>
-								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
+								<a href="#advisors" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
 							<?php } ?>
 						</li>
 						<?php }  ?>
