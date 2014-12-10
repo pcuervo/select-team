@@ -83,95 +83,28 @@
                                     </div>
                                 </div><!-- isotope-filters -->
                                 <div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
+                                    <?php
+                                    $users = get_users_basic_info(); 
 
-                                    <div class="[ player <?php echo $sport.' '.$genre; ?> ] [ col-xs-5 col-sm-3 col-md-3 col-lg-2 ] [ clearfix margin-bottom ]">
-                                        <a href="#">
+                                    foreach ($users as $key => $user) 
+                                        if($user->profile_picture!='') { ?>
+                                            <a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
+                                                <div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
+                                                    <?php if($user->profile_picture!='') {?>
+                                                    <img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
+                                                    <?php } elseif ($user->gender=='male') { ?>
+                                                        <img src="<?php echo THEMEPATH.'profile_pictures/profile-01.png'?>" alt="" class="">
+                                                    <?php } elseif ($user->gender=='female') { ?>
+                                                        <img src="<?php echo THEMEPATH.'profile_pictures/profile-02.png'?>" alt="" class="">
+                                                    <?php } ?>
+                                                    <div class=" info">
+                                                      <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
+                                                      <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                    <?php } ?>
 
-                                        </a>
-                                        <div class="info">
-                                            <h4 class="center-text"><a href="<?php the_permalink(); ?>"></a></h4>
-                                            <p class="center-text">Sport: <span></span></p>
-                                        </div>
-                                    </div>
-
-                                  
-                                    <div class="male tennis player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Carlos H.</h4>
-                                              <p class="center-text">Sport: <span>Tennis</span></p>
-                                            </div>
-                                    </div>
-                                    <div class="female tennis player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Tania Ruiz</h4>
-                                              <p class="center-text">Sport: <span>Tennis</span></p>
-                                            </div>
-                                    </div>
-                                    <div class="male soccer player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Antonio Villa</h4>
-                                              <p class="center-text">Sport: <span>Soccer</span></p>
-                                            </div>
-                                    </div>
-                                    <div class="male tennis player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Diego Mozas</h4>
-                                              <p class="center-text">Sport: <span>Tennis</span></p>
-                                            </div>
-                                    </div>
-                                    <div class="female volleyball player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Gabriela M.</h4>
-                                              <p class="center-text">Sport: <span>Volleyball</span></p>
-                                            </div>
-                                     </div>
-                                     <div class="male volleyball player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Julio Peres</h4>
-                                              <p class="center-text">Sport: <span>Volleyball</span></p>
-                                            </div>
-                                    </div>
-                                    <div class="female volleyball player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Aislin Barreto</h4>
-                                              <p class="center-text">Sport: <span>Volleyball</span></p>
-                                            </div>
-                                    </div>
-                                     <div class="female volleyball player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Karla Bustillos</h4>
-                                              <p class="center-text">Sport: <span>Volleyball</span></p>
-                                            </div>
-                                    </div>
-                                    <div class="male tennis player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-01.png" alt="" class="">
-                                            <div class=" info">
-                                              <h4 class="center-text">Aldo M.</h4>
-                                              <p class="center-text">Sport: <span>Tennis</span></p>
-                                            </div>
-                                    </div>
-                                    <div class="female tennis player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                            <img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-                                            <div class=" info">
-                                                <h4 class="center-text">Estefania G.</h4>
-                                                <p class="center-text">Sport: <span>Tennis</span></p>
-                                            </div>
-                                    </div>
-                                    <div class="female soccer player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                        <img src="<?php echo THEMEPATH; ?>images/profile-02.png" alt="" class="">
-                                        <div class=" info">
-                                            <h4 class="center-text">Shadia S.</h4>
-                                            <p class="center-text">Sport: <span>Soccer</span></p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +119,7 @@
                         <?php } ?>
                         <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
+                            <i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
                         <?php } else { ?>
                             <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Register advisor</p>
                         <?php } ?>

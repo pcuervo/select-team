@@ -314,7 +314,7 @@
                                 <input type="hidden" name="sport" value="<?php echo $prospect_info->sport; ?>">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="video_host" id="optionsRadios2" value="youtube" <?php if($prospect_info->video_host=='youtube')echo " checked"; ?> >
+                                        <input type="radio" name="video_host" id="optionsRadios2" value="youtube" <?php if($prospect_info->video_host=='youtube') echo " checked"; ?> >
                                         YouTube
                                     </label>
                                 </div>

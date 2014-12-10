@@ -139,10 +139,10 @@
 						<div class="start-screen">
 							<img class="[ img-responsive ] [ center block ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
 							<div class="[ row ] [ banner-sports ]">
-								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
-								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
-								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
-								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
+								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-01.jpg" alt="">
+								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-02.jpg" alt="">
+								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-03.jpg" alt="">
+								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-04.jpg" alt="">
 							</div>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
 								<h2 class="[ text-center ][ center block ]">Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.</h2>
