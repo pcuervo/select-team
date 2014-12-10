@@ -85,11 +85,10 @@
                         </form>
                         
                             <?php 
-                            echo $_GET['err'];
                             if(isset($_GET['err'])){
                                 foreach ($_SESSION['upload_message'] as $message) {
                                     // error
-                                    if($_GET['err'] === 1){
+                                    if($_GET['err'] == 1){
                                         ?>
                                         <div class="alert alert-danger" role="alert">
                                          <?php echo $message; ?>
