@@ -123,7 +123,7 @@
                         <?php } else { ?>
                             <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Register advisor</p>
                         <?php } ?>
-                        <div class="[ col-xs-12 col-md-6 ]">
+                        <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
                             <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -171,8 +171,13 @@
                             </form>
                         </div>
                         <div class="clear"></div>
-                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b>Luis Menodza</b> - <a href="mailto:miguel@pcuervo.com">Luis@selectteam.com</a></p></a>
-                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b>Nair Tolomeo</b> - <a href="mailto:miguel@pcuervo.com">Luis@selectteam.com</a></p></a>
+						<?php 
+							
+							$users = get_advisors_basic_info(); 
+							foreach ($users as $key => $user) {
+						?>
+                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:miguel@pcuervo.com"><?php echo $user->user_email; ?></a></p></a>
+					  <?php } ?>
                     </div>
                 </div>
             </div>
