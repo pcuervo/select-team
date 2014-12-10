@@ -186,7 +186,6 @@ $("#menu-toggle").click(function(e) {
 function footerBottom(){
     var alturaFooter = $('footer').height();
     $('.container-fluid').css('padding-bottom', alturaFooter );
-    alert("HOLA");
 }
 
 

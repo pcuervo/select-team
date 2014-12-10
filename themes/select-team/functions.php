@@ -276,9 +276,6 @@ function pu_blank_login( $user ){
                                  var width_picture = $(this).width();
                                  var height_picture = $(this).height();
 
-                                    alert($(this).height());
-                                    alert($(this).width());
-
                                  if (width_picture > 300) {
 
                                     $(".profile_picture_preview").css("width", "300px");
@@ -390,7 +387,6 @@ function pu_blank_login( $user ){
 					function footerBottom(){
 					    var alturaFooter = $('footer').height();
 					    $('.container-fluid').css('padding-bottom', alturaFooter );
-					    alert("HOLA");
 					}
 					$('.j-login button').on('click', function(e){
 						e.preventDefault();
