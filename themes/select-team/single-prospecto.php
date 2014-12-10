@@ -172,7 +172,10 @@
 					<?php } ?>
 					<ul>
 					<?php foreach ($tournament_info as $tournament) { ?>
-						<li><?php echo $tournament->name ?>, <?php echo substr($tournament->tournament_date , 0, 10) ?>, <?php echo $tournament->ranking ?></li>
+						<div class="[ border-bottom ] [ row ]">
+							<p id="nameTournament" class="[ col-xs-12 ]"><b><?php echo $tournament->name ?></b></p>
+							<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b><?php echo substr($tournament->tournament_date , 0, 10) ?></p>
+							<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b><?php echo $tournament->ranking ?></p>
 					<?php } ?>
 					</ul>
 
