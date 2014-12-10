@@ -203,7 +203,6 @@ function getCookie(cname) {
 
 
 function elegirDeporte(deporte){
-  console.log(deporte);
 
   $('.j-register-user select[name="tennis_hand"]').parent().hide();
   $('.j-register-user input[name="fmt_ranking"]').parent().hide();

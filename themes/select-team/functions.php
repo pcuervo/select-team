@@ -385,7 +385,14 @@ function pu_blank_login( $user ){
 							e.preventDefault();
 							elegirDeporte($('#sport').val());
 						});
+
+						$('body').on('DOMNodeInserted', function(e){
+							e.preventDefault();
+							elegirDeporte('');
+							elegirDeporte($('#sport').val());
+						});
 						elegirDeporte('');
+						elegirDeporte($('#sport').val());						
 					});
 				</script>
 			<?php } ?>
@@ -399,7 +406,7 @@ function pu_blank_login( $user ){
 					
 					$('.j-login button').on('click', function(e){
 						e.preventDefault();
-						login();//addTournament();
+						login();
 					});
 					
 				</script>
