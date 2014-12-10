@@ -299,7 +299,7 @@ button, a{
 	.start-screen{
 		width: 100%;
 		height: 100vh;
-		padding: 30px;
+		padding: 0;
 		font-family: @font-family-gothic;
 		font-size: 20px;
 		color: @white;
@@ -308,8 +308,15 @@ button, a{
 		top: 0;
 		left: 0;
 		z-index: 9999;
-		img{ margin-bottom: 13vh; max-width: 60%; }
-		h2{ line-height: 2; }
+		img{ margin-bottom: 3vh; width: 15%; }
+		h2{ line-height: 2; padding: 0 30px; }
+		.banner-sports{
+			img{ width: 50%; float: left; margin: 0; }
+		}
+	}
+
+	.banner-sports{
+		img{ width: 25%; float: left; margin: 0; }
 	}
 
 	.home{
@@ -692,6 +699,12 @@ figure.effect-sadie:hover figcaption::before {
 
 // 768px *************
 @media (min-width: @screen-md-min) {
+	.start-screen{
+		.banner-sports{
+			img{ width: 25%; float: left; margin: 0; }
+		}
+	}
+
 	.content__dashboard{ padding-left: 250px; .transition; }
 	//MENU DESKTOP ======
 	.header__frontend{

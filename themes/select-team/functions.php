@@ -1095,12 +1095,28 @@ function pu_blank_login( $user ){
 		$password = $_POST['password'];
 
 		$logged_in = login_user($username, $password);
-		echo $logged_in;
+		if($logged_in == '1'){
+			echo 1;
+		} else
+			echo 0;
 
 		die();
 	}// site_login
 	add_action("wp_ajax_nopriv_site_login", "site_login");
 	add_action("wp_ajax_site_login", "site_login");
+
+	/**
+	 * Loggear a un usuario a la plataforma desde la página.
+	 * @return boolean
+	 */
+	function get_user_role(){
+		$role = get_current_user_role();
+		echo $role;
+
+		die();
+	}// get_user_role
+	add_action("wp_ajax_nopriv_get_user_role", "get_user_role");
+	add_action("wp_ajax_get_user_role", "get_user_role");
 
 	/**
 	 * Obtener el rol del usuario.
@@ -1122,7 +1138,6 @@ function pu_blank_login( $user ){
 
 	    endforeach;
 	}// site_login
-
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
