@@ -145,7 +145,7 @@
 								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
 							</div>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<h2 class="[ text-center ][ center block ]">¡Te ayudámos a obtener una beca deportiva en Estados Unidos!</h2>
+								<h2 class="[ text-center ][ center block ]">Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.</h2>
 							<?php } else { ?>
 								<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
 							<?php } ?>

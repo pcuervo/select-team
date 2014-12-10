@@ -373,10 +373,10 @@ function registerAdvisor() {
         user_data,
         function(response){
             console.log(response);
-            var msg = $.parseJSON(response);
+            // var msg = $.parseJSON(response);
 
-            if(msg.error == 0)
-                window.location = site_url + '/dashboard';
+            // if(msg.error == 0)
+            //     window.location = site_url + '/dashboard';
 
         }// response
     ); 
@@ -487,17 +487,33 @@ function login(){
     $.post(
         ajax_url,
         user_data,
-        function(response){        
-            if(response == '1'){
-                window.location = site_url + '/dashboard';
-            } else {
-                alert('Credenciales inválidas, intenta nuevamente.');
-            }
+        function(response){   
+            console.log(response);
 
-            
+            if(response){
+                redirectUserDashoard();
+            }
+            else
+                alert('Nombre de usuario o contraseña inválidos.');   
         } //response
     ); 
 }
+
+function redirectUserDashoard(){
+    var user_data = {};
+    user_data['action'] = 'get_user_role';
+  
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){   
+            if(response == 'subscriber')
+                window.location = site_url + '/dashboard';
+            else
+                window.location = site_url + '/dashboard-admin';
+        } //response
+    ); 
+}// redirectUserDashoard
 
 function sendMail(){
   console.log("mail");
