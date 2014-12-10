@@ -84,7 +84,7 @@
                             </div>
                         </form>
                         
-                            <?php 
+                        <?php 
                             if(isset($_GET['err'])){
                                 foreach ($_SESSION['upload_message'] as $message) {
                                     // error

@@ -21,7 +21,7 @@
 
 setTimeout(function(){
   $('.start-screen').fadeOut(800);},
-  3000);
+  5000);
 
 //ISOTOPE
 var $=jQuery.noConflict();
@@ -415,33 +415,34 @@ function createCurriculum() {
 
 
 function updateCurriculum() {
-  var user_curriculum_data = {};
+    var user_curriculum_data = {};
 
-  user_curriculum_data['action'] = 'update_curriculum';
-  user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
-  user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
-  user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
-  user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
-  user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
-  user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
-  user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
+    user_curriculum_data['action'] = 'update_curriculum';
+    user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
+    user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
+    user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
+    user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
+    user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
+    user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
+    user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
   
-  //Sports Development
-  if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
-  addTournament();
-  registerTournament();
+    //Sports Development
+    if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
+        addTournament();
 
-  $.post(
-      ajax_url,
-      user_curriculum_data,
-      function(response){
-          console.log("response:");
-          console.log(response);
+    registerTournament();
+
+    $.post(
+        ajax_url,
+        user_curriculum_data,
+        function(response){
+            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+            $(html_feedback).appendTo('.j-user_curriculum');
           
       } //response
   ); 
 
-}// updateCurriculum
+    }// updateCurriculum
 
 
 function updateUserInfo() {
@@ -469,13 +470,13 @@ function updateUserInfo() {
             user_data['volley_position'] = $('.j-update-basic-profile select[name="volley_position"]').val();
             //user_data['volley_height'] = $('.j-update-basic-profile input[name="volley_height"]').val();
     }// switch
-    console.log(user_data);
+    $('.j-update-basic-profile .alert-success').remove();
      $.post(
          ajax_url,
          user_data,
          function(response){
-             console.log(response);
-             //window.location = site_url + '/dashboard';
+             var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu perfil.</div>';
+             $(html_feedback).appendTo('.j-update-basic-profile');
          } //response
      ); 
 }// updateUser

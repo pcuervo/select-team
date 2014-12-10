@@ -215,28 +215,30 @@
 								<?php } ?>
 							</li>
 						<?php } else { ?>
-						<!-- Para el dashboard de admin -->
-						<li>
-							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
-							<?php } else { ?>
-								<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+							<!-- Para el dashboard de admin -->
+							<li>
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
+								<?php } else { ?>
+									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+								<?php } ?>
+							</li>
+							<li>
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospectos</a>
+								<?php } else { ?>
+									<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospects</a>
+								<?php } ?>
+							</li>
+							<?php if( $role != 'author' ) { ?>
+								<li>
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Agentes</a>
+									<?php } else { ?>
+										<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
+									<?php } ?>
+								</li>
 							<?php } ?>
-						</li>
-						<li>
-							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospectos</a>
-							<?php } else { ?>
-								<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospects</a>
-							<?php } ?>
-						</li>
-						<li>
-							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Agentes</a>
-							<?php } else { ?>
-								<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
-							<?php } ?>
-						</li>
 						<?php }  ?>
 						<!-- Para el register usuario o advisor -->
 						<li class="sidebar-brand">
