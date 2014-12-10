@@ -83,13 +83,15 @@
                                 <?php } ?>
                             </div>
                         </form>
-                        <?php 
+                        <div class="alert alert-success" role="alert">
+                            <?php 
                             if(isset($_GET['err'])){
                                 foreach ($_SESSION['upload_message'] as $message) {
                                     echo $message;
                                 }
                             }
                         ?>
+                        </div>    
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
