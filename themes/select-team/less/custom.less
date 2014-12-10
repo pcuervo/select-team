@@ -308,15 +308,11 @@ button, a{
 		top: 0;
 		left: 0;
 		z-index: 9999;
-		img{ margin-bottom: 3vh; width: 15%; }
-		h2{ line-height: 2; padding: 0 30px; }
+		img{ margin-bottom: 3vh; width: 10%; }
+		h2{ line-height: 2; padding: 0 30px; font-size: 1.1em; }
 		.banner-sports{
 			img{ width: 50%; float: left; margin: 0; }
 		}
-	}
-
-	.banner-sports{
-		img{ width: 25%; float: left; margin: 0; }
 	}
 
 	.home{
@@ -691,7 +687,13 @@ figure.effect-sadie:hover figcaption::before {
 
 // 320px *************
 @media (min-width: @screen-sm-min) {
-
+	.start-screen{
+		h2{ line-height: 2; padding: 0 30px; font-size: 1.5em; }
+		.banner-sports{
+			margin-bottom: 30px;
+			img{ width: 25%; float: left; margin: 0; }
+		}
+	}
 }
 
 
@@ -699,11 +701,7 @@ figure.effect-sadie:hover figcaption::before {
 
 // 768px *************
 @media (min-width: @screen-md-min) {
-	.start-screen{
-		.banner-sports{
-			img{ width: 25%; float: left; margin: 0; }
-		}
-	}
+
 
 	.content__dashboard{ padding-left: 250px; .transition; }
 	//MENU DESKTOP ======
