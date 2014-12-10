@@ -495,11 +495,14 @@ function login(){
         function(response){   
             console.log(response);
 
-            if(response){
+            if(response == 1){
                 redirectUserDashoard();
             }
-            else
+            else{
+                var html_error = '<p>Nombre de usuario o contraseña inválidos.</p>';
+                $('.')
                 alert('Nombre de usuario o contraseña inválidos.');   
+            }
         } //response
     ); 
 }
