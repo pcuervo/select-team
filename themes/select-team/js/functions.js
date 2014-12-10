@@ -186,7 +186,6 @@ $("#menu-toggle").click(function(e) {
 function footerBottom(){
     var alturaFooter = $('footer').height();
     $('.container-fluid').css('padding-bottom', alturaFooter );
-    alert("HOLA");
 }
 
 
@@ -377,7 +376,7 @@ function registerAdvisor() {
             var msg = $.parseJSON(response);
 
             if(msg.error == 0)
-                window.location = site_url + '/dashboard';
+                window.location = site_url + '/dashboard-admin';
 			else if(msg.error == 1)
 				alert('El usuario ya existe');
 			else

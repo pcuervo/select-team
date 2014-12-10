@@ -4,6 +4,13 @@
         wp_redirect( $location );
         exit;
     }
+
+    $role = get_current_user_role();
+    if( $role == 'subscriber' ) {
+        $location = site_url().'/dashboard';
+        wp_redirect( $location );
+        exit;
+    }
 ?>
 <?php get_header(); ?>
 
@@ -17,6 +24,7 @@
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
+
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
                         <?php } else { ?>
@@ -176,7 +184,7 @@
 							$users = get_advisors_basic_info(); 
 							foreach ($users as $key => $user) {
 						?>
-                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:miguel@pcuervo.com"><?php echo $user->user_email; ?></a></p></a>
+                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <?php echo $user->user_email; ?></p></a>
 					  <?php } ?>
                     </div>
                 </div>
