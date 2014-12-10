@@ -118,18 +118,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="advisors">
+                <div class="[ row ] [ margin-bottom ]" id="advisors">
                     <div class="[ col-xs-12 col-sm-12 center block ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Agentes</h3>
                         <?php } else { ?>
                             <h3 class="[ margin-bottom ]">Advisors</h3>
                         <?php } ?>
-                        <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
+                            <button class="[ btn btn-primary ] [ margin-bottom ]"><i class="[ fa fa-plus ]"></i> Registrar agente</button>
                         <?php } else { ?>
-                            <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Register advisor</p>
+                            <button class="[ btn btn-primary ] [ margin-bottom ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
                         <?php } ?>
                         <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
                             <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
