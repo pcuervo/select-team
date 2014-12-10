@@ -498,9 +498,8 @@ function login(){
                 redirectUserDashoard();
             }
             else{
-                var html_error = '<p>Nombre de usuario o contraseña inválidos.</p>';
-                $('.')
-                alert('Nombre de usuario o contraseña inválidos.');   
+                var html_error = '<div class="text-center" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+                $(html_error).prependTo('.modal-footer');
             }
         } //response
     ); 
