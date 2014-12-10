@@ -250,9 +250,8 @@ function addTournament(){
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_data[]" value="'+$tournament_name+'"/> ');
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_date_data[]" value="'+$tournament_date+'"/> ');
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_rank_data[]" value="'+$tournament_rank+'"/> ');
-  
-    $('.j-registed-tournaments').append('<p>Tournament: '+$tournament_name+'</p>');
-    $('.j-registed-tournaments').append('<p>Date: '+$tournament_date+'   Position: '+$tournament_rank+'</p>');
+    
+    $('.j-registed-tournaments').append('<p style="padding: 7px 10px; margin-right: 30px; background: #8d0e2f; color: #ffffff;"><b>Tournament name:</b> '+$tournament_name+' <span style="padding: 8px 15px 9px 15px; background: #002147; color: #ffffff; margin-left: 20px;"><i class="fa fa-calendar"></i> &nbsp;'+$tournament_date+'   &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trophy"></i><b>#</b> '+$tournament_rank+'</span><span style="color: #ffffff; float: right; cursor: pointer;" class="delete_tournament_profile">Delete <i class="fa fa-minus-circle"></i></span></p>');
   
     $('.j-user_curriculum input[name="tournament"]').val("");
     $('.j-user_curriculum input[name="tournament_date"]').val("");
@@ -349,7 +348,6 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            console.log('Response');
             console.log(response);
             var msg = $.parseJSON(response);
             if(msg.error == 0)
@@ -358,6 +356,31 @@ function registerUser() {
         }// response
     ); 
 }// registerUser
+
+function registerAdvisor() {
+    var user_data = {};
+
+    user_data['action'] = 'register_advisor';
+    user_data['username'] = $('.j-register-advisor input[name="username"]').val();
+    user_data['password'] = $('.j-register-advisor input[name="password"]').val();
+    user_data['password_confirmation'] = $('.j-register-advisor input[name="password_confirmation"]').val();
+    user_data['email'] = $('.j-register-advisor input[name="email"]').val();
+    user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
+   
+    console.log(user_data);
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+            console.log(response);
+            var msg = $.parseJSON(response);
+
+            if(msg.error == 0)
+                window.location = site_url + '/dashboard';
+
+        }// response
+    ); 
+}// registerAdvisor
 
 
 function createCurriculum() {

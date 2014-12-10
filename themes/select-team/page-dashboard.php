@@ -5,6 +5,7 @@
         exit;
     }
     get_header();
+
 ?>
     <div id="dashboard">
         <?php 
@@ -48,7 +49,7 @@
                             <h3>Profile Picture</h3>
                         <?php } ?>
                         <?php if ( $prospect_info->profile_picture != '' ) { ?>
-                            <img src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
+                            <img class="profile_picture_preview" src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
                         <?php } ?>
                         <img src="" />
                         <form action="<?php echo THEMEPATH; ?>upload_picture.php" method="POST" role="form" class="[ row ] [ j-upload-profile-picture ]" enctype="multipart/form-data">
@@ -87,6 +88,7 @@
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
+                        
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
                         <?php } else { ?>

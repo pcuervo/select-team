@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php 
+
+if ( is_user_logged_in() ) {
+    $location = site_url().'dashboard';
+    wp_redirect( $location );
+    exit;
+}
+
+get_header(); ?>
     <div id="page-content-wrapper">
         <div class="[ container-fluid ]" id="page-content">
             <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">

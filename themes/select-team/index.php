@@ -85,6 +85,7 @@
                                 <option value="grado2">4º Preparatoria </option>
                                 <option value="grado3">5º Preparatoria </option>
                                 <option value="grado4">6º Preparatoria </option>
+                                <option value="graduated">Graduado </option>
                             </select>
                             <?php } else { ?>
                                 <span><label for="q5">What grade are you in?</label></span>
@@ -94,6 +95,7 @@
                                 <option value="grado2">Sophomore </option>
                                 <option value="grado3">Junior </option>
                                 <option value="grado4">Senior </option>
+                                <option value="graduated">Graduated </option>
                             </select>
                             <?php } ?>
                         </li>
