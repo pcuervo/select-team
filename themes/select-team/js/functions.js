@@ -431,14 +431,13 @@ function updateCurriculum() {
   addTournament();
   registerTournament();
 
-  console.log(user_curriculum_data);
   $.post(
       ajax_url,
       user_curriculum_data,
       function(response){
           console.log("response:");
           console.log(response);
-          //window.location = site_url + '/dashboard';
+          
       } //response
   ); 
 

@@ -86,8 +86,15 @@
                         <?php 
                             if(isset($_GET['err'])){
                                 foreach ($_SESSION['upload_message'] as $message) {
-                                    echo $message;
+                                    // error
+                                    if(isset($_GET['err']) == 1){
+                                    
+                                    } else{
+                                        
+                                    }
                                 }
+                               
+                                
                             }
                         ?>
                     </div>
