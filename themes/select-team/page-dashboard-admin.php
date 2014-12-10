@@ -118,75 +118,79 @@
                         </div>
                     </div>
                 </div>
-                <div class="[ row ] [ margin-bottom ]" id="advisors">
-                    <div class="[ col-xs-12 col-sm-12 center block ]">
-                        <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <h3 class="[ margin-bottom ]">Agentes</h3>
-                        <?php } else { ?>
-                            <h3 class="[ margin-bottom ]">Advisors</h3>
-                        <?php } ?>
-                        <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <button class="[ btn btn-primary ] [ margin-bottom ]"><i class="[ fa fa-plus ]"></i> Registrar agente</button>
-                        <?php } else { ?>
-                            <button class="[ btn btn-primary ] [ margin-bottom ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
-                        <?php } ?>
-                        <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
-                            <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
-                                <div class="[ form-group ] [ col-xs-12 ]">
+                <?php if ( $role != 'author' ) { ?>
+                    <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="advisors">
+                        <div class="[ col-xs-12 col-sm-12 center block ]">
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <h3 class="[ margin-bottom ]">Agentes</h3>
+                            <?php } else { ?>
+                                <h3 class="[ margin-bottom ]">Advisors</h3>
+                            <?php } ?>
+                            <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
+                            <?php } else { ?>
+                                <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Register advisor</p>
+                            <?php } ?>
+                            <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
+                                <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="full_name">Nombre completo</label>
+                                        <?php } else { ?>
+                                            <label for="full_name">Full name</label>
+                                        <?php } ?>
+                                        <input type="text" class="[ form-control ]" name="full_name">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="username">Nombre de usuario</label>
+                                        <?php } else { ?>
+                                            <label for="username">Username</label>
+                                        <?php } ?>
+                                        <input type="text" class="[ form-control ]" name="username">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="email">Correo electrónico</label>
+                                        <?php } else { ?>
+                                            <label for="email">Email</label>
+                                        <?php } ?>
+                                        <input type="email" class="[ form-control ]" name="email"> 
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="[ form-control ]" name="password">
+                                        <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="password_confirmation">Confirmar password</label>
+                                        <?php } else { ?>
+                                            <label for="password_confirmation">Confirm password</label>
+                                        <?php } ?>
+                                            <input type="password" class="[ form-control ]" name="password_confirmation">
+                                            <label for="validate" id="validate"></label>                                 
+                                    </div>
+>>>>>>> ccd5f963d4829163613880b7ed1bd7f7139f79a4
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="full_name">Nombre completo</label>
+                                        <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Agregar agente</button>
                                     <?php } else { ?>
-                                        <label for="full_name">Full name</label>
+                                        <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Add Advisor</button>
                                     <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="full_name">
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="username">Nombre de usuario</label>
-                                    <?php } else { ?>
-                                        <label for="username">Username</label>
-                                    <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="username">
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="email">Correo electrónico</label>
-                                    <?php } else { ?>
-                                        <label for="email">Email</label>
-                                    <?php } ?>
-                                    <input type="email" class="[ form-control ]" name="email"> 
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="[ form-control ]" name="password">
-                                    <p class="help-block">El password debe contener al menos 8 caracteres.</p>
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="password_confirmation">Confirmar password</label>
-                                    <?php } else { ?>
-                                        <label for="password_confirmation">Confirm password</label>
-                                    <?php } ?>
-                                        <input type="password" class="[ form-control ]" name="password_confirmation">
-                                        <label for="validate" id="validate"></label>                                 
-                                </div>
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Agregar agente</button>
-                                <?php } else { ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Add Advisor</button>
-                                <?php } ?>
-                            </form>
+                                </form>
+                            </div>
+                            <div class="clear"></div>
+    						<?php 
+    							
+    							$users = get_advisors_basic_info(); 
+    							foreach ($users as $key => $user) {
+    						?>
+                            <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <?php echo $user->user_email; ?></p></a>
+    					  <?php } ?>
                         </div>
-                        <div class="clear"></div>
-						<?php 
-							
-							$users = get_advisors_basic_info(); 
-							foreach ($users as $key => $user) {
-						?>
-                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <?php echo $user->user_email; ?></p></a>
-					  <?php } ?>
                     </div>
-                </div>
+                <?php } ?>
             </div>
         </div><!-- /#page-content-wrapper -->
     </div> <!-- /#dashboard -->
