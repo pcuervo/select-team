@@ -30,9 +30,15 @@
 			if($count=='3'){?>
 	            <hr>
 	            <div class="clearfix">
-	                <p class="center-text">Does your son qualify for a sports scholarship at a university in the United States?</p>
-	                <p class="center-text">Complete the form and we will evaluate your chances!</p>
-	                <a href="<?php echo site_url( 'register' );?>" type="button" class="btn btn-info col-xs-8 col-md-5 center block freeAssesment">Free Assesment</a>
+		            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                        <p class="center-text">¿Califica su hijo para una beca deportiva en una universidad de los Estados Unidos?</p>
+		                <p class="center-text">Complete el formulario y vamos a evaluar sus posibilidades!</p>
+		                <a href="<?php echo site_url( 'register' );?>" type="button" class="btn btn-info col-xs-8 col-md-5 center block freeAssesment">Valoración gratuita</a>
+                    <?php } else { ?>
+                        <p class="center-text">Does your son qualify for a sports scholarship at a university in the United States?</p>
+		                <p class="center-text">Complete the form and we will evaluate your chances!</p>
+		                <a href="<?php echo site_url( 'register' );?>" type="button" class="btn btn-info col-xs-8 col-md-5 center block freeAssesment">Free Assesment</a>
+                    <?php } ?>	                
 	            </div>
 	            <hr>
 	 	<?php } endwhile; endif; ?>
