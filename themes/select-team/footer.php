@@ -61,7 +61,6 @@
         <footer style="display: none;">
         </footer>
     <?php } ?>
-    
     <?php wp_footer(); ?>
   </body>
 </html>
