@@ -5,7 +5,7 @@
             <figcaption>
                 <h2 class="">
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
-                        Se un prospecto
+                        Convertirse en prospecto
                     <?php } else { ?>
                         Become a prospect
                     <?php } ?>
