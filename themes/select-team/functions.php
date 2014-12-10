@@ -405,11 +405,7 @@ function pu_blank_login( $user ){
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
 				<script>
-					function footerBottom(){
-					    var alturaFooter = $('footer').height();
-					    $('.container-fluid').css('padding-bottom', alturaFooter );
-					}
-					
+					footerBottom();
 					
 					$('.j-login button').on('click', function(e){
 						e.preventDefault();

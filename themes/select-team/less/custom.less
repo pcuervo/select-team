@@ -13,7 +13,7 @@
 
 //********************
 
-html{ height: 100%; }
+html, body{ height: 100%; }
 .home{ max-width: 100%; overflow: hidden; }
 
 .content__dashboard{ padding-left: 0; .transition; }
@@ -98,6 +98,7 @@ button, a{
 	padding: 0;
 	background-repeat: repeat;
 	height: 100%;
+	position: relative;
 }
 
 .jumbotron{
@@ -153,13 +154,13 @@ button, a{
 
  //FORMS*******************
 
- .input-group{
- 	margin-bottom: 15px;
- }
+.input-group{
+	margin-bottom: 15px;
+}
 
- .modal-body{
- 	span{ min-width: 40px;}
- }
+.modal-body{
+	span{ min-width: 40px;}
+}
 
 //HEADER*******
 .header__frontend{ background-color: @brand-primary; position: relative; z-index: 2; }
@@ -1025,8 +1026,8 @@ figure.effect-sadie:hover figcaption::before {
 
 
 // footer{ position: absolute; bottom: 0; clear: both; }
-footer{ background-color: @brand-primary; width: 100%; padding: 15px; position: absolute; overflow-x: hidden; z-index: 999; clear: both;
-		a,p{ color: #fff; text-decoration: none; }
-		a:hover{ color: rgba(255, 255, 255, 0.5); text-decoration: none; }
-		span{ margin: 0 5px; }
+footer{ background-color: @brand-primary; width: 100%; padding: 15px; position: absolute; bottom: 0; overflow-x: hidden; z-index: 999; clear: both;
+	a,p{ color: #fff; text-decoration: none; }
+	a:hover{ color: rgba(255, 255, 255, 0.5); text-decoration: none; }
+	span{ margin: 0 5px; }
 }
