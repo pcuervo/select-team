@@ -650,8 +650,20 @@ function pu_blank_login( $user ){
 		}
 		die();
 	} // register_advisor
-	add_action("wp_ajax_nopriv_register_advisor", "register_advisor");
 	add_action("wp_ajax_register_advisor", "register_advisor");
+	
+	/**
+	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
+	function get_advisors_basic_info(){
+	    global $wpdb;
+
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id";
+	    $users = $wpdb->get_results($query);
+		
+		return $users;
+	}// get_users_basic_info
 
 	/**
 	 * Inserta un usuario a la tabla st_advisors
