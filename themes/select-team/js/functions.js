@@ -357,6 +357,58 @@ function registerUser() {
     ); 
 }// registerUser
 
+function getAdvisorBasicInfo(id){
+	var user_data = {};
+	user_data['action'] = 'get_info_advisor';
+    user_data['id'] = id;
+	
+	$.post(
+        ajax_url,
+        user_data,
+        function(response){
+			console.log(response);
+			var msg = $.parseJSON(response.slice(0,-1));
+			console.log(msg);
+			$('.j-register-advisor input[name="full_name"]').val(msg.full_name);
+			$('.j-register-advisor input[name="id"]').val(msg.ID);
+			$('.j-register-advisor input[name="username"]').val(msg.user_login);
+			$('.j-register-advisor input[name="email"]').val(msg.user_email);
+			
+			$('.hide-form-advisor').show('slow');
+			$('.btn-editar').show();
+			$('.btn-agregar').hide();
+        }// response
+    ); 
+}
+
+function updateAdvisor() {
+    var user_data = {};
+
+    user_data['action'] = 'update_advisor';
+	user_data['id'] = $('.j-register-advisor input[name="id"]').val();
+    user_data['password'] = $('.j-register-advisor input[name="password"]').val();
+    user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
+   
+    console.log(user_data);
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+			
+			console.log(response);
+            var msg = $.parseJSON(response);
+
+            if(msg.error == 0)
+                alert('Advisor guardado con exito');
+			else if(msg.error == 1)
+				alert('El usuario ya existe');
+			else
+				alert('Error, porfavor revisa los datos');
+
+        }// response
+    ); 
+}// registerAdvisor
+
 function registerAdvisor() {
     var user_data = {};
 
@@ -386,6 +438,8 @@ function registerAdvisor() {
         }// response
     ); 
 }// registerAdvisor
+
+
 
 
 function createCurriculum() {
