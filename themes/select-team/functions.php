@@ -198,7 +198,7 @@ function pu_blank_login( $user ){
 		                            //$.post("send-coach.php", $("#theForm2").serialize(), function(response) {});
 		                        }
 		                    } );
-		                    $('figure').on('click', function(){
+		                    $('figure').not('.j-already-prospect').on('click', function(){
 		                        abrirCards( $(this) );
 		                    });
 		                    $('.cards-prospect .js-next-card').on('click', function(){
