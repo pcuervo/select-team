@@ -345,10 +345,9 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            console.log(response);
             var msg = $.parseJSON(response);
             if(msg.error == 0)
-                window.location = site_url + '/dashboard';
+                window.location = site_url + '/dashboard/';
 
         }// response
     ); 
@@ -363,8 +362,7 @@ function registerAdvisor() {
     user_data['password_confirmation'] = $('.j-register-advisor input[name="password_confirmation"]').val();
     user_data['email'] = $('.j-register-advisor input[name="email"]').val();
     user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
-   
-    console.log(user_data);
+
     $.post(
         ajax_url,
         user_data,

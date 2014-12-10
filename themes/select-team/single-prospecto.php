@@ -170,6 +170,7 @@
 						<p><b>Tournaments:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
 						<hr>
 					<?php } ?>
+
 					<?php foreach ($tournament_info as $tournament) { ?>
 						<div class="[ border-bottom ] [ row ]">
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
