@@ -796,7 +796,6 @@ function pu_blank_login( $user ){
 		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
-	add_action("wp_ajax_register_user", "register_user");
 
 	/**
 	 * Actualiza los datos del curriculum del usuario.
