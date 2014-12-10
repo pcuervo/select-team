@@ -22,20 +22,28 @@
 		$upload->setMaxSize($max);
 		$upload->upload();
 		$result = $upload->getMessages();
+
+		if( count($result) > 0){
+			$isUploaded = true;
+		} else {
+			$isUploaded = false;
+			$result = $upload->getErrorMessages();
+		}
+
 		$name = $upload->getName();
-		$isUploaded = true;
 		$_SESSION['name'] = $name;
 		$_SESSION['upload_message'] = $result;
 	} catch (Exception $e) {
 		$result[] = $e->getMessage();
+
 	}
 
 	if($isUploaded) {
 		$_SESSION['profile_pic'] = $name;
 		$_SESSION['st_user_id'] = $st_user_id;
 		header("Location: ".$site_url.'/dashboard?err=0');
+	} else {
+		header("Location: ".$site_url.'/dashboard?err=1');
 	}
-
-	header("Location: ".$site_url.'/dashboard?err=1');
 
 ?>

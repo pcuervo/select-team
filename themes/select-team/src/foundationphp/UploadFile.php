@@ -5,6 +5,7 @@ class UploadFile
 {
 	protected $destination;
 	protected $messages = array();
+	protected $errorMessages = array();
 	protected $maxSize = 512000;
 	protected $permittedTypes = array(
 			'image/jpeg',
@@ -112,6 +113,11 @@ class UploadFile
 	{
 		return $this->messages;
 	}
+
+	public function getErrorMessages()
+	{
+		return $this->errorMessages;
+	}
 	
 	protected function checkFile($file)
 	{
@@ -136,17 +142,17 @@ class UploadFile
 		switch($file['error']) {
 			case 1:
 			case 2:
-				$this->messages[] = $file['name'] . ' es demasiado grande: (max: ' . 
+				$this->errorMessages[] = $file['name'] . ' es demasiado grande: (max: ' . 
 				self::convertFromBytes($this->maxSize) . ') ';
 				break;
 			case 3:
-				$this->messages[] = $file['name'] . ' se subió parcialmente.';
+				$this->errorMessages[] = $file['name'] . ' se subió parcialmente.';
 				break;
 			case 4:
-				$this->messages[] = 'No se mandó el archivo.';
+				$this->errorMessages[] = 'No se mandó el archivo.';
 				break;
 			default:
-				$this->messages[] = 'Lo sentimos, hubo un problema al subir el archivo ' . $file['name'];
+				$this->errorMessages[] = 'Lo sentimos, hubo un problema al subir el archivo ' . $file['name'];
 				break;
 		}
 	}

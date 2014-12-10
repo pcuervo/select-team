@@ -21,7 +21,7 @@
 
 setTimeout(function(){
   $('.start-screen').fadeOut(800);},
-  3000);
+  5000);
 
 //ISOTOPE
 var $=jQuery.noConflict();
@@ -249,7 +249,7 @@ function addTournament(){
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_date_data[]" value="'+$tournament_date+'"/> ');
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_rank_data[]" value="'+$tournament_rank+'"/> ');
     
-    $('.j-registed-tournaments').append('<p style="padding: 7px 10px; margin-right: 30px; background: #8d0e2f; color: #ffffff;"><b>Tournament name:</b> '+$tournament_name+' <span style="padding: 8px 15px 9px 15px; background: #002147; color: #ffffff; margin-left: 20px;"><i class="fa fa-calendar"></i> &nbsp;'+$tournament_date+'   &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trophy"></i><b>#</b> '+$tournament_rank+'</span><span style="color: #ffffff; float: right; cursor: pointer;" class="delete_tournament_profile">Delete <i class="fa fa-minus-circle"></i></span></p>');
+    $('.j-registed-tournaments').append( '<div class="[ border-bottom ] [ row ]"><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$tournament_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
   
     $('.j-user_curriculum input[name="tournament"]').val("");
     $('.j-user_curriculum input[name="tournament_date"]').val("");
@@ -415,33 +415,34 @@ function createCurriculum() {
 
 
 function updateCurriculum() {
-  var user_curriculum_data = {};
+    var user_curriculum_data = {};
 
-  user_curriculum_data['action'] = 'update_curriculum';
-  user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
-  user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
-  user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
-  user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
-  user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
-  user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
-  user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
+    user_curriculum_data['action'] = 'update_curriculum';
+    user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
+    user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
+    user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
+    user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
+    user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
+    user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
+    user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
   
-  //Sports Development
-  if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
-  addTournament();
-  registerTournament();
+    //Sports Development
+    if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
+        addTournament();
 
-  $.post(
-      ajax_url,
-      user_curriculum_data,
-      function(response){
-          console.log("response:");
-          console.log(response);
+    registerTournament();
+
+    $.post(
+        ajax_url,
+        user_curriculum_data,
+        function(response){
+            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+            $(html_feedback).appendTo('.j-user_curriculum');
           
       } //response
   ); 
 
-}// updateCurriculum
+    }// updateCurriculum
 
 
 function updateUserInfo() {
@@ -469,13 +470,13 @@ function updateUserInfo() {
             user_data['volley_position'] = $('.j-update-basic-profile select[name="volley_position"]').val();
             //user_data['volley_height'] = $('.j-update-basic-profile input[name="volley_height"]').val();
     }// switch
-    console.log(user_data);
+    $('.j-update-basic-profile .alert-success').remove();
      $.post(
          ajax_url,
          user_data,
          function(response){
-             console.log(response);
-             //window.location = site_url + '/dashboard';
+             var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu perfil.</div>';
+             $(html_feedback).appendTo('.j-update-basic-profile');
          } //response
      ); 
 }// updateUser
@@ -487,17 +488,16 @@ function login(){
     user_data['username'] = $('.j-login input[name="j-email"]').val();
     user_data['password'] = $('.j-login input[name="j-password"]').val();
   
+    $('.j-login .alert').remove();
     $.post(
         ajax_url,
         user_data,
         function(response){   
-            console.log(response);
-
             if(response == 1){
                 redirectUserDashoard();
             }
             else{
-                var html_error = '<div class="text-center" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+                var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
                 $(html_error).prependTo('.modal-footer');
             }
         } //response
