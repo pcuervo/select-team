@@ -376,7 +376,7 @@ function registerAdvisor() {
             var msg = $.parseJSON(response);
 
             if(msg.error == 0)
-                window.location = site_url + '/dashboard';
+                window.location = site_url + '/dashboard-admin';
 			else if(msg.error == 1)
 				alert('El usuario ya existe');
 			else

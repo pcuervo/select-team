@@ -192,10 +192,7 @@
 				<div class="modal-body">
 					<div class="embed-responsive embed-responsive-16by9">
 						<?php 
-					  	$video_src = 'https://www.youtube.com/embed/6UhXAHmCxHw';
-						if($user->video_host == 'vimeo') { 
-						  
-						} 
+					  	$video_src = get_video_src($user->video_url, $user->video_host);
 						?>
 						<iframe class="embed-responsive-item" src="<?php echo $video_src ?>" frameborder="0" allowfullscreen></iframe>
 					</div>

@@ -618,7 +618,7 @@ function pu_blank_login( $user ){
 		    'user_login'  	=> $username,
 		    'user_pass'   	=> $password, 
 		    'user_email'	=> $email,
-		    'role'			=> 'advisor'
+		    'role'			=> 'author'
 		);
 
 		$user_id = wp_insert_user( $userdata ) ;
@@ -1166,6 +1166,27 @@ function pu_blank_login( $user ){
 
 	    endforeach;
 	}// site_login
+
+	/**
+	 * Devuelve la url del video de acuerdo al host.
+	 * @param string $advisor_data
+	 * @return int $advisor_id or FALSE
+	 */
+	function get_video_src($url, $host){
+		if($host == 'vimeo'){
+			$id = (int) substr(parse_url($url, PHP_URL_PATH), 1);
+			return '//player.vimeo.com/video/'.$id;
+		}
+
+		$id = explode('v=', $url)[1];
+		$ampersand_position = strpos($id, '&');
+		if( $ampersand_position > 0 )
+			$id = substr($id, $ampersand_position);
+
+		parse_str( parse_url( $url, PHP_URL_QUERY ), $url_array );
+		$id = $url_array['v']; 
+		return '//www.youtube.com/embed/'.$id;
+	}// get_video_src
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
