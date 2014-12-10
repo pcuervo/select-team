@@ -25,20 +25,24 @@
 		<div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
 		<?php 
 			$users = get_users_basic_info(); 
-			foreach ($users as $key => $user) {
-
-		?>
-				<a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
-					<div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
-			  			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
-			  			<div class=" info">
-			  			  <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
-			  			  <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
-			  			</div>
-			  		</div>
-			  	</a>
-		<?php } ?>
-
+			foreach ($users as $key => $user) 
+				if($user->profile_picture!='') { ?>
+					<a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
+						<div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-2 clearfix margin-bottom">
+				  			<?php if($user->profile_picture!='') {?>
+				  			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
+				  			<?php } elseif ($user->gender=='male') { ?>
+				  				<img src="<?php echo THEMEPATH.'profile_pictures/profile-01.png'?>" alt="" class="">
+				  			<?php } elseif ($user->gender=='female') { ?>
+				  				<img src="<?php echo THEMEPATH.'profile_pictures/profile-02.png'?>" alt="" class="">
+				  			<?php } ?>
+				  			<div class=" info">
+				  			  <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
+				  			  <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
+				  			</div>
+				  		</div>
+				  	</a>
+				<?php } ?>
 		</div>
 	</div><!--CONTAINER-FLUID-->
 

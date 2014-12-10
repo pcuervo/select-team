@@ -203,6 +203,44 @@ function getCookie(cname) {
 }
 
 
+function elegirDeporte(deporte){
+  console.log(deporte);
+
+  $('.j-register-user select[name="tennis_hand"]').parent().hide();
+  $('.j-register-user input[name="fmt_ranking"]').parent().hide();
+  $('.j-register-user select[name="atp_tournament"]').parent().hide();
+  $('.j-register-user select[name="average_score"]').parent().hide();
+  $('.j-register-user select[name="soccer_position"]').parent().hide();
+  $('.j-register-user input[name="soccer_height"]').parent().hide();
+  $('.j-register-user select[name="volley_position"]').parent().hide();
+  $('.j-register-user input[name="volley_height"]').parent().hide();
+  
+  switch(deporte){
+    case 'tennis':
+      $('.j-register-user select[name="tennis_hand"]').parent().show();
+      $('.j-register-user input[name="fmt_ranking"]').parent().show();
+      $('.j-register-user select[name="atp_tournament"]').parent().show();
+
+      break;
+
+    case 'golf':
+      $('.j-register-user select[name="average_score"]').parent().show();      
+      break;
+  
+    case 'soccer':
+      $('.j-register-user select[name="soccer_position"]').parent().show();
+      $('.j-register-user input[name="soccer_height"]').parent().show();
+      break;
+
+    case 'volleyball':
+      $('.j-register-user select[name="volley_position"]').parent().show();
+      $('.j-register-user input[name="volley_height"]').parent().show();
+      break;
+  }
+}
+
+
+
 function addTournament(){
   if ($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum input[name="tournament_date"]').val()){
     $tournament_name= $('.j-user_curriculum input[name="tournament"]').val();
@@ -311,9 +349,9 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            
-            var msg = $.parseJSON(response);
+            console.log('Response');
             console.log(response);
+            var msg = $.parseJSON(response);
             if(msg.error == 0)
                 window.location = site_url + '/dashboard';
 
@@ -470,4 +508,3 @@ function sendMail(){
          } //response
      );
 }
-
