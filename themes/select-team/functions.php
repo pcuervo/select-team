@@ -1272,7 +1272,7 @@ function pu_blank_login( $user ){
 	 */
 	function get_user_basic_info($wp_user_id){
 	    global $wpdb;
-	    $query = $wpdb->prepare("SELECT * FROM v_basic_profile WHERE id = %d", $wp_user_id);
+	    $query = $wpdb->prepare("SELECT * FROM v_basic_profile WHERE id = %d", intval($wp_user_id));
 	    $user_basic_info = $wpdb->get_results($query);
 		
 		return $user_basic_info[0];
@@ -1285,7 +1285,7 @@ function pu_blank_login( $user ){
 	 */
 	function get_advisor_basic_info($wp_user_id){
 	    global $wpdb;
-	    $query = $wpdb->prepare("SELECT * FROM wp_users WHERE id = %d", $wp_user_id);
+	    $query = $wpdb->prepare("SELECT * FROM wp_users WHERE id = %d", intval($wp_user_id));
 	    $user_basic_info = $wpdb->get_results($query);
 		
 		return $user_basic_info[0];
@@ -1298,10 +1298,12 @@ function pu_blank_login( $user ){
 	 */
 	function get_user_curriculum($st_user_id){
 	    global $wpdb;
-	    $query = $wpdb->prepare("SELECT * FROM st_curriculum WHERE st_user_id = %d", $st_user_id);
+	    $query = $wpdb->prepare("SELECT * FROM st_curriculum WHERE st_user_id = %d", intval($st_user_id));
 	    $user_curriculum = $wpdb->get_results($query);
-		
-		return $user_curriculum[0];
+
+	    if($user_curriculum) return $user_curriculum[0];
+
+	    return 0;
 	}// get_user_curriculum
 
 	/**
@@ -1313,8 +1315,9 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 	    $query = $wpdb->prepare("SELECT * FROM st_answers WHERE st_user_id = %d", $wp_user_id);
 	    $user_answers = $wpdb->get_results($query);
-		
-		return $user_answers;
+
+	    if($user_answers) return $user_answers;
+	     return 0;
 	}// get_user_sport_answers
 
 	/**

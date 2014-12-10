@@ -1,7 +1,13 @@
 <?php 
 
 if ( is_user_logged_in() ) {
-    $location = site_url().'dashboard';
+    $role = get_current_user_role();
+
+    if ( $role == 'subscriber' )
+         $location = site_url().'/dashboard';
+    else 
+         $location = site_url().'/dashboard-admin';
+   
     wp_redirect( $location );
     exit;
 }

@@ -421,6 +421,7 @@ function updateCurriculum() {
   user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
   user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
   user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
+  user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
   
   //Sports Development
   if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
