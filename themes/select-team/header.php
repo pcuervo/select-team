@@ -138,17 +138,18 @@
 					<?php if(is_home()){ ?>
 						<div class="start-screen">
 							<img class="[ img-responsive ] [ center block ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<h2 class="[ text-center ][ center block ]">Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.</h2>
+							<?php } else { ?>
+								<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
+							<?php } ?>
 							<div class="[ row ] [ banner-sports ]">
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-01.jpg" alt="">
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-02.jpg" alt="">
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-03.jpg" alt="">
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-04.jpg" alt="">
 							</div>
-							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<h2 class="[ text-center ][ center block ]">Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.</h2>
-							<?php } else { ?>
-								<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
-							<?php } ?>
+							
 						</div>
 						<div class="[ header-bottom ]">
 							<div class="[ container ]">
@@ -186,6 +187,10 @@
 						<?php 
 						if($role == 'subscriber'){
 						?>
+							<li class="sidebar-brand">
+								<a class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
+							</li>
+
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
@@ -241,13 +246,15 @@
 							<?php } ?>
 						<?php }  ?>
 						<!-- Para el register usuario o advisor -->
-						<li class="sidebar-brand">
-							<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
-						</li>
 					</ul>
 					<div class="[ dashboard__privacy-policy ] [ clearfix ]">
-			            <a class="[ btn btn-success ] [ center block ] [ margin-bottom ]" href="">Aviso de Privacidad.</a>
-			            <p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+						<?php if (qtrans_getLanguage() == 'es'){ ?>
+							<a class="[ btn btn-success ] [ center block ]" href="<?php echo site_url('privacy-policy'); ?>">Aviso de Privacidad.</a>
+			            	<p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+						<?php } else { ?>
+							<a class="[ btn btn-success ] [ center block ]" href="<?php echo site_url('privacy-policy'); ?>">Privacy Policy</a>
+			            	<p class="[ col-xs-12 ] [ text-center ]" href="">All rights reserved. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+						<?php } ?>
 					</div>
 	        	</header> <!-- /#sidebar-wrapper -->
 	        	<div class="[ content content__dashboard ] [ clearfix ]">
