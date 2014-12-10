@@ -70,7 +70,7 @@
 									<?php } else { 
 									?>
 										<p><a href="'<?php echo site_url('.$dashboard.'); ?>'"><i class="fa fa-user"></i></a></p>
-										<p> <i class="[ fa fa-sign-out ]"></i> Mi cuenta<a href="<?php echo  wp_logout_url(site_url()); ?>"> Logout</a> </p>
+										<p> <i class="[ fa fa-sign-out ]"></i> Mi cuenta<a href="<?php echo  esc_url( wp_logout_url(site_url()) ); ?>"> Logout</a> </p>
 									<?php } ?>
 								</li>
 								<li class="[ menu ]">
@@ -140,7 +140,7 @@
 								<?php } ?>
 							<?php } else { ?>
 								<p><a href="<?php echo site_url().'/'.$dashboard ?>"><i class="fa fa-user"></i> Mi cuenta</a></p>
-								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>'"> Logout</a> </p>
+								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>"> Logout</a> </p>
 							<?php } ?>
 								<div class="clear"></div>
 							<?php echo qtrans_generateLanguageSelectCode('text'); ?>
@@ -150,9 +150,9 @@
 						<div class="start-screen">
 							<img class="[ img-responsive ] [ center block ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<h2 class="[ text-center ][ center block ]">Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.</h2>
+								<h2 class="[ text-center ][ center block ][ margin-bottom ]">Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.</h2>
 							<?php } else { ?>
-								<h2 class="[ text-center ][ center block ]">We can help you get an athletic scholarship in the USA!</h2>
+								<h2 class="[ text-center ][ center block ][ margin-bottom ]">We can help you get an athletic scholarship in the USA!</h2>
 							<?php } ?>
 							<div class="[ row ] [ banner-sports ]">
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-01.jpg" alt="">
@@ -207,7 +207,6 @@
 							<li class="sidebar-brand">
 								<a class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
 							</li>
-
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>

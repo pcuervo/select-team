@@ -172,6 +172,7 @@
                                             <input type="password" class="[ form-control ]" name="password_confirmation">
                                             <label for="validate" id="validate"></label>                                 
                                     </div>
+>>>>>>> ccd5f963d4829163613880b7ed1bd7f7139f79a4
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Agregar agente</button>
                                     <?php } else { ?>
