@@ -15,7 +15,7 @@ if ( is_user_logged_in() ) {
 get_header(); ?>
     <div id="page-content-wrapper">
         <div class="[ container-fluid ]" id="page-content">
-            <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
+            <div class="[ row ] [ margin-bottom ]" id="profile">
                 <div class="[ col-xs-12 col-sm-7 center block ]">
                     
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
