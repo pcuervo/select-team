@@ -137,7 +137,21 @@
 					</div>
 					<?php if(is_home()){ ?>
 						<div class="start-screen">
+							<!-- <div class="jumbotron">
+								<div class="container">
+								    <img class="[ img-responsive ] [ col-xs-6 col-md-4 ]" src="<?php echo THEMEPATH; ?>images/volley-home-bn.jpg" alt="">
+									<img class="[ img-responsive ] [ col-xs-6 col-md-4 ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
+									<img class="[ img-responsive ] [ col-xs-6 col-md-4 ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
+									<img class="[ img-responsive ] [ col-xs-6 col-md-4 ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
+								</div>
+							</div> -->
 							<img class="[ img-responsive ] [ center block ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="">
+							<div class="[ row ] [ banner-sports ]">
+								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
+								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
+								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
+								<img class="" src="<?php echo THEMEPATH; ?>images/golf-home.jpg" alt="">
+							</div>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
 								<h2 class="[ text-center ][ center block ]">¡Te ayudámos a obtener una beca deportiva en Estados Unidos!</h2>
 							<?php } else { ?>
