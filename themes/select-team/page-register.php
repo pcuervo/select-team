@@ -42,7 +42,7 @@ get_header(); ?>
                             if(isset($_GET['q6']))
                                 $email = $_GET['q6'];
                             ?>
-                            <input type="email" class="[ form-control ]" value="<?php echo $email; ?>" name="email" required> 
+                            <input type="email" class="[ form-control ][ required email ]" value="<?php echo $email; ?>" name="email" > 
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
