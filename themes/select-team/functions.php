@@ -118,6 +118,9 @@ function pu_blank_login( $user ){
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
 		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
+		if (get_the_title()=='Register')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
 		wp_localize_script( 'functions', 'site_url', site_url() );
@@ -351,8 +354,9 @@ function pu_blank_login( $user ){
 				<script type="text/javascript">
 					$( function() {
 						$('.j-register-user button').on('click', function(e){
-							e.preventDefault();
-							registerUser();
+							//e.preventDefault();
+							formValidation('.j-register-user');
+							//registerUser();
 						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
@@ -392,7 +396,12 @@ function pu_blank_login( $user ){
 							elegirDeporte($('#sport').val());
 						});
 						elegirDeporte('');
-						elegirDeporte($('#sport').val());						
+						elegirDeporte($('#sport').val());
+
+						//$('.j-register-user').validate();
+
+
+
 					});
 				</script>
 			<?php } ?>

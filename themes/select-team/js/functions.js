@@ -201,7 +201,6 @@ function getCookie(cname) {
     return "";
 }
 
-
 function elegirDeporte(deporte){
 
   $('.j-register-user select[name="tennis_hand"]').parent().hide();
@@ -502,6 +501,27 @@ function login(){
         } //response
     ); 
 }
+
+/**
+* Form Validation
+* @return void
+**/
+function formValidation(forma){
+    $(forma).validate({
+        submitHandler:function(){
+            switch(forma){
+                case '.j-register-user':
+                    registerUser();
+                    break;
+                default:
+                    console.log('default');
+                    break;
+            }
+        }
+    });
+}
+
+
 
 function redirectUserDashoard(){
     var user_data = {};
