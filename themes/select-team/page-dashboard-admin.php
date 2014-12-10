@@ -128,7 +128,7 @@
                             <?php } ?>
                             <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
+                                <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
                             <?php } else { ?>
                                 <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Register advisor</p>
                             <?php } ?>
