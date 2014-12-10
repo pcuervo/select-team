@@ -4,6 +4,12 @@
         wp_redirect( $location );
         exit;
     }
+    $role = get_current_user_role();
+    if( $role != 'subscriber' ) {
+        $location = site_url().'/dashboard-admin';
+        wp_redirect( $location );
+        exit;
+    }
     get_header();
 
 ?>
@@ -77,13 +83,27 @@
                                 <?php } ?>
                             </div>
                         </form>
-                        <?php 
+                        
+                            <?php 
                             if(isset($_GET['err'])){
                                 foreach ($_SESSION['upload_message'] as $message) {
-                                    echo $message;
+                                    // error
+                                    if($_GET['err'] == 1){
+                                        ?>
+                                        <div class="alert alert-danger" role="alert">
+                                         <?php echo $message; ?>
+                                        </div>
+                                    
+                                   <?php } else{ ?>
+                                        
+                                        <div class="alert alert-success" role="alert">
+                                           <?php echo $message; ?>
+                                        </div>
+                                        
+                                   <?php }
                                 }
                             }
-                        ?>
+                        ?>   
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
