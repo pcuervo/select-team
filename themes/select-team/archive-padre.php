@@ -32,7 +32,7 @@
 	            <div class="clearfix">
 	                <p class="center-text">Does your son qualify for a sports scholarship at a university in the United States?</p>
 	                <p class="center-text">Complete the form and we will evaluate your chances!</p>
-	                <a href="<?php echo site_url( 'register' );?>?prosprectOpen" type="button" class="btn btn-info col-xs-8 col-md-5 center block freeAssesment">Free Assesment</a>
+	                <a href="<?php echo site_url( 'register' );?>" type="button" class="btn btn-info col-xs-8 col-md-5 center block freeAssesment">Free Assesment</a>
 	            </div>
 	            <hr>
 	 	<?php } endwhile; endif; ?>

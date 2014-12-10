@@ -377,6 +377,11 @@ function pu_blank_login( $user ){
 							e.preventDefault();
 							login();
 						});
+						$('#sport').on('change', function(e){
+							e.preventDefault();
+							elegirDeporte($('#sport').val());
+						});
+						elegirDeporte('');
 					});
 				</script>
 			<?php } ?>
@@ -665,7 +670,6 @@ function pu_blank_login( $user ){
 	 * @return boolean
 	 */
 	function register_user(){
-
 		$is_valid = validate_user_data();
 		switch ($is_valid) {
 			case USUARIO_INVALIDO:
@@ -753,7 +757,8 @@ function pu_blank_login( $user ){
 		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
-	
+	add_action("wp_ajax_register_user", "register_user");
+
 	/**
 	 * Actualiza los datos del curriculum del usuario.
 	 * @param  string  $address
