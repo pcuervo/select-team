@@ -384,6 +384,11 @@ function pu_blank_login( $user ){
 							e.preventDefault();
 							login();
 						});
+						$('#sport').on('change', function(e){
+							e.preventDefault();
+							elegirDeporte($('#sport').val());
+						});
+						elegirDeporte('');
 					});
 				</script>
 			<?php } ?>
@@ -607,7 +612,6 @@ function pu_blank_login( $user ){
 	 * @return boolean
 	 */
 	function register_advisor(){
-		
 		// Create wp_user
 		$username =  $_POST['username'];
 		$password =  $_POST['password'];
@@ -622,23 +626,19 @@ function pu_blank_login( $user ){
 		);
 
 		$user_id = wp_insert_user( $userdata ) ;
-		
-		//On success
 		if( !is_wp_error($user_id) ) {
-			// Create st_user
-			$advisor_data = array(
-				'wp_user_id'	=> $user_id,
-				'full_name'		=> $full_name,
-				);
+		// Create st_user
+		$full_name = $_POST['full_name'];
 
+		$advisor_data = array(
+			'wp_user_id'	=> $user_id,
+			'full_name'		=> $full_name,
+			);
 			$st_user_id = add_advisor_user($advisor_data);
 			login_user($username, $password);
 			$msg = array(
 				"success" 	=> "Usuario registrado",
-				"error"	  	=> 0,
-				"user_id" => $user_id,
-				"st_user" => $st_user_id,
-				"full_name" => $full_name
+				"error"	  	=> 0
 				);
 			echo json_encode( $msg); 
 		}else{
@@ -685,7 +685,6 @@ function pu_blank_login( $user ){
 	 * @return boolean
 	 */
 	function register_user(){
-
 		$is_valid = validate_user_data();
 		switch ($is_valid) {
 			case USUARIO_INVALIDO:
@@ -773,7 +772,8 @@ function pu_blank_login( $user ){
 		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
-	
+	add_action("wp_ajax_register_user", "register_user");
+
 	/**
 	 * Actualiza los datos del curriculum del usuario.
 	 * @param  string  $address
@@ -1115,12 +1115,28 @@ function pu_blank_login( $user ){
 		$password = $_POST['password'];
 
 		$logged_in = login_user($username, $password);
-		echo $logged_in;
+		if($logged_in == '1'){
+			echo 1;
+		} else
+			echo 0;
 
 		die();
 	}// site_login
 	add_action("wp_ajax_nopriv_site_login", "site_login");
 	add_action("wp_ajax_site_login", "site_login");
+
+	/**
+	 * Loggear a un usuario a la plataforma desde la página.
+	 * @return boolean
+	 */
+	function get_user_role(){
+		$role = get_current_user_role();
+		echo $role;
+
+		die();
+	}// get_user_role
+	add_action("wp_ajax_nopriv_get_user_role", "get_user_role");
+	add_action("wp_ajax_get_user_role", "get_user_role");
 
 	/**
 	 * Obtener el rol del usuario.
@@ -1142,7 +1158,6 @@ function pu_blank_login( $user ){
 
 	    endforeach;
 	}// site_login
-
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////

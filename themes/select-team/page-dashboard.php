@@ -397,7 +397,7 @@
                                     <label for="midGrad" id="midGrad" name="q4">¿En qué año vas?</label>
                                     <select class="[ form-control ]" id="q4" name="grade">
                                         <option value="grado" selected disabled>Grado</option>
-                                        <option value="freshment" <?php if($grad_year=='freshment') echo "selected"; ?>>3º Secundaria </option>
+                                        <option value="freshman" <?php if($grad_year=='freshman') echo "selected"; ?>>3º Secundaria </option>
                                         <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>4º Preparatoria </option>
                                         <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>5º Preparatoria </option>
                                         <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>6º Preparatoria </option>
@@ -407,7 +407,7 @@
                                         <label for="midGrad" id="midGrad" name="q4" >What Class are you in?</label>
                                         <select class="[ form-control ]" id="q4" name="grade">
                                             <option value="grado" selected disabled>Class</option>
-                                            <option value="freshment" <?php if($grad_year=='freshment') echo "selected"; ?>>Freshment </option>
+                                            <option value="freshman" <?php if($grad_year=='freshman') echo "selected"; ?>>Freshment </option>
                                             <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>Sophomore </option>
                                             <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>Junior </option>
                                             <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>Senior </option>
