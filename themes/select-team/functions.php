@@ -1319,6 +1319,8 @@ function pu_blank_login( $user ){
 	 * @return int $advisor_id or FALSE
 	 */
 	function get_video_src($url, $host){
+		if($url == '-')
+			return 0;
 		if($host == 'vimeo'){
 			$id = (int) substr(parse_url($url, PHP_URL_PATH), 1);
 			return '//player.vimeo.com/video/'.$id;
