@@ -316,7 +316,6 @@ function pu_blank_login( $user ){
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
-						console.log(id);
 						getAdvisorBasicInfo(id);
 				    });
 					

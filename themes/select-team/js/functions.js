@@ -361,11 +361,13 @@ function getAdvisorBasicInfo(id){
 	var user_data = {};
 	user_data['action'] = 'get_info_advisor';
     user_data['id'] = id;
-	
+
+
 	$.post(
         ajax_url,
         user_data,
         function(response){
+            console.log(1);
 			console.log(response);
 			var msg = $.parseJSON(response.slice(0,-1));
 			console.log(msg);
