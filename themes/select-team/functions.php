@@ -292,9 +292,9 @@ function pu_blank_login( $user ){
 				        return false;
 				      });
 				    $('.j-register-advisor .btn-agregar').on('click', function(e){
-				    	//e.preventDefault();
-				    	formValidation('.j-register-advisor');
-				    	//registerAdvisor();
+				    	e.preventDefault();
+				    	console.log('registrando advisor');
+				    	registerAdvisor();
 				    });
 					
 					$('.j-register-advisor .btn-editar').on('click', function(e){
@@ -328,9 +328,29 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
+<<<<<<< HEAD
+                        
+                        $(".profile_picture_preview").load(function() {
+                                
+                                 var width_picture = $(this).width();
+                                 var height_picture = $(this).height();
+                                 if (width_picture > 300) {
+                                    $(".profile_picture_preview").css("width", "300px");
+                                     $(".profile_picture_preview").css("border", "1px solid #002147");
+                                 } else {
+
+                                    $(".profile_picture_preview").css("height", "300px");
+                                    $(".profile_picture_preview").css("border", "1px solid #002147");
+
+                                 } 
+                             
+                        });
+                        
+=======
                         $('.j-mensaje-advisor').on('click', function(e) {
                             formValidation('.j-form-message-advisor');
                         });
+>>>>>>> 3d77a1d7b72563a4735c73874abefd80249734b1
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -379,6 +399,8 @@ function pu_blank_login( $user ){
 							console.log('creando curriculum...');
 							createCurriculum();  //Llamar a func que haga el INSERT
 						});
+<<<<<<< HEAD
+=======
                         $(".profile_picture_preview").load(function() {
                                  var width_picture = $(this).width();
                                  var height_picture = $(this).height();
@@ -390,6 +412,7 @@ function pu_blank_login( $user ){
                                     $(".profile_picture_preview").css("border", "1px solid #002147");
                                  }
                         });
+>>>>>>> 3d77a1d7b72563a4735c73874abefd80249734b1
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>

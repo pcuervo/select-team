@@ -47,18 +47,20 @@
                 <div class="form-group">
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                         <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nombre">
                     <?php } else { ?>
                         <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name">
                     <?php } ?>
-                    <input type="text" class="form-control" id="name" placeholder="Name">
                 </div>
                 <div class="form-group">
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                         <label for="mail">E-mail</label>
+                        <input type="email" class="form-control" id="mail" placeholder="Ingresa tu correo electrónico">
                     <?php } else { ?>
                         <label for="mail">E-mail address</label>
+                        <input type="email" class="form-control" id="mail" placeholder="Enter email">
                     <?php } ?>
-                    <input type="email" class="form-control" id="mail" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
