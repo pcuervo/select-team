@@ -176,6 +176,12 @@ function pu_blank_login( $user ){
 								$('#login').modal('show'); 
 							}
 
+							if(window.location.href.indexOf("login=failed") > -1) {
+								$('#login').modal('show'); 
+								var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+                				$(html_error).prependTo('.modal-footer');
+							}
+
 		                    //On click/change/etc
 		                    filterQuestions();
 		                    var theForm = document.getElementById( 'theForm' );

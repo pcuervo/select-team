@@ -19,7 +19,7 @@
                     <?php } ?>
                 </figcaption>
             </figure>
-        } else { ?>
+        <?php } else { ?>
             <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]" data-cards="prospect">
                 <div class="[ screen ]"></div>
                 <figcaption>
