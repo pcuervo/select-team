@@ -1,28 +1,25 @@
 <?php get_header(); ?>
     <div class="[ grid ]">
         <?php 
-        if ( is_user_logged_in() ) {
-            $role = get_current_user_role();
-            if( $role == 'subscriber' ) { ?>
-                <figure class="[ effect-sadie ] [ col-xs-12 ] [ bg-prospect ] [ j-already-prospect ]">
-                    <div class="[ screen ]"></div>
-                    <figcaption>
-                        <h2 class="">
-                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                Ir a mi cuenta
-                            <?php } else { ?>
-                                Go to my dashboard
-                            <?php } ?>
-                        </h2>
+        if ( is_user_logged_in() ) { ?>
+            <figure class="[ effect-sadie ] [ col-xs-12 ] [ bg-prospect ] [ j-already-prospect ]">
+                <div class="[ screen ]"></div>
+                <figcaption>
+                    <h2 class="">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <a href="<?php echo site_url('es/dashboard/') ?>"></a>
+                            Ir a mi cuenta
                         <?php } else { ?>
-                            <a href="<?php echo site_url('en/dashboard/') ?>"></a>
+                            Go to my dashboard
                         <?php } ?>
-                    </figcaption>
-                </figure>
-            <?php }
-        } else { ?>
+                    </h2>
+                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                        <a href="<?php echo site_url('es/dashboard/') ?>"></a>
+                    <?php } else { ?>
+                        <a href="<?php echo site_url('en/dashboard/') ?>"></a>
+                    <?php } ?>
+                </figcaption>
+            </figure>
+        <?php } else { ?>
             <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]" data-cards="prospect">
                 <div class="[ screen ]"></div>
                 <figcaption>
@@ -340,7 +337,7 @@
                             <?php } else { ?>
                                 <span><label for="q5">What's your e-mail address?</label></span>
                             <?php } ?>
-                            <input id="q2" name="q2" type="email" class="[ required email ]" />
+                            <input id="q2" name="q2" type="email" class="" />
                         </li>
                         <li>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>

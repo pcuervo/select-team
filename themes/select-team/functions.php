@@ -179,6 +179,12 @@ function pu_blank_login( $user ){
 								$('#login').modal('show'); 
 							}
 
+							if(window.location.href.indexOf("login=failed") > -1) {
+								$('#login').modal('show'); 
+								var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+                				$(html_error).prependTo('.modal-footer');
+							}
+
 		                    //On click/change/etc
 		                    filterQuestions();
 		                    var theForm = document.getElementById( 'theForm' );
@@ -234,8 +240,6 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('.cards');
 		                    });
 		                });
-
-						$('#theForm').validate();
 						$('#theForm2').validate();
 		            }(jQuery));
 		        </script>
@@ -304,13 +308,16 @@ function pu_blank_login( $user ){
 				        $('.hide-form-advisor').show('slow');
 				    });
 					
+					$('.btn-guardar-profile').on('click', function(){
+				        updateBasicProfile();
+				    });
+					
 					$('.btn-editar').hide();
 					
 					
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
-						console.log(id);
 						getAdvisorBasicInfo(id);
 				    });
 					
@@ -319,26 +326,6 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
-                        
-                        $(".profile_picture_preview").load(function() {
-                                
-                                 var width_picture = $(this).width();
-                                 var height_picture = $(this).height();
-
-                                 if (width_picture > 300) {
-
-                                    $(".profile_picture_preview").css("width", "300px");
-                                     $(".profile_picture_preview").css("border", "1px solid #002147");
-
-                                 } else {
-
-                                    $(".profile_picture_preview").css("height", "300px");
-                                    $(".profile_picture_preview").css("border", "1px solid #002147");
-
-                                 } 
-                             
-                        });
-                        
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -387,6 +374,17 @@ function pu_blank_login( $user ){
 							console.log('creando curriculum...');
 							createCurriculum();  //Llamar a func que haga el INSERT
 						});
+                        $(".profile_picture_preview").load(function() {
+                                 var width_picture = $(this).width();
+                                 var height_picture = $(this).height();
+                                 if (width_picture > 300) {
+                                    $(".profile_picture_preview").css("width", "300px");
+                                     $(".profile_picture_preview").css("border", "1px solid #002147");
+                                 } else {
+                                    $(".profile_picture_preview").css("height", "300px");
+                                    $(".profile_picture_preview").css("border", "1px solid #002147");
+                                 } 
+                        });
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>
@@ -656,8 +654,15 @@ function pu_blank_login( $user ){
 	function update_advisor(){
 		
 		// Create wp_user
-		$id_user =  $_POST['id'];
-		$password =  $_POST['password'];
+		if(isset($_POST['id']))
+			$id_user =  $_POST['id'];
+		else
+			$id_user =  get_current_user_id();
+		if(isset($_POST['password']))
+			$password =  $_POST['password'];
+		else
+			$password = '';
+			
 		$full_name = $_POST['full_name'];
 		
 		if(!empty($password)){
@@ -725,7 +730,6 @@ function pu_blank_login( $user ){
 			'full_name'		=> $full_name,
 			);
 			$st_user_id = add_advisor_user($advisor_data);
-			login_user($username, $password);
 			$msg = array(
 				"success" 	=> "Usuario registrado",
 				"error"	  	=> 0
@@ -764,13 +768,27 @@ function pu_blank_login( $user ){
 
 	    global $wpdb;
 
-	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."'";
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."' LIMIT 1";
 	    $users = $wpdb->get_results($query);
 		
 		echo json_encode($users[0], JSON_FORCE_OBJECT);
 	}// get_users_basic_info
     add_action("wp_ajax_get_info_advisor", "get_info_advisor");
+	
 
+	function get_info_current_advisor(){
+		$user_id= get_current_user_id();
+
+	    global $wpdb;
+
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."' LIMIT 1";
+	    $users = $wpdb->get_results($query);
+		
+		if ( $users != null )
+			return $users[0];
+		else
+			return null;
+	}
 	/**
 	 * Inserta un usuario a la tabla st_advisors
 	 * @param string $advisor_data
@@ -1323,6 +1341,8 @@ function pu_blank_login( $user ){
 	 * @return int $advisor_id or FALSE
 	 */
 	function get_video_src($url, $host){
+		if($url == '-')
+			return 0;
 		if($host == 'vimeo'){
 			$id = (int) substr(parse_url($url, PHP_URL_PATH), 1);
 			return '//player.vimeo.com/video/'.$id;
