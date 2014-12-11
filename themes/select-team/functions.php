@@ -773,18 +773,18 @@ function pu_blank_login( $user ){
 				}// switch
 
 				$st_user_data = array(
-					'wp_user_id'	=> $user_id,
-					'full_name'		=> $full_name,
-					'gender'		=> $gender,
-					'date_of_birth'	=> $date_of_birth,
-					'sport_id'		=> $sport_id,
-					'video_host'	=> '-',
-					'video_url'		=> '-',
+					'wp_user_id'		=> $user_id,
+					'full_name'			=> $full_name,
+					'gender'			=> $gender,
+					'date_of_birth'		=> $date_of_birth,
+					'sport_id'			=> $sport_id,
+					'video_host'		=> '-',
+					'video_url'			=> '-',
+					'profile_picture'	=> '-',
 					);
 
 				$st_user_id = add_st_user($st_user_data);
 				add_sport_answers($st_user_id, $sport_data);
-				login_user($username, $password);
 				$msg = array(
 					"success" => "Usuario registrado",
 					"error"	  => 0
@@ -1121,7 +1121,9 @@ function pu_blank_login( $user ){
 		$creds['user_login'] = $username;
 		$creds['user_password'] = $password;
 		$creds['remember'] = true;
+		
 		$user = wp_signon( $creds, false );
+		
 		if ( is_wp_error($user) ){
 			return $user->get_error_message();
 		}
@@ -1145,7 +1147,6 @@ function pu_blank_login( $user ){
 		die();
 	}// site_login
 	add_action("wp_ajax_nopriv_site_login", "site_login");
-	add_action("wp_ajax_site_login", "site_login");
 
 	/**
 	 * Loggear a un usuario a la plataforma desde la página.
@@ -1257,6 +1258,7 @@ function pu_blank_login( $user ){
 				'%s',
 				'%s',
 				'%d',
+				'%s',
 				'%s',
 				'%s',
 			)

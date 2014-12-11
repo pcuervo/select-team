@@ -348,7 +348,8 @@ function registerUser() {
             console.log(response);
             var msg = $.parseJSON(response);
             if(msg.error == 0)
-                window.location = site_url + '/dashboard/';
+                loginUser(user_data['username'], user_data['password'])
+                //window.location = site_url + '/dashboard/';
 
         }// response
     ); 
@@ -491,12 +492,33 @@ function login(){
         ajax_url,
         user_data,
         function(response){   
+            console.log(response);
             if(response == 1){
                 redirectUserDashoard();
             }
             else{
                 var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
                 $(html_error).prependTo('.modal-footer');
+            }
+        } //response
+    ); 
+}
+
+function loginUser(user, password){
+    var user_data = {};
+    user_data['action'] = 'site_login';
+    user_data['username'] = user;
+    user_data['password'] = password;
+
+    console.log(user_data);
+  
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+            console.log(response);
+            if(response == 1){
+                redirectUserDashoard();
             }
         } //response
     ); 
