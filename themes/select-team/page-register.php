@@ -38,8 +38,8 @@ get_header(); ?>
                                 <label for="email">Email</label>
                             <?php } 
                             $email = '';
-                            if(isset($_GET['q6']))
-                                $email = $_GET['q6'];
+                            if(isset($_GET['q4']))
+                                $email = $_GET['q4'];
                             ?>
                             <input type="email" class="[ form-control ][ required email ]" value="<?php echo $email; ?>" name="email" > 
                         </div>
@@ -121,8 +121,8 @@ get_header(); ?>
                             <select class="[ form-control ]" id="sport" name="sport"  required>
                                 <?php 
                                 $sport = '';
-                                if(isset($_GET['q7']))
-                                    $sport = $_GET['q7'];
+                                if(isset($_GET['q5']))
+                                    $sport = $_GET['q5'];
 
                                 switch ($sport) {
                                     case 'tennis': ?>
@@ -196,8 +196,8 @@ get_header(); ?>
                                 <?php } ?>
                                 <?php 
                                 $average_score = '';
-                                if(isset($_GET['q8']))
-                                    $average_score = $_GET['q8']; ?>
+                                if(isset($_GET['q6']))
+                                    $average_score = $_GET['q6']; ?>
 
                                 <select class="[ form-control ]" id="averageScore" value="<?php echo $average_score; ?>" name="average_score" required>
                                     <?php switch ($average_score) {
@@ -385,8 +385,8 @@ get_header(); ?>
                         <!--TENNIS-->
                         <?php 
                             $tennis_hand = '';
-                            if(isset($_GET['q10']))
-                                $tennis_hand = $_GET['q10']; ?>
+                            if(isset($_GET['q9']))
+                                $tennis_hand = $_GET['q9']; ?>
 
                         <?php if(1) { ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
@@ -411,15 +411,15 @@ get_header(); ?>
                                     <label for="tennisHand">FMT ranking (mexicans only)</label>
                                 <?php } 
                                     $fmtRank = '';    
-                                    if(isset($_GET['q12']))  
-                                        $fmtRank = $_GET['q12']; ?>
+                                    if(isset($_GET['q10']))  
+                                        $fmtRank = $_GET['q10']; ?>
 
                                 <input type="text" class="[ form-control ]" id="fmtRank" name="fmt_ranking" value="<?php echo $fmtRank; ?>" required>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php $ATPrank='';
-                                    if(isset($_GET['q13']))  
-                                        $ATPrank = $_GET['q13']; ?>
+                                    if(isset($_GET['q11']))  
+                                        $ATPrank = $_GET['q11']; ?>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="atpTournament">¿Has jugado en torneos de la ATP?</label>
                                     <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $ATPrank; ?>" required>
@@ -438,13 +438,13 @@ get_header(); ?>
                         <!--SOCCER-->
                         <?php 
                             $soccer_position = '';    
-                            if(isset($_GET['q14']))  
-                                $soccer_position = $_GET['q14']; ?>
+                            if(isset($_GET['q12']))  
+                                $soccer_position = $_GET['q12']; ?>
                         <?php if(1) { ?>
                             <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="soccer_position">Posición</label>
-                                    <select class="[ form-control ]" id="q14" name="soccer_position" required>
+                                    <select class="[ form-control ]" id="q12" name="soccer_position" required>
                                         <option value="goal-keeper" <?php if($soccer_position=='goal-keeper') echo " selected"; ?> >Portero</option>
                                         <option value="defender" <?php if($soccer_position=='defender') echo " selected"; ?> >Defensa</option>
                                         <option value="midfielder" <?php if($soccer_position=='midfielder') echo " selected"; ?> >Medio</option>
@@ -452,7 +452,7 @@ get_header(); ?>
                                     </select>
                                 <?php } else { ?>
                                     <label for="soccer_position">Position</label>
-                                    <select class="[ form-control ]" id="q14" name="soccer_position" required>
+                                    <select class="[ form-control ]" id="q12" name="soccer_position" required>
                                         <option value="goal-keeper" <?php if($soccer_position=='goal-keeper') echo " selected"; ?> >Goal keeper</option>
                                         <option value="defender" <?php if($soccer_position=='defender') echo " selected"; ?> >Defender</option>
                                         <option value="midfielder" <?php if($soccer_position=='midfielder') echo " selected"; ?> >Midfielder</option>
@@ -467,8 +467,8 @@ get_header(); ?>
                                     <label for="soccer_height">Height (cm)</label>
                                 <?php } 
                                     $soccer_height = '';    
-                                    if(isset($_GET['q15']))  
-                                        $soccer_height = $_GET['q15']; ?>
+                                    if(isset($_GET['q13']))  
+                                        $soccer_height = $_GET['q13']; ?>
 
                                 <input type="text" class="[ form-control ]" id="soccer_height" name="soccer_height" value="<?php echo $soccer_height; ?>" required>
                             </div>
