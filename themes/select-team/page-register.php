@@ -47,7 +47,6 @@ get_header(); ?>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <label for="password">Contraseña</label>
                                 <input type="password" class="[ form-control ]" name="password" required>
-                                <p class="help-block">El password debe contener al menos 8 caracteres.</p>
                             <?php } else { ?>
                                 <label for="password">Password</label>
                                 <input type="password" class="[ form-control ]" name="password" id="password" required>

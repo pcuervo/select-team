@@ -48,7 +48,7 @@
             <div class="[ container-fluid ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="upload_picture">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Foto de perfil</h3>
                         <?php } else { ?>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
-                    <div class="[ col-xs-12 col-sm-7 center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
@@ -361,7 +361,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="curriculum">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <h3>Curriculum</h3>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <p class="help-block">Esta section no será visible en tu perfil público.</p>
@@ -527,7 +527,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="messages">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Mensajes</h3>
                             <p class="help-block">Envía un mensaje a uno de nuestros agentes.</p>
