@@ -165,13 +165,13 @@
                                         <?php } else { ?>
                                             <label for="password">Password</label>
                                         <?php } ?>
-                                        <input type="password" class="[ form-control ][ required ]" name="password">
+                                        <input type="password" class="[ form-control ][ required ]" name="password" id="password">
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                                             <label for="password">Confirmar contraseña</label>
                                         <?php } else { ?>
                                             <label for="password">Password Confirmation</label>
                                         <?php } ?>
-                                        <input type="password" class="[ form-control ][ required ]" name="password_confirmation">
+                                        <input type="password" class="[ form-control ][ required ]" name="password_confirmation" id="password_confirmation">
                                         <label for="validate" id="validate"></label>   
                                     </div>
                                     <div class="[ form-group ]">
