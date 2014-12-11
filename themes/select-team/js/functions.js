@@ -248,7 +248,7 @@ function addTournament(){
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_date_data[]" value="'+$tournament_date+'"/> ');
     $('.j-user_curriculum').append('<input type="hidden" name="tournament_rank_data[]" value="'+$tournament_rank+'"/> ');
     
-    $('.j-registed-tournaments').append( '<div class="[ border-bottom ] [ row ]"><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$tournament_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
+    $('.j-registed-tournaments').append( '<div class="[ border-bottom margin-bottom ] [ row ]"><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$tournament_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
   
     $('.j-user_curriculum input[name="tournament"]').val("");
     $('.j-user_curriculum input[name="tournament_date"]').val("");
@@ -345,13 +345,69 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            var msg = $.parseJSON(response);
-            if(msg.error == 0)
-                window.location = site_url + '/dashboard/';
+            window.location = site_url + '/?reg=1';
+            // console.log(response);
+            // var msg = $.parseJSON(response);
+            // if(msg.error == 0)
+                //loginUser(user_data['username'], user_data['password']);
+                
+                //
 
         }// response
     ); 
 }// registerUser
+
+function getAdvisorBasicInfo(id){
+	var user_data = {};
+	user_data['action'] = 'get_info_advisor';
+    user_data['id'] = id;
+	
+	$.post(
+        ajax_url,
+        user_data,
+        function(response){
+			console.log(response);
+			var msg = $.parseJSON(response.slice(0,-1));
+			console.log(msg);
+			$('.j-register-advisor input[name="full_name"]').val(msg.full_name);
+			$('.j-register-advisor input[name="id"]').val(msg.ID);
+			$('.j-register-advisor input[name="username"]').val(msg.user_login);
+			$('.j-register-advisor input[name="email"]').val(msg.user_email);
+			
+			$('.hide-form-advisor').show('slow');
+			$('.btn-editar').show();
+			$('.btn-agregar').hide();
+        }// response
+    ); 
+}
+
+function updateAdvisor() {
+    var user_data = {};
+
+    user_data['action'] = 'update_advisor';
+	user_data['id'] = $('.j-register-advisor input[name="id"]').val();
+    user_data['password'] = $('.j-register-advisor input[name="password"]').val();
+    user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
+   
+    console.log(user_data);
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+			
+			console.log(response);
+            var msg = $.parseJSON(response);
+
+            if(msg.error == 0)
+                alert('Advisor guardado con exito');
+			else if(msg.error == 1)
+				alert('El usuario ya existe');
+			else
+				alert('Error, porfavor revisa los datos');
+
+        }// response
+    ); 
+}// registerAdvisor
 
 function registerAdvisor() {
     var user_data = {};
@@ -381,6 +437,8 @@ function registerAdvisor() {
         }// response
     ); 
 }// registerAdvisor
+
+
 
 
 function createCurriculum() {
@@ -490,12 +548,33 @@ function login(){
         ajax_url,
         user_data,
         function(response){   
+            console.log(response);
             if(response == 1){
                 redirectUserDashoard();
             }
             else{
                 var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
                 $(html_error).prependTo('.modal-footer');
+            }
+        } //response
+    ); 
+}
+
+function loginUser(user, password){
+    var user_data = {};
+    user_data['action'] = 'site_login';
+    user_data['username'] = user;
+    user_data['password'] = password;
+
+    console.log(user_data);
+  
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+            console.log(response);
+            if(response == 1){
+                redirectUserDashoard();
             }
         } //response
     ); 
@@ -508,16 +587,7 @@ function login(){
 function formValidation(forma){
     $(forma).validate({
         rules: {
-          password: {
-            min:{
-              param: 8
-            }
-          },
-          password_confirmation: {
-            min:{
-              param: 8
-            }
-          }
+          
         },
         submitHandler:function(){
             switch(forma){

@@ -54,7 +54,7 @@
                         <?php } else { ?>
                             <h3>Profile Picture</h3>
                         <?php } ?>
-                        <?php if ( $prospect_info->profile_picture != '' ) { ?>
+                        <?php if ( $prospect_info->profile_picture != '' && $prospect_info->profile_picture != '-' ) { ?>
                             <img class="profile_picture_preview" src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
                         <?php } ?>
                         <img src="" />
@@ -536,7 +536,7 @@
                             <h3>Messages</h3>
                             <p class="help-block">Send a message to one of our managers.</p>
                         <?php } ?>
-                        <form role="form" class="[ row ]">
+                        <form role="form" class="[ row ] [ j-form-message-advisor ]">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="manager" id="manager" name="agent">Selecciona un agente:</label>
