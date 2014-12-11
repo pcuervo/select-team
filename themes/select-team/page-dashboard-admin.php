@@ -98,7 +98,7 @@
                                         if($user->profile_picture!='') { ?>
                                             <a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
                                                 <div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                                    <?php if($user->profile_picture!='') {?>
+                                                     <?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
                                                     <img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
                                                     <?php } elseif ($user->gender=='male') { ?>
                                                         <img src="<?php echo THEMEPATH.'profile_pictures/profile-01.png'?>" alt="" class="">
