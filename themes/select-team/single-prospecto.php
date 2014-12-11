@@ -16,9 +16,11 @@
 ?>
 	<div class="container profile clearfix">
 		<h2 class="col-xs-12 margin-bottom"><?php echo $user->full_name ?></h2>
+		
 		<div class="col-xs-12 col-sm-6 col-md-4 student-info margin-bottom right">
 			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="margin-bottom">
 			<button type="button" class="btn btn-primary center block" data-toggle="modal" data-target="#student-video"><i class="fa fa-play-circle-o"></i> Watch video</button>
+			<button class=" [ j-delete-prospect ] btn btn-info text-right delete-prospect">  <i class="fa fa-times-circle"></i> Eliminar prospecto</button>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 student-info margin-bottom">
 			<?php if (qtrans_getLanguage() == 'es'){ ?>

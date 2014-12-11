@@ -328,6 +328,13 @@ function pu_blank_login( $user ){
 						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
 						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
 				    });
+
+				    $('.delete-advisor').on('click', function(e){
+						e.preventDefault();
+						var id = $(this).data('id');
+						$(this).parent().hide();
+						deleteAdvisor(id);
+				    });
 					
 					
 				</script>
@@ -701,6 +708,24 @@ function pu_blank_login( $user ){
 	} // register_advisor
 	add_action("wp_ajax_update_advisor", "update_advisor");
 
+	function delete_advisor(){
+		global $wpdb;
+
+		$id=$_POST['id'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->st_advisors,
+			    array(
+			    	'wp_user_id'=> $id
+			    	),
+			    array('%d')
+		);
+	
+		die();
+	} // register_advisor
+	add_action("wp_ajax_delete_advisor", "delete_advisor");
+
+
 	/**
 	 * Registra un usuario advisor
 	 * @param  string  $username
@@ -878,6 +903,9 @@ function pu_blank_login( $user ){
 				);
 
 				$user_id = wp_insert_user( $userdata ) ;
+
+				$mail_status = register_email($email, $username, $password);
+				var_dump($mail_status);
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
@@ -1590,6 +1618,26 @@ function pu_blank_login( $user ){
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
 
 	}// send_email
+
+	/**
+	 * Manda un correo con las credenciales del registro.
+	 * @param string $email_to, $message
+	 * @return int TRUE or FALSE
+	 */
+	function register_email($mail_to, $username, $password){
+		$st_mail="zurol@pcuervo.com";
+
+		$subject = "Select team register message \r\n";
+		$body_message = ".......\r\n";
+		$body_message .= "USER:".$username."\r\n";
+		$body_message .= "PASSWORD:".$password."\r\n";
+		
+		$headers = "From: Select Team\r\n";
+		$headers .= "Reply-To: ".$st_mail."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+	}// register_email
 
 
 	/**

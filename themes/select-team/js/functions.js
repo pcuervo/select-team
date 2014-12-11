@@ -418,11 +418,28 @@ function getAdvisorBasicInfo(id){
     ); 
 }
 
+function deleteAdvisor(id){
+  var advisor_data = {};
+
+  advisor_data['action']= 'delete_advisor';
+  advisor_data['id']= id;
+
+    $.post(
+        ajax_url,
+        advisor_data,
+        function(response){
+          console.log(response);
+          //var msg = $.parseJSON(response);
+        }// response
+    ); 
+
+}
+
 function updateAdvisor() {
     var user_data = {};
 
     user_data['action'] = 'update_advisor';
-	user_data['id'] = $('.j-register-advisor input[name="id"]').val();
+  	user_data['id'] = $('.j-register-advisor input[name="id"]').val();
     user_data['password'] = $('.j-register-advisor input[name="password"]').val();
     user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
    
@@ -431,17 +448,17 @@ function updateAdvisor() {
         ajax_url,
         user_data,
         function(response){
-			
-			console.log(response);
-            var msg = $.parseJSON(response);
+          console.log(response);
+          var msg = $.parseJSON(response);
 
-            if(msg.error == 0)
-                alert('Advisor guardado con exito');
-			else if(msg.error == 1)
-				alert('El usuario ya existe');
-			else
-				alert('Error, porfavor revisa los datos');
+          if(msg.error == 0)
+            alert('Advisor guardado con exito');
 
+          else if(msg.error == 1)
+				    alert('El usuario ya existe');
+
+          else
+				    alert('Error, porfavor revisa los datos');
         }// response
     ); 
 }// registerAdvisor
@@ -458,15 +475,15 @@ function updateBasicProfile() {
         user_data,
         function(response){
 			
-			console.log(response);
-            var msg = $.parseJSON(response);
+        console.log(response);
+        var msg = $.parseJSON(response);
 
-            if(msg.error == 0)
-                alert('Advisor guardado con exito');
-			else if(msg.error == 1)
-				alert('El usuario ya existe');
-			else
-				alert('Error, porfavor revisa los datos');
+        if(msg.error == 0)
+          alert('Advisor guardado con exito');
+        else if(msg.error == 1)
+				  alert('El usuario ya existe');
+        else
+				  alert('Error, porfavor revisa los datos');
 
         }// response
     ); 

@@ -192,13 +192,22 @@
                             foreach ($users as $key => $user) {
                         ?>
                                 <p class="[ col-xs-12 col-sm-6 ]">
-                                    <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
+                                    <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a>
+                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         Editar
                                     <?php } else { ?>
                                         Edit
                                     <?php } ?>
-                                </a></p>
+                                    </a> / 
+                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ delete-advisor ]"> 
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Borrar
+                                    <?php } else { ?>
+                                        Delete
+                                    <?php } ?>
+                                    </a>
+                                </p>
                         <?php } ?>
                     </div><!-- .dashboard-profile -->
                 <?php } ?>
