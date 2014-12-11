@@ -327,10 +327,9 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
-                   
+
                         $('.j-mensaje-advisor').on('click', function(e) {
-                            
-                            formValidation('.j-mensaje-advisor');
+                            formValidation('.j-form-message-advisor');
                         });
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
@@ -392,15 +391,14 @@ function pu_blank_login( $user ){
                                     $(".profile_picture_preview").css("border", "1px solid #002147");
                                  }
                         });
+
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>
 				<script type="text/javascript">
 					$( function() {
 						$('.j-register-user button').on('click', function(e){
-							//e.preventDefault();
 							formValidation('.j-register-user');
-							//registerUser();
 						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
