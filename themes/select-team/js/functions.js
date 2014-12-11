@@ -532,10 +532,11 @@ function updateUserInfo() {
     var user_data = {};
     user_data['action'] = 'update_user';
     user_data['full_name'] = $('.j-update-basic-profile input[name="full_name"]').val();
-    user_data['video_host'] = $('.j-update-basic-profile input[name="video_host"]').val();
+    user_data['video_host'] = $('.j-update-basic-profile input[name="video_host"]:checked').val();
     user_data['video_url'] = $('.j-update-basic-profile input[name="video_url"]').val();
     user_data['sport'] = $('.j-update-basic-profile input[name="sport"]').val();
 
+    console.log(user_data);
     switch(user_data['sport']){
         case 'tennis': 
             //user_data['tennis_hand'] = $('.j-update-basic-profile select[name="tennis_hand"]').val();
