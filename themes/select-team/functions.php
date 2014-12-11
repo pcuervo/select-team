@@ -194,7 +194,11 @@ function pu_blank_login( $user ){
 		                            // hide form
 		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
 		                           	var messageEl = theForm.querySelector( '.final-message' );
-	                                messageEl.innerHTML = 'Loading...';
+		                           	<?php if (qtrans_getLanguage() == 'es'){ ?>
+		                           			messageEl.innerHTML = 'Cargando...';
+									<?php } else { ?>
+											messageEl.innerHTML = 'Loading...';
+									<?php } ?>
 	                                classie.addClass( messageEl, 'show' );
 		                            location.replace(current_url+"/register?"+ $("#theForm").serialize());
 		                            return false;
@@ -205,7 +209,11 @@ function pu_blank_login( $user ){
 		                        onSubmit : function( form ) {
 		                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
 		                            var messageEl = theForm2.querySelector( '.final-message' );
-		                            messageEl.innerHTML = 'Thank you. We\'ll be in touch';
+		                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+		                            		messageEl.innerHTML = 'Gracias. Nos pondremos en contacto.';
+									<?php } else { ?>
+										messageEl.innerHTML = 'Thank you. We\'ll be in touch.';
+									<?php } ?>
 	                                classie.addClass( messageEl, 'show' );
 	                                console.log('ajax done');
 		                            sendMail();
@@ -240,7 +248,6 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('.cards');
 		                    });
 		                });
-						$('#theForm2').validate();
 		            }(jQuery));
 		        </script>
 			<?php } elseif ( get_post_type() == 'prospecto') { ?>
@@ -332,7 +339,7 @@ function pu_blank_login( $user ){
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'yy-mm-dd',
+							dateFormat: 'yy-mm-dd',profile_picture_preview
 							yearRange: "-100:+0"
 						});
 						$( "#datepicker-date-of-graduation" ).datepicker({
