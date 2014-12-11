@@ -541,17 +541,17 @@
                             <h3>Messages</h3>
                             <p class="help-block">Send a message to one of our managers.</p>
                         <?php } ?>
-                        <form role="form" class="[ row ] [ j-form-message-advisor ]">
+                        <form role="form" class="[ row ] [ j-form-message-advisor ]" onsubmit="validateMessageAdvisor()">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="manager" id="manager" name="agent">Selecciona un agente:</label>
-                                    <select class="[ form-control ]" id="manager" name="q5">
+                                    <select class="[ form-control ]" id="manager" class="selectMensajeAdvisor">
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="manager" id="manager" name="agent">Select an advisor:</label>
-                                    <select class="[ form-control ]" id="manager" name="q5">
+                                    <select class="[ form-control ]" id="manager" name="selectMensajeAdvisor">
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
@@ -563,7 +563,7 @@
                                 <?php } else { ?>
                                     <label for="message">Your message</label>
                                 <?php } ?>
-                                <textarea class="form-control" rows="3" id="message"></textarea>
+                                <textarea class="form-control" rows="3" id="message" class="txtareaMensajeAdvisor"></textarea>
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Enviar mensaje</button>
