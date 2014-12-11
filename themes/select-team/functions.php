@@ -313,7 +313,6 @@ function pu_blank_login( $user ){
 					
 					$('.btn-editar').hide();
 					
-					
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
@@ -594,8 +593,6 @@ function pu_blank_login( $user ){
 			echo ' | ' . sprintf( __( 'Página %s' ), max( $paged, $page ) );
 		}
 	}
-
-
 
 	/**
 	 * Imprime una lista separada por commas de todos los terms asociados al post id especificado
