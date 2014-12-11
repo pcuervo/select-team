@@ -368,7 +368,7 @@ function pu_blank_login( $user ){
 						$('.j-update-curriculum-update').on('click', function(e){
 							e.preventDefault();
 							console.log('actualizando curriculum...');
-							updateCurriculum();
+							updateAllCurriculum();
 						});
 						$('.j-add-tournament').on('click', function(e){
 							e.preventDefault();

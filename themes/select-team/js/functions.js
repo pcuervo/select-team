@@ -244,21 +244,56 @@ function addTournament(){
     $tournament_date= $('.j-user_curriculum input[name="tournament_date"]').val();
     $tournament_rank= $('.j-user_curriculum input[name="tournament_rank"]').val();
   
-    $('.j-user_curriculum').append('<input type="hidden" name="tournament_data[]" value="'+$tournament_name+'"/> ');
-    $('.j-user_curriculum').append('<input type="hidden" name="tournament_date_data[]" value="'+$tournament_date+'"/> ');
-    $('.j-user_curriculum').append('<input type="hidden" name="tournament_rank_data[]" value="'+$tournament_rank+'"/> ');
+    $('.j-tournaments').append('<input type="hidden" name="torneo" value="'+$tournament_name+'"/> ');
+    $('.j-tournaments').append('<input type="hidden" name="torneo-rank" value="'+$tournament_date+'"/> ');
+    $('.j-tournaments').append('<input type="hidden" name="torneo-fecha" value="'+$tournament_rank+'"/> ');
     
-    $('.j-registed-tournaments').append( '<div class="[ border-bottom margin-bottom ] [ row ]"><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$tournament_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
-  
+
+    $('.j-user_curriculum input[name="tournament_data[]"]').val($tournament_name);
+    $('.j-user_curriculum input[name="tournament_date_data[]"]').val($tournament_date);
+    $('.j-user_curriculum input[name="tournament_rank_data[]"]').val($tournament_rank);
+    
+    $('.j-tournaments').append( '<div class="[ form-group ] [ row ] [ j-del-tournament ] [ border-bottom margin-bottom ] "><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$tournament_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a onclick="delete_dinamic_tournament(this)" class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
+
     $('.j-user_curriculum input[name="tournament"]').val("");
     $('.j-user_curriculum input[name="tournament_date"]').val("");
     $('.j-user_curriculum input[name="tournament_rank"]').val("");
+    updateCurriculum();
   }
+}
+
+function delete_dinamic_tournament(e){
+  var childs = e.parentNode.childNodes;  
+  var nombre = childs[0].innerText;
+  var dateSplit = childs[1].innerText.split(':');
+  
+  var date = dateSplit[1];
+  var rankSplit = childs[2].innerText.split(':');
+  var rank = rankSplit[1];
+
+  var tournament_data={};
+  tournament_data['action'] = 'delete_tournament';
+  tournament_data['tournament_name'] = nombre;
+  tournament_data['tournament_date'] = date.substring(1);
+  tournament_data['tournament_rank'] = rank.substring(1);
+
+  console.log(tournament_data);
+  e.parentNode.style.display='none';
+  
+  $.post(
+        ajax_url,
+        tournament_data,
+        function(response){
+            console.log(response);
+            //window.location = site_url + '/dashboard';
+        }// response
+    );   
 }
 
 function deleteTournament(e){
   var x= e.target.parentNode.id;
   if(x==''){ x= e.target.parentNode.parentNode.id;}
+  console.log(x);
   var tournament_data={};
   tournament_data['action'] = 'delete_tournament';
   tournament_data['tournament_name']  = $('.j-'+x+' input[name="torneo"]').val();
@@ -270,7 +305,7 @@ function deleteTournament(e){
         ajax_url,
         tournament_data,
         function(response){
-            console.log(response);
+            //console.log(response);
             //window.location = site_url + '/dashboard';
         }// response
     ); 
@@ -305,7 +340,7 @@ function registerTournament(){
           new_tournament_data,
           function(response){
               
-              window.location = site_url + '/dashboard';
+              //window.location = site_url + '/dashboard';
           }// response
       );
 }
@@ -482,7 +517,8 @@ function createCurriculum() {
   
   //Sports Development
   if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
-  addTournament();
+      addTournament();
+  
   registerTournament();
 
   console.log(user_curriculum_data);
@@ -519,13 +555,39 @@ function updateCurriculum() {
         ajax_url,
         user_curriculum_data,
         function(response){
+            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos del torneo.</div>';
+            $(html_feedback).appendTo('.j-user_curriculum');
+          
+      } //response
+  ); 
+}// updateCurriculum
+
+function updateAllCurriculum() {
+    var user_curriculum_data = {};
+
+    user_curriculum_data['action'] = 'update_curriculum';
+    user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
+    user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
+    user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
+    user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
+    user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
+    user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
+    user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
+  
+    //Sports Development
+    if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
+        addTournament();
+
+    $.post(
+        ajax_url,
+        user_curriculum_data,
+        function(response){
             var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
             $(html_feedback).appendTo('.j-user_curriculum');
           
       } //response
   ); 
-
-    }// updateCurriculum
+}// updateCurriculum
 
 
 function updateUserInfo() {
