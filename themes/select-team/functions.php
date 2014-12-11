@@ -284,6 +284,10 @@ function pu_blank_login( $user ){
 				        $('.hide-form-advisor').show('slow');
 				    });
 					
+					$('.btn-guardar-profile').on('click', function(){
+				        updateBasicProfile();
+				    });
+					
 					$('.btn-editar').hide();
 					
 					
@@ -640,8 +644,15 @@ function pu_blank_login( $user ){
 	function update_advisor(){
 		
 		// Create wp_user
-		$id_user =  $_POST['id'];
-		$password =  $_POST['password'];
+		if(isset($_POST['id']))
+			$id_user =  $_POST['id'];
+		else
+			$id_user =  get_current_user_id();
+		if(isset($_POST['password']))
+			$password =  $_POST['password'];
+		else
+			$password = '';
+			
 		$full_name = $_POST['full_name'];
 		
 		if(!empty($password)){
@@ -709,7 +720,6 @@ function pu_blank_login( $user ){
 			'full_name'		=> $full_name,
 			);
 			$st_user_id = add_advisor_user($advisor_data);
-			login_user($username, $password);
 			$msg = array(
 				"success" 	=> "Usuario registrado",
 				"error"	  	=> 0
@@ -748,13 +758,27 @@ function pu_blank_login( $user ){
 
 	    global $wpdb;
 
-	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."'";
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."' LIMIT 1";
 	    $users = $wpdb->get_results($query);
 		
 		echo json_encode($users[0], JSON_FORCE_OBJECT);
 	}// get_users_basic_info
     add_action("wp_ajax_get_info_advisor", "get_info_advisor");
+	
 
+	function get_info_current_advisor(){
+		$user_id= get_current_user_id();
+
+	    global $wpdb;
+
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."' LIMIT 1";
+	    $users = $wpdb->get_results($query);
+		
+		if ( $users != null )
+			return $users[0];
+		else
+			return null;
+	}
 	/**
 	 * Inserta un usuario a la tabla st_advisors
 	 * @param string $advisor_data

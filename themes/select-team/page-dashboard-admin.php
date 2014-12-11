@@ -11,6 +11,7 @@
         wp_redirect( $location );
         exit;
     }
+   $bp = get_info_current_advisor();
 ?>
 <?php get_header(); ?>
 
@@ -30,7 +31,7 @@
                         <?php } else { ?>
                             <h3>Basic Profile</h3>
                         <?php } ?>
-                        <form id="userForm" role="form" class="[ row ] [  ]" >
+                        <form id="userForm" role="form" class="[ row ]" >
                             
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -52,16 +53,20 @@
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="full_name">Nombre completo</label>
-                                    <input type="text" class="[ form-control ]" id="full_name"  name="full_name" >
+                                    <input type="text" class="[ form-control ]" name="full_name_perfil" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
-                                    <input type="text" class="[ form-control ]" id="full_name"  name="full_name" >
+									<?php if(isset($bp)){ ?>
+                                    <input type="text" class="[ form-control ]" name="full_name_perfil" value="<?php echo $bp->full_name; ?>" >
+									<?php } else { ?>
+										<input type="text" class="[ form-control ]" name="full_name_perfil" >
+									<?php } ?>
                                 <?php } ?>
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Guardar cambios</button>
+                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Guardar cambios</button>
                             <?php } else { ?>
-                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Save changes</button>
+                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Save changes</button>
                             <?php } ?>
                         </form>
                     </div>

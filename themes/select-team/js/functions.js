@@ -409,6 +409,32 @@ function updateAdvisor() {
     ); 
 }// registerAdvisor
 
+function updateBasicProfile() {
+    var user_data = {};
+
+    user_data['action'] = 'update_advisor';
+    user_data['full_name'] = $('input[name="full_name_perfil"]').val();
+   
+    console.log(user_data);
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+			
+			console.log(response);
+            var msg = $.parseJSON(response);
+
+            if(msg.error == 0)
+                alert('Advisor guardado con exito');
+			else if(msg.error == 1)
+				alert('El usuario ya existe');
+			else
+				alert('Error, porfavor revisa los datos');
+
+        }// response
+    ); 
+}// registerAdvisor
+
 function registerAdvisor() {
     var user_data = {};
 
