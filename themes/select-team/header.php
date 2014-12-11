@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title><?php print_title(); ?></title>
+		<title>Select Team</title>
 		<link rel="shortcut icon" href="<?php echo THEMEPATH; ?>images/favicon.png">
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
