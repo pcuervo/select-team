@@ -44,10 +44,7 @@ function restrict_admin()
 }
 add_action( 'admin_init', 'restrict_admin', 1 );
 
-function my_filter_head() {
-    remove_action('wp_head', '_admin_bar_bump_cb');
-}
-add_action('get_header', 'my_filter_head');
+
 
   
 
@@ -480,6 +477,12 @@ function pu_blank_login( $user ){
 	add_filter( 'show_admin_bar', function($content){
 		return ( current_user_can('administrator') ) ? $content : false;
 	});
+	
+	
+	function pc_hide_admin_bar() {
+		show_admin_bar(false);
+	}
+	add_action('set_current_user', 'pc_hide_admin_bar');
 
 
 
