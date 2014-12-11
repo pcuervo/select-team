@@ -587,7 +587,9 @@ function loginUser(user, password){
 function formValidation(forma){
     $(forma).validate({
         rules: {
-          
+          password_confirmation:{
+            equalTo: "#password"
+          }
         },
         submitHandler:function(){
             switch(forma){
