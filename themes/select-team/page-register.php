@@ -58,7 +58,7 @@ get_header(); ?>
                             <?php } else { ?>
                                 <label for="password_confirmation">Confirm password</label>
                             <?php } ?>
-                            <input type="password" class="[ form-control ]" name="password_confirmation" required>
+                            <input type="password" class="[ form-control ]" name="password_confirmation" required id="password_confirmation">
                             <label for="validate" id="validate"></label>
                         </div>
 
