@@ -348,7 +348,9 @@ function registerUser() {
             console.log(response);
             var msg = $.parseJSON(response);
             if(msg.error == 0)
-                window.location = site_url + '/?reg=1';
+                loginUser(user_data['username'], user_data['password']);
+                
+                //window.location = site_url + '/?reg=1';
 
         }// response
     ); 

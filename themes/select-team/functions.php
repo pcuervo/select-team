@@ -830,9 +830,17 @@ function pu_blank_login( $user ){
 			default:
 				// Create wp_user
 				$username =  $_POST['username'];
-				$password =  wp_hash_password( $_POST['password'] );
+				$password =  $_POST['password'];
 				$email =  $_POST['email'];
-				$user_id = wp_create_user( $username, $password, $email );
+
+				$userdata = array(
+				    'user_login'  	=> $username,
+				    'user_pass'   	=> $password, 
+				    'user_email'	=> $email,
+				    'role'			=> 'subscriber',
+				);
+
+				$user_id = wp_insert_user( $userdata ) ;
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
