@@ -361,11 +361,13 @@ function getAdvisorBasicInfo(id){
 	var user_data = {};
 	user_data['action'] = 'get_info_advisor';
     user_data['id'] = id;
-	
+
+
 	$.post(
         ajax_url,
         user_data,
         function(response){
+            console.log(1);
 			console.log(response);
 			var msg = $.parseJSON(response.slice(0,-1));
 			console.log(msg);
@@ -611,6 +613,7 @@ function loginUser(user, password){
 * @return void
 **/
 function formValidation(forma){
+  console.log(forma);
     $(forma).validate({
         rules: {
           password_confirmation:{
@@ -621,6 +624,9 @@ function formValidation(forma){
             switch(forma){
                 case '.j-register-user':
                     registerUser();
+                    break;
+                case '.j-register-advisor':
+                    registerAdvisor();
                     break;
                 default:
                     console.log('default');

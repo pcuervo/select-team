@@ -142,7 +142,7 @@
                                     <?php } else { ?>
                                         <label for="full_name">Full name</label>
                                     <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="full_name">
+                                    <input type="text" class="[ form-control ][ required ]" name="full_name">
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -150,7 +150,7 @@
                                     <?php } else { ?>
                                         <label for="username">Username</label>
                                     <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="username">
+                                    <input type="text" class="[ form-control ][ required ]" name="username">
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -158,7 +158,7 @@
                                     <?php } else { ?>
                                         <label for="email">Email</label>
                                     <?php } ?>
-                                    <input type="email" class="[ form-control ]" name="email"> 
+                                    <input type="email" class="[ form-control ][ required email ]" name="email" >
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -166,13 +166,13 @@
                                     <?php } else { ?>
                                         <label for="password">Password</label>
                                     <?php } ?>
-                                    <input type="password" class="[ form-control ]" name="password">
+                                    <input type="password" class="[ form-control ][ required ]" name="password">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="password">Confirmar contraseña</label>
                                     <?php } else { ?>
                                         <label for="password">Password Confirmation</label>
                                     <?php } ?>
-									<input type="password" class="[ form-control ]" name="password_confirmation">
+									<input type="password" class="[ form-control ][ required ]" name="password_confirmation">
                                     <label for="validate" id="validate"></label>   
                                 </div>
                                 <div class="[ form-group ]">
