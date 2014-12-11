@@ -48,7 +48,7 @@
             <div class="[ container-fluid ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="upload_picture">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Foto de perfil</h3>
                         <?php } else { ?>
@@ -57,7 +57,6 @@
                         <?php if ( $prospect_info->profile_picture != '' && $prospect_info->profile_picture != '-' ) { ?>
                             <img class="profile_picture_preview" src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
                         <?php } ?>
-                        <img src="" />
                         <form action="<?php echo THEMEPATH; ?>upload_picture.php" method="POST" role="form" class="[ row ] [ j-upload-profile-picture ]" enctype="multipart/form-data">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -73,7 +72,7 @@
                                 <input type="hidden" name="site_url" value="<?php echo site_url(); ?>">
                                 <input type="hidden" name="st_user_id" value="<?php echo $prospect_info->st_user_id ?>">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="400000" />
-                                <input class="columna xsmall-12 medium-4 center block" type="file" name="filename" id="filename">
+                                <input class="columna xsmall-12 medium-4 block" type="file" name="filename" id="filename">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -107,7 +106,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
-                    <div class="[ col-xs-12 col-sm-7 center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
@@ -250,8 +249,8 @@
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="atp_tournament">¿Has jugado en torneos de la ATP?</label>
                                     <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $prospect_sport_answers[ATP_TOURNAMENT-1]->answer; ?> ">
-                                        <option value="yes" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?>>Sí</option>
-                                        <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?>>No</option>
+                                        <option value="yes" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?> >Sí</option>
+                                        <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?> >No</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="atp_tournament">Played an ATP tournament?</label>
@@ -362,7 +361,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="curriculum">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <h3>Curriculum</h3>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <p class="help-block">Esta section no será visible en tu perfil público.</p>
@@ -528,7 +527,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="messages">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Mensajes</h3>
                             <p class="help-block">Envía un mensaje a uno de nuestros agentes.</p>
