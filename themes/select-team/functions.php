@@ -237,8 +237,6 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('.cards');
 		                    });
 		                });
-
-						$('#theForm').validate();
 						$('#theForm2').validate();
 		            }(jQuery));
 		        </script>
@@ -329,12 +327,9 @@ function pu_blank_login( $user ){
                                 
                                  var width_picture = $(this).width();
                                  var height_picture = $(this).height();
-
                                  if (width_picture > 300) {
-
                                     $(".profile_picture_preview").css("width", "300px");
                                      $(".profile_picture_preview").css("border", "1px solid #002147");
-
                                  } else {
 
                                     $(".profile_picture_preview").css("height", "300px");
