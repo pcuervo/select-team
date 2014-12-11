@@ -13,7 +13,10 @@
 
 //********************
 
-html{ height: 100%; }
+html, body{
+	min-height: 100% !important;
+	height: 100%;
+}
 .home{ max-width: 100%; overflow: hidden; }
 .content__dashboard{ padding-left: 0; .transition; }
 
@@ -34,7 +37,6 @@ html{ height: 100%; }
 
 //GENERAL*******************************
 
-.container-fluid{ height: 100%; }
 
 .color-success{ 
 	color: @brand-success;
@@ -100,7 +102,8 @@ button, a{
 .container-fluid{
 	padding: 0;
 	background-repeat: repeat;
-	height: 100%;
+	min-height: 100%;
+	position: relative;
 }
 
 .jumbotron{
@@ -156,12 +159,16 @@ button, a{
 
  //FORMS*******************
 
- .input-group{
- 	margin-bottom: 15px;
- }
+.input-group{
+	margin-bottom: 15px;
+}
 
- .modal-body{
- 	span{ min-width: 40px;}
+.modal-body{
+	span{ min-width: 40px;}
+}
+
+ #userForm{
+ 	label.error{ color: @brand-info !important; }
  }
 
 //HEADER*******
@@ -172,7 +179,7 @@ button, a{
 }
 
 .navbar-nav{ margin: 0 -15px; }
-
+.container{ max-width: 1280px; }
 .container-fluid>.navbar-header{ margin: 0; }
 
 .navbar-default{
@@ -1031,8 +1038,8 @@ figure.effect-sadie:hover figcaption::before {
 
 
 // footer{ position: absolute; bottom: 0; clear: both; }
-footer{ background-color: @brand-primary; width: 100%; padding: 15px; position: absolute; overflow-x: hidden; z-index: 999; clear: both;
-		a,p{ color: #fff; text-decoration: none; }
-		a:hover{ color: rgba(255, 255, 255, 0.5); text-decoration: none; }
-		span{ margin: 0 5px; }
+footer{ background-color: @brand-primary; width: 100%; padding: 15px; position: absolute; bottom: 0; overflow-x: hidden; z-index: 999; clear: both;
+	a,p{ color: #fff; text-decoration: none; }
+	a:hover{ color: rgba(255, 255, 255, 0.5); text-decoration: none; }
+	span{ margin: 0 5px; }
 }

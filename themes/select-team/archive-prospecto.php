@@ -10,16 +10,40 @@
 
 		<div class="[ isotope-filters-sports ]">
 			<div class="[ prospects ] [ margin-bottom clearfix ] [ sportFilter button-group text-center ]" id="sportAll" data-active="">
-				<button type="button" class="btn btn-primary sport" data-filter="*">All </button>
+				<button type="button" class="btn btn-primary sport" data-filter="*">
+					<?php if (qtrans_getLanguage() == 'es'){ ?>
+						Todos
+					<?php } else { ?>
+						All
+					<?php } ?>
+				</button>
 				<button type="button" class="btn btn-primary sport" data-filter=".tennis"><img src="<?php echo THEMEPATH; ?>images/tennis-icon.png" alt=""> <span class="hidden-xs">Tennis</span></button>
 				<button type="button" class="btn btn-primary sport" data-filter=".golf"><img src="<?php echo THEMEPATH; ?>images/golf-icon.png" alt=""> <span class="hidden-xs">Golf</span></button>
 				<button type="button" class="btn btn-primary sport" data-filter=".soccer"><img src="<?php echo THEMEPATH; ?>images/soccer-icon.png" alt=""> <span class="hidden-xs">Soccer</span></button>
 				<button type="button" class="btn btn-primary sport" data-filter=".volleyball"><img src="<?php echo THEMEPATH; ?>images/volleyball-icon.png" alt=""> <span class="hidden-xs">Volleyball</span></button>
 			</div>
 			<div class="[ prospects ] [ center margin-bottom ] [ block ] [ clearfix ] [ genderFilter button-group text-center ]" id="genderAll" data-active="">
-				<button type="button" class="btn btn-primary gender" data-filter="*">All</button>
-				<button type="button" class="btn btn-primary gender" data-filter=".male">Male</button>
-				<button type="button" class="btn btn-primary gender" data-filter=".female">Female</button>
+				<button type="button" class="btn btn-primary gender" data-filter="*">
+					<?php if (qtrans_getLanguage() == 'es'){ ?>
+						Todos
+					<?php } else { ?>
+						All
+					<?php } ?>
+				</button>
+				<button type="button" class="btn btn-primary gender" data-filter=".male">
+					<?php if (qtrans_getLanguage() == 'es'){ ?>
+						Hombre
+					<?php } else { ?>
+						Male
+					<?php } ?>
+				</button>
+				<button type="button" class="btn btn-primary gender" data-filter=".female">
+					<?php if (qtrans_getLanguage() == 'es'){ ?>
+						Mujer
+					<?php } else { ?>
+						Female
+					<?php } ?>
+				</button>
 			</div>
 		</div><!-- isotope-filters -->
 		<div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">

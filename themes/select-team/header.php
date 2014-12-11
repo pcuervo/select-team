@@ -60,18 +60,17 @@
 								<li class="[ menu ]"><a href="<?php echo site_url('contact'); ?>">Contact</a></li>
 								<li class="[ menu ]">
 									<?php if ( ! is_user_logged_in() ) { ?>
-										<a href="" data-toggle="modal" data-target="#Login">
-											<?php if (qtrans_getLanguage() == 'es'){ ?>
-												<i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
-												<a href="<?php echo site_url('register') ?>">Regístrate</a>
-											<?php } else { ?>
-												<i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
-												<a href="<?php echo site_url('register') ?>">Register</a>
-											<?php } ?>
+										<?php if (qtrans_getLanguage() == 'es'){ ?>
+											<a href="" data-toggle="modal" data-target="#login"><i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
+											<a href="<?php echo site_url('es/register') ?>">Regístrate</a>
+										<?php } else { ?>
+											<a href="" data-toggle="modal" data-target="#login"><i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
+											<a href="<?php echo site_url('en/register') ?>">Register</a>
+										<?php } ?>
 									<?php } else { 
 									?>
 										<p><a href="'<?php echo site_url('.$dashboard.'); ?>'"><i class="fa fa-user"></i></a></p>
-										<p> <i class="[ fa fa-sign-out ]"></i> <?php echo $user->user_login ?><a href="<?php echo  wp_logout_url(site_url()); ?>"> Logout</a> </p>
+										<p> <i class="[ fa fa-sign-out ]"></i> Mi cuenta<a href="<?php echo  esc_url( wp_logout_url(site_url()) ); ?>"> Logout</a> </p>
 									<?php } ?>
 								</li>
 								<li class="[ menu ]">
@@ -83,53 +82,65 @@
 					<div class="[ container ] [ hidden-xs hidden-sm ] [ header-top ] [ clearfix ]">
 						<input type="hidden" id="current_url" value="<?php echo site_url(); ?>"/>
 						<h1>
-							<a href="<?php echo site_url('index.php'); ?>">
+							<a
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									href="<?php echo site_url('es/'); ?>"
+								<?php } else { ?>
+									href="<?php echo site_url('en/'); ?>"
+								<?php } ?>
+							>
 								<img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
 							</a>
 						</h1><ul class="[ desktop-nav ] [ clearfix ]">
-							<li><a class="[ center block ] <?php if( get_post_type() == 'acerca' ){ echo 'active'; } ?>" href="<?php echo site_url('acerca'); ?>">
+							<li><a class="[ center block ] <?php if( get_post_type() == 'acerca' ){ echo 'active'; } ?>"
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									href="<?php echo site_url('es/acerca/'); ?>">
 									Acerca
 								<?php } else { ?>
+									href="<?php echo site_url('en/acerca/'); ?>">
 									About
 								<?php } ?>
 							</a></li>
-							<li><a class="[ center block ] <?php if( get_post_type() == 'prospecto' ){ echo 'active'; } ?>" href="<?php echo site_url('prospecto'); ?>">
+							<li><a class="[ center block ] <?php if( get_post_type() == 'prospecto' ){ echo 'active'; } ?>"
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									 href="<?php echo site_url('es/prospecto/'); ?>">
 									Prospectos
 								<?php } else { ?>
+									href="<?php echo site_url('en/prospecto/'); ?>">
 									Prospects
 								<?php } ?>
 							</a></li>
-							<li><a class="[ center block ] <?php if( get_post_type() == 'padre' ){ echo 'active'; } ?>" href="<?php echo site_url('padre'); ?>">
+							<li><a class="[ center block ] <?php if( get_post_type() == 'padre' ){ echo 'active'; } ?>"
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									href="<?php echo site_url('es/padre/'); ?>">
 									Padres
 								<?php } else { ?>
+									href="<?php echo site_url('en/padre/'); ?>">
 									Parents
 								<?php } ?>
 							</a></li>
-							<li><a class="[ center block ] <?php if( is_page('contacto') ){ echo 'active'; } ?>" href="<?php echo site_url('contact'); ?>">
+							<li><a class="[ center block ] <?php if( is_page('contacto') ){ echo 'active'; } ?>"
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									href="<?php echo site_url('es/contact/'); ?>">
 									Contacto
 								<?php } else { ?>
+									href="<?php echo site_url('en/contact/'); ?>">
 									Contact
 								<?php } ?>
 							</a></li>
 						</ul>
 						<div class="[ registro ]">
 							<?php if ( ! is_user_logged_in() ) { ?>
-								<a href="" data-toggle="modal" data-target="#Login">
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
-									<a href="<?php echo site_url('register') ?>">Regístrate</a>
+									<a href="" data-toggle="modal" data-target="#login"> <i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
+									<a href="<?php echo site_url('es/register/') ?>">Regístrate</a>
 								<?php } else { ?>
-									<i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
-									<a href="<?php echo site_url('register') ?>">Register</a>
+									<a href="" data-toggle="modal" data-target="#login"> <i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
+									<a href="<?php echo site_url('en/register/') ?>">Register</a>
 								<?php } ?>
-							<?php } else { 
-							?>
-								<p><a href="<?php echo site_url().'/'.$dashboard ?>"><i class="fa fa-user"></i> <?php echo $user->user_login; ?></a></p>
-								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>'"> Logout</a> </p>
+							<?php } else { ?>
+								<p><a href="<?php echo site_url().'/'.$dashboard ?>"><i class="fa fa-user"></i> Mi cuenta</a></p>
+								<p> <i class="[ fa fa-sign-out ]"></i> <a href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>"> Logout</a> </p>
 							<?php } ?>
 								<div class="clear"></div>
 							<?php echo qtrans_generateLanguageSelectCode('text'); ?>
@@ -155,7 +166,7 @@
 							<div class="[ container ]">
 								<p class="[ text-center ] [ col-xs-12 col-md-9 ] [ center block ]">
 									<?php if (qtrans_getLanguage() == 'es'){ ?>
-										Select team crea oportunidades de beca para atletas estudiantes para jugar y estufdiar en universidades de Estados Unidos.
+										Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.
 									<?php } else { ?>
 										Select Team creates scholarship opportunities for student athletes to play sports and study at universities in the United States.
 									<?php } ?>
@@ -171,12 +182,18 @@
 					<ul class="sidebar-nav">
 						<li class="header__dashboard__top">
 							<h1>
-								<a href="<?php echo site_url(); ?>">
+								<a
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										href="<?php echo site_url('es/'); ?>"
+									<?php } else { ?>
+										href="<?php echo site_url('en/'); ?>"
+									<?php } ?>
+								>
 									<img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
 								</a>
 							</h1>
 							<?php if ( ! is_user_logged_in() ) { ?>
-								<a class="[ text-center ]" href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a>
+								<a class="[ text-center ]" href="" data-toggle="modal" data-target="#login"><i class="[ fa fa-sign-in ]"></i> Login</a>
 							<?php } else { ?>
 								<a class="[ text-center ]" href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>"><i class="[ fa fa-sign-out ]"></i> Logout</a>
 							<?php } ?>
@@ -190,7 +207,6 @@
 							<li class="sidebar-brand">
 								<a class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
 							</li>
-
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
 									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>

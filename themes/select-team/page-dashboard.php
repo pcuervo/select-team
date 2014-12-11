@@ -48,7 +48,7 @@
             <div class="[ container-fluid ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="upload_picture">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Foto de perfil</h3>
                         <?php } else { ?>
@@ -57,7 +57,6 @@
                         <?php if ( $prospect_info->profile_picture != '' && $prospect_info->profile_picture != '-' ) { ?>
                             <img class="profile_picture_preview" src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
                         <?php } ?>
-                        <img src="" />
                         <form action="<?php echo THEMEPATH; ?>upload_picture.php" method="POST" role="form" class="[ row ] [ j-upload-profile-picture ]" enctype="multipart/form-data">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -73,7 +72,7 @@
                                 <input type="hidden" name="site_url" value="<?php echo site_url(); ?>">
                                 <input type="hidden" name="st_user_id" value="<?php echo $prospect_info->st_user_id ?>">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="400000" />
-                                <input class="columna xsmall-12 medium-4 center block" type="file" name="filename" id="filename">
+                                <input class="columna xsmall-12 medium-4 block" type="file" name="filename" id="filename">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -107,7 +106,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
-                    <div class="[ col-xs-12 col-sm-7 center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
@@ -234,7 +233,7 @@
                                     ?>
                                     </p>
                                     <?php } else { ?>
-                                        <label for="tennis_hand">Right or lef handed?</label>
+                                        <label for="tennis_hand">Right or left handed?</label>
                                         <p><?php echo $prospect_sport_answers[TENNIS_HAND-1]->answer; ?></p>
                                     <?php } ?>
                                 </div>
@@ -250,8 +249,8 @@
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="atp_tournament">¿Has jugado en torneos de la ATP?</label>
                                     <select class="[ form-control ]" id="atp" name="atp_tournament" value="<?php echo $prospect_sport_answers[ATP_TOURNAMENT-1]->answer; ?> ">
-                                        <option value="yes" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?>>Sí</option>
-                                        <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?>>No</option>
+                                        <option value="yes" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='yes')echo "selected"; ?> >Sí</option>
+                                        <option value="no" <?php if($prospect_sport_answers[ATP_TOURNAMENT-1]->answer=='no')echo "selected"; ?> >No</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="atp_tournament">Played an ATP tournament?</label>
@@ -362,7 +361,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="curriculum">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <h3>Curriculum</h3>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <p class="help-block">Esta section no será visible en tu perfil público.</p>
@@ -394,10 +393,11 @@
                                 <?php } ?>
                                 <input type="text" class="[ form-control ]" id="mPhone" name="curriculum_mobile_phone" value="<?php echo $mob_phone; ?>">
                             </div>
+                            <div class="[ clear ] [ margin-bottom ]"></div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h4 class="[ col-xs-12 ]">Educación</h4>
                             <?php } else { ?>
-                                <h4 class="[ col-xs-12 ]">Academic carreer</h4>
+                                <h4 class="[ col-xs-12 ]">Academic career</h4>
                             <?php } ?>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -424,10 +424,10 @@
                                         <option value="graduated" <?php if($grad_year=='graduated') echo "selected"; ?>>Graduado</option>
                                     </select>
                                     <?php } else { ?>
-                                        <label for="midGrad" id="midGrad" name="q4" >What Class are you in?</label>
+                                        <label for="midGrad" id="midGrad" name="q4" >What class are you in?</label>
                                         <select class="[ form-control ]" id="q4" name="grade">
                                             <option value="grado" selected disabled>Class</option>
-                                            <option value="freshman" <?php if($grad_year=='freshman') echo "selected"; ?>>Freshment </option>
+                                            <option value="freshman" <?php if($grad_year=='freshman') echo "selected"; ?>>Freshmen </option>
                                             <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>Sophomore </option>
                                             <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>Junior </option>
                                             <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>Senior </option>
@@ -436,7 +436,6 @@
                                  <?php } ?>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
-                                <label for="highGrad" id="highGrad" name="high_grad">Graduation Year</label>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <span><label for="q3">¿Cuándo te vas a graduar?</label></span>
                                 <?php } else { ?>
@@ -444,7 +443,7 @@
                                 <?php } ?>
                                 <input name="high_grad" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation" value="<?php echo $grad_date; ?>"/>
                             </div>
-                            <div class="clear"></div>
+                            <div class="[ clear ] [ margin-bottom ]"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <h4 class="[ col-xs-12 ]">Desarrollo deportivo</h4>
                                 <?php } else { ?>
@@ -454,11 +453,6 @@
                                 <?php  if (sizeof($created_curriculum)>0)
                                      if(sizeof($tournament_info)>0) { ?>
                                 <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="tournament">Torneos</label>
-                                    <?php } else { ?>
-                                        <label for="tournament">Tournaments</label>
-                                    <?php } ?>
                                         <?php foreach ($tournament_info as $key => $value) { ?>
                                             <div class="[ form-group ] [ row ] [ border-bottom ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
                                                 <input type="hidden" value="<?php echo $tournament_info[$key]->name;?>" name="torneo">
@@ -533,7 +527,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]"  id="messages">
-                    <div class="[ col-xs-12 col-sm-7 ] [ center block ]">
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Mensajes</h3>
                             <p class="help-block">Envía un mensaje a uno de nuestros agentes.</p>

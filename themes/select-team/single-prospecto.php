@@ -136,7 +136,7 @@
 						break;
 				}// switch
 			?>
-
+			<div class="[ clear ] [ margin-bottom ]"></div>
 			<?php if( $role != 'subscriber') { ?>
 				<?php if (qtrans_getLanguage() == 'es'){ ?>
 					<p><b>Dirección:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->address) ? $user_curriculum->address : '-'; ?></p>
@@ -201,8 +201,11 @@
 					<div class="embed-responsive embed-responsive-16by9">
 						<?php 
 					  	$video_src = get_video_src($user->video_url, $user->video_host);
-						?>
-						<iframe class="embed-responsive-item" src="<?php echo $video_src ?>" frameborder="0" allowfullscreen></iframe>
+					  	if(! $video_src)
+					  		echo '<p>No hay video</p>';
+					  	else { ?>
+							<iframe class="embed-responsive-item" src="<?php echo $video_src ?>" frameborder="0" allowfullscreen></iframe>
+					  	<?php } ?>
 					</div>
 				</div>
 			</div>

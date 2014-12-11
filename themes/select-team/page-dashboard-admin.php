@@ -11,10 +11,9 @@
         wp_redirect( $location );
         exit;
     }
+   $bp = get_info_current_advisor();
 ?>
 <?php get_header(); ?>
-
-
 
     <div id="dashboard">
         <?php $advisor_info = get_advisor_basic_info(get_current_user_id()); ?>
@@ -23,14 +22,13 @@
             <div class="[ container-fluid ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
-                    <div class="[ col-xs-12 col-sm-7 center block ]">
-
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
                         <?php } else { ?>
                             <h3>Basic Profile</h3>
                         <?php } ?>
-                        <form id="userForm" role="form" class="[ row ] [  ]" >
+                        <form id="userForm" role="form" class="[ row ]" >
                             
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -52,22 +50,26 @@
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="full_name">Nombre completo</label>
-                                    <input type="text" class="[ form-control ]" id="full_name"  name="full_name" >
+                                    <input type="text" class="[ form-control ]" name="full_name_perfil" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
-                                    <input type="text" class="[ form-control ]" id="full_name"  name="full_name" >
+									<?php if(isset($bp)){ ?>
+                                    <input type="text" class="[ form-control ]" name="full_name_perfil" value="<?php echo $bp->full_name; ?>" >
+									<?php } else { ?>
+										<input type="text" class="[ form-control ]" name="full_name_perfil" >
+									<?php } ?>
                                 <?php } ?>
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Guardar cambios</button>
+                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Guardar cambios</button>
                             <?php } else { ?>
-                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Save changes</button>
+                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Save changes</button>
                             <?php } ?>
                         </form>
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="prospects">
-                    <div class="[ col-xs-12 col-sm-12 center block ]">
+                    <div class="[ col-xs-12 col-sm-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Prospectos</h3>
                         <?php } else { ?>
@@ -86,8 +88,8 @@
                                     </div>
                                     <div class="[ prospects ] [ center margin-bottom ] [ block ] [ clearfix ] [ genderFilter button-group text-center ]" id="genderAll" data-active="">
                                         <button type="button" class="btn btn-primary gender" data-filter="*">All</button>
-                                        <button type="button" class="btn btn-primary gender" data-filter=".hombre">Male</button>
-                                        <button type="button" class="btn btn-primary gender" data-filter=".mujer">Female</button>
+                                        <button type="button" class="btn btn-primary gender" data-filter=".male">Male</button>
+                                        <button type="button" class="btn btn-primary gender" data-filter=".female">Female</button>
                                     </div>
                                 </div><!-- isotope-filters -->
                                 <div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
@@ -119,13 +121,12 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="advisors">
-                    <div class="[ col-xs-12 col-sm-12 center block ]">
+                    <div class="[ col-xs-12 col-sm-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Agentes</h3>
                         <?php } else { ?>
                             <h3 class="[ margin-bottom ]">Advisors</h3>
                         <?php } ?>
-                        <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
 							<button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Registrar agente</button>
                         <?php } else { ?>
@@ -160,9 +161,17 @@
                                     <input type="email" class="[ form-control ]" name="email"> 
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="password">Password</label>
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        <label for="password">Contraseña</label>
+                                    <?php } else { ?>
+                                        <label for="password">Password</label>
+                                    <?php } ?>
                                     <input type="password" class="[ form-control ]" name="password">
-                                    <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        <label for="password">Confirmar contraseña</label>
+                                    <?php } else { ?>
+                                        <label for="password">Password Confirmation</label>
+                                    <?php } ?>
 									<input type="password" class="[ form-control ]" name="password_confirmation">
                                     <label for="validate" id="validate"></label>   
                                 </div>
@@ -183,7 +192,13 @@
 							$users = get_advisors_basic_info(); 
 							foreach ($users as $key => $user) {
 						?>
-                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> Editar </a> </p></a>
+                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            Editar
+                        <?php } else { ?>
+                            Edit
+                        <?php } ?>
+                         </a> </p></a>
 					  <?php } ?>
                     
             </div>

@@ -39,10 +39,17 @@ define('VOLLEY_HEIGHT', 8);
 function restrict_admin()
 {
 	if ( ! current_user_can( 'manage_options' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
-                wp_redirect( site_url() );
+        wp_redirect( site_url() );
 	}
 }
 add_action( 'admin_init', 'restrict_admin', 1 );
+
+function my_filter_head() {
+    remove_action('wp_head', '_admin_bar_bump_cb');
+}
+add_action('get_header', 'my_filter_head');
+
+  
 
 // Redirect back to the custom login page on a failed login attempt.. /////////////////////////////////////
 function pu_login_failed( $user ) {
@@ -121,6 +128,9 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Register')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
+		if (is_home())
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
 		wp_localize_script( 'functions', 'site_url', site_url() );
@@ -162,6 +172,15 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('figure');
 		                        setAlturaWindowMenosHeader('.cards');
 		                    }, 500);
+		                    if(window.location.href.indexOf("reg=1") > -1) {
+								$('#login').modal('show'); 
+							}
+
+							if(window.location.href.indexOf("login=failed") > -1) {
+								$('#login').modal('show'); 
+								var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+                				$(html_error).prependTo('.modal-footer');
+							}
 
 		                    //On click/change/etc
 		                    filterQuestions();
@@ -182,8 +201,8 @@ function pu_blank_login( $user ){
 		                    new stepsForm( theForm2, {
 		                        onSubmit : function( form ) {
 		                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
-		                            var messageEl = theForm.querySelector( '.final-message' );
-		                            messageEl.innerHTML = 'Loading...';
+		                            var messageEl = theForm2.querySelector( '.final-message' );
+		                            messageEl.innerHTML = 'Thank you. We\'ll be in touch';
 	                                classie.addClass( messageEl, 'show' );
 	                                console.log('ajax done');
 		                            sendMail();
@@ -191,7 +210,7 @@ function pu_blank_login( $user ){
 		                            //$.post("send-coach.php", $("#theForm2").serialize(), function(response) {});
 		                        }
 		                    } );
-		                    $('figure').on('click', function(){
+		                    $('figure').not('.j-already-prospect').on('click', function(){
 		                        abrirCards( $(this) );
 		                    });
 		                    $('.cards-prospect .js-next-card').on('click', function(){
@@ -203,10 +222,11 @@ function pu_blank_login( $user ){
 		                    $('.card-close').on('click', function(){
 		                        cerrarCards( $(this) );
 		                    });
-	   						$('.j-login button').on('click', function(e){
+							
+	   						/*$('.j-login button').on('click', function(e){
 								e.preventDefault();
 								login();//addTournament();
-							});
+							});*/
 
 		                    //Responsive
 		                    $(window).resize(function(){
@@ -217,6 +237,7 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('.cards');
 		                    });
 		                });
+						$('#theForm2').validate();
 		            }(jQuery));
 		        </script>
 			<?php } elseif ( get_post_type() == 'prospecto') { ?>
@@ -238,10 +259,10 @@ function pu_blank_login( $user ){
 						reorder($(this), '.isotope-container-sports');
 						return false;
 					});
-				    $('.j-login button').on('click', function(e){
+				    /*$('.j-login button').on('click', function(e){
 						e.preventDefault();
 						login();//addTournament();
-					});
+					});*/
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
@@ -281,6 +302,10 @@ function pu_blank_login( $user ){
 					
 					$('.btn-registrar-nuevo').on('click', function(){
 				        $('.hide-form-advisor').show('slow');
+				    });
+					
+					$('.btn-guardar-profile').on('click', function(){
+				        updateBasicProfile();
 				    });
 					
 					$('.btn-editar').hide();
@@ -390,10 +415,10 @@ function pu_blank_login( $user ){
 								$(this).datepicker('setDate', new Date(year, month, 1));
 							}
 						});
-						$('.j-login button').on('click', function(e){
+						/*$('.j-login button').on('click', function(e){
 							e.preventDefault();
 							login();
-						});
+						});*/
 						$('#sport').on('change', function(e){
 							e.preventDefault();
 							elegirDeporte($('#sport').val());
@@ -416,16 +441,12 @@ function pu_blank_login( $user ){
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
 				<script>
-					function footerBottom(){
-					    var alturaFooter = $('footer').height();
-					    $('.container-fluid').css('padding-bottom', alturaFooter );
-					}
+					footerBottom();
 					
-					
-					$('.j-login button').on('click', function(e){
+					/*$('.j-login button').on('click', function(e){
 						e.preventDefault();
 						login();
-					});
+					});*/
 					
 				</script>
 			<?php } else { ?>
@@ -630,8 +651,15 @@ function pu_blank_login( $user ){
 	function update_advisor(){
 		
 		// Create wp_user
-		$id_user =  $_POST['id'];
-		$password =  $_POST['password'];
+		if(isset($_POST['id']))
+			$id_user =  $_POST['id'];
+		else
+			$id_user =  get_current_user_id();
+		if(isset($_POST['password']))
+			$password =  $_POST['password'];
+		else
+			$password = '';
+			
 		$full_name = $_POST['full_name'];
 		
 		if(!empty($password)){
@@ -699,7 +727,6 @@ function pu_blank_login( $user ){
 			'full_name'		=> $full_name,
 			);
 			$st_user_id = add_advisor_user($advisor_data);
-			login_user($username, $password);
 			$msg = array(
 				"success" 	=> "Usuario registrado",
 				"error"	  	=> 0
@@ -738,13 +765,27 @@ function pu_blank_login( $user ){
 
 	    global $wpdb;
 
-	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."'";
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."' LIMIT 1";
 	    $users = $wpdb->get_results($query);
 		
 		echo json_encode($users[0], JSON_FORCE_OBJECT);
 	}// get_users_basic_info
     add_action("wp_ajax_get_info_advisor", "get_info_advisor");
+	
 
+	function get_info_current_advisor(){
+		$user_id= get_current_user_id();
+
+	    global $wpdb;
+
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."' LIMIT 1";
+	    $users = $wpdb->get_results($query);
+		
+		if ( $users != null )
+			return $users[0];
+		else
+			return null;
+	}
 	/**
 	 * Inserta un usuario a la tabla st_advisors
 	 * @param string $advisor_data
@@ -894,8 +935,6 @@ function pu_blank_login( $user ){
 					);
 				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
 		}// switch
-
-		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
 
@@ -1246,10 +1285,18 @@ function pu_blank_login( $user ){
 			echo 1;
 		} else
 			echo 0;
-
 		die();
 	}// site_login
 	add_action("wp_ajax_nopriv_site_login", "site_login");
+	
+	function site_login_post($username, $password){
+
+		$logged_in = login_user($username, $password);
+		if($logged_in == '1'){
+			return 1;
+		} else
+			return 0;
+	}// site_login
 
 	/**
 	 * Loggear a un usuario a la plataforma desde la página.
@@ -1291,6 +1338,8 @@ function pu_blank_login( $user ){
 	 * @return int $advisor_id or FALSE
 	 */
 	function get_video_src($url, $host){
+		if($url == '-')
+			return 0;
 		if($host == 'vimeo'){
 			$id = (int) substr(parse_url($url, PHP_URL_PATH), 1);
 			return '//player.vimeo.com/video/'.$id;
@@ -1545,7 +1594,7 @@ function pu_blank_login( $user ){
 	 */
 
 	function send_coach_email(){
-		$sent=send_coach_emailX("zurol@pcuervo.com", $_POST);
+		$sent=send_coach_emailX("luis.mendoza@selectteam.com", $_POST);
 	}
 
 	add_action("wp_ajax_nopriv_send_coach_email", "send_coach_email");

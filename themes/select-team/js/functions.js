@@ -184,7 +184,7 @@ $("#menu-toggle").click(function(e) {
 
 // FOOTER
 function footerBottom(){
-    var alturaFooter = $('footer').height();
+    var alturaFooter = $('footer').outerHeight();
     $('.container-fluid').css('padding-bottom', alturaFooter );
 }
 
@@ -345,12 +345,13 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            console.log(response);
-            var msg = $.parseJSON(response);
-            if(msg.error == 0)
-                loginUser(user_data['username'], user_data['password']);
+            window.location = site_url + '/?reg=1';
+            // console.log(response);
+            // var msg = $.parseJSON(response);
+            // if(msg.error == 0)
+                //loginUser(user_data['username'], user_data['password']);
                 
-                //window.location = site_url + '/?reg=1';
+                //
 
         }// response
     ); 
@@ -387,6 +388,32 @@ function updateAdvisor() {
 	user_data['id'] = $('.j-register-advisor input[name="id"]').val();
     user_data['password'] = $('.j-register-advisor input[name="password"]').val();
     user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
+   
+    console.log(user_data);
+    $.post(
+        ajax_url,
+        user_data,
+        function(response){
+			
+			console.log(response);
+            var msg = $.parseJSON(response);
+
+            if(msg.error == 0)
+                alert('Advisor guardado con exito');
+			else if(msg.error == 1)
+				alert('El usuario ya existe');
+			else
+				alert('Error, porfavor revisa los datos');
+
+        }// response
+    ); 
+}// registerAdvisor
+
+function updateBasicProfile() {
+    var user_data = {};
+
+    user_data['action'] = 'update_advisor';
+    user_data['full_name'] = $('input[name="full_name_perfil"]').val();
    
     console.log(user_data);
     $.post(
@@ -586,7 +613,9 @@ function loginUser(user, password){
 function formValidation(forma){
     $(forma).validate({
         rules: {
-          
+          password_confirmation:{
+            equalTo: "#password"
+          }
         },
         submitHandler:function(){
             switch(forma){
