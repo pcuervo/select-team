@@ -121,6 +121,9 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Register')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
+		if (is_home())
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
 		wp_localize_script( 'functions', 'site_url', site_url() );
@@ -217,6 +220,9 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('.cards');
 		                    });
 		                });
+
+						$('#theForm').validate();
+						$('#theForm2').validate();
 		            }(jQuery));
 		        </script>
 			<?php } elseif ( get_post_type() == 'prospecto') { ?>

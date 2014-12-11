@@ -62,7 +62,7 @@
 									<?php if ( ! is_user_logged_in() ) { ?>
 										<a href="" data-toggle="modal" data-target="#Login">
 											<?php if (qtrans_getLanguage() == 'es'){ ?>
-												<i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
+												<i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>o</span>
 												<a href="<?php echo site_url('register') ?>">Regístrate</a>
 											<?php } else { ?>
 												<i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>

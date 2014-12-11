@@ -2,11 +2,11 @@
     <div class="container contact clearfix">
         <div class="col-xs-12 margin-bottom">
             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                <h2 class="red">Contacto</h2>
+                <h2 class="red">Política de Privacidad</h2>
                 <p>Aviso de Privacidad Select Team Becas</p>
                 <p></p>
             <?php } else { ?>
-                <h2 class="red">Contact</h2>
+                <h2 class="red">Privacy Policy</h2>
                 <p>Privacy Policy Select Team Becas</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fermentum ut lectus in aliquet. Praesent vulputate cursus erat, vel ultricies lectus aliquam eu. Duis suscipit a tortor vel porta. Nullam sed egestas eros, vel tincidunt erat. In sed vestibulum purus, sit amet ullamcorper purus. Donec eu fringilla augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer lorem justo, tincidunt et lacus dictum, dignissim euismod diam. Vestibulum vel neque odio.</p>
                 <p>Pellentesque auctor nibh eget congue placerat. Integer et sollicitudin ante. Fusce hendrerit porta mauris, at vestibulum lacus viverra eget. Suspendisse imperdiet purus in metus luctus varius at ac orci. Sed cursus diam turpis, at interdum lacus tristique id. Morbi ac luctus arcu. Aliquam nec tellus dui. Nulla facilisi. Sed fermentum orci turpis, in mollis ligula placerat eget. Curabitur in velit dignissim, congue neque nec, lacinia massa. Vestibulum a sem a nulla vulputate pretium quis eget quam. Vivamus ante tortor, efficitur nec accumsan hendrerit, finibus eget nunc. Integer sed urna purus. Phasellus efficitur interdum tortor, non tincidunt elit varius vitae.</p>
