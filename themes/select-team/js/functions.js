@@ -446,7 +446,7 @@ function registerAdvisor() {
     user_data['password_confirmation'] = $('.j-register-advisor input[name="password_confirmation"]').val();
     user_data['email'] = $('.j-register-advisor input[name="email"]').val();
     user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
-
+    console.log(user_data);
     $.post(
         ajax_url,
         user_data,
@@ -634,6 +634,7 @@ function formValidation(forma){
                     break;
                 case '.j-form-message-advisor':
                     console.log("validando");
+                    sendMessage();
                     break;
                 default:
                     console.log('default');
@@ -694,13 +695,20 @@ function sendMail(){
      );
 }
 
-function sendMailAdvisors(){
+function sendMessage(){
+  var message_data = {};
+  message_data['action'] = 'send_message';
+  message_data['email'] = $('.j-form-message-advisor select[name="selectMensajeAdvisor"]').val();
+  message_data['message'] = $('.j-form-message-advisor textarea[name="txtareaMensajeAdvisor"]').val();
 
-}
+  console.log(message_data);
 
-function validateMessageAdvisor(){
-    
-    $("#selectMensajeAdvisor").validate();
-    $("#txtareaMensajeAdvisor").validate();
-        
+     $.post(
+         ajax_url,
+         message_data,
+         function(response){
+             //console.log(response);
+             //window.location = site_url + '/dashboard';
+         } //response
+     );
 }
