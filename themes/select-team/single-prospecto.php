@@ -136,7 +136,7 @@
 						break;
 				}// switch
 			?>
-
+			<div class="[ clear ] [ margin-bottom ]"></div>
 			<?php if( $role != 'subscriber') { ?>
 				<?php if (qtrans_getLanguage() == 'es'){ ?>
 					<p><b>Dirección:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->address) ? $user_curriculum->address : '-'; ?></p>

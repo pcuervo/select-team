@@ -3,7 +3,7 @@
         <div class="[ modal fade ]" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="[ modal-dialog ]">
                 <div class="[ modal-content ]">
-                    <form role="form" class="[ j-login ]">
+                    <form role="form" class="[ j-login ]" action="<?php echo site_url('login'); ?>" method="post">
                         <div class="[ modal-header ]">
                             <button type="button" class="[ close ]" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>

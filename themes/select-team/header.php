@@ -61,10 +61,10 @@
 								<li class="[ menu ]">
 									<?php if ( ! is_user_logged_in() ) { ?>
 										<?php if (qtrans_getLanguage() == 'es'){ ?>
-											<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
+											<a href="" data-toggle="modal" data-target="#login"><i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
 											<a href="<?php echo site_url('es/register') ?>">Regístrate</a>
 										<?php } else { ?>
-											<a href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
+											<a href="" data-toggle="modal" data-target="#login"><i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
 											<a href="<?php echo site_url('en/register') ?>">Register</a>
 										<?php } ?>
 									<?php } else { 
@@ -132,10 +132,10 @@
 						<div class="[ registro ]">
 							<?php if ( ! is_user_logged_in() ) { ?>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="" data-toggle="modal" data-target="#Login"> <i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
+									<a href="" data-toggle="modal" data-target="#login"> <i class="[ fa fa-sign-in ]"></i> Inicia sesión</a> <span>ó</span>
 									<a href="<?php echo site_url('es/register/') ?>">Regístrate</a>
 								<?php } else { ?>
-									<a href="" data-toggle="modal" data-target="#Login"> <i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
+									<a href="" data-toggle="modal" data-target="#login"> <i class="[ fa fa-sign-in ]"></i> Login</a> <span>or</span>
 									<a href="<?php echo site_url('en/register/') ?>">Register</a>
 								<?php } ?>
 							<?php } else { ?>
@@ -193,7 +193,7 @@
 								</a>
 							</h1>
 							<?php if ( ! is_user_logged_in() ) { ?>
-								<a class="[ text-center ]" href="" data-toggle="modal" data-target="#Login"><i class="[ fa fa-sign-in ]"></i> Login</a>
+								<a class="[ text-center ]" href="" data-toggle="modal" data-target="#login"><i class="[ fa fa-sign-in ]"></i> Login</a>
 							<?php } else { ?>
 								<a class="[ text-center ]" href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>"><i class="[ fa fa-sign-out ]"></i> Logout</a>
 							<?php } ?>

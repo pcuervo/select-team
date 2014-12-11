@@ -112,7 +112,7 @@
                                 <option value="graduated">Graduado</option>
                             </select>
                             <?php } else { ?>
-                                <span><label for="q5">What grade are you in?</label></span>
+                                <span><label for="q5">What class are you in?</label></span>
                                 <select class="[ form-control ]" id="q5" name="q5">
                                 <option value="chooseOne">Class</option>
                                 <option value="freshman">Freshman</option>

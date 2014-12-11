@@ -192,8 +192,8 @@ function pu_blank_login( $user ){
 		                    new stepsForm( theForm2, {
 		                        onSubmit : function( form ) {
 		                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
-		                            var messageEl = theForm.querySelector( '.final-message' );
-		                            messageEl.innerHTML = 'Loading...';
+		                            var messageEl = theForm2.querySelector( '.final-message' );
+		                            messageEl.innerHTML = 'Thank you. We\'ll be in touch';
 	                                classie.addClass( messageEl, 'show' );
 	                                console.log('ajax done');
 		                            sendMail();
@@ -213,10 +213,11 @@ function pu_blank_login( $user ){
 		                    $('.card-close').on('click', function(){
 		                        cerrarCards( $(this) );
 		                    });
-	   						$('.j-login button').on('click', function(e){
+							
+	   						/*$('.j-login button').on('click', function(e){
 								e.preventDefault();
 								login();//addTournament();
-							});
+							});*/
 
 		                    //Responsive
 		                    $(window).resize(function(){
@@ -248,10 +249,10 @@ function pu_blank_login( $user ){
 						reorder($(this), '.isotope-container-sports');
 						return false;
 					});
-				    $('.j-login button').on('click', function(e){
+				    /*$('.j-login button').on('click', function(e){
 						e.preventDefault();
 						login();//addTournament();
-					});
+					});*/
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
@@ -409,10 +410,10 @@ function pu_blank_login( $user ){
 								$(this).datepicker('setDate', new Date(year, month, 1));
 							}
 						});
-						$('.j-login button').on('click', function(e){
+						/*$('.j-login button').on('click', function(e){
 							e.preventDefault();
 							login();
-						});
+						});*/
 						$('#sport').on('change', function(e){
 							e.preventDefault();
 							elegirDeporte($('#sport').val());
@@ -437,10 +438,10 @@ function pu_blank_login( $user ){
 				<script>
 					footerBottom();
 					
-					$('.j-login button').on('click', function(e){
+					/*$('.j-login button').on('click', function(e){
 						e.preventDefault();
 						login();
-					});
+					});*/
 					
 				</script>
 			<?php } else { ?>
@@ -909,8 +910,6 @@ function pu_blank_login( $user ){
 					);
 				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
 		}// switch
-
-		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
 
@@ -1261,10 +1260,18 @@ function pu_blank_login( $user ){
 			echo 1;
 		} else
 			echo 0;
-
 		die();
 	}// site_login
 	add_action("wp_ajax_nopriv_site_login", "site_login");
+	
+	function site_login_post($username, $password){
+
+		$logged_in = login_user($username, $password);
+		if($logged_in == '1'){
+			return 1;
+		} else
+			return 0;
+	}// site_login
 
 	/**
 	 * Loggear a un usuario a la plataforma desde la página.
@@ -1560,7 +1567,7 @@ function pu_blank_login( $user ){
 	 */
 
 	function send_coach_email(){
-		$sent=send_coach_emailX("zurol@pcuervo.com", $_POST);
+		$sent=send_coach_emailX("luis.mendoza@selectteam.com", $_POST);
 	}
 
 	add_action("wp_ajax_nopriv_send_coach_email", "send_coach_email");
