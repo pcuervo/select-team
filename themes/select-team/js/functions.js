@@ -628,6 +628,9 @@ function formValidation(forma){
                 case '.j-register-advisor':
                     registerAdvisor();
                     break;
+                case '.j-mensaje-advisor':
+                    console.log("validando");
+                    break;
                 default:
                     console.log('default');
                     break;
@@ -693,15 +696,7 @@ function sendMailAdvisors(){
 
 function validateMessageAdvisor(){
     
-    if (!$(".selectMensajeAdvisor").val()) {
+    $("#selectMensajeAdvisor").validate();
+    $("#txtareaMensajeAdvisor").validate();
         
-    } else {
-        alert("esta con algo");
-    }
-    
-    if (!$(".txtareaMensajeAdvisor").val()) {
-        
-    } else {
-        alert("esta con algo");
-    }
 }
