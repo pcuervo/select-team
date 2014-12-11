@@ -39,10 +39,17 @@ define('VOLLEY_HEIGHT', 8);
 function restrict_admin()
 {
 	if ( ! current_user_can( 'manage_options' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
-                wp_redirect( site_url() );
+        wp_redirect( site_url() );
 	}
 }
 add_action( 'admin_init', 'restrict_admin', 1 );
+
+function my_filter_head() {
+    remove_action('wp_head', '_admin_bar_bump_cb');
+}
+add_action('get_header', 'my_filter_head');
+
+  
 
 // Redirect back to the custom login page on a failed login attempt.. /////////////////////////////////////
 function pu_login_failed( $user ) {
@@ -165,6 +172,9 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('figure');
 		                        setAlturaWindowMenosHeader('.cards');
 		                    }, 500);
+		                    if(window.location.href.indexOf("reg=1") > -1) {
+								$('#login').modal('show'); 
+							}
 
 		                    //On click/change/etc
 		                    filterQuestions();
@@ -194,7 +204,7 @@ function pu_blank_login( $user ){
 		                            //$.post("send-coach.php", $("#theForm2").serialize(), function(response) {});
 		                        }
 		                    } );
-		                    $('figure').on('click', function(){
+		                    $('figure').not('.j-already-prospect').on('click', function(){
 		                        abrirCards( $(this) );
 		                    });
 		                    $('.cards-prospect .js-next-card').on('click', function(){
@@ -432,11 +442,7 @@ function pu_blank_login( $user ){
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
 				<script>
-					function footerBottom(){
-					    var alturaFooter = $('footer').height();
-					    $('.container-fluid').css('padding-bottom', alturaFooter );
-					}
-					
+					footerBottom();
 					
 					/*$('.j-login button').on('click', function(e){
 						e.preventDefault();

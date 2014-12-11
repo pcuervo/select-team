@@ -14,8 +14,6 @@
 ?>
 <?php get_header(); ?>
 
-
-
     <div id="dashboard">
         <?php $advisor_info = get_advisor_basic_info(get_current_user_id()); ?>
         <!-- Page Content -->

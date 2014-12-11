@@ -1,31 +1,55 @@
 <?php get_header(); ?>
     <div class="[ grid ]">
-        <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]" data-cards="prospect">
-            <div class="[ screen ]"></div>
-            <figcaption>
-                <h2 class="">
-                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                        Convertirse en prospecto
-                    <?php } else { ?>
-                        Become a prospect
-                    <?php } ?>
-                </h2>
-                <a href="#"></a>
-            </figcaption>
-        </figure>
-        <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-coach ]" data-cards="coach">
-            <div class="[ screen ]"></div>
-            <figcaption>
-                <h2 class="[ center block ] [  ]">
-                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                        Soy coach
-                    <?php } else { ?>
-                        I am a coach
-                    <?php } ?>
-                </h2>
-                <a href="#"></a>
-            </figcaption>
-        </figure>
+        <?php 
+        if ( is_user_logged_in() ) {
+            $role = get_current_user_role();
+            if( $role == 'subscriber' ) { ?>
+                <figure class="[ effect-sadie ] [ col-xs-12 ] [ bg-prospect ] [ j-already-prospect ]">
+                    <div class="[ screen ]"></div>
+                    <figcaption>
+                        <h2 class="">
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                Ir a mi cuenta
+                            <?php } else { ?>
+                                Go to my dashboard
+                            <?php } ?>
+                        </h2>
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <a href="<?php echo site_url('es/dashboard/') ?>"></a>
+                        <?php } else { ?>
+                            <a href="<?php echo site_url('en/dashboard/') ?>"></a>
+                        <?php } ?>
+                    </figcaption>
+                </figure>
+            <?php }
+        } else { ?>
+            <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]" data-cards="prospect">
+                <div class="[ screen ]"></div>
+                <figcaption>
+                    <h2 class="">
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            Convertirse en prospecto
+                        <?php } else { ?>
+                            Become a prospect
+                        <?php } ?>
+                    </h2>
+                    <a href="#"></a>
+                </figcaption>
+            </figure>
+            <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-coach ]" data-cards="coach">
+                <div class="[ screen ]"></div>
+                <figcaption>
+                    <h2 class="[ center block ] [  ]">
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            Soy coach
+                        <?php } else { ?>
+                            I am a coach
+                        <?php } ?>
+                    </h2>
+                    <a href="#"></a>
+                </figcaption>
+            </figure>
+        <?php } ?>
     </div>
     <div class="[ cards cards-prospect cards-xs ] [ is-closed ]">
         <div class="card-close">

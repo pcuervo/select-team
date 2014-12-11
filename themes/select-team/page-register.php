@@ -17,7 +17,6 @@ get_header(); ?>
         <div class="[ container-fluid ]" id="page-content">
             <div class="[ row ] [ margin-bottom ]" id="profile">
                 <div class="[ col-xs-12 col-sm-7 center block ]">
-                    
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                         <h3>Registrate</h3>
                     <?php } else { ?>
@@ -50,7 +49,7 @@ get_header(); ?>
                                 <input type="password" class="[ form-control ]" name="password" required>
                             <?php } else { ?>
                                 <label for="password">Password</label>
-                                <input type="password" class="[ form-control ]" name="password" required>
+                                <input type="password" class="[ form-control ]" name="password" id="password" required>
                             <?php } ?>
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">

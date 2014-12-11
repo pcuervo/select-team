@@ -184,7 +184,7 @@ $("#menu-toggle").click(function(e) {
 
 // FOOTER
 function footerBottom(){
-    var alturaFooter = $('footer').height();
+    var alturaFooter = $('footer').outerHeight();
     $('.container-fluid').css('padding-bottom', alturaFooter );
 }
 
@@ -587,7 +587,9 @@ function loginUser(user, password){
 function formValidation(forma){
     $(forma).validate({
         rules: {
-          
+          password_confirmation:{
+            equalTo: "#password"
+          }
         },
         submitHandler:function(){
             switch(forma){
