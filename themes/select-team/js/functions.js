@@ -345,12 +345,13 @@ function registerUser() {
         ajax_url,
         user_data,
         function(response){
-            console.log(response);
-            var msg = $.parseJSON(response);
-            if(msg.error == 0)
-                loginUser(user_data['username'], user_data['password']);
+            window.location = site_url + '/?reg=1';
+            // console.log(response);
+            // var msg = $.parseJSON(response);
+            // if(msg.error == 0)
+                //loginUser(user_data['username'], user_data['password']);
                 
-                //window.location = site_url + '/?reg=1';
+                //
 
         }// response
     ); 
