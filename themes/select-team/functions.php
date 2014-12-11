@@ -298,7 +298,7 @@ function pu_blank_login( $user ){
 					$('.j-register-advisor .btn-editar').on('click', function(e){
 				    	e.preventDefault();
 				    	console.log('Updateando advisor');
-				    	formValidation('.j-register-advisor');
+				    	formValidation('.j-register-advisor0');
 				    	//updateAdvisor();
 				    });
 					
