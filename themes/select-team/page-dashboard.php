@@ -54,7 +54,7 @@
                         <?php } else { ?>
                             <h3>Profile Picture</h3>
                         <?php } ?>
-                        <?php if ( $prospect_info->profile_picture != '' ) { ?>
+                        <?php if ( $prospect_info->profile_picture != '' && $prospect_info->profile_picture != '-' ) { ?>
                             <img class="profile_picture_preview" src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
                         <?php } ?>
                         <img src="" />
