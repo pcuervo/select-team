@@ -89,7 +89,7 @@ get_header(); ?>
                                     <option value="chooseOne">Selecciona uno</option>
                                     <option value="female" 
                                         <?php if($gender=='female') echo "selected"; ?> 
-                                    >Mujger</option>
+                                    >Mujer</option>
                                     <option value="male" <?php if($gender=='male') echo "selected"; ?> >Hombre</option>
                                 </select>
                             <?php } else { ?>
