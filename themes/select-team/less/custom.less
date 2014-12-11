@@ -13,7 +13,10 @@
 
 //********************
 
-html, body{ height: 100%; }
+html, body{
+	min-height: 100% !important;
+	height: 100%;
+}
 .home{ max-width: 100%; overflow: hidden; }
 .content__dashboard{ padding-left: 0; .transition; }
 
@@ -34,7 +37,6 @@ html, body{ height: 100%; }
 
 //GENERAL*******************************
 
-.container-fluid{ height: 100%; }
 
 .color-success{ 
 	color: @brand-success;
@@ -100,7 +102,7 @@ button, a{
 .container-fluid{
 	padding: 0;
 	background-repeat: repeat;
-	height: 100%;
+	min-height: 100%;
 	position: relative;
 }
 

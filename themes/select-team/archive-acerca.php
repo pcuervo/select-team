@@ -16,19 +16,17 @@
 		
     <div class="container clearfix">
         <div class="col-xs-11 center-block margin-bottom">
-
-        <?php 
-        $args = array(
-		'post_type'   => 'acerca',
-		'order'       => 'ASC'
-		);
-	    $queryAcerca = new WP_Query( $args );
-        if ( $queryAcerca->have_posts() ) : while ( $queryAcerca->have_posts() ) : $queryAcerca->the_post(); ?>
-			<h2 class="red"><?php the_title(); ?></h2>
-			<?php the_content(); ?>
-	 	<?php endwhile; endif; ?>
-
-    	</div>
-    </div><!--CONTAINER-FLUID-->
+           <?php 
+           $args = array(
+              'post_type'   => 'acerca',
+              'order'       => 'ASC'
+           );
+           $queryAcerca = new WP_Query( $args );
+           if ( $queryAcerca->have_posts() ) : while ( $queryAcerca->have_posts() ) : $queryAcerca->the_post(); ?>
+               <h2 class="red"><?php the_title(); ?></h2>
+               <?php the_content(); ?>
+           <?php endwhile; endif; ?>
+   	</div>
+</div><!--CONTAINER-FLUID-->
 
 <?php get_footer(); ?>

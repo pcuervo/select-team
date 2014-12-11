@@ -14,8 +14,6 @@
 ?>
 <?php get_header(); ?>
 
-
-
     <div id="dashboard">
         <?php $advisor_info = get_advisor_basic_info(get_current_user_id()); ?>
         <!-- Page Content -->
@@ -86,8 +84,8 @@
                                     </div>
                                     <div class="[ prospects ] [ center margin-bottom ] [ block ] [ clearfix ] [ genderFilter button-group text-center ]" id="genderAll" data-active="">
                                         <button type="button" class="btn btn-primary gender" data-filter="*">All</button>
-                                        <button type="button" class="btn btn-primary gender" data-filter=".hombre">Male</button>
-                                        <button type="button" class="btn btn-primary gender" data-filter=".mujer">Female</button>
+                                        <button type="button" class="btn btn-primary gender" data-filter=".male">Male</button>
+                                        <button type="button" class="btn btn-primary gender" data-filter=".female">Female</button>
                                     </div>
                                 </div><!-- isotope-filters -->
                                 <div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
@@ -128,11 +126,7 @@
                             <?php } ?>
                             <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-<<<<<<< HEAD
-                                <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
-=======
                                 <button class="[ btn btn-primary ] [ margin-bottom ]"><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</button>
->>>>>>> 5db9841b123d2fe36c2c95459bccb1e3651d020d
                             <?php } else { ?>
                                 <button class="[ btn btn-primary ] [ margin-bottom ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
                             <?php } ?>
