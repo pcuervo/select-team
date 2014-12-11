@@ -629,7 +629,7 @@ function formValidation(forma){
                 case '.j-register-advisor':
                     registerAdvisor();
                     break;
-                case '.j-register-advisor0':
+                case '.j-update-advisor':
                     updateAdvisor();
                     break;
                 case '.j-form-message-advisor':
