@@ -21,8 +21,7 @@
             <div class="[ container-fluid ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
-                    <div class="[ col-xs-12 col-sm-7 center block ]">
-
+                    <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
                         <?php } else { ?>
@@ -65,7 +64,7 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="prospects">
-                    <div class="[ col-xs-12 col-sm-12 center block ]">
+                    <div class="[ col-xs-12 col-sm-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Prospectos</h3>
                         <?php } else { ?>
@@ -117,13 +116,12 @@
                     </div>
                 </div>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="advisors">
-                    <div class="[ col-xs-12 col-sm-12 center block ]">
+                    <div class="[ col-xs-12 col-sm-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Agentes</h3>
                         <?php } else { ?>
                             <h3 class="[ margin-bottom ]">Advisors</h3>
                         <?php } ?>
-                        <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
 							<button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Registrar agente</button>
                         <?php } else { ?>
@@ -158,9 +156,17 @@
                                     <input type="email" class="[ form-control ]" name="email"> 
                                 </div>
                                 <div class="[ form-group ] [ col-xs-12 ]">
-                                    <label for="password">Password</label>
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        <label for="password">Contraseña</label>
+                                    <?php } else { ?>
+                                        <label for="password">Password</label>
+                                    <?php } ?>
                                     <input type="password" class="[ form-control ]" name="password">
-                                    <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        <label for="password">Confirmar contraseña</label>
+                                    <?php } else { ?>
+                                        <label for="password">Password Confirmation</label>
+                                    <?php } ?>
 									<input type="password" class="[ form-control ]" name="password_confirmation">
                                     <label for="validate" id="validate"></label>   
                                 </div>
@@ -181,7 +187,13 @@
 							$users = get_advisors_basic_info(); 
 							foreach ($users as $key => $user) {
 						?>
-                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> Editar </a> </p></a>
+                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            Editar
+                        <?php } else { ?>
+                            Edit
+                        <?php } ?>
+                         </a> </p></a>
 					  <?php } ?>
                     
             </div>
