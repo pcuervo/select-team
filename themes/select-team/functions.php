@@ -125,6 +125,12 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Register')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
+		if (get_the_title()=='Dashboard Admin')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+        
+        if (get_the_title()=='Dashboard')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+
 		if (is_home())
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
@@ -319,6 +325,9 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
+                        $('.j-mensaje-advisor').on('click', function(e) {
+                            formValidation('.j-form-message-advisor');
+                        });
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -372,11 +381,11 @@ function pu_blank_login( $user ){
 							var height_picture = $(this).height();
 							if (width_picture > 300) {
 								$(".profile_picture_preview").css("width", "300px");
-								 $(".profile_picture_preview").css("border", "1px solid #002147");
+								$(".profile_picture_preview").css("border", "1px solid #002147");
 							} else {
 								$(".profile_picture_preview").css("height", "300px");
 								$(".profile_picture_preview").css("border", "1px solid #002147");
-							} 
+							}
                         });
 					});
 				</script>
@@ -384,9 +393,7 @@ function pu_blank_login( $user ){
 				<script type="text/javascript">
 					$( function() {
 						$('.j-register-user button').on('click', function(e){
-							//e.preventDefault();
 							formValidation('.j-register-user');
-							//registerUser();
 						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
@@ -427,23 +434,12 @@ function pu_blank_login( $user ){
 						});
 						elegirDeporte('');
 						elegirDeporte($('#sport').val());
-
-						//$('.j-register-user').validate();
-
-
-
 					});
 				</script>
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
 				<script>
 					footerBottom();
-					
-					/*$('.j-login button').on('click', function(e){
-						e.preventDefault();
-						login();
-					});*/
-					
 				</script>
 			<?php } else { ?>
 			<?php } ?>

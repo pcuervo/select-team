@@ -613,6 +613,7 @@ function loginUser(user, password){
 * @return void
 **/
 function formValidation(forma){
+  console.log(forma);
     $(forma).validate({
         rules: {
           password_confirmation:{
@@ -623,6 +624,12 @@ function formValidation(forma){
             switch(forma){
                 case '.j-register-user':
                     registerUser();
+                    break;
+                case '.j-register-advisor':
+                    registerAdvisor();
+                    break;
+                case '.j-form-message-advisor':
+                    console.log("validando");
                     break;
                 default:
                     console.log('default');
@@ -689,15 +696,7 @@ function sendMailAdvisors(){
 
 function validateMessageAdvisor(){
     
-    if (!$(".selectMensajeAdvisor").val()) {
+    $("#selectMensajeAdvisor").validate();
+    $("#txtareaMensajeAdvisor").validate();
         
-    } else {
-        alert("esta con algo");
-    }
-    
-    if (!$(".txtareaMensajeAdvisor").val()) {
-        
-    } else {
-        alert("esta con algo");
-    }
 }

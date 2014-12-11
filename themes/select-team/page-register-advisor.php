@@ -25,7 +25,7 @@
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" name="full_name">
+                                <input type="text" class="[ form-control ]" name="full_name" required>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -33,7 +33,7 @@
                                 <?php } else { ?>
                                     <label for="username">Username</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" name="username">
+                                <input type="text" class="[ form-control ]" name="username" required>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -41,11 +41,11 @@
                                 <?php } else { ?>
                                     <label for="email">Email</label>
                                 <?php } ?>
-                                <input type="email" class="[ form-control ]" name="email"> 
+                                <input type="email" class="[ form-control ]" name="email" class="[ required email ]">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <label for="password">Password</label>
-                                <input type="password" class="[ form-control ]" name="password">
+                                <input type="password" class="[ form-control ]" name="password" required>
                                 <p class="help-block">El password debe contener al menos 8 caracteres.</p>
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
@@ -54,7 +54,7 @@
                                 <?php } else { ?>
                                     <label for="password_confirmation">Confirm password</label>
                                 <?php } ?>
-                                    <input type="password" class="[ form-control ]" name="password_confirmation">
+                                    <input type="password" class="[ form-control ]" name="password_confirmation" required>
                                     <label for="validate" id="validate"></label>                                 
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
