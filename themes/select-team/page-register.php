@@ -46,11 +46,10 @@ get_header(); ?>
                         <div class="[ form-group ] [ col-xs-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <label for="password">Contraseña</label>
-                                <input type="password" class="[ form-control ]" name="password" required>
                             <?php } else { ?>
                                 <label for="password">Password</label>
-                                <input type="password" class="[ form-control ]" name="password" id="password" required>
                             <?php } ?>
+                            <input type="password" class="[ form-control ]" name="password" id="password" required>
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
