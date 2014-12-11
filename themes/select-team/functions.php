@@ -292,15 +292,17 @@ function pu_blank_login( $user ){
 				        return false;
 				      });
 				    $('.j-register-advisor .btn-agregar').on('click', function(e){
-				    	e.preventDefault();
+				    	//e.preventDefault();
 				    	console.log('registrando advisor');
-				    	registerAdvisor();
+				    	formValidation('.j-register-advisor');
+				    	//registerAdvisor();
 				    });
 					
 					$('.j-register-advisor .btn-editar').on('click', function(e){
 				    	e.preventDefault();
 				    	console.log('Updateando advisor');
-				    	updateAdvisor();
+				    	formValidation('.j-register-advisor');
+				    	//updateAdvisor();
 				    });
 					
 					
