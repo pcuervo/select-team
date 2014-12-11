@@ -130,6 +130,9 @@ function pu_blank_login( $user ){
 
 		if (get_the_title()=='Dashboard Admin')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+        
+        if (get_the_title()=='Dashboard')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
 		if (is_home())
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
@@ -325,6 +328,10 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
+                        $('.j-mensaje-advisor').on('click', function(e) {
+                            
+                            formValidation('.j-mensaje-advisor');
+                        });
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -382,7 +389,7 @@ function pu_blank_login( $user ){
                                  } else {
                                     $(".profile_picture_preview").css("height", "300px");
                                     $(".profile_picture_preview").css("border", "1px solid #002147");
-                                 } 
+                                 }
                         });
 					});
 				</script>
