@@ -182,8 +182,8 @@ function pu_blank_login( $user ){
 		                    new stepsForm( theForm2, {
 		                        onSubmit : function( form ) {
 		                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
-		                            var messageEl = theForm.querySelector( '.final-message' );
-		                            messageEl.innerHTML = 'Loading...';
+		                            var messageEl = theForm2.querySelector( '.final-message' );
+		                            messageEl.innerHTML = 'Thank you. We\'ll be in touch';
 	                                classie.addClass( messageEl, 'show' );
 	                                console.log('ajax done');
 		                            sendMail();
@@ -1441,7 +1441,7 @@ function pu_blank_login( $user ){
 	 */
 
 	function send_coach_email(){
-		$sent=send_coach_emailX("zurol@pcuervo.com", $_POST);
+		$sent=send_coach_emailX("luis.mendoza@selectteam.com", $_POST);
 	}
 
 	add_action("wp_ajax_nopriv_send_coach_email", "send_coach_email");

@@ -155,7 +155,7 @@
 							<div class="[ container ]">
 								<p class="[ text-center ] [ col-xs-12 col-md-9 ] [ center block ]">
 									<?php if (qtrans_getLanguage() == 'es'){ ?>
-										Select team crea oportunidades de beca para atletas estudiantes para jugar y estufdiar en universidades de Estados Unidos.
+										Select Team crea oportunidades de beca para atletas estudiantes para jugar y estudiar en universidades de Estados Unidos.
 									<?php } else { ?>
 										Select Team creates scholarship opportunities for student athletes to play sports and study at universities in the United States.
 									<?php } ?>
