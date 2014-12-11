@@ -264,17 +264,35 @@ function pu_blank_login( $user ){
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				      });
-				    $('.j-register-advisor button').on('click', function(e){
+				    $('.j-register-advisor .btn-agregar').on('click', function(e){
 				    	e.preventDefault();
 				    	console.log('registrando advisor');
 				    	registerAdvisor();
 				    });
 					
+					$('.j-register-advisor .btn-editar').on('click', function(e){
+				    	e.preventDefault();
+				    	console.log('Updateando advisor');
+				    	updateAdvisor();
+				    });
+					
+					
 					$('.hide-form-advisor').hide();
 					
-					$('.color-success').on('click', function(){
+					$('.btn-registrar-nuevo').on('click', function(){
 				        $('.hide-form-advisor').show('slow');
 				    });
+					
+					$('.btn-editar').hide();
+					
+					
+					$('.edit-advisor').on('click', function(e){
+						e.preventDefault();
+						var id = $(this).data('id');
+						console.log(id);
+						getAdvisorBasicInfo(id);
+				    });
+					
 					
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
@@ -615,6 +633,49 @@ function pu_blank_login( $user ){
 			OR isset($query->post_title) AND preg_match("/$string/i", remove_accents(str_replace(' ', '-', $query->post_title) ) ) )
 			echo 'active';
 	} 
+	
+
+
+	function update_advisor(){
+		
+		// Create wp_user
+		$id_user =  $_POST['id'];
+		$password =  $_POST['password'];
+		$full_name = $_POST['full_name'];
+		
+		if(!empty($password)){
+			
+			$user_id = wp_update_user( array( 'ID' => $id_user, 'user_pass' => $password ) );
+
+			if ( !is_wp_error( $user_id ) ) {
+
+				update_advisor_user($full_name, $id_user);
+
+				$msg = array(
+					"success" 	=> "Usuario registrado",
+					"error"	  	=> 0
+				);
+				echo json_encode( $msg); 
+			}else{
+				$msg = array(
+					"msg" => "Usuario duplicado",
+					"error"	  	=> 1
+				);
+				echo json_encode( $msg ); 
+			}
+		}else{
+			
+			update_advisor_user($full_name, $id_user);
+			
+			$msg = array(
+				"success" 	=> "Usuario registrado",
+				"error"	  	=> 0
+			);
+			echo json_encode( $msg); 
+		}
+		die();
+	} // register_advisor
+	add_action("wp_ajax_update_advisor", "update_advisor");
 
 	/**
 	 * Registra un usuario advisor
@@ -639,10 +700,10 @@ function pu_blank_login( $user ){
 
 		$user_id = wp_insert_user( $userdata ) ;
 		if( !is_wp_error($user_id) ) {
-		// Create st_user
-		$full_name = $_POST['full_name'];
+			// Create st_user
+			$full_name = $_POST['full_name'];
 
-		$advisor_data = array(
+			$advisor_data = array(
 			'wp_user_id'	=> $user_id,
 			'full_name'		=> $full_name,
 			);
@@ -678,6 +739,22 @@ function pu_blank_login( $user ){
 	}// get_users_basic_info
 
 	/**
+	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
+	function get_info_advisor(){
+		$user_id= $_POST['id'];
+
+	    global $wpdb;
+
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."'";
+	    $users = $wpdb->get_results($query);
+		
+		echo json_encode($users[0], JSON_FORCE_OBJECT);
+	}// get_users_basic_info
+    add_action("wp_ajax_get_info_advisor", "get_info_advisor");
+
+	/**
 	 * Inserta un usuario a la tabla st_advisors
 	 * @param string $advisor_data
 	 * @return int $advisor_id or FALSE
@@ -700,7 +777,34 @@ function pu_blank_login( $user ){
 		
 		return 0;
 	}// add_advisor_user
+	
+	function update_advisor_user($full_name, $id_user){
+		global $wpdb;
+		
+		$query = $wpdb->prepare("SELECT * FROM st_advisors  WHERE wp_user_id = %d", intval($id_user));
+	    $user_advisors = $wpdb->get_results($query);
 
+	    if($user_advisors){
+			$updated = $wpdb->update(
+			$wpdb->st_advisors,
+				array(
+					'full_name' 	=> $full_name
+				),
+				array('wp_user_id' => $id_user),
+				array(
+					'%s'
+				)
+			);
+		}else{
+			$advisor_data = array(
+				'wp_user_id'	=> $id_user,
+				'full_name'		=> $full_name,
+			);
+			$st_user_id = add_advisor_user($advisor_data);
+		}
+
+		return 0;
+	}
 	/**
 	 * Registra un usuario nuevo
 	 * @param  string  $username
