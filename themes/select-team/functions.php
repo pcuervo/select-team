@@ -276,41 +276,43 @@ function pu_blank_login( $user ){
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
-				      correIsotope('.isotope-container-sports', '.player', 'masonry');
-				      filtrarIsotopeDefault('.isotope-container', 'none');
-				      $('.isotope-filters button').on( 'click', function(e) {
-				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
-				      });
-				      $('#sportAll button').on('click', function(){
-				        var sport = $(this).attr('data-filter');
-				        console.log(sport);
-				        $('#sportAll').attr('data-active', sport);
-				        reorder($(this), '.isotope-container-sports');
-				        return false;
-				      });
-				      $('#genderAll button').on('click', function(){
-				        var gender = $(this).attr('data-filter');
-				        //console.log(gender);
-				        $('#genderAll').attr('data-active', gender);
-				        reorder($(this), '.isotope-container-sports');
-				        return false;
-				      });
+			    	correIsotope('.isotope-container-sports', '.player', 'masonry');
+			      	filtrarIsotopeDefault('.isotope-container', 'none');
+			      	$('.isotope-filters button').on( 'click', function(e) {
+			        	filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+			      	});
+			      	$('#sportAll button').on('click', function(){
+			        	var sport = $(this).attr('data-filter');
+			        	console.log(sport);
+			        $('#sportAll').attr('data-active', sport);
+			        	reorder($(this), '.isotope-container-sports');
+			        	return false;
+			      	});
+			      	$('#genderAll button').on('click', function(){
+			        	var gender = $(this).attr('data-filter');
+			        	//console.log(gender);
+			        $('#genderAll').attr('data-active', gender);
+			        	reorder($(this), '.isotope-container-sports');
+			        	return false;
+			      	});
 				    $('.j-register-advisor .btn-agregar').on('click', function(e){
 				    	formValidation('.j-register-advisor');
 				    });
 					
 					$('.j-register-advisor .btn-editar').on('click', function(e){
-				    	//e.preventDefault();
-				    	console.log('Updateando advisor');
 				    	formValidation('.j-update-advisor');
-				    	//updateAdvisor();
 				    });
 					
 					
 					$('.hide-form-advisor').hide();
 					
 					$('.btn-registrar-nuevo').on('click', function(){
+				        $('.j-register-advisor ').trigger("reset");
 				        $('.hide-form-advisor').show('slow');
+				        $('.j-register-advisor input[name="username"]').removeAttr('disabled');
+						$('.j-register-advisor input[name="email"]').removeAttr('disabled');
+				    	$('.btn-editar').hide();
+				    	$('.btn-agregar').show();
 				    });
 					
 					$('.btn-guardar-profile').on('click', function(){
@@ -323,6 +325,8 @@ function pu_blank_login( $user ){
 						e.preventDefault();
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
+						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
+						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
 				    });
 					
 					

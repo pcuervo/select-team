@@ -446,7 +446,7 @@ function registerAdvisor() {
     user_data['password_confirmation'] = $('.j-register-advisor input[name="password_confirmation"]').val();
     user_data['email'] = $('.j-register-advisor input[name="email"]').val();
     user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
-
+    console.log(user_data);
     $.post(
         ajax_url,
         user_data,
