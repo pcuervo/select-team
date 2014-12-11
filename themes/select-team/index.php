@@ -4,7 +4,7 @@
         if ( is_user_logged_in() ) {
             $role = get_current_user_role();
             if( $role == 'subscriber' ) { ?>
-                <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ] [ j-already-prospect ]">
+                <figure class="[ effect-sadie ] [ col-xs-12 ] [ bg-prospect ] [ j-already-prospect ]">
                     <div class="[ screen ]"></div>
                     <figcaption>
                         <h2 class="">
@@ -36,20 +36,20 @@
                     <a href="#"></a>
                 </figcaption>
             </figure>
+            <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-coach ]" data-cards="coach">
+                <div class="[ screen ]"></div>
+                <figcaption>
+                    <h2 class="[ center block ] [  ]">
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            Soy coach
+                        <?php } else { ?>
+                            I am a coach
+                        <?php } ?>
+                    </h2>
+                    <a href="#"></a>
+                </figcaption>
+            </figure>
         <?php } ?>
-        <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-coach ]" data-cards="coach">
-            <div class="[ screen ]"></div>
-            <figcaption>
-                <h2 class="[ center block ] [  ]">
-                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                        Soy coach
-                    <?php } else { ?>
-                        I am a coach
-                    <?php } ?>
-                </h2>
-                <a href="#"></a>
-            </figcaption>
-        </figure>
     </div>
     <div class="[ cards cards-prospect cards-xs ] [ is-closed ]">
         <div class="card-close">

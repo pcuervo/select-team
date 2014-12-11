@@ -169,6 +169,9 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('figure');
 		                        setAlturaWindowMenosHeader('.cards');
 		                    }, 500);
+		                    if(window.location.href.indexOf("reg=1") > -1) {
+								$('#login').modal('show'); 
+							}
 
 		                    //On click/change/etc
 		                    filterQuestions();

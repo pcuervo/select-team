@@ -11,9 +11,8 @@
     	$imgUrl=wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
     ?>
 		<div class="jumbotron banner-about" style="background-image:url(' <?php echo $imgUrl[0];  ?>')" ></div>
- 	<?php break; endwhile; endif; wp_reset_query(); ?>
+	<?php break; endwhile; endif; wp_reset_query(); ?>
 
-		
     <div class="container clearfix">
         <div class="col-xs-11 center-block margin-bottom">
            <?php 
