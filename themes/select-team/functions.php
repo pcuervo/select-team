@@ -336,7 +336,7 @@ function pu_blank_login( $user ){
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'yy-mm-dd',profile_picture_preview
+							dateFormat: 'yy-mm-dd',
 							yearRange: "-100:+0"
 						});
 						$( "#datepicker-date-of-graduation" ).datepicker({
@@ -1600,6 +1600,18 @@ function pu_blank_login( $user ){
 
 	add_action("wp_ajax_nopriv_send_coach_email", "send_coach_email");
 	add_action("wp_ajax_send_coach_email", "send_coach_email");
+
+/**
+	 * Manda el correo.
+	 * @param string $email_to, string $message
+	 * @return int TRUE or FALSE
+	 */
+	function send_message(){
+		var_dump($_POST);
+	}
+
+	//add_action("wp_ajax_nopriv_send_message", "send_message");
+	add_action("wp_ajax_send_message", "send_message");
 
 
 	function send_coach_emailX($mail_to, $form_info){

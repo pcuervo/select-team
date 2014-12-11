@@ -545,7 +545,7 @@
                                     </select>
                                 <?php } else { ?>
                                     <label for="manager" id="manager" name="agent">Select an advisor:</label>
-                                    <select class="[ form-control ][ selectMensajeAdvisor ] [ required ]" id="selectMensajeAdvisor">
+                                    <select class="[ form-control ][ selectMensajeAdvisor ] [ required ]" id="selectMensajeAdvisor" name="selectMensajeAdvisor">
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
@@ -557,7 +557,7 @@
                                 <?php } else { ?>
                                     <label for="message">Your message</label>
                                 <?php } ?>
-                                <textarea class="[ form-control ] [ txtareaMensajeAdvisor ] [ required ]" rows="3" id="txtareaMensajeAdvisor"></textarea>
+                                <textarea class="[ form-control ] [ txtareaMensajeAdvisor ] [ required ]" rows="3" id="txtareaMensajeAdvisor" name="txtareaMensajeAdvisor"></textarea>
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-mensaje-advisor ]">Enviar mensaje</button>
