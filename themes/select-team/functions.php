@@ -276,30 +276,27 @@ function pu_blank_login( $user ){
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
-				      correIsotope('.isotope-container-sports', '.player', 'masonry');
-				      filtrarIsotopeDefault('.isotope-container', 'none');
-				      $('.isotope-filters button').on( 'click', function(e) {
+				    correIsotope('.isotope-container-sports', '.player', 'masonry');
+				    filtrarIsotopeDefault('.isotope-container', 'none');
+				    $('.isotope-filters button').on( 'click', function(e) {
 				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
-				      });
-				      $('#sportAll button').on('click', function(){
+				    });
+				    $('#sportAll button').on('click', function(){
 				        var sport = $(this).attr('data-filter');
 				        console.log(sport);
 				        $('#sportAll').attr('data-active', sport);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
-				      });
-				      $('#genderAll button').on('click', function(){
+				    });
+				    $('#genderAll button').on('click', function(){
 				        var gender = $(this).attr('data-filter');
 				        //console.log(gender);
 				        $('#genderAll').attr('data-active', gender);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
-				      });
+				    });
 				    $('.j-register-advisor .btn-agregar').on('click', function(e){
-				    	//e.preventDefault();
-				    	console.log('registrando advisor');
 				    	formValidation('.j-register-advisor');
-				    	//registerAdvisor();
 				    });
 					
 					$('.j-register-advisor .btn-editar').on('click', function(e){
@@ -426,10 +423,6 @@ function pu_blank_login( $user ){
 								$(this).datepicker('setDate', new Date(year, month, 1));
 							}
 						});
-						/*$('.j-login button').on('click', function(e){
-							e.preventDefault();
-							login();
-						});*/
 						$('#sport').on('change', function(e){
 							e.preventDefault();
 							elegirDeporte($('#sport').val());
