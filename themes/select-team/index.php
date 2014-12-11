@@ -19,7 +19,7 @@
                     <?php } ?>
                 </figcaption>
             </figure>
-        } else { ?>
+        <?php } else { ?>
             <figure class="[ effect-sadie ] [ col-xs-6 ] [ bg-prospect ]" data-cards="prospect">
                 <div class="[ screen ]"></div>
                 <figcaption>
@@ -337,7 +337,7 @@
                             <?php } else { ?>
                                 <span><label for="q5">What's your e-mail address?</label></span>
                             <?php } ?>
-                            <input id="q2" name="q2" type="email" class="[ required email ]" />
+                            <input id="q2" name="q2" type="email" class="" />
                         </li>
                         <li>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
