@@ -197,7 +197,11 @@ function pu_blank_login( $user ){
 		                            // hide form
 		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
 		                           	var messageEl = theForm.querySelector( '.final-message' );
-	                                messageEl.innerHTML = 'Loading...';
+		                           	<?php if (qtrans_getLanguage() == 'es'){ ?>
+		                           			messageEl.innerHTML = 'Cargando...';
+									<?php } else { ?>
+											messageEl.innerHTML = 'Loading...';
+									<?php } ?>
 	                                classie.addClass( messageEl, 'show' );
 		                            location.replace(current_url+"/register?"+ $("#theForm").serialize());
 		                            return false;
@@ -208,7 +212,11 @@ function pu_blank_login( $user ){
 		                        onSubmit : function( form ) {
 		                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
 		                            var messageEl = theForm2.querySelector( '.final-message' );
-		                            messageEl.innerHTML = 'Thank you. We\'ll be in touch';
+		                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+		                            		messageEl.innerHTML = 'Gracias. Nos pondremos en contacto.';
+									<?php } else { ?>
+										messageEl.innerHTML = 'Thank you. We\'ll be in touch.';
+									<?php } ?>
 	                                classie.addClass( messageEl, 'show' );
 	                                console.log('ajax done');
 		                            sendMail();
@@ -243,7 +251,6 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('.cards');
 		                    });
 		                });
-						$('#theForm2').validate();
 		            }(jQuery));
 		        </script>
 			<?php } elseif ( get_post_type() == 'prospecto') { ?>
@@ -328,34 +335,14 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
-<<<<<<< HEAD
-                        
-                        $(".profile_picture_preview").load(function() {
-                                
-                                 var width_picture = $(this).width();
-                                 var height_picture = $(this).height();
-                                 if (width_picture > 300) {
-                                    $(".profile_picture_preview").css("width", "300px");
-                                     $(".profile_picture_preview").css("border", "1px solid #002147");
-                                 } else {
-
-                                    $(".profile_picture_preview").css("height", "300px");
-                                    $(".profile_picture_preview").css("border", "1px solid #002147");
-
-                                 } 
-                             
-                        });
-                        
-=======
                         $('.j-mensaje-advisor').on('click', function(e) {
-                            
                             formValidation('.j-mensaje-advisor');
                         });
->>>>>>> 3d77a1d7b72563a4735c73874abefd80249734b1
+
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'yy-mm-dd',
+							dateFormat: 'yy-mm-dd',profile_picture_preview
 							yearRange: "-100:+0"
 						});
 						$( "#datepicker-date-of-graduation" ).datepicker({
@@ -400,8 +387,6 @@ function pu_blank_login( $user ){
 							console.log('creando curriculum...');
 							createCurriculum();  //Llamar a func que haga el INSERT
 						});
-<<<<<<< HEAD
-=======
                         $(".profile_picture_preview").load(function() {
                                  var width_picture = $(this).width();
                                  var height_picture = $(this).height();
@@ -413,7 +398,6 @@ function pu_blank_login( $user ){
                                     $(".profile_picture_preview").css("border", "1px solid #002147");
                                  }
                         });
->>>>>>> 3d77a1d7b72563a4735c73874abefd80249734b1
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>
