@@ -128,6 +128,12 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Register')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
+		if (get_the_title()=='Dashboard Admin')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+        
+        if (get_the_title()=='Dashboard')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+
 		if (is_home())
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
@@ -314,7 +320,6 @@ function pu_blank_login( $user ){
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
-						console.log(id);
 						getAdvisorBasicInfo(id);
 				    });
 					
@@ -323,6 +328,7 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
+<<<<<<< HEAD
                         
                         $(".profile_picture_preview").load(function() {
                                 
@@ -340,6 +346,12 @@ function pu_blank_login( $user ){
                              
                         });
                         
+=======
+                        $('.j-mensaje-advisor').on('click', function(e) {
+                            
+                            formValidation('.j-mensaje-advisor');
+                        });
+>>>>>>> 3d77a1d7b72563a4735c73874abefd80249734b1
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -388,6 +400,20 @@ function pu_blank_login( $user ){
 							console.log('creando curriculum...');
 							createCurriculum();  //Llamar a func que haga el INSERT
 						});
+<<<<<<< HEAD
+=======
+                        $(".profile_picture_preview").load(function() {
+                                 var width_picture = $(this).width();
+                                 var height_picture = $(this).height();
+                                 if (width_picture > 300) {
+                                    $(".profile_picture_preview").css("width", "300px");
+                                     $(".profile_picture_preview").css("border", "1px solid #002147");
+                                 } else {
+                                    $(".profile_picture_preview").css("height", "300px");
+                                    $(".profile_picture_preview").css("border", "1px solid #002147");
+                                 }
+                        });
+>>>>>>> 3d77a1d7b72563a4735c73874abefd80249734b1
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>
