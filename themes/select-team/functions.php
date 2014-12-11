@@ -128,6 +128,9 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Register')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
+		if (get_the_title()=='Dashboard Admin')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+
 		if (is_home())
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
@@ -282,9 +285,10 @@ function pu_blank_login( $user ){
 				        return false;
 				      });
 				    $('.j-register-advisor .btn-agregar').on('click', function(e){
-				    	e.preventDefault();
+				    	//e.preventDefault();
 				    	console.log('registrando advisor');
-				    	registerAdvisor();
+				    	formValidation('.j-register-advisor');
+				    	//registerAdvisor();
 				    });
 					
 					$('.j-register-advisor .btn-editar').on('click', function(e){
