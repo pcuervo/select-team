@@ -368,15 +368,15 @@ function pu_blank_login( $user ){
 							createCurriculum();  //Llamar a func que haga el INSERT
 						});
                         $(".profile_picture_preview").load(function() {
-                                 var width_picture = $(this).width();
-                                 var height_picture = $(this).height();
-                                 if (width_picture > 300) {
-                                    $(".profile_picture_preview").css("width", "300px");
-                                     $(".profile_picture_preview").css("border", "1px solid #002147");
-                                 } else {
-                                    $(".profile_picture_preview").css("height", "300px");
-                                    $(".profile_picture_preview").css("border", "1px solid #002147");
-                                 } 
+							var width_picture = $(this).width();
+							var height_picture = $(this).height();
+							if (width_picture > 300) {
+								$(".profile_picture_preview").css("width", "300px");
+								 $(".profile_picture_preview").css("border", "1px solid #002147");
+							} else {
+								$(".profile_picture_preview").css("height", "300px");
+								$(".profile_picture_preview").css("border", "1px solid #002147");
+							} 
                         });
 					});
 				</script>

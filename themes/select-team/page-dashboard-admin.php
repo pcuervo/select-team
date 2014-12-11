@@ -95,7 +95,6 @@
                                 <div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
                                     <?php
                                     $users = get_users_basic_info(); 
-
                                     foreach ($users as $key => $user) 
                                         if($user->profile_picture!='') { ?>
                                             <a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
@@ -114,7 +113,6 @@
                                                 </div>
                                             </a>
                                     <?php } ?>
-
                                 </div>
                             </div>
                         </div>
@@ -132,7 +130,7 @@
                         <?php } else { ?>
 							<button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
                         <?php } ?>
-						 <div class="clear"></div>
+				        <div class="clear"></div>
                         <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
                             <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
 								<input type="hidden" class="[ form-control ]" name="id">
@@ -176,32 +174,33 @@
                                     <label for="validate" id="validate"></label>   
                                 </div>
                                 <div class="[ form-group ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Agregar agente</button>
-									<button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Editar</button>
-                                <?php } else { ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Add Advisor</button>
-									<button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Edit</button>
-                                <?php } ?>
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Agregar agente</button>
+                                        <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Editar</button>
+                                    <?php } else { ?>
+                                        <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Add Advisor</button>
+                                        <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Edit</button>
+                                    <?php } ?>
+                                </div>
                             </form>
                         </div>
-						</div>
-						<div class="clear"></div>
-						<?php 
-							
-							$users = get_advisors_basic_info(); 
-							foreach ($users as $key => $user) {
-						?>
-                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
-                        <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            Editar
-                        <?php } else { ?>
-                            Edit
-                        <?php } ?>
-                         </a> </p></a>
-					  <?php } ?>
-                    
-            </div>
-        </div><!-- /#page-content-wrapper -->
-    </div> <!-- /#dashboard -->
+                    </div>
+                    <div class="clear"></div>
+                    <?php 
+                        $users = get_advisors_basic_info(); 
+                        foreach ($users as $key => $user) {
+                    ?>
+                            <p class="[ col-xs-12 col-sm-6 ]">
+                                <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    Editar
+                                <?php } else { ?>
+                                    Edit
+                                <?php } ?>
+                            </a></p>
+                    <?php } ?>
+                </div><!-- .dashboard-profile -->
+            </div><!-- /container-fluid -->
+        </div> <!-- /#page-content-wrapper -->
+    </div><!-- #dashboard -->
 <?php get_footer(); ?>
