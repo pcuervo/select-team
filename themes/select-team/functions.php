@@ -329,8 +329,7 @@ function pu_blank_login( $user ){
 				<script type="text/javascript">
 					$( function() {
                         $('.j-mensaje-advisor').on('click', function(e) {
-                            
-                            formValidation('.j-mensaje-advisor');
+                            formValidation('.j-form-message-advisor');
                         });
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
@@ -397,9 +396,7 @@ function pu_blank_login( $user ){
 				<script type="text/javascript">
 					$( function() {
 						$('.j-register-user button').on('click', function(e){
-							//e.preventDefault();
 							formValidation('.j-register-user');
-							//registerUser();
 						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,

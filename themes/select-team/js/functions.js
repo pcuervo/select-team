@@ -628,7 +628,7 @@ function formValidation(forma){
                 case '.j-register-advisor':
                     registerAdvisor();
                     break;
-                case '.j-mensaje-advisor':
+                case '.j-form-message-advisor':
                     console.log("validando");
                     break;
                 default:
