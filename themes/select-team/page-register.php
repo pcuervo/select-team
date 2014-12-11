@@ -52,7 +52,6 @@ get_header(); ?>
                             <?php } else { ?>
                                 <label for="password">Password</label>
                                 <input type="password" class="[ form-control ]" name="password" required>
-                                <p class="help-block">Password must be at least 8 characters.</p>
                             <?php } ?>
                         </div>
                         <div class="[ form-group ] [ col-xs-12 ]">

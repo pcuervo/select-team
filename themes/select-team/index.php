@@ -129,7 +129,7 @@
                             <?php } else { ?>
                                 <span><label for="q6">What's your e-mail address?</label></span>
                             <?php } ?>
-                            <input id="q6" name="q6" type="email"/>
+                            <input id="q6" name="q6" type="email" class="[ required email ]" />
                         </li>
                         <li>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -340,7 +340,7 @@
                             <?php } else { ?>
                                 <span><label for="q5">What's your e-mail address?</label></span>
                             <?php } ?>
-                            <input id="q2" name="q2" type="text"/>
+                            <input id="q2" name="q2" type="email" class="[ required email ]" />
                         </li>
                         <li>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
