@@ -541,7 +541,7 @@
                             <h3>Messages</h3>
                             <p class="help-block">Send a message to one of our managers.</p>
                         <?php } ?>
-                        <form role="form" class="[ row ]">
+                        <form role="form" class="[ row ] [ j-form-message-advisor ]">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="manager" id="manager" name="agent">Selecciona un agente:</label>
