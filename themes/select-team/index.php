@@ -176,15 +176,15 @@
                         <!-- TENNIS -->
                         <li class="[ js-sport js-tennis ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <span><label for="q11">¿Eres zurdo o diestro?</label></span>
-                                <select class="[ form-control ]" id="q8" name="q8">
+                                <span><label for="q9">¿Eres zurdo o diestro?</label></span>
+                                <select class="[ form-control ]" id="q9" name="q9">
                                     <option value="chooseOne">Selecciona uno</option>
                                     <option value="rightHand">Diestro</option>
                                     <option value="leftHand">Zurdo</option>
                                 </select>
                             <?php } else { ?>
-                                <span><label for="q11">Are you left or right handed?</label></span>
-                                <select class="[ form-control ]" id="q8" name="q8">
+                                <span><label for="q9">Are you left or right handed?</label></span>
+                                <select class="[ form-control ]" id="q9" name="q9">
                                     <option value="chooseOne">Choose one</option>
                                     <option value="rightHand">Right handed</option>
                                     <option value="leftHand">Left handed</option>

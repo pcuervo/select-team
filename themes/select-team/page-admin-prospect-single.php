@@ -85,7 +85,7 @@
                                 <p>Deporte que practica</p>
                             </div>
                             <!--GOLF-->
-                            <?php if($_GET['q7']=='golf') { ?>
+                            <?php if($_GET['q5']=='golf') { ?>
                                 <div class="[ form-group ] [ col-xs-6 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="average_score">Puntaje promedio</label>
@@ -97,7 +97,7 @@
                                 <div class="clear"></div>
                             <?php } ?>
                             <!--TENNIS-->
-                            <?php if($_GET['q7']=='tennis') { ?>
+                            <?php if($_GET['q5']=='tennis') { ?>
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="tennis_hand">¿Eres zurdo o derecho?</label>
@@ -126,7 +126,7 @@
                                 </div>
                             <?php } ?>
                             <!--SOCCER-->
-                            <?php if($_GET['q7']=='soccer') { ?>
+                            <?php if($_GET['q5']=='soccer') { ?>
                                 <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="soccer_position">Posición</label>
@@ -146,7 +146,7 @@
                                 </div>
                             <?php } ?>
                             <!--VOLLEYBALL-->
-                            <?php if($_GET['q7']=='volleyball') { ?>
+                            <?php if($_GET['q5']=='volleyball') { ?>
                                 <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="volley_position">Posición</label>

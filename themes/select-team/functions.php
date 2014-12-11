@@ -298,9 +298,9 @@ function pu_blank_login( $user ){
 				    });
 					
 					$('.j-register-advisor .btn-editar').on('click', function(e){
-				    	e.preventDefault();
+				    	//e.preventDefault();
 				    	console.log('Updateando advisor');
-				    	formValidation('.j-register-advisor0');
+				    	formValidation('.j-update-advisor');
 				    	//updateAdvisor();
 				    });
 					
