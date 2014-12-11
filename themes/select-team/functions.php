@@ -217,8 +217,6 @@ function pu_blank_login( $user ){
 	                                classie.addClass( messageEl, 'show' );
 	                                console.log('ajax done');
 		                            sendMail();
-
-		                            //$.post("send-coach.php", $("#theForm2").serialize(), function(response) {});
 		                        }
 		                    } );
 		                    $('figure').not('.j-already-prospect').on('click', function(){
@@ -306,7 +304,6 @@ function pu_blank_login( $user ){
 				    	//updateAdvisor();
 				    });
 					
-					
 					$('.hide-form-advisor').hide();
 					
 					$('.btn-registrar-nuevo').on('click', function(){
@@ -324,8 +321,6 @@ function pu_blank_login( $user ){
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
 				    });
-					
-					
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
