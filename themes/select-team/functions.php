@@ -44,10 +44,7 @@ function restrict_admin()
 }
 add_action( 'admin_init', 'restrict_admin', 1 );
 
-function my_filter_head() {
-    remove_action('wp_head', '_admin_bar_bump_cb');
-}
-add_action('get_header', 'my_filter_head');
+
 
   
 
@@ -318,7 +315,6 @@ function pu_blank_login( $user ){
 					
 					$('.btn-editar').hide();
 					
-					
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
@@ -330,21 +326,6 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
-                        $(".profile_picture_preview").load(function() {
-                                
-                                 var width_picture = $(this).width();
-                                 var height_picture = $(this).height();
-                                 if (width_picture > 300) {
-                                    $(".profile_picture_preview").css("width", "300px");
-                                     $(".profile_picture_preview").css("border", "1px solid #002147");
-                                 } else {
-
-                                    $(".profile_picture_preview").css("height", "300px");
-                                    $(".profile_picture_preview").css("border", "1px solid #002147");
-
-                                 } 
-                             
-                        });
                         $('.j-mensaje-advisor').on('click', function(e) {
                             formValidation('.j-form-message-advisor');
                         });
@@ -396,6 +377,17 @@ function pu_blank_login( $user ){
 							console.log('creando curriculum...');
 							createCurriculum();  //Llamar a func que haga el INSERT
 						});
+                        $(".profile_picture_preview").load(function() {
+							var width_picture = $(this).width();
+							var height_picture = $(this).height();
+							if (width_picture > 300) {
+								$(".profile_picture_preview").css("width", "300px");
+								$(".profile_picture_preview").css("border", "1px solid #002147");
+							} else {
+								$(".profile_picture_preview").css("height", "300px");
+								$(".profile_picture_preview").css("border", "1px solid #002147");
+							}
+                        });
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>
@@ -443,23 +435,12 @@ function pu_blank_login( $user ){
 						});
 						elegirDeporte('');
 						elegirDeporte($('#sport').val());
-
-						//$('.j-register-user').validate();
-
-
-
 					});
 				</script>
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
 				<script>
 					footerBottom();
-					
-					/*$('.j-login button').on('click', function(e){
-						e.preventDefault();
-						login();
-					});*/
-					
 				</script>
 			<?php } else { ?>
 			<?php } ?>
@@ -493,6 +474,12 @@ function pu_blank_login( $user ){
 	add_filter( 'show_admin_bar', function($content){
 		return ( current_user_can('administrator') ) ? $content : false;
 	});
+	
+	
+	function pc_hide_admin_bar() {
+		show_admin_bar(false);
+	}
+	add_action('set_current_user', 'pc_hide_admin_bar');
 
 
 
@@ -608,8 +595,6 @@ function pu_blank_login( $user ){
 			echo ' | ' . sprintf( __( 'Página %s' ), max( $paged, $page ) );
 		}
 	}
-
-
 
 	/**
 	 * Imprime una lista separada por commas de todos los terms asociados al post id especificado
