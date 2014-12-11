@@ -118,6 +118,9 @@ function pu_blank_login( $user ){
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
 		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
+		if (get_the_title()=='Register')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+
 		// localize scripts
 		wp_localize_script( 'functions', 'ajax_url', admin_url('admin-ajax.php') );
 		wp_localize_script( 'functions', 'site_url', site_url() );
@@ -276,7 +279,7 @@ function pu_blank_login( $user ){
 					
 					$('.hide-form-advisor').hide();
 					
-					$('.color-success').on('click', function(){
+					$('.btn-registrar-nuevo').on('click', function(){
 				        $('.hide-form-advisor').show('slow');
 				    });
 					
@@ -300,9 +303,6 @@ function pu_blank_login( $user ){
                                 
                                  var width_picture = $(this).width();
                                  var height_picture = $(this).height();
-
-                                    alert($(this).height());
-                                    alert($(this).width());
 
                                  if (width_picture > 300) {
 
@@ -372,8 +372,9 @@ function pu_blank_login( $user ){
 				<script type="text/javascript">
 					$( function() {
 						$('.j-register-user button').on('click', function(e){
-							e.preventDefault();
-							registerUser();
+							//e.preventDefault();
+							formValidation('.j-register-user');
+							//registerUser();
 						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
@@ -406,7 +407,19 @@ function pu_blank_login( $user ){
 							e.preventDefault();
 							elegirDeporte($('#sport').val());
 						});
+
+						$('body').on('DOMNodeInserted', function(e){
+							e.preventDefault();
+							elegirDeporte('');
+							elegirDeporte($('#sport').val());
+						});
 						elegirDeporte('');
+						elegirDeporte($('#sport').val());
+
+						//$('.j-register-user').validate();
+
+
+
 					});
 				</script>
 			<?php } ?>
@@ -415,13 +428,12 @@ function pu_blank_login( $user ){
 					function footerBottom(){
 					    var alturaFooter = $('footer').height();
 					    $('.container-fluid').css('padding-bottom', alturaFooter );
-					    alert("HOLA");
 					}
 					
 					
 					$('.j-login button').on('click', function(e){
 						e.preventDefault();
-						login();//addTournament();
+						login();
 					});
 					
 				</script>
@@ -683,7 +695,7 @@ function pu_blank_login( $user ){
 		    'user_login'  	=> $username,
 		    'user_pass'   	=> $password, 
 		    'user_email'	=> $email,
-		    'role'			=> 'advisor'
+		    'role'			=> 'author'
 		);
 
 		$user_id = wp_insert_user( $userdata ) ;
@@ -882,13 +894,11 @@ function pu_blank_login( $user ){
 					"error"	  => 0
 					);
 				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
-				break;
 		}// switch
 
 		die();
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
-	add_action("wp_ajax_register_user", "register_user");
 
 	/**
 	 * Actualiza los datos del curriculum del usuario.
@@ -1274,6 +1284,27 @@ function pu_blank_login( $user ){
 
 	    endforeach;
 	}// site_login
+
+	/**
+	 * Devuelve la url del video de acuerdo al host.
+	 * @param string $advisor_data
+	 * @return int $advisor_id or FALSE
+	 */
+	function get_video_src($url, $host){
+		if($host == 'vimeo'){
+			$id = (int) substr(parse_url($url, PHP_URL_PATH), 1);
+			return '//player.vimeo.com/video/'.$id;
+		}
+
+		$id = explode('v=', $url)[1];
+		$ampersand_position = strpos($id, '&');
+		if( $ampersand_position > 0 )
+			$id = substr($id, $ampersand_position);
+
+		parse_str( parse_url( $url, PHP_URL_QUERY ), $url_array );
+		$id = $url_array['v']; 
+		return '//www.youtube.com/embed/'.$id;
+	}// get_video_src
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////

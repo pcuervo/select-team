@@ -4,6 +4,13 @@
         wp_redirect( $location );
         exit;
     }
+
+    $role = get_current_user_role();
+    if( $role == 'subscriber' ) {
+        $location = site_url().'/dashboard';
+        wp_redirect( $location );
+        exit;
+    }
 ?>
 <?php get_header(); ?>
 
@@ -17,6 +24,7 @@
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 center block ]">
+
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
                         <?php } else { ?>
@@ -119,10 +127,11 @@
                         <?php } ?>
                         <a href="#" id="menu-toggle" class="[ hidden-md hidden-lg ]"><img src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" class="[ center block ]" alt=""></a>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Registrar agente</p>
+							<button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Registrar agente</button>
                         <?php } else { ?>
-                            <p><i class="[ fa fa-plus-circle fa-2x ] [ color-success ]"></i> Register advisor</p>
+							<button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
                         <?php } ?>
+						 <div class="clear"></div>
                         <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
                             <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
 								<input type="hidden" class="[ form-control ]" name="id">
@@ -154,26 +163,21 @@
                                     <label for="password">Password</label>
                                     <input type="password" class="[ form-control ]" name="password">
                                     <p class="help-block">El password debe contener al menos 8 caracteres.</p>
+									<input type="password" class="[ form-control ]" name="password_confirmation">
+                                    <label for="validate" id="validate"></label>   
                                 </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="password_confirmation">Confirmar password</label>
-                                    <?php } else { ?>
-                                        <label for="password_confirmation">Confirm password</label>
-                                    <?php } ?>
-                                        <input type="password" class="[ form-control ]" name="password_confirmation">
-                                        <label for="validate" id="validate"></label>                                 
-                                </div>
+                                <div class="[ form-group ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Agregar agente</button>
-								<button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Editar</button>
+									<button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Editar</button>
                                 <?php } else { ?>
                                     <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Add Advisor</button>
-								<button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Edit</button>
+									<button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Edit</button>
                                 <?php } ?>
                             </form>
                         </div>
-                        <div class="clear"></div>
+						</div>
+						<div class="clear"></div>
 						<?php 
 							
 							$users = get_advisors_basic_info(); 
@@ -181,8 +185,7 @@
 						?>
                         <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> Editar </a> </p></a>
 					  <?php } ?>
-                    </div>
-                </div>
+                    
             </div>
         </div><!-- /#page-content-wrapper -->
     </div> <!-- /#dashboard -->
