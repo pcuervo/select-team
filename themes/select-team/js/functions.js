@@ -682,3 +682,22 @@ function sendMail(){
          } //response
      );
 }
+
+function sendMailAdvisors(){
+
+}
+
+function validateMessageAdvisor(){
+    
+    if (!$(".selectMensajeAdvisor").val()) {
+        
+    } else {
+        alert("esta con algo");
+    }
+    
+    if (!$(".txtareaMensajeAdvisor").val()) {
+        
+    } else {
+        alert("esta con algo");
+    }
+}

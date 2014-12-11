@@ -3,8 +3,8 @@
         <div class="col-xs-12 margin-bottom">
             <?php if (qtrans_getLanguage() == 'es'){ ?>
                 <h2 class="red">Contacto</h2>
-                <p>Es tiempo de realizar tu sueño, contáctanos y cuéntanos qué deporte practicas y nos asegurarémos de que un "consejero" se ponga ne contacto contigo</p>
-                <p>Deja que Select Team haga tu sueño realidad</p>
+                <p>Es tiempo de realizar tu sueño, contáctanos y cuéntanos qué deporte practicas y nos aseguraremos de que uno de nuestros consejeros se ponga en contacto contigo.</p>
+                <p>Deja que Select Team Becas haga tu sueño realidad.</p>
             <?php } else { ?>
                 <h2 class="red">Contact</h2>
                 <p>It's time to start fulfilling your dream, contact us and tell us what sport you practice, and we will make sure that an advisor gets in touch with you.</p>
@@ -15,7 +15,7 @@
         </div>
         <div class="col-xs-12 col-sm-6 margin-bottom">
             <h3 class="red">Select Team Headquarters</h3>
-            <p><a href="https://www.facebook.com/pages/Select-Team-Becas/471870126241459" target="_blank"><i class="fa fa-facebook"></i> /Select-Team</a></p>
+            <p><a href="https://www.facebook.com/pages/Select-Team-Becas/471870126241459" target="_blank"><i class="fa fa-facebook"></i> /Select-Team-Becas</a></p>
             <!-- <p><a href="#" target="_blank"><i class="fa fa-twitter"></i> @selectteam</a></p> -->
             <hr>
             <div>
