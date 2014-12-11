@@ -271,17 +271,35 @@ function pu_blank_login( $user ){
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				      });
-				    $('.j-register-advisor button').on('click', function(e){
+				    $('.j-register-advisor .btn-agregar').on('click', function(e){
 				    	e.preventDefault();
 				    	console.log('registrando advisor');
 				    	registerAdvisor();
 				    });
 					
+					$('.j-register-advisor .btn-editar').on('click', function(e){
+				    	e.preventDefault();
+				    	console.log('Updateando advisor');
+				    	updateAdvisor();
+				    });
+					
+					
 					$('.hide-form-advisor').hide();
 					
-					$('.color-success').on('click', function(){
+					$('.btn-registrar-nuevo').on('click', function(){
 				        $('.hide-form-advisor').show('slow');
 				    });
+					
+					$('.btn-editar').hide();
+					
+					
+					$('.edit-advisor').on('click', function(e){
+						e.preventDefault();
+						var id = $(this).data('id');
+						console.log(id);
+						getAdvisorBasicInfo(id);
+				    });
+					
 					
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
@@ -618,6 +636,49 @@ function pu_blank_login( $user ){
 			OR isset($query->post_title) AND preg_match("/$string/i", remove_accents(str_replace(' ', '-', $query->post_title) ) ) )
 			echo 'active';
 	} 
+	
+
+
+	function update_advisor(){
+		
+		// Create wp_user
+		$id_user =  $_POST['id'];
+		$password =  $_POST['password'];
+		$full_name = $_POST['full_name'];
+		
+		if(!empty($password)){
+			
+			$user_id = wp_update_user( array( 'ID' => $id_user, 'user_pass' => $password ) );
+
+			if ( !is_wp_error( $user_id ) ) {
+
+				update_advisor_user($full_name, $id_user);
+
+				$msg = array(
+					"success" 	=> "Usuario registrado",
+					"error"	  	=> 0
+				);
+				echo json_encode( $msg); 
+			}else{
+				$msg = array(
+					"msg" => "Usuario duplicado",
+					"error"	  	=> 1
+				);
+				echo json_encode( $msg ); 
+			}
+		}else{
+			
+			update_advisor_user($full_name, $id_user);
+			
+			$msg = array(
+				"success" 	=> "Usuario registrado",
+				"error"	  	=> 0
+			);
+			echo json_encode( $msg); 
+		}
+		die();
+	} // register_advisor
+	add_action("wp_ajax_update_advisor", "update_advisor");
 
 	/**
 	 * Registra un usuario advisor
@@ -642,10 +703,10 @@ function pu_blank_login( $user ){
 
 		$user_id = wp_insert_user( $userdata ) ;
 		if( !is_wp_error($user_id) ) {
-		// Create st_user
-		$full_name = $_POST['full_name'];
+			// Create st_user
+			$full_name = $_POST['full_name'];
 
-		$advisor_data = array(
+			$advisor_data = array(
 			'wp_user_id'	=> $user_id,
 			'full_name'		=> $full_name,
 			);
@@ -681,6 +742,22 @@ function pu_blank_login( $user ){
 	}// get_users_basic_info
 
 	/**
+	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
+	function get_info_advisor(){
+		$user_id= $_POST['id'];
+
+	    global $wpdb;
+
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."'";
+	    $users = $wpdb->get_results($query);
+		
+		echo json_encode($users[0], JSON_FORCE_OBJECT);
+	}// get_users_basic_info
+    add_action("wp_ajax_get_info_advisor", "get_info_advisor");
+
+	/**
 	 * Inserta un usuario a la tabla st_advisors
 	 * @param string $advisor_data
 	 * @return int $advisor_id or FALSE
@@ -703,7 +780,34 @@ function pu_blank_login( $user ){
 		
 		return 0;
 	}// add_advisor_user
+	
+	function update_advisor_user($full_name, $id_user){
+		global $wpdb;
+		
+		$query = $wpdb->prepare("SELECT * FROM st_advisors  WHERE wp_user_id = %d", intval($id_user));
+	    $user_advisors = $wpdb->get_results($query);
 
+	    if($user_advisors){
+			$updated = $wpdb->update(
+			$wpdb->st_advisors,
+				array(
+					'full_name' 	=> $full_name
+				),
+				array('wp_user_id' => $id_user),
+				array(
+					'%s'
+				)
+			);
+		}else{
+			$advisor_data = array(
+				'wp_user_id'	=> $id_user,
+				'full_name'		=> $full_name,
+			);
+			$st_user_id = add_advisor_user($advisor_data);
+		}
+
+		return 0;
+	}
 	/**
 	 * Registra un usuario nuevo
 	 * @param  string  $username
@@ -729,9 +833,17 @@ function pu_blank_login( $user ){
 			default:
 				// Create wp_user
 				$username =  $_POST['username'];
-				$password =  wp_hash_password( $_POST['password'] );
+				$password =  $_POST['password'];
 				$email =  $_POST['email'];
-				$user_id = wp_create_user( $username, $password, $email );
+
+				$userdata = array(
+				    'user_login'  	=> $username,
+				    'user_pass'   	=> $password, 
+				    'user_email'	=> $email,
+				    'role'			=> 'subscriber',
+				);
+
+				$user_id = wp_insert_user( $userdata ) ;
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
@@ -776,18 +888,18 @@ function pu_blank_login( $user ){
 				}// switch
 
 				$st_user_data = array(
-					'wp_user_id'	=> $user_id,
-					'full_name'		=> $full_name,
-					'gender'		=> $gender,
-					'date_of_birth'	=> $date_of_birth,
-					'sport_id'		=> $sport_id,
-					'video_host'	=> '-',
-					'video_url'		=> '-',
+					'wp_user_id'		=> $user_id,
+					'full_name'			=> $full_name,
+					'gender'			=> $gender,
+					'date_of_birth'		=> $date_of_birth,
+					'sport_id'			=> $sport_id,
+					'video_host'		=> '-',
+					'video_url'			=> '-',
+					'profile_picture'	=> '-',
 					);
 
 				$st_user_id = add_st_user($st_user_data);
 				add_sport_answers($st_user_id, $sport_data);
-				login_user($username, $password);
 				$msg = array(
 					"success" => "Usuario registrado",
 					"error"	  => 0
@@ -1124,7 +1236,9 @@ function pu_blank_login( $user ){
 		$creds['user_login'] = $username;
 		$creds['user_password'] = $password;
 		$creds['remember'] = true;
+		
 		$user = wp_signon( $creds, false );
+		
 		if ( is_wp_error($user) ){
 			return $user->get_error_message();
 		}
@@ -1148,7 +1262,6 @@ function pu_blank_login( $user ){
 		die();
 	}// site_login
 	add_action("wp_ajax_nopriv_site_login", "site_login");
-	add_action("wp_ajax_site_login", "site_login");
 
 	/**
 	 * Loggear a un usuario a la plataforma desde la página.
@@ -1260,6 +1373,7 @@ function pu_blank_login( $user ){
 				'%s',
 				'%s',
 				'%d',
+				'%s',
 				'%s',
 				'%s',
 			)
