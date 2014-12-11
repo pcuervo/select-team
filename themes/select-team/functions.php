@@ -290,7 +290,6 @@ function pu_blank_login( $user ){
 				      });
 				    $('.j-register-advisor .btn-agregar').on('click', function(e){
 				    	//e.preventDefault();
-				    	console.log('registrando advisor');
 				    	formValidation('.j-register-advisor');
 				    	//registerAdvisor();
 				    });

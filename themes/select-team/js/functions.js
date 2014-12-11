@@ -626,7 +626,6 @@ function formValidation(forma){
                     registerUser();
                     break;
                 case '.j-register-advisor':
-                    console.log('registerAdvisor');
                     registerAdvisor();
                     break;
                 default:
