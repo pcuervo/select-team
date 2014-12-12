@@ -16,16 +16,17 @@
 ?>
 	<div class="container profile clearfix">
 		<input type="hidden" class="p_id" value="<?php echo $_GET['p_id']; ?>">
-		<h2 class="col-xs-12 margin-bottom"><?php echo $user->full_name ?></h2>
+		<h2 class="[ col-xs-12 ]"><?php echo $user->full_name ?></h2>
+		<?php if( is_user_logged_in() ){
+			if ( $role != 'subscriber' AND $role != 'author') { ?>
+				<span class="[ j-delete-prospect ] [ col-xs-12 ] [ text-right ] [ margin-bottom ] [ delete-prospect ]">  <i class="fa fa-times-circle"></i> <b class="hidden-xs">Eliminar prospecto</b></span>
+			<?php
+			}
+		} ?>
+		<div class="clear"></div>
 		<div class="col-xs-12 col-sm-6 col-md-4 student-info margin-bottom right">
 			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="margin-bottom">
 			<button type="button" class="btn btn-primary [ center block ]" data-toggle="modal" data-target="#student-video"><i class="fa fa-play-circle-o"></i> Watch video</button>
-			<?php if( is_user_logged_in() ){
-				if ( $role != 'subscriber' AND $role != 'author') { ?>
-					<button class="[ delete-prospect ] [ j-delete-prospect ] [ btn btn-info ] [ center block ]">  <i class="fa fa-times-circle"></i> Eliminar prospecto</button>
-				<?php
-				}
-			} ?>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 student-info margin-bottom">
 			<?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -193,7 +194,7 @@
 	</div>
 	<!-- STUDENT VIDEO -->
 	<div class="modal fade" id="student-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  	<div class="modal-dialog">
+	  	<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 		  		<div class="modal-header clearfix">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

@@ -444,8 +444,7 @@ function deleteProspect(id){
       function(response){
         window.location = site_url + '/dashboard-admin/';
       }// response
-  ); 
-
+  );
 }
 
 
@@ -794,9 +793,7 @@ function sendMessage(){
   message_data['action'] = 'send_message';
   message_data['email'] = $('.j-form-message-advisor select[name="selectMensajeAdvisor"]').val();
   message_data['message'] = $('.j-form-message-advisor textarea[name="txtareaMensajeAdvisor"]').val();
-
   console.log(message_data);
-
      $.post(
          ajax_url,
          message_data,
@@ -806,3 +803,5 @@ function sendMessage(){
          } //response
      );
 }
+
+
