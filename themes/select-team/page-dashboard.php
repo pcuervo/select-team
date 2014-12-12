@@ -28,6 +28,9 @@
             if($prospect_info){
                 $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
                 $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
+                $academic_hist = {};
+                //$academic_hist = get_user_academic_info($prospect_info->st_user_id);
+                //var_dump($academic_hist);
             }
             
             if (sizeof($created_curriculum)>0) {
@@ -399,13 +402,59 @@
                             <?php } else { ?>
                                 <h4 class="[ col-xs-12 ]">Academic career</h4>
                             <?php } ?>
+                                <div class="[ form-group ] [ col-xs-12 ][ j-academic ]">
+                                <?php  if (sizeof($created_curriculum)>0)
+                                     if(sizeof($academic_hist)>0) { ?>
+                                        <?php foreach ($academic_hist as $key => $value) { ?>
+                                            <div class="[ form-group ] [ row ] [ border-bottom ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
+                                                <p class="[ col-xs-6 ]">
+                                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                        Año: 
+                                                    <?php } else { ?>
+                                                        Year: 
+                                                    <?php } ?>
+                                                    <br/>
+                                                    <b><?php  $gdate=explode(' ', $academic_hist[$key]->graduation_date); echo $gdate[0];?></b>
+                                                </p> 
+                                                <p class="[ col-xs-4 ]">
+                                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                        Escuela: 
+                                                    <?php } else { ?>
+                                                        School: 
+                                                    <?php } ?>
+                                                    <br/>
+                                                    <b><?php  echo $academic_hist[$key]->high_school; ?></b>
+                                                </p>
+                                                <p class="[ col-xs-6 ]">
+                                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                        País: 
+                                                    <?php } else { ?>
+                                                        Country: 
+                                                    <?php } ?>
+                                                    <br/>
+                                                    <b><?php  echo $academic_hist[$key]->country; ?></b>
+                                                </p> 
+                                                <p class="[ col-xs-4 ]">
+                                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                        Ciudad: 
+                                                    <?php } else { ?>
+                                                        City: 
+                                                    <?php } ?>
+                                                    <br/>
+                                                    <b><?php  echo $academic_hist[$key]->city; ?></b>
+                                                </p>
+                                                <a class="[ col-xs-2 ] [ color-success ] [ j-delete-academic ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a>
+                                            </div>
+                                        <?php } ?>
+                                <?php } ?>
+                                </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="highSchool">Preparatoria</label>
                                 <?php } else { ?>
                                     <label for="highSchool">Highschool</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="highSchool" name="high_school" value="<?php echo $high_school; ?>">
+                                <input type="text" class="[ form-control ]" id="highSchool" name="high_school">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <p class="help-block">Nombre de la escuela</p>
                                 <?php } else { ?>
@@ -414,34 +463,36 @@
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="midGrad" id="midGrad" name="q4">¿En qué año vas?</label>
-                                    <select class="[ form-control ]" id="q4" name="grade">
-                                        <option value="grado" selected disabled>Grado</option>
-                                        <option value="freshman" <?php if($grad_year=='freshman') echo "selected"; ?>>3º Secundaria </option>
-                                        <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>4º Preparatoria </option>
-                                        <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>5º Preparatoria </option>
-                                        <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>6º Preparatoria </option>
-                                        <option value="graduated" <?php if($grad_year=='graduated') echo "selected"; ?>>Graduado</option>
-                                    </select>
-                                    <?php } else { ?>
-                                        <label for="midGrad" id="midGrad" name="q4" >What class are you in?</label>
-                                        <select class="[ form-control ]" id="q4" name="grade">
-                                            <option value="grado" selected disabled>Class</option>
-                                            <option value="freshman" <?php if($grad_year=='freshman') echo "selected"; ?>>Freshmen </option>
-                                            <option value="sphomore" <?php if($grad_year=='sphomore') echo "selected"; ?>>Sophomore </option>
-                                            <option value="junior" <?php if($grad_year=='junior') echo "selected"; ?>>Junior </option>
-                                            <option value="senior" <?php if($grad_year=='senior') echo "selected"; ?>>Senior </option>
-                                            <option value="graduated" <?php if($grad_year=='graduated') echo "selected"; ?>>Already graduated</option>
-                                        </select>
-                                 <?php } ?>
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <span><label for="q3">¿Cuándo te vas a graduar?</label></span>
+                                    <span><label for="q3">¿Fecha de Graduación?</label></span>
                                 <?php } else { ?>
                                     <span><label for="q3">When are you graduating?</label></span>
                                 <?php } ?>
-                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation" value="<?php echo $grad_date; ?>"/>
+                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation"/>
+                            </div>
+                            <div class="[ form-group ] [ col-xs-6 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="country">País</label>
+                                <?php } else { ?>
+                                    <label for="country">Country</label>
+                                <?php } ?>
+                                <input type="text" class="[ form-control ]" id="country" name="high_school">
+                            </div>
+                            <div class="[ form-group ] [ col-xs-6 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="city">Ciudad</label>
+                                <?php } else { ?>
+                                    <label for="city">City</label>
+                                <?php } ?>
+                                <input type="text" class="[ form-control ]" id="city" name="high_school">
+                            </div>                            
+                            <div class="clear"></div>
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <button class="[ btn btn-primary ] [ margin-bottom ] [ j-add-academic ] ">Agregar historial académico <i class="fa fa-plus"></i></button>
+                            <?php } else { ?>
+                                <button class="[ btn btn-primary ] [ margin-bottom ] [ j-add-academic ] ">Add academic history <i class="fa fa-plus"></i></button>
+                            <?php } ?>
+                            <div class="clear"></div>
+                            <div class="[ form-group ] [ col-xs-12 ] [ j-registed-tournaments ]">
                             </div>
                             <div class="[ clear ] [ margin-bottom ]"></div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>

@@ -373,11 +373,13 @@ function pu_blank_login( $user ){
 							console.log('actualizando perfil...');
 							updateUserInfo();
 						});
+						
 						$('.j-update-curriculum-update').on('click', function(e){
 							e.preventDefault();
 							console.log('actualizando curriculum...');
 							updateAllCurriculum();
 						});
+
 						$('.j-add-tournament').on('click', function(e){
 							e.preventDefault();
 							addTournament();
@@ -386,6 +388,12 @@ function pu_blank_login( $user ){
 						$('.j-delete-tournament').on('click', function(e){
 							e.preventDefault();
 							deleteTournament(e);
+						});
+
+						$('.j-add-academic').on('click', function(e){
+							e.preventDefault();
+							//deleteTournament(e);
+							console.log('add academic');
 						});
 
 						$('.j-update-curriculum-create').on('click', function(e){
@@ -1604,6 +1612,19 @@ function pu_blank_login( $user ){
 		else
 			return $user_curriculum;
 	}// get_user_curriculum_info
+
+	/**
+	 * Jalar el historial academico de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_curriculum, 0 en caso de no encontrar resultados.
+	 */
+	function get_user_academic_info($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM st_academic WHERE st_user_id = %d", $wp_user_id);
+	    $user_curriculum = $wpdb->get_results($query);
+		return $user_curriculum;
+	}// get_user_academic_info
+
 
 	/**
 	 * Jalar de los torneos de un usuario
