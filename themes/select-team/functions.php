@@ -44,10 +44,7 @@ function restrict_admin()
 }
 add_action( 'admin_init', 'restrict_admin', 1 );
 
-function my_filter_head() {
-    remove_action('wp_head', '_admin_bar_bump_cb');
-}
-add_action('get_header', 'my_filter_head');
+
 
   
 
@@ -128,6 +125,12 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Register')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
+		if (get_the_title()=='Dashboard Admin')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+        
+        if (get_the_title()=='Dashboard')
+			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
+
 		if (is_home())
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
@@ -191,7 +194,11 @@ function pu_blank_login( $user ){
 		                            // hide form
 		                            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
 		                           	var messageEl = theForm.querySelector( '.final-message' );
-	                                messageEl.innerHTML = 'Loading...';
+		                           	<?php if (qtrans_getLanguage() == 'es'){ ?>
+		                           			messageEl.innerHTML = 'Cargando...';
+									<?php } else { ?>
+											messageEl.innerHTML = 'Loading...';
+									<?php } ?>
 	                                classie.addClass( messageEl, 'show' );
 		                            location.replace(current_url+"/register?"+ $("#theForm").serialize());
 		                            return false;
@@ -202,7 +209,11 @@ function pu_blank_login( $user ){
 		                        onSubmit : function( form ) {
 		                            classie.addClass( theForm2.querySelector( '.simform-inner' ), 'hide' );
 		                            var messageEl = theForm2.querySelector( '.final-message' );
-		                            messageEl.innerHTML = 'Thank you. We\'ll be in touch';
+		                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+		                            		messageEl.innerHTML = 'Gracias. Nos pondremos en contacto.';
+									<?php } else { ?>
+										messageEl.innerHTML = 'Thank you. We\'ll be in touch.';
+									<?php } ?>
 	                                classie.addClass( messageEl, 'show' );
 	                                console.log('ajax done');
 		                            sendMail();
@@ -237,9 +248,6 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('.cards');
 		                    });
 		                });
-
-						$('#theForm').validate();
-						$('#theForm2').validate();
 		            }(jQuery));
 		        </script>
 			<?php } elseif ( get_post_type() == 'prospecto') { ?>
@@ -261,49 +269,51 @@ function pu_blank_login( $user ){
 						reorder($(this), '.isotope-container-sports');
 						return false;
 					});
-				    /*$('.j-login button').on('click', function(e){
+
+				    $('.j-delete-prospect').on('click', function(e){
 						e.preventDefault();
-						login();//addTournament();
-					});*/
+						deleteProspect($('.p_id').val());
+					});
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
-				      correIsotope('.isotope-container-sports', '.player', 'masonry');
-				      filtrarIsotopeDefault('.isotope-container', 'none');
-				      $('.isotope-filters button').on( 'click', function(e) {
-				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
-				      });
-				      $('#sportAll button').on('click', function(){
-				        var sport = $(this).attr('data-filter');
-				        console.log(sport);
-				        $('#sportAll').attr('data-active', sport);
-				        reorder($(this), '.isotope-container-sports');
-				        return false;
-				      });
-				      $('#genderAll button').on('click', function(){
-				        var gender = $(this).attr('data-filter');
-				        //console.log(gender);
-				        $('#genderAll').attr('data-active', gender);
-				        reorder($(this), '.isotope-container-sports');
-				        return false;
-				      });
+			    	correIsotope('.isotope-container-sports', '.player', 'masonry');
+			      	filtrarIsotopeDefault('.isotope-container', 'none');
+			      	$('.isotope-filters button').on( 'click', function(e) {
+			        	filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+			      	});
+			      	$('#sportAll button').on('click', function(){
+			        	var sport = $(this).attr('data-filter');
+			        	console.log(sport);
+			        $('#sportAll').attr('data-active', sport);
+			        	reorder($(this), '.isotope-container-sports');
+			        	return false;
+			      	});
+			      	$('#genderAll button').on('click', function(){
+			        	var gender = $(this).attr('data-filter');
+			        	//console.log(gender);
+			        $('#genderAll').attr('data-active', gender);
+			        	reorder($(this), '.isotope-container-sports');
+			        	return false;
+			      	});
 				    $('.j-register-advisor .btn-agregar').on('click', function(e){
-				    	e.preventDefault();
-				    	console.log('registrando advisor');
-				    	registerAdvisor();
+				    	formValidation('.j-register-advisor');
 				    });
 					
 					$('.j-register-advisor .btn-editar').on('click', function(e){
-				    	e.preventDefault();
-				    	console.log('Updateando advisor');
-				    	updateAdvisor();
+				    	formValidation('.j-update-advisor');
 				    });
 					
 					
 					$('.hide-form-advisor').hide();
 					
 					$('.btn-registrar-nuevo').on('click', function(){
+				        $('.j-register-advisor ').trigger("reset");
 				        $('.hide-form-advisor').show('slow');
+				        $('.j-register-advisor input[name="username"]').removeAttr('disabled');
+						$('.j-register-advisor input[name="email"]').removeAttr('disabled');
+				    	$('.btn-editar').hide();
+				    	$('.btn-agregar').show();
 				    });
 					
 					$('.btn-guardar-profile').on('click', function(){
@@ -312,11 +322,19 @@ function pu_blank_login( $user ){
 					
 					$('.btn-editar').hide();
 					
-					
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
+						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
+						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
+				    });
+
+				    $('.delete-advisor').on('click', function(e){
+						e.preventDefault();
+						var id = $(this).data('id');
+						$(this).parent().hide();
+						deleteAdvisor(id);
 				    });
 					
 					
@@ -324,26 +342,9 @@ function pu_blank_login( $user ){
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
-                        
-                        $(".profile_picture_preview").load(function() {
-                                
-                                 var width_picture = $(this).width();
-                                 var height_picture = $(this).height();
-
-                                 if (width_picture > 300) {
-
-                                    $(".profile_picture_preview").css("width", "300px");
-                                     $(".profile_picture_preview").css("border", "1px solid #002147");
-
-                                 } else {
-
-                                    $(".profile_picture_preview").css("height", "300px");
-                                    $(".profile_picture_preview").css("border", "1px solid #002147");
-
-                                 } 
-                             
+                        $('.j-mensaje-advisor').on('click', function(e) {
+                            formValidation('.j-form-message-advisor');
                         });
-                        
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -375,7 +376,7 @@ function pu_blank_login( $user ){
 						$('.j-update-curriculum-update').on('click', function(e){
 							e.preventDefault();
 							console.log('actualizando curriculum...');
-							updateCurriculum();
+							updateAllCurriculum();
 						});
 						$('.j-add-tournament').on('click', function(e){
 							e.preventDefault();
@@ -392,15 +393,24 @@ function pu_blank_login( $user ){
 							console.log('creando curriculum...');
 							createCurriculum();  //Llamar a func que haga el INSERT
 						});
+                        $(".profile_picture_preview").load(function() {
+							var width_picture = $(this).width();
+							var height_picture = $(this).height();
+							if (width_picture > 300) {
+								$(".profile_picture_preview").css("width", "300px");
+								$(".profile_picture_preview").css("border", "1px solid #002147");
+							} else {
+								$(".profile_picture_preview").css("height", "300px");
+								$(".profile_picture_preview").css("border", "1px solid #002147");
+							}
+                        });
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>
 				<script type="text/javascript">
 					$( function() {
 						$('.j-register-user button').on('click', function(e){
-							//e.preventDefault();
 							formValidation('.j-register-user');
-							//registerUser();
 						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
@@ -441,23 +451,12 @@ function pu_blank_login( $user ){
 						});
 						elegirDeporte('');
 						elegirDeporte($('#sport').val());
-
-						//$('.j-register-user').validate();
-
-
-
 					});
 				</script>
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
 				<script>
 					footerBottom();
-					
-					/*$('.j-login button').on('click', function(e){
-						e.preventDefault();
-						login();
-					});*/
-					
 				</script>
 			<?php } else { ?>
 			<?php } ?>
@@ -491,6 +490,12 @@ function pu_blank_login( $user ){
 	add_filter( 'show_admin_bar', function($content){
 		return ( current_user_can('administrator') ) ? $content : false;
 	});
+	
+	
+	function pc_hide_admin_bar() {
+		show_admin_bar(false);
+	}
+	add_action('set_current_user', 'pc_hide_admin_bar');
 
 
 
@@ -607,8 +612,6 @@ function pu_blank_login( $user ){
 		}
 	}
 
-
-
 	/**
 	 * Imprime una lista separada por commas de todos los terms asociados al post id especificado
 	 * los terms pertenecen a la taxonomia especificada. Default: Category
@@ -705,6 +708,41 @@ function pu_blank_login( $user ){
 		die();
 	} // register_advisor
 	add_action("wp_ajax_update_advisor", "update_advisor");
+
+	function delete_advisor(){
+		global $wpdb;
+
+		$id=$_POST['id'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->st_advisors,
+			    array(
+			    	'wp_user_id'=> $id
+			    	),
+			    array('%d')
+		);
+	
+		die();
+	} // register_advisor
+	add_action("wp_ajax_delete_advisor", "delete_advisor");
+
+
+	function delete_prospect(){
+		global $wpdb;
+		$id=$_POST['id'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->wp_users,
+			    array(
+			    	'ID'=> $id
+			    	),
+			    array('%d')
+		);
+	
+		die();
+	} // register_advisor
+	add_action("wp_ajax_delete_prospect", "delete_prospect");
+
 
 	/**
 	 * Registra un usuario advisor
@@ -883,6 +921,9 @@ function pu_blank_login( $user ){
 				);
 
 				$user_id = wp_insert_user( $userdata ) ;
+
+				$mail_status = register_email($email, $username, $password);
+				var_dump($mail_status);
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
@@ -1386,6 +1427,12 @@ function pu_blank_login( $user ){
 	    $wpdb->st_users = "st_users";
 	}// st_register_users_table
 
+	add_action( 'init', 'st_wp_users_table', 1 );
+	function st_wp_users_table() {
+	    global $wpdb;
+	    $wpdb->wp_users = "wp_users";
+	}// st_register_users_table
+
 	add_action( 'init', 'st_register_advisors_table', 1 );
 	function st_register_advisors_table() {
 	    global $wpdb;
@@ -1596,6 +1643,26 @@ function pu_blank_login( $user ){
 
 	}// send_email
 
+	/**
+	 * Manda un correo con las credenciales del registro.
+	 * @param string $email_to, $message
+	 * @return int TRUE or FALSE
+	 */
+	function register_email($mail_to, $username, $password){
+		$st_mail="zurol@pcuervo.com";
+
+		$subject = "Select team register message \r\n";
+		$body_message = ".......\r\n";
+		$body_message .= "USER:".$username."\r\n";
+		$body_message .= "PASSWORD:".$password."\r\n";
+		
+		$headers = "From: Select Team\r\n";
+		$headers .= "Reply-To: ".$st_mail."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+	}// register_email
+
 
 	/**
 	 * Manda un correo sobre las preferencias del coach. // Basada en el archivo maqueta/send-coach.php
@@ -1609,6 +1676,18 @@ function pu_blank_login( $user ){
 
 	add_action("wp_ajax_nopriv_send_coach_email", "send_coach_email");
 	add_action("wp_ajax_send_coach_email", "send_coach_email");
+
+/**
+	 * Manda el correo.
+	 * @param string $email_to, string $message
+	 * @return int TRUE or FALSE
+	 */
+	function send_message(){
+		var_dump($_POST);
+	}
+
+	//add_action("wp_ajax_nopriv_send_message", "send_message");
+	add_action("wp_ajax_send_message", "send_message");
 
 
 	function send_coach_emailX($mail_to, $form_info){

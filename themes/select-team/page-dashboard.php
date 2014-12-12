@@ -449,10 +449,9 @@
                                 <?php } else { ?>
                                     <h4 class="[ col-xs-12 ]">Sports Development</h4>
                                 <?php } ?>
-                                
+                                <div class="[ form-group ] [ col-xs-12 ][ j-tournaments ]">
                                 <?php  if (sizeof($created_curriculum)>0)
                                      if(sizeof($tournament_info)>0) { ?>
-                                <div class="[ form-group ] [ col-xs-12 ]">
                                         <?php foreach ($tournament_info as $key => $value) { ?>
                                             <div class="[ form-group ] [ row ] [ border-bottom ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
                                                 <input type="hidden" value="<?php echo $tournament_info[$key]->name;?>" name="torneo">
@@ -475,8 +474,8 @@
                                                 <a class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a>
                                             </div>
                                         <?php } ?>
-                                </div>
                                 <?php } ?>
+                                </div>
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <p class="[ col-xs-12 ] [ help-block ]">Puedes agregar más de un torneo</p>
                                 <?php } else { ?>
@@ -507,6 +506,10 @@
                                 <?php } ?>
                                 <input type="text" class="[ form-control ]" id="tournamentRank" name="tournament_rank">
                             </div>
+                            <input type="hidden" name="tournament_data[]"/>
+                            <input type="hidden" name="tournament_date_data[]"/>
+                            <input type="hidden" name="tournament_rank_data[]"/>
+                            
                             <div class="clear"></div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <button class="[ btn btn-primary ] [ margin-bottom ] [ j-add-tournament ] ">Agregar torneo <i class="fa fa-plus"></i></button>
@@ -539,13 +542,13 @@
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="manager" id="manager" name="agent">Selecciona un agente:</label>
-                                    <select class="[ form-control ]" id="manager" name="q5">
+                                    <select class="[ form-control ] [ selectMensajeAdvisor ] [ required ]" id="selectMensajeAdvisor">
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
                                 <?php } else { ?>
                                     <label for="manager" id="manager" name="agent">Select an advisor:</label>
-                                    <select class="[ form-control ]" id="manager" name="q5">
+                                    <select class="[ form-control ][ selectMensajeAdvisor ] [ required ]" id="selectMensajeAdvisor" name="selectMensajeAdvisor">
                                         <option value="zurol@pcuervo.com">Luis Mendoza</option>
                                         <option value="miguel@pcuervo.com">Nair Tolomeo</option>
                                     </select>
@@ -557,12 +560,12 @@
                                 <?php } else { ?>
                                     <label for="message">Your message</label>
                                 <?php } ?>
-                                <textarea class="form-control" rows="3" id="message"></textarea>
+                                <textarea class="[ form-control ] [ txtareaMensajeAdvisor ] [ required ]" rows="3" id="txtareaMensajeAdvisor" name="txtareaMensajeAdvisor"></textarea>
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Enviar mensaje</button>
+                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-mensaje-advisor ]">Enviar mensaje</button>
                             <?php } else { ?>
-                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ]">Send Message</button>
+                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-mensaje-advisor ]">Send Message</button>
                             <?php } ?>
                         </form>
                     </div>

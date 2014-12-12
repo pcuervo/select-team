@@ -50,13 +50,13 @@
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="full_name">Nombre completo</label>
-                                    <input type="text" class="[ form-control ]" name="full_name_perfil" >
+                                    <input type="text" class="[ form-control ][ required ]" name="full_name_perfil" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
 									<?php if(isset($bp)){ ?>
-                                    <input type="text" class="[ form-control ]" name="full_name_perfil" value="<?php echo $bp->full_name; ?>" >
+                                    <input type="text" class="[ form-control ][ required ]" name="full_name_perfil" value="<?php echo $bp->full_name; ?>" >
 									<?php } else { ?>
-										<input type="text" class="[ form-control ]" name="full_name_perfil" >
+										<input type="text" class="[ form-control ][ required ]" name="full_name_perfil" >
 									<?php } ?>
                                 <?php } ?>
                             </div>
@@ -95,7 +95,6 @@
                                 <div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
                                     <?php
                                     $users = get_users_basic_info(); 
-
                                     foreach ($users as $key => $user) 
                                         if($user->profile_picture!='') { ?>
                                             <a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
@@ -114,94 +113,105 @@
                                                 </div>
                                             </a>
                                     <?php } ?>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="advisors">
-                    <div class="[ col-xs-12 col-sm-12 ]">
-                        <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <h3 class="[ margin-bottom ]">Agentes</h3>
-                        <?php } else { ?>
-                            <h3 class="[ margin-bottom ]">Advisors</h3>
-                        <?php } ?>
-                        <?php if (qtrans_getLanguage() == 'es'){ ?>
-							<button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Registrar agente</button>
-                        <?php } else { ?>
-							<button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
-                        <?php } ?>
-						 <div class="clear"></div>
-                        <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
-                            <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
-								<input type="hidden" class="[ form-control ]" name="id">
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="full_name">Nombre completo</label>
-                                    <?php } else { ?>
-                                        <label for="full_name">Full name</label>
-                                    <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="full_name">
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="username">Nombre de usuario</label>
-                                    <?php } else { ?>
-                                        <label for="username">Username</label>
-                                    <?php } ?>
-                                    <input type="text" class="[ form-control ]" name="username">
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="email">Correo electrónico</label>
-                                    <?php } else { ?>
-                                        <label for="email">Email</label>
-                                    <?php } ?>
-                                    <input type="email" class="[ form-control ]" name="email"> 
-                                </div>
-                                <div class="[ form-group ] [ col-xs-12 ]">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="password">Contraseña</label>
-                                    <?php } else { ?>
-                                        <label for="password">Password</label>
-                                    <?php } ?>
-                                    <input type="password" class="[ form-control ]" name="password">
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        <label for="password">Confirmar contraseña</label>
-                                    <?php } else { ?>
-                                        <label for="password">Password Confirmation</label>
-                                    <?php } ?>
-									<input type="password" class="[ form-control ]" name="password_confirmation">
-                                    <label for="validate" id="validate"></label>   
-                                </div>
-                                <div class="[ form-group ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Agregar agente</button>
-									<button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Editar</button>
-                                <?php } else { ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Add Advisor</button>
-									<button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Edit</button>
-                                <?php } ?>
-                            </form>
+                <?php if( $role != 'author' ) { ?>
+                    <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="advisors">
+                        <div class="[ col-xs-12 col-sm-12 ]">
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <h3 class="[ margin-bottom ]">Agentes</h3>
+                            <?php } else { ?>
+                                <h3 class="[ margin-bottom ]">Advisors</h3>
+                            <?php } ?>
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Registrar agente</button>
+                            <?php } else { ?>
+                                <button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
+                            <?php } ?>
+                            <div class="clear"></div>
+                            <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
+                                <form id="userForm" role="form" class="[ row ] [ j-register-advisor ][ j-update-advisor ]" >
+                                    <input type="hidden" class="[ form-control ]" name="id">
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="full_name">Nombre completo</label>
+                                        <?php } else { ?>
+                                            <label for="full_name">Full name</label>
+                                        <?php } ?>
+                                        <input type="text" class="[ form-control ][ required ]" name="full_name">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="username">Nombre de usuario</label>
+                                        <?php } else { ?>
+                                            <label for="username">Username</label>
+                                        <?php } ?>
+                                        <input type="text" class="[ form-control ][ required ]" name="username">
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="email">Correo electrónico</label>
+                                        <?php } else { ?>
+                                            <label for="email">Email</label>
+                                        <?php } ?>
+                                        <input type="email" class="[ form-control ][ required email ]" name="email"> 
+                                    </div>
+                                    <div class="[ form-group ] [ col-xs-12 ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="password">Contraseña</label>
+                                        <?php } else { ?>
+                                            <label for="password">Password</label>
+                                        <?php } ?>
+                                        <input type="password" class="[ form-control ][ required ]" name="password" id="password">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <label for="password">Confirmar contraseña</label>
+                                        <?php } else { ?>
+                                            <label for="password">Password Confirmation</label>
+                                        <?php } ?>
+                                        <input type="password" class="[ form-control ][ required ]" name="password_confirmation" id="password_confirmation">
+                                        <label for="validate" id="validate"></label>   
+                                    </div>
+                                    <div class="[ form-group ]">
+                                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                            <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Agregar agente</button>
+                                            <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Editar</button>
+                                        <?php } else { ?>
+                                            <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Add Advisor</button>
+                                            <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Edit</button>
+                                        <?php } ?>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-						</div>
-						<div class="clear"></div>
-						<?php 
-							
-							$users = get_advisors_basic_info(); 
-							foreach ($users as $key => $user) {
-						?>
-                        <a href="#"><p class="[ col-xs-12 col-sm-6 ]"><i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a><a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
-                        <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            Editar
-                        <?php } else { ?>
-                            Edit
+                        <div class="clear"></div>
+                        <?php 
+                            $users = get_advisors_basic_info(); 
+                            foreach ($users as $key => $user) {
+                        ?>
+                                <p class="[ col-xs-12 col-sm-6 ]">
+                                    <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a>
+                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Editar
+                                    <?php } else { ?>
+                                        Edit
+                                    <?php } ?>
+                                    </a> / 
+                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ delete-advisor ]"> 
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Borrar
+                                    <?php } else { ?>
+                                        Delete
+                                    <?php } ?>
+                                    </a>
+                                </p>
                         <?php } ?>
-                         </a> </p></a>
-					  <?php } ?>
-                    
-            </div>
-        </div><!-- /#page-content-wrapper -->
-    </div> <!-- /#dashboard -->
+                    </div><!-- .dashboard-profile -->
+                <?php } ?>
+            </div><!-- /container-fluid -->
+        </div> <!-- /#page-content-wrapper -->
+    </div><!-- #dashboard -->
 <?php get_footer(); ?>
