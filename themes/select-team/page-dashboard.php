@@ -28,7 +28,7 @@
             if($prospect_info){
                 $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
                 $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
-                $academic_hist = {};
+                $academic_hist = "";
                 //$academic_hist = get_user_academic_info($prospect_info->st_user_id);
                 //var_dump($academic_hist);
             }
@@ -404,7 +404,8 @@
                             <?php } ?>
                                 <div class="[ form-group ] [ col-xs-12 ][ j-academic ]">
                                 <?php  if (sizeof($created_curriculum)>0)
-                                     if(sizeof($academic_hist)>0) { ?>
+                                     //if(sizeof($academic_hist)>0) { 
+                                     if(0) { ?>
                                         <?php foreach ($academic_hist as $key => $value) { ?>
                                             <div class="[ form-group ] [ row ] [ border-bottom ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
                                                 <p class="[ col-xs-6 ]">
