@@ -179,12 +179,6 @@ function pu_blank_login( $user ){
 								$('#login').modal('show'); 
 							}
 
-							if(window.location.href.indexOf("login=failed") > -1) {
-								$('#login').modal('show'); 
-								var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
-                				$(html_error).prependTo('.modal-footer');
-							}
-
 		                    //On click/change/etc
 		                    filterQuestions();
 		                    var theForm = document.getElementById( 'theForm' );
@@ -217,8 +211,6 @@ function pu_blank_login( $user ){
 	                                classie.addClass( messageEl, 'show' );
 	                                console.log('ajax done');
 		                            sendMail();
-
-		                            //$.post("send-coach.php", $("#theForm2").serialize(), function(response) {});
 		                        }
 		                    } );
 		                    $('figure').not('.j-already-prospect').on('click', function(){
@@ -258,18 +250,19 @@ function pu_blank_login( $user ){
 						filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
 					});
 					$('#sportAll button').on('click', function(){
-						var sport = $(this).attr('data-filter');
-						$('#sportAll').attr('data-active', sport);
-						reorder($(this), '.isotope-container-sports');
-						return false;
-					});
-					$('#genderAll button').on('click', function(){
-						var gender = $(this).attr('data-filter');
-						$('#genderAll').attr('data-active', gender);
-						reorder($(this), '.isotope-container-sports');
-						return false;
-					});
-
+				        var sport = $(this).attr('data-filter');
+				        console.log(sport);
+				        $('#sportAll').attr('data-active', sport);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				    });
+				    $('#genderAll button').on('click', function(){
+				        var gender = $(this).attr('data-filter');
+				        //console.log(gender);
+				        $('#genderAll').attr('data-active', gender);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				    });
 				    $('.j-delete-prospect').on('click', function(e){
 						e.preventDefault();
 						deleteProspect($('.p_id').val());
@@ -283,68 +276,58 @@ function pu_blank_login( $user ){
 			        	filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
 			      	});
 			      	$('#sportAll button').on('click', function(){
-			        	var sport = $(this).attr('data-filter');
-			        	console.log(sport);
-			        $('#sportAll').attr('data-active', sport);
-			        	reorder($(this), '.isotope-container-sports');
-			        	return false;
-			      	});
-			      	$('#genderAll button').on('click', function(){
-			        	var gender = $(this).attr('data-filter');
-			        	//console.log(gender);
-			        $('#genderAll').attr('data-active', gender);
-			        	reorder($(this), '.isotope-container-sports');
-			        	return false;
-			      	});
-				    $('.j-register-advisor .btn-agregar').on('click', function(e){
-				    	formValidation('.j-register-advisor');
+				        var sport = $(this).attr('data-filter');
+				        console.log(sport);
+				        $('#sportAll').attr('data-active', sport);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
 				    });
-					
+				    $('#genderAll button').on('click', function(){
+				        var gender = $(this).attr('data-filter');
+				        //console.log(gender);
+				        $('#genderAll').attr('data-active', gender);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				    });
+					$('.j-register-advisor .btn-agregar').on('click', function(e){
+						formValidation('.j-register-advisor');
+					});
 					$('.j-register-advisor .btn-editar').on('click', function(e){
-				    	formValidation('.j-update-advisor');
-				    });
-					
-					
+						formValidation('.j-update-advisor');
+					});
 					$('.hide-form-advisor').hide();
-					
 					$('.btn-registrar-nuevo').on('click', function(){
-				        $('.j-register-advisor ').trigger("reset");
-				        $('.hide-form-advisor').show('slow');
-				        $('.j-register-advisor input[name="username"]').removeAttr('disabled');
+						$('.j-register-advisor ').trigger("reset");
+						$('.hide-form-advisor').show('slow');
+						$('.j-register-advisor input[name="username"]').removeAttr('disabled');
 						$('.j-register-advisor input[name="email"]').removeAttr('disabled');
-				    	$('.btn-editar').hide();
-				    	$('.btn-agregar').show();
-				    });
-					
+						$('.btn-editar').hide();
+						$('.btn-agregar').show();
+					});
 					$('.btn-guardar-profile').on('click', function(){
-				        updateBasicProfile();
-				    });
-					
+						updateBasicProfile();
+					});
 					$('.btn-editar').hide();
-					
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
 						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
 						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
-				    });
-
-				    $('.delete-advisor').on('click', function(e){
+					});
+					$('.delete-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
 						$(this).parent().hide();
 						deleteAdvisor(id);
 				    });
-					
-					
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
-                        $('.j-mensaje-advisor').on('click', function(e) {
-                            formValidation('.j-form-message-advisor');
-                        });
+						$('.j-mensaje-advisor').on('click', function(e) {
+							formValidation('.j-form-message-advisor');
+						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -443,10 +426,6 @@ function pu_blank_login( $user ){
 								$(this).datepicker('setDate', new Date(year, month, 1));
 							}
 						});
-						/*$('.j-login button').on('click', function(e){
-							e.preventDefault();
-							login();
-						});*/
 						$('#sport').on('change', function(e){
 							e.preventDefault();
 							elegirDeporte($('#sport').val());
@@ -474,12 +453,16 @@ function pu_blank_login( $user ){
 				<script>
 					footerBottom();
 				</script>
-			<?php } else { ?>
 			<?php } ?>
+    		<script>
+				if(window.location.href.indexOf("login=failed") > -1) {
+					$('#login').modal('show'); 
+					var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+					$(html_error).prependTo('.modal-footer');
+				}
+			</script>
     	<?php } }
     add_action( 'wp_footer', 'footerScripts', 21 );
-
-
 
 // ADMIN SCRIPTS AND STYLES //////////////////////////////////////////////////////////
 
@@ -727,17 +710,14 @@ function pu_blank_login( $user ){
 
 	function delete_advisor(){
 		global $wpdb;
-
 		$id=$_POST['id'];
-
 		$deleted = $wpdb->delete(
-		    $wpdb->st_advisors,
-			    array(
-			    	'wp_user_id'=> $id
-			    	),
-			    array('%d')
+			$wpdb->st_advisors,
+				array(
+					'wp_user_id'=> $id
+				),
+				array('%d')
 		);
-	
 		die();
 	} // register_advisor
 	add_action("wp_ajax_delete_advisor", "delete_advisor");

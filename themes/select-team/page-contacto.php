@@ -23,7 +23,7 @@
                     <p><b>Luis Mendoza (President)</b></p>
                 <?php } ?>
                 <p><i class="fa fa-phone"></i> 7773067947</p>
-                <p><i class="fa fa-envelope"></i> <a href="mailto:luis.mendoza@selectteam.com">luis.mendoza@selectteam.com</a></p>
+                <p><i class="fa fa-envelope"></i> <a href="mailto:luismendoza@selectteambecas.com">luismendoza@selectteambecas.com</a></p>
             </div>
             <hr>
             <div>
@@ -32,7 +32,7 @@
                 <?php } else { ?>
                     <p><b>Nair Tolomeo (Vicepresident)</b></p>
                 <?php } ?>
-                <p><i class="fa fa-envelope"></i> <a href="mailto:info@selectteam.com">info@selectteam.com</a></p>
+                <p><i class="fa fa-envelope"></i> <a href="mailto:info@selectteambecas.com">info@selectteambecas.com</a></p>
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 margin-bottom">

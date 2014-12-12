@@ -232,7 +232,7 @@ var e=this.getItems(t);e=e.length?e:this.items,this._updateItemsSortData(e)},d.p
 	stepsForm.prototype._validade = function() {
 		// current question´s input
 		var input = this.questions[ this.current ].querySelector( 'input, select' ).value;
-		var emailProspect = document.forms["theForm"]["q6"].value;
+		var emailProspect = document.forms["theForm"]["q4"].value;
 		var atposProspect = emailProspect.indexOf("@");
 		var dotposProspect = emailProspect.lastIndexOf(".");
 		var emailCoach = document.forms["theForm2"]["q2"].value;

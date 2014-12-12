@@ -87,7 +87,7 @@ function setAlturaWindow(element){
 }
 
 function filterQuestions(){
-  $('#theForm #q7').on('change', function() {
+  $('#theForm #q5').on('change', function() {
     var sport = $(this).val();
     $('#theForm .js-sport:not(".js-'+sport+'")').remove();
   });
@@ -420,10 +420,8 @@ function getAdvisorBasicInfo(id){
 
 function deleteAdvisor(id){
   var advisor_data = {};
-
   advisor_data['action']= 'delete_advisor';
   advisor_data['id']= id;
-
     $.post(
         ajax_url,
         advisor_data,
@@ -432,7 +430,6 @@ function deleteAdvisor(id){
           //var msg = $.parseJSON(response);
         }// response
     ); 
-
 }
 
 function deleteProspect(id){
@@ -447,8 +444,7 @@ function deleteProspect(id){
       function(response){
         window.location = site_url + '/dashboard-admin/';
       }// response
-  ); 
-
+  );
 }
 
 
@@ -800,9 +796,7 @@ function sendMessage(){
   message_data['action'] = 'send_message';
   message_data['email'] = $('.j-form-message-advisor select[name="selectMensajeAdvisor"]').val();
   message_data['message'] = $('.j-form-message-advisor textarea[name="txtareaMensajeAdvisor"]').val();
-
   console.log(message_data);
-
      $.post(
          ajax_url,
          message_data,
@@ -812,3 +806,5 @@ function sendMessage(){
          } //response
      );
 }
+
+

@@ -19,7 +19,7 @@
         <?php $advisor_info = get_advisor_basic_info(get_current_user_id()); ?>
         <!-- Page Content -->
         <div id="page-content-wrapper" class="[ margin-bottom ]">
-            <div class="[ container-fluid ]" id="page-content">
+            <div class="[ container-fluid ] [ js-dashboard-section ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
                 <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 ]">
@@ -68,7 +68,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="prospects">
+                <div class="[ row ] [ dashboard-profile ] [ js-dashboard-section ] [ margin-bottom ]" id="prospects">
                     <div class="[ col-xs-12 col-sm-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Prospectos</h3>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <?php if( $role != 'author' ) { ?>
-                    <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="advisors">
+                    <div class="[ row ] [ dashboard-profile ] [ js-dashboard-section ] [ margin-bottom ]" id="advisors">
                         <div class="[ col-xs-12 col-sm-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h3 class="[ margin-bottom ]">Agentes</h3>
