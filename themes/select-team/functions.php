@@ -331,7 +331,7 @@ function pu_blank_login( $user ){
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
-							dateFormat: 'yy-mm-dd',profile_picture_preview
+							dateFormat: 'yy-mm-dd',
 							yearRange: "-100:+0"
 						});
 						$( "#datepicker-date-of-graduation" ).datepicker({

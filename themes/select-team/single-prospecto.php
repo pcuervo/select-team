@@ -57,10 +57,8 @@
 				<p><b>Sport:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo $user->sport; ?></p>
 				<hr>
 			<?php } ?>
-
 			<?php 
 				$sport_answers = get_user_sport_answers($user->st_user_id);
-
 				switch ($user->sport) {
 					case 'tennis':
 						if (qtrans_getLanguage() == 'es'){ 
@@ -137,7 +135,8 @@
 				}// switch
 			?>
 			<div class="[ clear ] [ margin-bottom ]"></div>
-			<?php if( $role != 'subscriber') { ?>
+			<?php
+				if( is_user_logged_in() AND $role != 'subscriber') { ?>
 				<?php if (qtrans_getLanguage() == 'es'){ ?>
 					<p><b>Dirección:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->address) ? $user_curriculum->address : '-'; ?></p>
 					<hr>
