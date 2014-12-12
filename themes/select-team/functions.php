@@ -269,10 +269,11 @@ function pu_blank_login( $user ){
 						reorder($(this), '.isotope-container-sports');
 						return false;
 					});
-				    /*$('.j-login button').on('click', function(e){
+
+				    $('.j-delete-prospect').on('click', function(e){
 						e.preventDefault();
-						login();//addTournament();
-					});*/
+						deleteProspect($('.p_id').val());
+					});
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
@@ -328,6 +329,13 @@ function pu_blank_login( $user ){
 						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
 						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
 				    });
+
+				    $('.delete-advisor').on('click', function(e){
+						e.preventDefault();
+						var id = $(this).data('id');
+						$(this).parent().hide();
+						deleteAdvisor(id);
+				    });
 					
 					
 				</script>
@@ -365,11 +373,13 @@ function pu_blank_login( $user ){
 							console.log('actualizando perfil...');
 							updateUserInfo();
 						});
+						
 						$('.j-update-curriculum-update').on('click', function(e){
 							e.preventDefault();
 							console.log('actualizando curriculum...');
-							updateCurriculum();
+							updateAllCurriculum();
 						});
+
 						$('.j-add-tournament').on('click', function(e){
 							e.preventDefault();
 							addTournament();
@@ -378,6 +388,12 @@ function pu_blank_login( $user ){
 						$('.j-delete-tournament').on('click', function(e){
 							e.preventDefault();
 							deleteTournament(e);
+						});
+
+						$('.j-add-academic').on('click', function(e){
+							e.preventDefault();
+							//deleteTournament(e);
+							console.log('add academic');
 						});
 
 						$('.j-update-curriculum-create').on('click', function(e){
@@ -701,6 +717,41 @@ function pu_blank_login( $user ){
 	} // register_advisor
 	add_action("wp_ajax_update_advisor", "update_advisor");
 
+	function delete_advisor(){
+		global $wpdb;
+
+		$id=$_POST['id'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->st_advisors,
+			    array(
+			    	'wp_user_id'=> $id
+			    	),
+			    array('%d')
+		);
+	
+		die();
+	} // register_advisor
+	add_action("wp_ajax_delete_advisor", "delete_advisor");
+
+
+	function delete_prospect(){
+		global $wpdb;
+		$id=$_POST['id'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->wp_users,
+			    array(
+			    	'ID'=> $id
+			    	),
+			    array('%d')
+		);
+	
+		die();
+	} // register_advisor
+	add_action("wp_ajax_delete_prospect", "delete_prospect");
+
+
 	/**
 	 * Registra un usuario advisor
 	 * @param  string  $username
@@ -878,6 +929,9 @@ function pu_blank_login( $user ){
 				);
 
 				$user_id = wp_insert_user( $userdata ) ;
+
+				$mail_status = register_email($email, $username, $password);
+				var_dump($mail_status);
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
@@ -1381,6 +1435,12 @@ function pu_blank_login( $user ){
 	    $wpdb->st_users = "st_users";
 	}// st_register_users_table
 
+	add_action( 'init', 'st_wp_users_table', 1 );
+	function st_wp_users_table() {
+	    global $wpdb;
+	    $wpdb->wp_users = "wp_users";
+	}// st_register_users_table
+
 	add_action( 'init', 'st_register_advisors_table', 1 );
 	function st_register_advisors_table() {
 	    global $wpdb;
@@ -1554,6 +1614,19 @@ function pu_blank_login( $user ){
 	}// get_user_curriculum_info
 
 	/**
+	 * Jalar el historial academico de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_curriculum, 0 en caso de no encontrar resultados.
+	 */
+	function get_user_academic_info($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM st_academic WHERE st_user_id = %d", $wp_user_id);
+	    $user_curriculum = $wpdb->get_results($query);
+		return $user_curriculum;
+	}// get_user_academic_info
+
+
+	/**
 	 * Jalar de los torneos de un usuario
 	 * @param int $wp_user_id
 	 * @return mixed $user_tournaments_info
@@ -1590,6 +1663,26 @@ function pu_blank_login( $user ){
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
 
 	}// send_email
+
+	/**
+	 * Manda un correo con las credenciales del registro.
+	 * @param string $email_to, $message
+	 * @return int TRUE or FALSE
+	 */
+	function register_email($mail_to, $username, $password){
+		$st_mail="zurol@pcuervo.com";
+
+		$subject = "Select team register message \r\n";
+		$body_message = ".......\r\n";
+		$body_message .= "USER:".$username."\r\n";
+		$body_message .= "PASSWORD:".$password."\r\n";
+		
+		$headers = "From: Select Team\r\n";
+		$headers .= "Reply-To: ".$st_mail."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+	}// register_email
 
 
 	/**
