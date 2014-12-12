@@ -15,8 +15,8 @@
    	$tournament_info = get_user_tournament($user->st_user_id);
 ?>
 	<div class="container profile clearfix">
+		<input type="hidden" class="p_id" value="<?php echo $_GET['p_id']; ?>">
 		<h2 class="col-xs-12 margin-bottom"><?php echo $user->full_name ?></h2>
-		
 		<div class="col-xs-12 col-sm-6 col-md-4 student-info margin-bottom right">
 			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="margin-bottom">
 			<button type="button" class="btn btn-primary center block" data-toggle="modal" data-target="#student-video"><i class="fa fa-play-circle-o"></i> Watch video</button>

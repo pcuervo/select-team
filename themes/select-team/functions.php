@@ -269,10 +269,11 @@ function pu_blank_login( $user ){
 						reorder($(this), '.isotope-container-sports');
 						return false;
 					});
-				    /*$('.j-login button').on('click', function(e){
+
+				    $('.j-delete-prospect').on('click', function(e){
 						e.preventDefault();
-						login();//addTournament();
-					});*/
+						deleteProspect($('.p_id').val());
+					});
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
@@ -724,6 +725,23 @@ function pu_blank_login( $user ){
 		die();
 	} // register_advisor
 	add_action("wp_ajax_delete_advisor", "delete_advisor");
+
+
+	function delete_prospect(){
+		global $wpdb;
+		$id=$_POST['id'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->wp_users,
+			    array(
+			    	'ID'=> $id
+			    	),
+			    array('%d')
+		);
+	
+		die();
+	} // register_advisor
+	add_action("wp_ajax_delete_prospect", "delete_prospect");
 
 
 	/**
@@ -1407,6 +1425,12 @@ function pu_blank_login( $user ){
 	function st_register_users_table() {
 	    global $wpdb;
 	    $wpdb->st_users = "st_users";
+	}// st_register_users_table
+
+	add_action( 'init', 'st_wp_users_table', 1 );
+	function st_wp_users_table() {
+	    global $wpdb;
+	    $wpdb->wp_users = "wp_users";
 	}// st_register_users_table
 
 	add_action( 'init', 'st_register_advisors_table', 1 );

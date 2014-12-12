@@ -435,6 +435,24 @@ function deleteAdvisor(id){
 
 }
 
+function deleteProspect(id){
+  var advisor_data = {};
+
+  advisor_data['action']= 'delete_prospect';
+  advisor_data['id']= id;
+
+  $.post(
+      ajax_url,
+      advisor_data,
+      function(response){
+        window.location = site_url + '/dashboard-admin/';
+      }// response
+  ); 
+
+}
+
+
+
 function updateAdvisor() {
     var user_data = {};
 
