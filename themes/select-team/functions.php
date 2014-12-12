@@ -179,12 +179,6 @@ function pu_blank_login( $user ){
 								$('#login').modal('show'); 
 							}
 
-							if(window.location.href.indexOf("login=failed") > -1) {
-								$('#login').modal('show'); 
-								var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
-                				$(html_error).prependTo('.modal-footer');
-							}
-
 		                    //On click/change/etc
 		                    filterQuestions();
 		                    var theForm = document.getElementById( 'theForm' );
@@ -256,30 +250,6 @@ function pu_blank_login( $user ){
 						filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
 					});
 					$('#sportAll button').on('click', function(){
-						var sport = $(this).attr('data-filter');
-						$('#sportAll').attr('data-active', sport);
-						reorder($(this), '.isotope-container-sports');
-						return false;
-					});
-					$('#genderAll button').on('click', function(){
-						var gender = $(this).attr('data-filter');
-						$('#genderAll').attr('data-active', gender);
-						reorder($(this), '.isotope-container-sports');
-						return false;
-					});
-				    /*$('.j-login button').on('click', function(e){
-						e.preventDefault();
-						login();//addTournament();
-					});*/
-				</script>
-			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
-				<script type="text/javascript">
-				    correIsotope('.isotope-container-sports', '.player', 'masonry');
-				    filtrarIsotopeDefault('.isotope-container', 'none');
-				    $('.isotope-filters button').on( 'click', function(e) {
-				        filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
-				    });
-				    $('#sportAll button').on('click', function(){
 				        var sport = $(this).attr('data-filter');
 				        console.log(sport);
 				        $('#sportAll').attr('data-active', sport);
@@ -293,41 +263,71 @@ function pu_blank_login( $user ){
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				    });
-				    $('.j-register-advisor .btn-agregar').on('click', function(e){
-				    	formValidation('.j-register-advisor');
+				    $('.j-delete-prospect').on('click', function(e){
+						e.preventDefault();
+						deleteProspect($('.p_id').val());
+					});
+				</script>
+			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
+				<script type="text/javascript">
+			    	correIsotope('.isotope-container-sports', '.player', 'masonry');
+			      	filtrarIsotopeDefault('.isotope-container', 'none');
+			      	$('.isotope-filters button').on( 'click', function(e) {
+			        	filtrarIsotope($(this), '.isotope-container', '.isotope-filters button' );
+			      	});
+			      	$('#sportAll button').on('click', function(){
+				        var sport = $(this).attr('data-filter');
+				        console.log(sport);
+				        $('#sportAll').attr('data-active', sport);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
 				    });
-					
+				    $('#genderAll button').on('click', function(){
+				        var gender = $(this).attr('data-filter');
+				        //console.log(gender);
+				        $('#genderAll').attr('data-active', gender);
+				        reorder($(this), '.isotope-container-sports');
+				        return false;
+				    });
+					$('.j-register-advisor .btn-agregar').on('click', function(e){
+						formValidation('.j-register-advisor');
+					});
 					$('.j-register-advisor .btn-editar').on('click', function(e){
-				    	//e.preventDefault();
-				    	console.log('Updateando advisor');
-				    	formValidation('.j-update-advisor');
-				    	//updateAdvisor();
-				    });
-					
+						formValidation('.j-update-advisor');
+					});
 					$('.hide-form-advisor').hide();
-					
 					$('.btn-registrar-nuevo').on('click', function(){
-				        $('.hide-form-advisor').show('slow');
-				    });
-					
+						$('.j-register-advisor ').trigger("reset");
+						$('.hide-form-advisor').show('slow');
+						$('.j-register-advisor input[name="username"]').removeAttr('disabled');
+						$('.j-register-advisor input[name="email"]').removeAttr('disabled');
+						$('.btn-editar').hide();
+						$('.btn-agregar').show();
+					});
 					$('.btn-guardar-profile').on('click', function(){
-				        updateBasicProfile();
-				    });
-					
+						updateBasicProfile();
+					});
 					$('.btn-editar').hide();
-					
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
+						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
+						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
+					});
+					$('.delete-advisor').on('click', function(e){
+						e.preventDefault();
+						var id = $(this).data('id');
+						$(this).parent().hide();
+						deleteAdvisor(id);
 				    });
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
 					$( function() {
-                        $('.j-mensaje-advisor').on('click', function(e) {
-                            formValidation('.j-form-message-advisor');
-                        });
+						$('.j-mensaje-advisor').on('click', function(e) {
+							formValidation('.j-form-message-advisor');
+						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
@@ -356,11 +356,13 @@ function pu_blank_login( $user ){
 							console.log('actualizando perfil...');
 							updateUserInfo();
 						});
+						
 						$('.j-update-curriculum-update').on('click', function(e){
 							e.preventDefault();
 							console.log('actualizando curriculum...');
-							updateCurriculum();
+							updateAllCurriculum();
 						});
+
 						$('.j-add-tournament').on('click', function(e){
 							e.preventDefault();
 							addTournament();
@@ -369,6 +371,12 @@ function pu_blank_login( $user ){
 						$('.j-delete-tournament').on('click', function(e){
 							e.preventDefault();
 							deleteTournament(e);
+						});
+
+						$('.j-add-academic').on('click', function(e){
+							e.preventDefault();
+							//deleteTournament(e);
+							console.log('add academic');
 						});
 
 						$('.j-update-curriculum-create').on('click', function(e){
@@ -437,12 +445,16 @@ function pu_blank_login( $user ){
 				<script>
 					footerBottom();
 				</script>
-			<?php } else { ?>
 			<?php } ?>
+    		<script>
+				if(window.location.href.indexOf("login=failed") > -1) {
+					$('#login').modal('show'); 
+					var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+					$(html_error).prependTo('.modal-footer');
+				}
+			</script>
     	<?php } }
     add_action( 'wp_footer', 'footerScripts', 21 );
-
-
 
 // ADMIN SCRIPTS AND STYLES //////////////////////////////////////////////////////////
 
@@ -688,6 +700,38 @@ function pu_blank_login( $user ){
 	} // register_advisor
 	add_action("wp_ajax_update_advisor", "update_advisor");
 
+	function delete_advisor(){
+		global $wpdb;
+		$id=$_POST['id'];
+		$deleted = $wpdb->delete(
+			$wpdb->st_advisors,
+				array(
+					'wp_user_id'=> $id
+				),
+				array('%d')
+		);
+		die();
+	} // register_advisor
+	add_action("wp_ajax_delete_advisor", "delete_advisor");
+
+
+	function delete_prospect(){
+		global $wpdb;
+		$id=$_POST['id'];
+
+		$deleted = $wpdb->delete(
+		    $wpdb->wp_users,
+			    array(
+			    	'ID'=> $id
+			    	),
+			    array('%d')
+		);
+	
+		die();
+	} // register_advisor
+	add_action("wp_ajax_delete_prospect", "delete_prospect");
+
+
 	/**
 	 * Registra un usuario advisor
 	 * @param  string  $username
@@ -865,6 +909,9 @@ function pu_blank_login( $user ){
 				);
 
 				$user_id = wp_insert_user( $userdata ) ;
+
+				$mail_status = register_email($email, $username, $password);
+				var_dump($mail_status);
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
@@ -1368,6 +1415,12 @@ function pu_blank_login( $user ){
 	    $wpdb->st_users = "st_users";
 	}// st_register_users_table
 
+	add_action( 'init', 'st_wp_users_table', 1 );
+	function st_wp_users_table() {
+	    global $wpdb;
+	    $wpdb->wp_users = "wp_users";
+	}// st_register_users_table
+
 	add_action( 'init', 'st_register_advisors_table', 1 );
 	function st_register_advisors_table() {
 	    global $wpdb;
@@ -1541,6 +1594,19 @@ function pu_blank_login( $user ){
 	}// get_user_curriculum_info
 
 	/**
+	 * Jalar el historial academico de un usuario
+	 * @param int $wp_user_id
+	 * @return mixed $user_curriculum, 0 en caso de no encontrar resultados.
+	 */
+	function get_user_academic_info($wp_user_id){
+	    global $wpdb;
+	    $query = $wpdb->prepare("SELECT * FROM st_academic WHERE st_user_id = %d", $wp_user_id);
+	    $user_curriculum = $wpdb->get_results($query);
+		return $user_curriculum;
+	}// get_user_academic_info
+
+
+	/**
 	 * Jalar de los torneos de un usuario
 	 * @param int $wp_user_id
 	 * @return mixed $user_tournaments_info
@@ -1578,6 +1644,26 @@ function pu_blank_login( $user ){
 
 	}// send_email
 
+	/**
+	 * Manda un correo con las credenciales del registro.
+	 * @param string $email_to, $message
+	 * @return int TRUE or FALSE
+	 */
+	function register_email($mail_to, $username, $password){
+		$st_mail="zurol@pcuervo.com";
+
+		$subject = "Select team register message \r\n";
+		$body_message = ".......\r\n";
+		$body_message .= "USER:".$username."\r\n";
+		$body_message .= "PASSWORD:".$password."\r\n";
+		
+		$headers = "From: Select Team\r\n";
+		$headers .= "Reply-To: ".$st_mail."\r\n";
+
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+	}// register_email
+
 
 	/**
 	 * Manda un correo sobre las preferencias del coach. // Basada en el archivo maqueta/send-coach.php
@@ -1591,6 +1677,18 @@ function pu_blank_login( $user ){
 
 	add_action("wp_ajax_nopriv_send_coach_email", "send_coach_email");
 	add_action("wp_ajax_send_coach_email", "send_coach_email");
+
+/**
+	 * Manda el correo.
+	 * @param string $email_to, string $message
+	 * @return int TRUE or FALSE
+	 */
+	function send_message(){
+		var_dump($_POST);
+	}
+
+	//add_action("wp_ajax_nopriv_send_message", "send_message");
+	add_action("wp_ajax_send_message", "send_message");
 
 
 	function send_coach_emailX($mail_to, $form_info){
