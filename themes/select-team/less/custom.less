@@ -418,6 +418,8 @@ button, a{
 
 
 	.profile{
+		margin-top: 30px;
+
 		hr{
 			border-color: @gray-light;
 			margin: 10px 0;
@@ -430,13 +432,16 @@ button, a{
 
 		h2{
 			padding-bottom: 15px;
+			margin-bottom: 15px;
 			border-bottom: solid 2px @brand-info;
-			float: left;
 		}
 		
 		.delete-prospect{
 			font-size: 1em;
-			margin: 25px 0;
+			color: @brand-info;
+			.transition
+
+			&:hover{ color: darken(@brand-info, 30%) } 
 		}
 
 		.student-info{
