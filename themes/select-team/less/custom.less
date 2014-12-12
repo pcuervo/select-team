@@ -16,6 +16,7 @@
 html, body{
 	min-height: 100% !important;
 	height: 100%;
+	overflow-x: hidden !important;
 }
 .home{ max-width: 100%; overflow: hidden; }
 .content__dashboard{ padding-left: 0; .transition; }
@@ -318,7 +319,7 @@ button, a{
 		top: 0;
 		left: 0;
 		z-index: 9999;
-		img{ margin-bottom: 3vh; width: 10%; }
+		img{ margin-bottom: 3vh; width: 25%; }
 		h2{ line-height: 2; padding: 0 30px; font-size: 1.1em; }
 		.banner-sports{
 			img{ width: 50%; float: left; margin: 0; }
@@ -698,6 +699,7 @@ figure.effect-sadie:hover figcaption::before {
 // 320px *************
 @media (min-width: @screen-sm-min) {
 	.start-screen{
+		img{ margin-bottom: 3vh; width: 10%; }
 		h2{ line-height: 2; padding: 0 30px; font-size: 1.5em; }
 		.banner-sports{
 			margin-bottom: 30px;

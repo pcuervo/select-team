@@ -154,7 +154,7 @@
 							<?php } else { ?>
 								<h2 class="[ text-center ][ center block ][ margin-bottom ]">We can help you get an athletic scholarship in the USA!</h2>
 							<?php } ?>
-							<div class="[ row ] [ banner-sports ]">
+							<div class="[ row ] [ banner-sports ] [ hidden-xs ]">
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-01.jpg" alt="">
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-02.jpg" alt="">
 								<img class="" src="<?php echo THEMEPATH; ?>images/start-screen-03.jpg" alt="">
@@ -239,24 +239,24 @@
 							<!-- Para el dashboard de admin -->
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
+									<a href="#" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
 								<?php } else { ?>
-									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+									<a href="#" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
 								<?php } ?>
 							</li>
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospectos</a>
+									<a href="#" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospectos</a>
 								<?php } else { ?>
-									<a href="#prospects" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospects</a>
+									<a href="#" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospects</a>
 								<?php } ?>
 							</li>
 							<?php if( $role != 'author' ) { ?>
 								<li>
 									<?php if (qtrans_getLanguage() == 'es'){ ?>
-										<a href="#advisors" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Agentes</a>
+										<a href="#" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Agentes</a>
 									<?php } else { ?>
-										<a href="#advisors" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
+										<a href="#" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
 									<?php } ?>
 								</li>
 							<?php } ?>
