@@ -294,7 +294,6 @@ function pu_blank_login( $user ){
 					});
 					$('.j-register-advisor .btn-editar').on('click', function(e){
 						formValidation('.j-update-advisor');
-
 					});
 					$('.hide-form-advisor').hide();
 					$('.btn-registrar-nuevo').on('click', function(){
@@ -321,9 +320,11 @@ function pu_blank_login( $user ){
 					});
 					$('.delete-advisor').on('click', function(e){
 						e.preventDefault();
-						var id = $(this).data('id');
-						$(this).parent().hide();
-						deleteAdvisor(id);
+						if(confirm("Are you sure?")){
+								var id = $(this).data('id');
+								$(this).parent().hide();
+								deleteAdvisor(id);
+							}
 				    });
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
@@ -386,6 +387,7 @@ function pu_blank_login( $user ){
 						$('.j-delete-academic').on('click', function(e){
 							//e.preventDefault();
 							console.log('delete academic');
+							console.log($(this).parent());
 						});
 
 						$('.j-update-curriculum-create').on('click', function(e){
@@ -1728,7 +1730,6 @@ function pu_blank_login( $user ){
 
 		die();
 	}
-	add_action("wp_ajax_nopriv_register_academic", "register_academic");
 	add_action("wp_ajax_register_academic", "register_academic");
 
 

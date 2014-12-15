@@ -433,7 +433,7 @@ function addAcademic(){
         ajax_url,
         academic_data,
         function(response){
-          //console.log(response);
+          console.log(response);
           //var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos académicos.</div>';
           //$(html_feedback).appendTo('.j-academic');
         } //response
@@ -477,6 +477,8 @@ function deleteAdvisor(id){
         advisor_data,
         function(response){
           console.log(response);
+          var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se ha eliminado el advisor.</div>';
+            $(html_feedback).appendTo('.j-confirm');
           //var msg = $.parseJSON(response);
         }// response
     ); 
@@ -519,6 +521,7 @@ function updateAdvisor() {
             alert('Advisor guardado con exito');
             var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos del advisor.</div>';
             $(html_feedback).appendTo('.j-register-advisor');
+            $('.hide-form-advisor').hide();
           }
 
           else if(msg.error == 1)
@@ -546,7 +549,7 @@ function updateBasicProfile() {
         var msg = $.parseJSON(response);
 
         if(msg.error == 0)
-          alert('Advisor guardado con exito');
+          alert('Advisor guardado con exito*');
         else if(msg.error == 1)
 				  alert('El usuario ya existe');
         else
@@ -576,11 +579,12 @@ function registerAdvisor() {
             console.log(msg.id, user_data['action']);
             if(msg.error == 0){
               var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han registrados los datos del advisor.</div>';
-              $(html_feedback).appendTo('.j-register-advisor');
+              $(html_feedback).appendTo('.j-form-confirm');
+              $('.hide-form-advisor').hide();
               //window.location = site_url + '/dashboard-admin';
 
               var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]"> Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]"> Delete </a> </p>';
-              $(createdAdvisor).appendTo('.j-advisors');
+              $(createdAdvisor).appendTo('.j-advisors-db');
             }
       			else if(msg.error == 1)
       				alert('El usuario ya existe');
