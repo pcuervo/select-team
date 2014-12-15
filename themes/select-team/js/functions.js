@@ -511,14 +511,15 @@ function updateAdvisor() {
           console.log(response);
           var msg = $.parseJSON(response);
 
-          if(msg.error == 0)
+          if(msg.error == 0){
             alert('Advisor guardado con exito');
-
-          else if(msg.error == 1)
+			location.reload();
+		  }else if(msg.error == 1){
 				    alert('El usuario ya existe');
 
-          else
+		  }else{
 				    alert('Error, porfavor revisa los datos');
+			}
         }// response
     ); 
 }// registerAdvisor
