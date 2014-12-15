@@ -21,7 +21,7 @@
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ] [ js-dashboard-section ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
-                <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
+                <div class="[ row ] [ margin-bottom ] [ js-basic-profile ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
@@ -63,12 +63,12 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Guardar cambios</button>
                             <?php } else { ?>
-                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Save changes</button>
+                                <button type="button" class="[ btn btn-primary ] [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Save changes</button>
                             <?php } ?>
                         </form>
                     </div>
                 </div>
-                <div class="[ row ] [ dashboard-profile ] [ js-dashboard-section ] [ margin-bottom ]" id="prospects">
+                <div class="[ row ] [ js-dashboard-section ] [ js-prospects ] [ margin-bottom ]" id="prospects">
                     <div class="[ col-xs-12 col-sm-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Prospectos</h3>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <?php if( $role != 'author' ) { ?>
-                    <div class="[ row ] [ dashboard-profile ] [ js-dashboard-section ] [ margin-bottom ]" id="advisors">
+                    <div class="[ row ] [ js-dashboard-section ] [ js-advisors ] [ margin-bottom ]" id="advisors">
                         <div class="[ col-xs-12 col-sm-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h3 class="[ margin-bottom ]">Agentes</h3>
@@ -209,7 +209,7 @@
                                     </a>
                                 </p>
                         <?php } ?>
-                    </div><!-- .dashboard-profile -->
+                    </div>
                 <?php } ?>
             </div><!-- /container-fluid -->
         </div> <!-- /#page-content-wrapper -->
