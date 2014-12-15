@@ -29,7 +29,7 @@
                 $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
                 $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
                 $academic_hist = "";
-                //$academic_hist = get_user_academic_info($prospect_info->st_user_id);
+                $academic_hist = get_user_academic_info($prospect_info->st_user_id);
                 //var_dump($academic_hist);
             }
             
@@ -404,10 +404,9 @@
                             <?php } ?>
                                 <div class="[ form-group ] [ col-xs-12 ][ j-academic ]">
                                 <?php  if (sizeof($created_curriculum)>0)
-                                     //if(sizeof($academic_hist)>0) { 
-                                     if(0) { ?>
+                                     if(sizeof($academic_hist)>0) { ?>
                                         <?php foreach ($academic_hist as $key => $value) { ?>
-                                            <div class="[ form-group ] [ row ] [ border-bottom ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
+                                            <div class="[ form-group ] [ row ] [ border-bottom ]">
                                                 <p class="[ col-xs-6 ]">
                                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                                         Año: 
@@ -455,7 +454,7 @@
                                 <?php } else { ?>
                                     <label for="highSchool">Highschool</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="highSchool" name="high_school">
+                                <input type="text" class="[ form-control ]" name="high_school">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <p class="help-block">Nombre de la escuela</p>
                                 <?php } else { ?>
@@ -468,7 +467,7 @@
                                 <?php } else { ?>
                                     <span><label for="q3">When are you graduating?</label></span>
                                 <?php } ?>
-                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ]" type="date" id="datepicker-date-of-graduation"/>
+                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ]" type="text" id="datepicker-date-of-graduation"/>
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -476,7 +475,7 @@
                                 <?php } else { ?>
                                     <label for="country">Country</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="country" name="high_school">
+                                <input type="text" class="[ form-control ]" name="country">
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -484,7 +483,7 @@
                                 <?php } else { ?>
                                     <label for="city">City</label>
                                 <?php } ?>
-                                <input type="text" class="[ form-control ]" id="city" name="high_school">
+                                <input type="text" class="[ form-control ]" name="city">
                             </div>                            
                             <div class="clear"></div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>

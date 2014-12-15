@@ -438,6 +438,56 @@ function registerUser() {
     ); 
 }// registerUser
 
+function addAcademic(){
+  //if ($('.j-academic input[name="high_school"]').val()!='' && $('.j-academic input[name="high_grad"]').val()){
+    $academic_name= $('.j-user_curriculum input[name="high_school"]').val();
+    $academic_date= $('.j-user_curriculum input[name="high_grad"]').val();
+    $academic_country= $('.j-user_curriculum input[name="country"]').val();
+    $academic_city= $('.j-user_curriculum input[name="city"]').val();
+    
+    var academic_data = {};
+    academic_data['action']='academic_data';
+    academic_data['name']=$academic_name;
+    academic_data['date']=$academic_date;
+    academic_data['country']=$academic_country;
+    academic_data['city']=$academic_city;
+
+    $('.j-user_curriculum input[name="tournament_data[]"]').val($academic_name);
+    $('.j-user_curriculum input[name="tournament_date_data[]"]').val($academic_date);
+    $('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_country);
+    $('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_city);
+    
+    //$('.j-user_curriculum').append( '<div class="[ form-group ] [ row ] [ j-del-tournament ] [ border-bottom margin-bottom ] "><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$academic_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a onclick="delete_dinamic_tournament(this)" class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
+
+    $append='<div class="[ form-group ] [ row ] [ border-bottom ]"> <p class="[ col-xs-6 ]"> Year: <br><b>'+$academic_date+
+    '</b></p><p class="[ col-xs-4 ]"> School: <br><b>'+$academic_name+
+    '</b></p><p class="[ col-xs-6 ]">Country: <br><b>'+$academic_country+
+    '</b></p> <p class="[ col-xs-4 ]">City: <br><b>'+$academic_city+
+    '</b></p><a class="[ col-xs-2 ] [ color-success ] [ j-delete-academic ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>'
+    $('.j-academic').append($append); 
+
+      //$('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_city);
+
+    $('.j-user_curriculum input[name="high_school"]').val("");
+    $('.j-user_curriculum input[name="high_grad"]').val("");
+    $('.j-user_curriculum input[name="country"]').val("");
+    $('.j-user_curriculum input[name="city"]').val("");
+    //updateCurriculum();
+    console.log(academic_data);
+
+      $.post(
+        ajax_url,
+        academic_data,
+        function(response){
+          console.log(response);
+          //var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos académicos.</div>';
+          //$(html_feedback).appendTo('.j-academic');
+        } //response
+      ); 
+  //}
+}
+
+
 function getAdvisorBasicInfo(id){
 	var user_data = {};
 	user_data['action'] = 'get_info_advisor';
@@ -448,18 +498,18 @@ function getAdvisorBasicInfo(id){
         ajax_url,
         user_data,
         function(response){
-            console.log(1);
-			console.log(response);
-			var msg = $.parseJSON(response.slice(0,-1));
-			console.log(msg);
-			$('.j-register-advisor input[name="full_name"]').val(msg.full_name);
-			$('.j-register-advisor input[name="id"]').val(msg.ID);
-			$('.j-register-advisor input[name="username"]').val(msg.user_login);
-			$('.j-register-advisor input[name="email"]').val(msg.user_email);
-			
-			$('.hide-form-advisor').show('slow');
-			$('.btn-editar').show();
-			$('.btn-agregar').hide();
+          console.log(1);
+    			console.log(response);
+    			var msg = $.parseJSON(response.slice(0,-1));
+    			console.log(msg);
+    			$('.j-register-advisor input[name="full_name"]').val(msg.full_name);
+    			$('.j-register-advisor input[name="id"]').val(msg.ID);
+    			$('.j-register-advisor input[name="username"]').val(msg.user_login);
+    			$('.j-register-advisor input[name="email"]').val(msg.user_email);
+    			
+    			$('.hide-form-advisor').show('slow');
+    			$('.btn-agregar').hide();
+          $('.btn-editar').show();
         }// response
     ); 
 }
@@ -473,6 +523,8 @@ function deleteAdvisor(id){
         advisor_data,
         function(response){
           console.log(response);
+          var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se ha eliminado el advisor.</div>';
+            $(html_feedback).appendTo('.j-confirm');
           //var msg = $.parseJSON(response);
         }// response
     ); 
@@ -514,15 +566,15 @@ function updateAdvisor() {
           if(msg.error == 0){
             alert('Advisor guardado con exito');
 			location.reload();
-		  }else if(msg.error == 1){
-				    alert('El usuario ya existe');
-
+		  }
+          else if(msg.error == 1)
+			alert('El usuario ya existe');
 		  }else{
-				    alert('Error, porfavor revisa los datos');
-			}
+			alert('Error, porfavor revisa los datos');
+		  }
         }// response
     ); 
-}// registerAdvisor
+}// updateAdvisor
 
 function updateBasicProfile() {
     var user_data = {};
@@ -540,7 +592,7 @@ function updateBasicProfile() {
         var msg = $.parseJSON(response);
 
         if(msg.error == 0)
-          alert('Advisor guardado con exito');
+          alert('Advisor guardado con exito*');
         else if(msg.error == 1)
 				  alert('El usuario ya existe');
         else
@@ -548,7 +600,7 @@ function updateBasicProfile() {
 
         }// response
     ); 
-}// registerAdvisor
+}// updateBasicProfile
 
 function registerAdvisor() {
     var user_data = {};
@@ -567,14 +619,20 @@ function registerAdvisor() {
 			
 			console.log(response);
             var msg = $.parseJSON(response);
+            console.log(msg.id, user_data['action']);
+            if(msg.error == 0){
+              var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han registrados los datos del advisor.</div>';
+              $(html_feedback).appendTo('.j-form-confirm');
+              $('.hide-form-advisor').hide();
+              //window.location = site_url + '/dashboard-admin';
 
-            if(msg.error == 0)
-                window.location = site_url + '/dashboard-admin';
-			else if(msg.error == 1)
-				alert('El usuario ya existe');
-			else
-				alert('Error, porfavor revisa los datos');
-
+              var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]"> Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]"> Delete </a> </p>';
+              $(createdAdvisor).appendTo('.j-advisors-db');
+            }
+      			else if(msg.error == 1)
+      				alert('El usuario ya existe');
+      			else
+      				alert('Error, porfavor revisa los datos');
         }// response
     ); 
 }// registerAdvisor
@@ -772,12 +830,10 @@ function formValidation(forma){
                     updateAdvisor();
                     break;
                 case '.j-form-message-advisor':
-                    console.log("validado Mensaje");
                     sendMessage();
                     break;
                 case '.j-contact-message':
-                    console.log("case");
-                    //sendMessage();
+                    sendContactMessage();
                     break;
                 default:
                     console.log('default');
@@ -787,7 +843,24 @@ function formValidation(forma){
     });
 }
 
+function sendContactMessage(){
+  var contact_data= {};
 
+  contact_data['action']  = 'contact_message';
+  contact_data['name']    = $('.j-contact-message input[name="name"]').val();
+  contact_data['email']   = $('.j-contact-message input[name="email"]').val();
+  contact_data['message'] = $('.j-contact-message textarea[name="message"]').val();
+
+  console.log(contact_data);
+
+  $.post(
+        ajax_url,
+        contact_data,
+        function(response){
+          console.log(response);
+        } //response
+    );
+}
 
 function redirectUserDashoard(){
     var user_data = {};
@@ -848,7 +921,6 @@ function sendMessage(){
          ajax_url,
          message_data,
          function(response){
-             //console.log(response);
              //window.location = site_url + '/dashboard';
          } //response
      );
