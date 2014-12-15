@@ -182,6 +182,52 @@ $("#menu-toggle").click(function(e) {
     $("#dashboard, #sidebar-wrapper").toggleClass("toggled");
 });
 
+$('#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-curriculum, #page-content-wrapper .js-messages').css('display','none');
+
+$('.dashboard-menu').click(function() {
+            if ($(this).hasClass('js-profile-admin')) {
+                $(".js-basic-profile").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+                $("#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors").hide('fast', function(){
+                    $(".js-basic-profile").show();
+                });
+            }
+
+            else if ($(this).hasClass('js-prospects')){
+                $(".js-prospects").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+                $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-advisors").hide('fast', function(){
+                    $(".js-prospects").show();
+                });
+                correIsotope('.isotope-container-sports', '.player', 'masonry');
+            }
+            else if ($(this).hasClass('js-advisors')){
+                $(".js-advisors").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+                $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-prospects").hide('fast', function(){
+                    $(".js-advisors").show();  
+                });
+            }
+            else if ($(this).hasClass('js-profile')){
+                $(".js-profile").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+                $("#page-content-wrapper .js-curriculum , #page-content-wrapper .js-messages").hide('fast', function(){
+                    $(".js-profile").show();  
+                });
+            }
+            else if ($(this).hasClass('js-curriculum')){
+                $(".js-curriculum").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+                $("#page-content-wrapper .js-profile , #page-content-wrapper .js-messages").hide('fast', function(){
+                    $(".js-curriculum").show();  
+                });
+            }
+            else if ($(this).hasClass('js-messages')){
+                $(".js-messages").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+                $("#page-content-wrapper .js-curriculum , #page-content-wrapper .js-profile").hide('fast', function(){
+                    $(".js-messages").show();  
+                });
+            }
+            else {
+                console.log('mal');
+            }
+        });
+
 // FOOTER
 function footerBottom(){
     var alturaFooter = $('footer').outerHeight();

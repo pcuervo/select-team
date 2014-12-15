@@ -21,7 +21,7 @@
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ] [ js-dashboard-section ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
-                <div class="[ row ] [ dashboard-profile ] [ margin-bottom ]" id="profile">
+                <div class="[ row ] [ margin-bottom ] [ js-basic-profile ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
@@ -63,12 +63,12 @@
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Guardar cambios</button>
                             <?php } else { ?>
-                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Save changes</button>
+                                <button type="button" class="[ btn btn-primary ] [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Save changes</button>
                             <?php } ?>
                         </form>
                     </div>
                 </div>
-                <div class="[ row ] [ dashboard-profile ] [ js-dashboard-section ] [ margin-bottom ]" id="prospects">
+                <div class="[ row ] [ js-dashboard-section ] [ js-prospects ] [ margin-bottom ]" id="prospects">
                     <div class="[ col-xs-12 col-sm-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Prospectos</h3>
@@ -213,8 +213,35 @@
                                     </p>
                             <?php } ?>
                         </div>
+<<<<<<< HEAD
                         <div class="[ j-confirm ]"></div>
                     </div><!-- .dashboard-profile -->
+=======
+                        <div class="clear"></div>
+                        <?php 
+                            $users = get_advisors_basic_info(); 
+                            foreach ($users as $key => $user) {
+                        ?>
+                                <p class="[ col-xs-12 col-sm-6 ]">
+                                    <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a>
+                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Editar
+                                    <?php } else { ?>
+                                        Edit
+                                    <?php } ?>
+                                    </a> / 
+                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ delete-advisor ]"> 
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Borrar
+                                    <?php } else { ?>
+                                        Delete
+                                    <?php } ?>
+                                    </a>
+                                </p>
+                        <?php } ?>
+                    </div>
+>>>>>>> ab791bca7097740b0db9af76397a52ebdbbc5019
                 <?php } ?>
             </div><!-- /container-fluid -->
         </div> <!-- /#page-content-wrapper -->

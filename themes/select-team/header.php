@@ -209,23 +209,23 @@
 							</li>
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
+									<a href="#profile" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Perfil</a>
 								<?php } else { ?>
-									<a href="#profile" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+									<a href="#profile" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Profile</a>
 								<?php } ?>
 							</li>
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Currículum</a>
+									<a href="#curriculum" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Currículum</a>
 								<?php } else { ?>
-									<a href="#curriculum" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Curriculum</a>
+									<a href="#curriculum" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Curriculum</a>
 								<?php } ?>
 							</li>
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+									<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
 								<?php } else { ?>
-									<a href="#messages" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Messages</a>
+									<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Messages</a>
 								<?php } ?>
 							</li>
 							<li class="j-download">
@@ -239,24 +239,24 @@
 							<!-- Para el dashboard de admin -->
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Perfil</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile-admin ]"><i class="fa fa-user"></i> Perfil</a>
 								<?php } else { ?>
-									<a href="#" class="[ js-page-scroll ]"><i class="fa fa-user"></i> Profile</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile-admin ]"><i class="fa fa-user"></i> Profile</a>
 								<?php } ?>
 							</li>
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospectos</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-prospects ]"><i class="fa fa-file-o"></i> Prospectos</a>
 								<?php } else { ?>
-									<a href="#" class="[ js-page-scroll ]"><i class="fa fa-file-o"></i> Prospects</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-prospects ]"><i class="fa fa-file-o"></i> Prospects</a>
 								<?php } ?>
 							</li>
 							<?php if( $role != 'author' ) { ?>
 								<li>
 									<?php if (qtrans_getLanguage() == 'es'){ ?>
-										<a href="#" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Agentes</a>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-envelope-o"></i> Agentes</a>
 									<?php } else { ?>
-										<a href="#" class="[ js-page-scroll ]"><i class="fa fa-envelope-o"></i> Advisors</a>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-envelope-o"></i> Advisors</a>
 									<?php } ?>
 								</li>
 							<?php } ?>
