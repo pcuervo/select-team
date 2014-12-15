@@ -294,10 +294,12 @@ function pu_blank_login( $user ){
 					});
 					$('.j-register-advisor .btn-editar').on('click', function(e){
 						formValidation('.j-update-advisor');
+
 					});
 					$('.hide-form-advisor').hide();
 					$('.btn-registrar-nuevo').on('click', function(){
 						$('.j-register-advisor ').trigger("reset");
+						$('.hide-form-advisor').hide();
 						$('.hide-form-advisor').show('slow');
 						$('.j-register-advisor input[name="username"]').removeAttr('disabled');
 						$('.j-register-advisor input[name="email"]').removeAttr('disabled');
@@ -310,6 +312,8 @@ function pu_blank_login( $user ){
 					$('.btn-editar').hide();
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
+						$('.hide-form-advisor').hide();
+						$('.hide-form-advisor').show('slow');
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
 						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
@@ -375,8 +379,13 @@ function pu_blank_login( $user ){
 
 						$('.j-add-academic').on('click', function(e){
 							e.preventDefault();
-							//deleteTournament(e);
 							console.log('add academic');
+							addAcademic();
+						});
+
+						$('.j-delete-academic').on('click', function(e){
+							//e.preventDefault();
+							console.log('delete academic');
 						});
 
 						$('.j-update-curriculum-create').on('click', function(e){
@@ -773,6 +782,7 @@ function pu_blank_login( $user ){
 			$st_user_id = add_advisor_user($advisor_data);
 			$msg = array(
 				"success" 	=> "Usuario registrado",
+				"id"		=> $st_user_id,
 				"error"	  	=> 0
 				);
 			echo json_encode( $msg); 
@@ -1417,6 +1427,12 @@ function pu_blank_login( $user ){
 	    $wpdb->st_curriculum = "st_curriculum";
 	}// st_register_curriculum_table
 
+	add_action( 'init', 'st_register_academic_table', 1 );
+	function st_register_academic_table() {
+	    global $wpdb;
+	    $wpdb->st_academic = "st_academic";
+	}// st_register_curriculum_table
+
 	add_action( 'init', 'st_register_users_table', 1 );
 	function st_register_users_table() {
 	    global $wpdb;
@@ -1649,7 +1665,7 @@ function pu_blank_login( $user ){
 		$headers .= 'Reply-To: '.$current_user->user_email."\r\n";
 
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
-
+		return $mail_status;
 	}// send_email
 
 	/**
@@ -1669,8 +1685,51 @@ function pu_blank_login( $user ){
 		$headers .= "Reply-To: ".$st_mail."\r\n";
 
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
-
+		return $mail_status;
 	}// register_email
+
+
+	/**
+	 * Crea un torneo.
+	 * @param  string  $tournament_name
+	 * @param  string  $tournament_date
+	 * @param  string  $tournament_rank
+	 * @return boolean
+	 */
+
+	function register_academic(){
+		global $wpdb;
+		
+		$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+        $academic_name = $_POST['name'];
+        $academic_date = $_POST['date'];
+        $academic_country = $_POST['country'];
+        $academic_city = $_POST['city'];
+
+        $inserted = $wpdb->insert(
+		    $wpdb->st_academic,
+			    array(
+			    	'st_user_id'		=> $st_users_id,
+			    	'high_school'		=> $academic_name,
+			    	'graduation_date'	=> $academic_date,
+			    	'country'			=> $academic_country,
+			    	'city'				=> $academic_city
+			    	),
+			    array(
+			    	'%d', 
+			    	'%s',
+			    	'%s',
+			    	'%s',
+			    	'%s'
+			    	)
+		);
+
+		die();
+	}
+	add_action("wp_ajax_nopriv_register_academic", "register_academic");
+	add_action("wp_ajax_register_academic", "register_academic");
 
 
 	/**
@@ -1686,17 +1745,37 @@ function pu_blank_login( $user ){
 	add_action("wp_ajax_nopriv_send_coach_email", "send_coach_email");
 	add_action("wp_ajax_send_coach_email", "send_coach_email");
 
-/**
-	 * Manda el correo.
-	 * @param string $email_to, string $message
-	 * @return int TRUE or FALSE
-	 */
-	function send_message(){
-		var_dump($_POST);
-	}
 
-	//add_action("wp_ajax_nopriv_send_message", "send_message");
-	add_action("wp_ajax_send_message", "send_message");
+	function send_contact_email($name, $email_address, $comment){
+		$mail_to = 'zurol@pcuervo.com, raul@pcuervo.com, alejandro@pcuervo.com'; //Comentar luego.
+
+		$body_message = "";
+		$subject = 'Select team coach - Comment';
+
+		$body_message = "Name: ".$name."\n";
+		$body_message .= "Email: ".$email_address."\n\n";
+
+		$body_message .= "".$comment;
+
+		$headers = 'From: '.$name."\r\n";
+		$headers .= 'Reply-To: '.$email_address."\r\n";
+		
+		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+
+		return $mail_status;
+	}//send_coach_email
+
+
+	function contact_message(){
+		var_dump($_POST);
+		$name = $_POST['name'];
+		$email_address = $_POST['email'];
+		$comment = $_POST['message'];
+		send_contact_email($name, $email_address, $comment);
+		die();
+	} // register_advisor
+	add_action("wp_ajax_nopriv_contact_message", "contact_message");
+	add_action("wp_ajax_contact_message", "contact_message");
 
 
 	function send_coach_emailX($mail_to, $form_info){

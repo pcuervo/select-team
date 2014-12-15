@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <?php if( $role != 'author' ) { ?>
-                    <div class="[ row ] [ dashboard-profile ] [ js-dashboard-section ] [ margin-bottom ]" id="advisors">
+                    <div class="[ row ] [ dashboard-profile ] [ j-advisors ] [ js-dashboard-section ] [ margin-bottom ]" id="advisors">
                         <div class="[ col-xs-12 col-sm-12 ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h3 class="[ margin-bottom ]">Agentes</h3>
@@ -165,13 +165,13 @@
                                         <?php } else { ?>
                                             <label for="password">Password</label>
                                         <?php } ?>
-                                        <input type="password" class="[ form-control ][ required ]" name="password" id="password">
+                                        <input type="password" class="[ form-control ]" name="password" id="password">
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                                             <label for="password">Confirmar contraseña</label>
                                         <?php } else { ?>
                                             <label for="password">Password Confirmation</label>
                                         <?php } ?>
-                                        <input type="password" class="[ form-control ][ required ]" name="password_confirmation" id="password_confirmation">
+                                        <input type="password" class="[ form-control ]" name="password_confirmation" id="password_confirmation">
                                         <label for="validate" id="validate"></label>   
                                     </div>
                                     <div class="[ form-group ]">
@@ -186,7 +186,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="clear"></div>
+                        <div class="[ clear ]"></div>
                         <?php 
                             $users = get_advisors_basic_info(); 
                             foreach ($users as $key => $user) {
