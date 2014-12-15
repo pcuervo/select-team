@@ -41,23 +41,23 @@
             <?php } else { ?>
                 <h3 class="red">Leave a comment</h3>
             <?php } ?>
-            <form role="form">
+            <form role="form" class="[ j-contact-message ]">
                 <div class="form-group">
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                         <label for="name">Nombre</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nombre">
+                        <input type="text" class="[ form-control ][ required ]" id="name" placeholder="Nombre" name="name">
                     <?php } else { ?>
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Name">
+                        <input type="text" class="[ form-control ][ required ]" id="name" placeholder="Name" name="name">
                     <?php } ?>
                 </div>
                 <div class="form-group">
                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                         <label for="mail">E-mail</label>
-                        <input type="email" class="form-control" id="mail" placeholder="Ingresa tu correo electrónico">
+                        <input type="email" class="[ form-control ][ required email ]" id="mail" placeholder="Ingresa tu correo electrónico" name="email">
                     <?php } else { ?>
                         <label for="mail">E-mail address</label>
-                        <input type="email" class="form-control" id="mail" placeholder="Enter email">
+                        <input type="email" class="[ form-control ][ required email ]" id="mail" placeholder="Enter email" name="email">
                     <?php } ?>
                 </div>
                 <div class="form-group">
@@ -66,12 +66,12 @@
                     <?php } else { ?>
                         <label for="mail">Write your comment</label>
                     <?php } ?>
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea class="[ form-control ][ required ]" rows="3" name="message"></textarea>
                 </div>
                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                    <button type="submit" class="btn btn-primary right">Enviar</button>
+                    <button type="submit" class="[ btn btn-primary right ][ j-contact-button ]">Enviar</button>
                 <?php } else { ?>
-                    <button type="submit" class="btn btn-primary right">Submit</button>
+                    <button type="submit" class="[ btn btn-primary right ][ j-contact-button ]">Submit</button>
                 <?php } ?>
             </form>
         </div>

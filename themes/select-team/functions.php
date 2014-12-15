@@ -122,7 +122,7 @@ function pu_blank_login( $user ){
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
 		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
-		if (get_the_title()=='Register')
+		if (get_the_title()=='Register' || get_the_title()=='Contacto')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
 		if (get_the_title()=='Dashboard Admin')
@@ -438,6 +438,14 @@ function pu_blank_login( $user ){
 						});
 						elegirDeporte('');
 						elegirDeporte($('#sport').val());
+					});
+				</script>
+			<?php } elseif (get_the_title()=='Contacto') { ?>
+				<script type="text/javascript">
+					$( function() {
+						$('.j-contact-button').on('click', function(e){
+							formValidation('.j-contact-message');
+						});
 					});
 				</script>
 			<?php } ?>

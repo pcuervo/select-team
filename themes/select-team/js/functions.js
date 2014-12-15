@@ -707,7 +707,6 @@ function loginUser(user, password){
 * @return void
 **/
 function formValidation(forma){
-  console.log(forma);
     $(forma).validate({
         rules: {
           password_confirmation:{
@@ -726,8 +725,12 @@ function formValidation(forma){
                     updateAdvisor();
                     break;
                 case '.j-form-message-advisor':
-                    console.log("validando");
+                    console.log("validado Mensaje");
                     sendMessage();
+                    break;
+                case '.j-contact-message':
+                    console.log("case");
+                    //sendMessage();
                     break;
                 default:
                     console.log('default');
