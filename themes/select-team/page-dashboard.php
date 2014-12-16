@@ -589,7 +589,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="[ row ] [ js-dashboard-section ] [ js-messages ] [ margin-bottom ]"  id="messages">
+                <div class="[ row ] [ js-dashboard-section ] [ js-messages ] [ margin-bottom ]"  id="">
                     <div class="[ col-xs-12 col-sm-7 ]">
                         <?php 
                             $user_id = get_current_user_id();

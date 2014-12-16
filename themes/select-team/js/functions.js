@@ -182,7 +182,7 @@ $("#menu-toggle").click(function(e) {
     $("#dashboard, #sidebar-wrapper").toggleClass("toggled");
 });
 
-$('#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-curriculum, #page-content-wrapper .js-messages').css('display','none');
+$('#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-curriculum, #page-content-wrapper .js-messages , #page-content-wrapper .js-messages-admin').css('display','none');
 
 $('.dashboard-menu').click(function() {
   if ($(this).hasClass('js-profile-admin')) {
@@ -222,6 +222,12 @@ $('.dashboard-menu').click(function() {
       $(".js-messages").addClass('dashboard-active').siblings().removeClass('dashboard-active');
       $("#page-content-wrapper .js-curriculum , #page-content-wrapper .js-profile").hide('fast', function(){
           $(".js-messages").show();  
+      });
+  }
+  else if ($(this).hasClass('js-messages-admin')){
+      $(".js-messages-admin").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+      $("#page-content-wrapper .js-curriculum , #page-content-wrapper .js-basic-profile").hide('fast', function(){
+          $(".js-messages-admin").show();  
       });
   }
   else {
