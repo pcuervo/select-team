@@ -821,6 +821,48 @@ function pu_blank_login( $user ){
 	} // register_advisor
 
 	/**
+	 * Registra una conversacion
+	 * @param  string  $para quien
+	 * @param  string  $password 
+	 * @param string  $email
+	 * @return boolean TODO
+	 
+	 */
+	function has_conversacion($from_id,$to_id ){
+		 global $wpdb;
+
+	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id";
+	    $users = $wpdb->get_results($query);
+		
+		return $users;
+	} // register_advisor
+	
+
+	/**
+	 * Registra un mensaje
+	 * @param  string  $username
+	 * @param  string  $password 
+	 * @param string  $email
+	 * @return boolean
+	 */
+	function add_mensaje_conversation($message,$from_id,$to_id,$conversation_id){
+		$created_date = date("Y-m-d H:i:s");
+		$mensajedata = array(
+			'message'  	=> $message,
+			'conversation_id'   	=> $conversation_id, 
+			'read'	=> 0,
+			'date'			=> $created_date,
+			'receptor' => $to_id
+		);
+
+		$user_id = add_message( $mensajedata ) ;
+		if($user_id)
+			return true;
+		else
+			return false;
+	} // register_advisor
+
+	/**
 	 * Registra un mensaje
 	 * @param  string  $username
 	 * @param  string  $password 
@@ -873,6 +915,19 @@ function pu_blank_login( $user ){
 		
 		$user_id= get_current_user_id();
 	    $query = "SELECT T.display_name as 'to', F.display_name as 'from', C.* FROM select_team.st_conversations C INNER JOIN wp_users F ON F.ID = C.from_id INNER JOIN wp_users T ON T.ID = C.to_id WHERE from_id ='".$user_id."' or to_id ='".$user_id."'";
+	    $users = $wpdb->get_results($query);
+		
+		return $users;
+	}// get_users_basic_info
+
+	/**
+	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
+	function get_mensajes_conversations($conversation_id ){
+	    global $wpdb;
+		
+	    $query = "SELECT * FROM select_team.st_messages where conversation_id ='".$conversation_id."'";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
