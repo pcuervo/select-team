@@ -602,7 +602,9 @@
                                 <p><?php echo $conver->from; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
                             <?php } ?>
                         <?php } ?>
-                        <p>hola</p>
+                        <?php if(count($conversations) <= 0){ ?>
+							<p>No tienes mensajes</p>
+						<?php } ?>
                     </div>
                 </div>
             </div>

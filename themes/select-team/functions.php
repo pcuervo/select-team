@@ -828,13 +828,33 @@ function pu_blank_login( $user ){
 	 * @return boolean TODO
 	 
 	 */
-	function has_conversacion($from_id,$to_id ){
+	function has_conversacion($id,$to){
 		 global $wpdb;
+		$conv_id = -1;		
+	    $query = "SELECT * FROM st_conversations WHERE from_id = '".$id."' OR to_id = '".$id."';";
+	    $conv = $wpdb->get_results($query);
+		foreach ($conv as $key => $c) {
+			if($c->from_id == $to || $c->to_id  == $to){
+				$conv_id = $c->id;
+			}
+		}
+		return $conv_id;
+	} // register_advisor
 
-	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id";
-	    $users = $wpdb->get_results($query);
+	/**
+	 * Registra una conversacion
+	 * @param  string  $para quien
+	 * @param  string  $password 
+	 * @param string  $email
+	 * @return boolean TODO
+	 
+	 */
+	function get_conversacion_info($id){
+		global $wpdb;
+	    $query = "SELECT * FROM st_conversations where id = '".$id."'";
+	    $conv = $wpdb->get_results($query);
 		
-		return $users;
+		return $conv;
 	} // register_advisor
 	
 
@@ -871,7 +891,10 @@ function pu_blank_login( $user ){
 	 */
 	function register_mensaje($message,$from_id,$to_id){
 		
-		$conversation_id = register_conversacion($from_id,$to_id );
+		$conversation_id = has_conversacion($from_id, $to_id);
+		if( $conversation_id <= 0){
+			$conversation_id = register_conversacion($from_id,$to_id );
+		}
 		
 		if ( $conversation_id != -1 )
 		{
