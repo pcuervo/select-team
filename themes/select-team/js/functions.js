@@ -567,9 +567,9 @@ function updateAdvisor() {
             alert('Advisor guardado con exito');
 			location.reload();
 		  }
-          else if(msg.error == 1)
+          else if (msg.error == 1) {
 			alert('El usuario ya existe');
-		  }else{
+		  } else {
 			alert('Error, porfavor revisa los datos');
 		  }
         }// response
