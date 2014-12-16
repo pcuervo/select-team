@@ -591,43 +591,18 @@
                 </div>
                 <div class="[ row ] [ js-dashboard-section ] [ js-messages ] [ margin-bottom ]"  id="messages">
                     <div class="[ col-xs-12 col-sm-7 ]">
-                        <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <h3>Mensajes</h3>
-                            <p class="help-block">Envía un mensaje a uno de nuestros agentes.</p>
-                        <?php } else { ?>
-                            <h3>Messages</h3>
-                            <p class="help-block">Send a message to one of our managers.</p>
-                        <?php } ?>
-                        <form role="form" class="[ row ] [ j-form-message-advisor ]">
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="manager" id="manager" name="agent">Selecciona un agente:</label>
-                                    <select class="[ form-control ] [ selectMensajeAdvisor ] [ required ]" id="selectMensajeAdvisor">
-                                        <option value="zurol@pcuervo.com">Luis Mendoza</option>
-                                        <option value="miguel@pcuervo.com">Nair Tolomeo</option>
-                                    </select>
-                                <?php } else { ?>
-                                    <label for="manager" id="manager" name="agent">Select an advisor:</label>
-                                    <select class="[ form-control ][ selectMensajeAdvisor ] [ required ]" id="selectMensajeAdvisor" name="selectMensajeAdvisor">
-                                        <option value="zurol@pcuervo.com">Luis Mendoza</option>
-                                        <option value="miguel@pcuervo.com">Nair Tolomeo</option>
-                                    </select>
-                                <?php } ?>
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="message">Tu mensaje</label>
-                                <?php } else { ?>
-                                    <label for="message">Your message</label>
-                                <?php } ?>
-                                <textarea class="[ form-control ] [ txtareaMensajeAdvisor ] [ required ]" rows="3" id="txtareaMensajeAdvisor" name="txtareaMensajeAdvisor"></textarea>
-                            </div>
-                            <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-mensaje-advisor ]">Enviar mensaje</button>
+                        <?php 
+                            $user_id = get_current_user_id();
+                            $conversations = get_user_conversations(); 
+                            foreach ($conversations as $key => $conver) {
+                        ?>  
+                            <?php if($user_id == $conver->from_id){ ?>
+                                <p><?php echo $conver->to; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
                             <?php } else { ?>
-                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-mensaje-advisor ]">Send Message</button>
+                                <p><?php echo $conver->from; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
                             <?php } ?>
-                        </form>
+                        <?php } ?>
+                        <p>hola</p>
                     </div>
                 </div>
             </div>
