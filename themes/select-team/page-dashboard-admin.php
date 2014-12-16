@@ -194,7 +194,7 @@
                                 $users = get_advisors_basic_info(); 
                                 foreach ($users as $key => $user) {
                             ?>
-                                    <p class="[ col-xs-12 col-sm-6 ]">
+                                    <p class="[ col-xs-12 ]">
                                         <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a>
                                         <a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -214,9 +214,23 @@
                             <?php } ?>
                         </div>
                         <div class="[ j-confirm ]"></div>
-                    </div><!-- .dashboard-profile -->
-                    
+                    </div>
                 <?php } ?>
+                <div class="[ row ] [ js-dashboard-section ] [ js-messages-admin ] [ margin-bottom ]"  id="">
+                    <div class="[ col-xs-12 col-sm-7 ]">
+                        <?php 
+                            $user_id = get_current_user_id();
+                            $conversations = get_user_conversations(); 
+                            foreach ($conversations as $key => $conver) {
+                        ?>  
+                            <?php if($user_id == $conver->from_id){ ?>
+                                <p><?php echo $conver->to; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+                            <?php } else { ?>
+                                <p><?php echo $conver->from; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                </div>
             </div><!-- /container-fluid -->
         </div> <!-- /#page-content-wrapper -->
     </div><!-- #dashboard -->

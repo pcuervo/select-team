@@ -224,6 +224,12 @@ $('.dashboard-menu').click(function() {
           $(".js-messages").show();  
       });
   }
+  else if ($(this).hasClass('js-messages-admin')){
+      $(".js-messages-admin").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+      $("#page-content-wrapper .js-curriculum , #page-content-wrapper .js-basic-profile").hide('fast', function(){
+          $(".js-messages-admin").show();  
+      });
+  }
   else {
       console.log('mal');
   }
