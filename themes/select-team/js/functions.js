@@ -590,18 +590,15 @@ function updateAdvisor() {
 
           if(msg.error == 0){
             alert('Advisor guardado con exito');
-            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos del advisor.</div>';
-            $(html_feedback).appendTo('.j-register-advisor');
-            $('.hide-form-advisor').hide();
-          }
-
-          else if(msg.error == 1)
-				    alert('El usuario ya existe');
-
-          else
-				    alert('Error, porfavor revisa los datos');
+			location.reload();
+		  }
+          else if (msg.error == 1) {
+			alert('El usuario ya existe');
+		  } else {
+			alert('Error, porfavor revisa los datos');
+		  }
         }// response
-    ); 
+    );
 }// updateAdvisor
 
 function updateBasicProfile() {

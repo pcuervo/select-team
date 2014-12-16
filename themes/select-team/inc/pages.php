@@ -67,6 +67,42 @@
 			wp_insert_post( $page, true );
 		}
 		
+		// CONVERSACIONES
+		if( ! get_page_by_path('conversaciones') ){
+			$page = array(
+				'post_author' => 1,
+				'post_status' => 'publish',
+				'post_title'  => 'Conversaciones',
+				'post_name'   => 'conversaciones',
+				'post_type'   => 'page'
+			);
+			wp_insert_post( $page, true );
+		}
+		
+		// MENSAJES
+		if( ! get_page_by_path('mensajes') ){
+			$page = array(
+				'post_author' => 1,
+				'post_status' => 'publish',
+				'post_title'  => 'Mensajes',
+				'post_name'   => 'mensajes',
+				'post_type'   => 'page'
+			);
+			wp_insert_post( $page, true );
+		}
+		
+		// MENSAJES-NUEVO
+		if( ! get_page_by_path('mensajes-new') ){
+			$page = array(
+				'post_author' => 1,
+				'post_status' => 'publish',
+				'post_title'  => 'Mensajes-new',
+				'post_name'   => 'mensajes-new',
+				'post_type'   => 'page'
+			);
+			wp_insert_post( $page, true );
+		}
+		
 		// CONTACTO
 		if( ! get_page_by_path('contacto') ){
 			$page = array(
