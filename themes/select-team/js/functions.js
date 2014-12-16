@@ -573,7 +573,7 @@ function updateAdvisor() {
 			alert('Error, porfavor revisa los datos');
 		  }
         }// response
-    ); 
+    );
 }// updateAdvisor
 
 function updateBasicProfile() {
