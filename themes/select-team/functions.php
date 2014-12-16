@@ -265,7 +265,9 @@ function pu_blank_login( $user ){
 				    });
 				    $('.j-delete-prospect').on('click', function(e){
 						e.preventDefault();
-						deleteProspect($('.p_id').val());
+						if(confirm("Are you sure?")){
+							deleteProspect($('.p_id').val());
+						}
 					});
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
