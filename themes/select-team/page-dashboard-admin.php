@@ -232,9 +232,9 @@
                     </div>
                     <div class="[ col-xs-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <button class="[ btn btn-primary btn-new-message ]">Nuevo mensaje</button>
+                            <a href="<?php echo site_url('mensajes-new'); ?>" class="[ btn btn-primary btn-new-message ]">Nuevo mensaje</a>
                         <?php } else { ?>
-                            <button class="[ btn btn-primary btn-new-message ]">New message</button>
+                            <a href="<?php echo site_url('mensajes-new'); ?>" class="[ btn btn-primary btn-new-message ]">New message</a>
                         <?php } ?>
                     </div>
                 </div>

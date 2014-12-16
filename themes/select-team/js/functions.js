@@ -187,14 +187,14 @@ $('#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #pa
 $('.dashboard-menu').click(function() {
   if ($(this).hasClass('js-profile-admin')) {
       $(".js-basic-profile").addClass('dashboard-active').siblings().removeClass('dashboard-active');
-      $("#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors").hide('fast', function(){
+      $("#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-messages-admin").hide('fast', function(){
           $(".js-basic-profile").show();
       });
   }
 
   else if ( $(this).hasClass('js-prospects') ){
       $(".js-prospects").addClass('dashboard-active').siblings().removeClass('dashboard-active');
-      $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-advisors").hide('fast', function(){
+      $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-advisors, #page-content-wrapper .js-messages-admin").hide('fast', function(){
           $(".js-prospects").show('fast', function(){
             correIsotope('.isotope-container-sports', '.player', 'masonry');
           });
@@ -202,8 +202,14 @@ $('.dashboard-menu').click(function() {
   }
   else if ($(this).hasClass('js-advisors')){
       $(".js-advisors").addClass('dashboard-active').siblings().removeClass('dashboard-active');
-      $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-prospects").hide('fast', function(){
+      $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-prospects, #page-content-wrapper .js-messages-admin").hide('fast', function(){
           $(".js-advisors").show();  
+      });
+  }
+  else if ($(this).hasClass('js-messages-admin')){
+      $(".js-messages-admin").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+      $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-prospects, #page-content-wrapper .js-advisors").hide('fast', function(){
+          $(".js-messages-admin").show();  
       });
   }
   else if ($(this).hasClass('js-profile')){

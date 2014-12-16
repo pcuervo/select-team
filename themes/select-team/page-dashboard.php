@@ -606,6 +606,13 @@
 							<p>No tienes mensajes</p>
 						<?php } ?>
                     </div>
+                    <div class="[ col-xs-12 ]">
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <a href="<?php echo site_url('mensajes-new'); ?>" class="[ btn btn-primary btn-new-message ]">Nuevo mensaje</a>
+                        <?php } else { ?>
+                            <a href="<?php echo site_url('mensajes-new'); ?>" class="[ btn btn-primary btn-new-message ]">New message</a>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div><!-- /#page-content-wrapper -->
