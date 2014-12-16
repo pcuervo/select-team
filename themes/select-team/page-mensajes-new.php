@@ -1,12 +1,22 @@
 <?php 
-
+	$status = null;
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-		$status = register_mensaje("HOLA MUNDO",1);
-		echo "post";
+		$mensaje = $_POST["mensaje"];
+		$to = $_POST["email-advisor"];
+		$from = get_current_user_id();
+		
+		$status = register_mensaje($mensaje, $from, $to);
 	}
 
 ?>
 <?php get_header(); ?>
+<?php if($status != null){ ?> 
+	<?php if($status){ ?> 
+		<p>TODO BIEN</p>
+	<?php } else { ?>
+		<p>TODO MAL</p>
+	<?php } ?>
+<?php } ?>
 <form role="form" class="" method="post" >
 	<select name="email-advisor">
 		<?php 
