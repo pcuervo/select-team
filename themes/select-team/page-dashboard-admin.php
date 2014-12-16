@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <?php if( $role != 'author' ) { ?>
-                    <div class="[ row ] [ dashboard-profile ] [ j-advisors ] [ js-dashboard-section ] [ margin-bottom ]" id="advisors">
+                    <div class="[ row ] [ j-advisors ] [ js-dashboard-section ] [ js-advisors ] [ margin-bottom ]" id="advisors">
                         <div class="[ col-xs-12 col-sm-12 ][ j-advisor-confirm ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h3 class="[ margin-bottom ]">Agentes</h3>
@@ -215,30 +215,7 @@
                         </div>
                         <div class="[ j-confirm ]"></div>
                     </div><!-- .dashboard-profile -->
-                        <div class="clear"></div>
-                        <?php 
-                            $users = get_advisors_basic_info(); 
-                            foreach ($users as $key => $user) {
-                        ?>
-                                <p class="[ col-xs-12 col-sm-6 ]">
-                                    <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a>
-                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        Editar
-                                    <?php } else { ?>
-                                        Edit
-                                    <?php } ?>
-                                    </a> / 
-                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ delete-advisor ]"> 
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        Borrar
-                                    <?php } else { ?>
-                                        Delete
-                                    <?php } ?>
-                                    </a>
-                                </p>
-                        <?php } ?>
-                    </div>
+                    
                 <?php } ?>
             </div><!-- /container-fluid -->
         </div> <!-- /#page-content-wrapper -->
