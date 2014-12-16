@@ -12,6 +12,14 @@
     }
     get_header();
 
+    if(sizeof($_GET)>0){
+        if(isset($_GET['high_school'])){
+            addAcademic($_GET);
+        }elseif (isset($_GET['date'])) {
+            deleteAcademic($_GET);
+        }
+
+    }
 ?>
     <div id="dashboard">
         <?php 
@@ -443,6 +451,7 @@
                                                     <br/>
                                                     <b><?php  echo $academic_hist[$key]->city; ?></b>
                                                 </p>
+                                                <input type="hidden" data-id="<?php echo $academic_hist[$key]->id; ?>" value="<?php echo $academic_hist[$key]->id; ?>" />
                                                 <a class="[ col-xs-2 ] [ color-success ] [ j-delete-academic ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a>
                                             </div>
                                         <?php } ?>

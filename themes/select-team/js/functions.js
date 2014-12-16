@@ -308,6 +308,32 @@ function addTournament(){
   }
 }
 
+function deleteAcademic(e){
+  $parent = e;
+  $parent.hide('slow');
+  var childs = e['0'].childNodes;    
+  console.log(childs);
+  var date_split    = childs[1].innerText.split(':');
+  var name_split    = childs[3].innerText.split(':');
+  var country_split = childs[5].innerText.split(':');
+  var city_split    = childs[7].innerText.split(':');
+  var id    = childs[9].value;
+
+  var date  = date_split[1].substring(1);
+  var name = name_split[1].substring(1);
+  var country = country_split[1].substring(1);
+  var city   = city_split[1].substring(1);
+
+  console.log(date, name, country, city, id);
+
+  $.get(
+    site_url+'/dashboard/'+'?date='+date+'&nom='+name+'&country='+country+'&city='+city+'&del='+id,
+    function(response){
+
+    } //response
+  );
+}
+
 function delete_dinamic_tournament(e){
   var childs = e.parentNode.childNodes;  
   var nombre = childs[0].innerText;
@@ -452,10 +478,10 @@ function addAcademic(){
     academic_data['country']=$academic_country;
     academic_data['city']=$academic_city;
 
-    $('.j-user_curriculum input[name="tournament_data[]"]').val($academic_name);
-    $('.j-user_curriculum input[name="tournament_date_data[]"]').val($academic_date);
-    $('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_country);
-    $('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_city);
+    //$('.j-user_curriculum input[name="tournament_data[]"]').val($academic_name);
+    //$('.j-user_curriculum input[name="tournament_date_data[]"]').val($academic_date);
+    //$('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_country);
+    //$('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_city);
     
     //$('.j-user_curriculum').append( '<div class="[ form-group ] [ row ] [ j-del-tournament ] [ border-bottom margin-bottom ] "><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$academic_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a onclick="delete_dinamic_tournament(this)" class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
 
@@ -474,14 +500,13 @@ function addAcademic(){
     $('.j-user_curriculum input[name="city"]').val("");
     //updateCurriculum();
     console.log(academic_data);
+    var data = $('.j-user_curriculum').serialize();
+    //console.log(academic_data.serialize());
 
-      $.post(
-        ajax_url,
-        academic_data,
+      $.get(
+        site_url+'/dashboard/'+'?high_school='+$academic_name+'&high_grad='+$academic_date+'&country='+$academic_country+'&city='+$academic_city+'',
         function(response){
           console.log(response);
-          //var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos académicos.</div>';
-          //$(html_feedback).appendTo('.j-academic');
         } //response
       ); 
   //}
@@ -567,13 +592,13 @@ function updateAdvisor() {
             alert('Advisor guardado con exito');
 			location.reload();
 		  }
-          else if(msg.error == 1)
+          else if (msg.error == 1) {
 			alert('El usuario ya existe');
-		  }else{
+		  } else {
 			alert('Error, porfavor revisa los datos');
 		  }
         }// response
-    ); 
+    );
 }// updateAdvisor
 
 function updateBasicProfile() {
