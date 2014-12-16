@@ -265,9 +265,7 @@ function pu_blank_login( $user ){
 				    });
 				    $('.j-delete-prospect').on('click', function(e){
 						e.preventDefault();
-						if(confirm("Are you sure?")){
-							deleteProspect($('.p_id').val());
-						}
+						deleteProspect($('.p_id').val());
 					});
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
@@ -387,8 +385,9 @@ function pu_blank_login( $user ){
 						});
 
 						$('.j-delete-academic').on('click', function(e){
-							//console.log('delete academic');
-							deleteAcademic($(this).parent());
+							//e.preventDefault();
+							console.log('delete academic');
+							console.log($(this).parent());
 						});
 
 						$('.j-update-curriculum-create').on('click', function(e){
@@ -869,6 +868,20 @@ function pu_blank_login( $user ){
 	 * Jalar "basic profile" de todos los usuarios
 	 * @return mixed $users_basic_info
 	 */
+	function get_user_conversations(){
+	    global $wpdb;
+		
+		$user_id= get_current_user_id();
+	    $query = "SELECT T.display_name as 'to', F.display_name as 'from', C.* FROM select_team.st_conversations C INNER JOIN wp_users F ON F.ID = C.from_id INNER JOIN wp_users T ON T.ID = C.to_id WHERE from_id ='".$user_id."' or to_id ='".$user_id."'";
+	    $users = $wpdb->get_results($query);
+		
+		return $users;
+	}// get_users_basic_info
+
+	/**
+	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
 	function get_info_advisor(){
 		$user_id= $_POST['id'];
 
@@ -1270,63 +1283,6 @@ function pu_blank_login( $user ){
 	add_action("wp_ajax_nopriv_register_tournament", "register_tournament");
 	add_action("wp_ajax_register_tournament", "register_tournament");
 
-
-	/**
-	 * Crea un torneo.
-	 * @param  string  $tournament_name
-	 * @param  string  $tournament_date
-	 * @param  string  $tournament_rank
-	 * @return boolean
-	 */
-
-	function addAcademic($info){
-		global $wpdb;
-		
-		$prospect_info = get_user_basic_info(get_current_user_id()); 
-        $st_users_id=$prospect_info->st_user_id;
-		
-        $high_school = $info['high_school'];
-        $high_grad = $info['high_grad'];
-        $country = $info['country'];
-        $country = $info['country'];
-        $city = $info['city'];
-
-	        $inserted = $wpdb->insert(
-			    $wpdb->st_academic,
-				    array(
-				    	'st_user_id'		=> $st_users_id,
-				    	'high_school'		=> $high_school,
-				    	'graduation_date'	=> $high_grad,
-				    	'country'			=> $country,
-				    	'city'				=> $city
-				    	),
-				    array(
-				    	'%d', 
-				    	'%s',
-				    	'%s',
-				    	'%s',
-				    	'%s'
-				    	)
-			);
-		die();
-	}
-
-	function deleteAcademic($info){
-		global $wpdb;
-		$id=$info['del'];
-		$prospect_info = get_user_basic_info(get_current_user_id()); 
-        $st_users_id=$prospect_info->st_user_id;
-
-		$deleted = $wpdb->delete(
-			$wpdb->st_academic,
-				array(
-					'st_user_id'=> $st_users_id,
-					'id'=> $id
-				),
-				array('%d')
-		);
-		die();
-	}
 	/**
 	 * Actualiza los datos del perfil del usuario.
 	 * @param  string  $address
