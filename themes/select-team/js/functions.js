@@ -182,7 +182,7 @@ $("#menu-toggle").click(function(e) {
     $("#dashboard, #sidebar-wrapper").toggleClass("toggled");
 });
 
-$('#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-curriculum, #page-content-wrapper .js-messages').css('display','none');
+$('#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-curriculum, #page-content-wrapper .js-messages , #page-content-wrapper .js-messages-admin').css('display','none');
 
 $('.dashboard-menu').click(function() {
   if ($(this).hasClass('js-profile-admin')) {

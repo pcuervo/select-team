@@ -230,6 +230,13 @@
                             <?php } ?>
                         <?php } ?>
                     </div>
+                    <div class="[ col-xs-12 ]">
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <button class="[ btn btn-primary btn-new-message ]">Nuevo mensaje</button>
+                        <?php } else { ?>
+                            <button class="[ btn btn-primary btn-new-message ]">New message</button>
+                        <?php } ?>
+                    </div>
                 </div>
             </div><!-- /container-fluid -->
         </div> <!-- /#page-content-wrapper -->
