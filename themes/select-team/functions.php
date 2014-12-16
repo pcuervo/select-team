@@ -800,6 +800,50 @@ function pu_blank_login( $user ){
 	add_action("wp_ajax_register_advisor", "register_advisor");
 	
 	/**
+	 * Registra una conversacion
+	 * @param  string  $para quien
+	 * @param  string  $password 
+	 * @param string  $email
+	 * @return boolean
+	 */
+	function register_conversacion($from_id,$to_id ){
+		$created_date = date("Y-m-d H:i:s");
+		$conversation_data = array(
+		    'from_id'  	=> $from_id,
+		    'to_id'   	=> $to_id
+		);
+
+		$user_id = add_conversation( $conversation_data ) ;
+		if($user_id)
+			return true;
+		else
+			return false;
+	} // register_advisor
+
+	/**
+	 * Registra un mensaje
+	 * @param  string  $username
+	 * @param  string  $password 
+	 * @param string  $email
+	 * @return boolean
+	 */
+	function register_mensaje($message,$conversation){
+		$created_date = date("Y-m-d H:i:s");
+		$mensajedata = array(
+		    'message'  	=> $message,
+		    'conversation_id'   	=> $conversation, 
+		    'read'	=> 0,
+		    'date'			=> $created_date
+		);
+
+		$user_id = add_message( $mensajedata ) ;
+		if($user_id)
+			return true;
+		else
+			return false;
+	} // register_advisor
+	
+	/**
 	 * Jalar "basic profile" de todos los usuarios
 	 * @return mixed $users_basic_info
 	 */
@@ -861,6 +905,51 @@ function pu_blank_login( $user ){
 		if( $inserted ){
 			$st_user_id = $wpdb->insert_id;
 			return $st_user_id;
+		}
+		
+		return 0;
+	}// add_advisor_user
+	
+	function add_conversation( $conversation_data )
+	{
+		global $wpdb;
+		$inserted = $wpdb->insert(
+			$wpdb->st_conversations,
+			$conversation_data,
+			array (
+				'%d',
+				'%d'
+			)
+		);
+
+		if( $inserted ){
+			$st_message_id = $wpdb->insert_id;
+			return $st_message_id;
+		}
+		
+		return 0;
+	}
+	/**
+	 * Inserta mensaje tabla st_messages
+	 * @param string $message_data
+	 * @return int $message_id or FALSE
+	 */
+	function add_message($message_data){
+		global $wpdb;
+		$inserted = $wpdb->insert(
+			$wpdb->st_messages,
+			$message_data,
+			array (
+				'%s',
+				'%d',
+				'%d',
+				'%s'
+			)
+		);
+
+		if( $inserted ){
+			$st_message_id = $wpdb->insert_id;
+			return $st_message_id;
 		}
 		
 		return 0;
@@ -1451,7 +1540,13 @@ function pu_blank_login( $user ){
 	function st_register_advisors_table() {
 	    global $wpdb;
 	    $wpdb->st_advisors = "st_advisors";
-	}// st_register_users_table
+	}// st_register_st_advisors_table
+
+	add_action( 'init', 'st_register_messages_table', 1 );
+	function st_register_messages_table() {
+	    global $wpdb;
+	    $wpdb->st_messages = "st_messages";
+	}// st_register_messages_table
 
 	add_action( 'init', 'st_register_basic_profile_view', 1 );
 	function st_register_basic_profile_view() {

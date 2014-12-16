@@ -213,10 +213,8 @@
                                     </p>
                             <?php } ?>
                         </div>
-<<<<<<< HEAD
                         <div class="[ j-confirm ]"></div>
                     </div><!-- .dashboard-profile -->
-=======
                         <div class="clear"></div>
                         <?php 
                             $users = get_advisors_basic_info(); 
@@ -241,7 +239,6 @@
                                 </p>
                         <?php } ?>
                     </div>
->>>>>>> ab791bca7097740b0db9af76397a52ebdbbc5019
                 <?php } ?>
             </div><!-- /container-fluid -->
         </div> <!-- /#page-content-wrapper -->
