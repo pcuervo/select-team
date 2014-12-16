@@ -46,24 +46,44 @@
     <div class="[ container-fluid ]" id="page-content">
         <div class="[ row ] [ margin-bottom ]" id="profile">
             <div class="[ col-xs-12 col-sm-7 center block ]">
+            	<img class="[ img-responsive ] [ margin-bottom ]" src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" alt="Select Team"/>
+            	<?php if (qtrans_getLanguage() == 'es'){ ?>
+					<p class="[ margin-bottom ] [ text-right ] [ border-bottom ]"><a href="<?php echo site_url('dashboard'); ?>"><b class=""><i class="fa fa-cogs"></i> Volver a Dashboard</b></a></p>
+				<?php } else { ?>
+					<p class="[ margin-bottom ] [ text-right ] [ border-bottom ]"><a href="<?php echo site_url('dashboard'); ?>"><b class=""><i class="fa fa-cogs"></i> Go back to Dashboard</b></a></p>
+				<?php } ?>
+            	<h3>Conversation with advisor</h3>
 				<?php 
 					foreach ($mensajes as $key => $mensaje) {
 				?>	
-						<p><?php echo $mensaje->message; ?></p>
-						<p><?php echo $mensaje->date; ?></p>
+					<div class="[ message user ]">
+						<p class="[ conversation-date ]"><?php echo $mensaje->date; ?></p>
+						<p class="[ conversation-text ]"><?php echo $mensaje->message; ?></p>					
+					</div>
+					<div class="[ message advisor ]">
+						<p class="[ conversation-date ]"><?php echo $mensaje->date; ?></p>
+						<p class="[ conversation-text ]"><?php echo $mensaje->message; ?></p>
+					</div>
 				<?php } ?>
 				<form role="form" class="" method="post" >
-					
 					<input type="hidden" name="conv" value="<?php echo $conv ?>">
 					<input type="hidden" name="email-advisor" value="<?php echo $from ?>">
-					<div class="clear"></div>
-					<textarea rows="4" cols="50" name="mensaje"></textarea>
-					<div class="clear"></div>
-					<?php if (qtrans_getLanguage() == 'es'){ ?>
-						<button type="submit" class=" [ btn-enviar ]">Enviar</button>
-					<?php } else { ?>
-						<button type="submit" class="[ btn-enviar ]">Send</button>
-					<?php } ?>
+					<div class="[ clear ] [ margin-bottom ]"></div>
+					<div class="[ form-group ]">
+						<?php if (qtrans_getLanguage() == 'es'){ ?>
+							<label for="">Tu mensaje:</label>
+						<?php } else { ?>
+							<label for="">Your message:</label>
+						<?php } ?>
+							<textarea class="[ form-control ] [ margin-bottom ]" rows="4" cols="50" name="mensaje"></textarea>
+						</div>
+						<div class="clear"></div>
+						<?php if (qtrans_getLanguage() == 'es'){ ?>
+							<button type="submit" class="[ btn btn-primary btn-message ] [ btn-enviar ]">Enviar</button>
+						<?php } else { ?>
+							<button type="submit" class="[ btn btn-primary btn-message ] [ btn-enviar ]">Send</button>
+						<?php } ?>
+					</form>
 				</form>
 			</div>
 		</div>
