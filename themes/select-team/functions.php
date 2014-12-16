@@ -813,11 +813,11 @@ function pu_blank_login( $user ){
 		    'to_id'   	=> $to_id
 		);
 
-		$user_id = add_conversation( $conversation_data ) ;
-		if($user_id)
-			return true;
+		$conversation_id = add_conversation( $conversation_data ) ;
+		if($conversation_id)
+			return $conversation_id;
 		else
-			return false;
+			return -1;
 	} // register_advisor
 
 	/**
@@ -827,19 +827,27 @@ function pu_blank_login( $user ){
 	 * @param string  $email
 	 * @return boolean
 	 */
-	function register_mensaje($message,$conversation){
-		$created_date = date("Y-m-d H:i:s");
-		$mensajedata = array(
-		    'message'  	=> $message,
-		    'conversation_id'   	=> $conversation, 
-		    'read'	=> 0,
-		    'date'			=> $created_date
-		);
+	function register_mensaje($message,$from_id,$to_id){
+		
+		$conversation_id = register_conversacion($from_id,$to_id );
+		
+		if ( $conversation_id != -1 )
+		{
+			$created_date = date("Y-m-d H:i:s");
+			$mensajedata = array(
+				'message'  	=> $message,
+				'conversation_id'   	=> $conversation_id, 
+				'read'	=> 0,
+				'date'			=> $created_date,
+				'receptor' => $to_id
+			);
 
-		$user_id = add_message( $mensajedata ) ;
-		if($user_id)
-			return true;
-		else
+			$user_id = add_message( $mensajedata ) ;
+			if($user_id)
+				return true;
+			else
+				return false;
+		}else
 			return false;
 	} // register_advisor
 	
@@ -923,8 +931,8 @@ function pu_blank_login( $user ){
 		);
 
 		if( $inserted ){
-			$st_message_id = $wpdb->insert_id;
-			return $st_message_id;
+			$st_conversation_id = $wpdb->insert_id;
+			return $st_conversation_id;
 		}
 		
 		return 0;
@@ -1546,6 +1554,12 @@ function pu_blank_login( $user ){
 	function st_register_messages_table() {
 	    global $wpdb;
 	    $wpdb->st_messages = "st_messages";
+	}// st_register_messages_table
+
+	add_action( 'init', 'st_register_conversations_table', 1 );
+	function st_register_conversations_table() {
+	    global $wpdb;
+	    $wpdb->st_conversations = "st_conversations";
 	}// st_register_messages_table
 
 	add_action( 'init', 'st_register_basic_profile_view', 1 );
