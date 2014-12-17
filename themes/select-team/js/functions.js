@@ -325,7 +325,6 @@ function deleteAcademic(e){
   $parent = e;
   $parent.hide('slow');
   var childs = e['0'].childNodes;    
-  console.log(childs);
   var date_split    = childs[1].innerText.split(':');
   var name_split    = childs[3].innerText.split(':');
   var country_split = childs[5].innerText.split(':');
@@ -336,8 +335,6 @@ function deleteAcademic(e){
   var name = name_split[1].substring(1);
   var country = country_split[1].substring(1);
   var city   = city_split[1].substring(1);
-
-  console.log(date, name, country, city, id);
 
   $.get(
     site_url+'/dashboard/'+'?date='+date+'&nom='+name+'&country='+country+'&city='+city+'&del='+id,
@@ -362,14 +359,13 @@ function delete_dinamic_tournament(e){
   tournament_data['tournament_date'] = date.substring(1);
   tournament_data['tournament_rank'] = rank.substring(1);
 
-  console.log(tournament_data);
   e.parentNode.style.display='none';
   
   $.post(
         ajax_url,
         tournament_data,
         function(response){
-            console.log(response);
+            //console.log(response);
             //window.location = site_url + '/dashboard';
         }// response
     );   
@@ -378,7 +374,6 @@ function delete_dinamic_tournament(e){
 function deleteTournament(e){
   var x= e.target.parentNode.id;
   if(x==''){ x= e.target.parentNode.parentNode.id;}
-  console.log(x);
   var tournament_data={};
   tournament_data['action'] = 'delete_tournament';
   tournament_data['tournament_name']  = $('.j-'+x+' input[name="torneo"]').val();
@@ -466,19 +461,11 @@ function registerUser() {
         user_data,
         function(response){
             window.location = site_url + '/?reg=1';
-            // console.log(response);
-            // var msg = $.parseJSON(response);
-            // if(msg.error == 0)
-                //loginUser(user_data['username'], user_data['password']);
-                
-                //
-
         }// response
     ); 
 }// registerUser
 
 function addAcademic(){
-  //if ($('.j-academic input[name="high_school"]').val()!='' && $('.j-academic input[name="high_grad"]').val()){
     $academic_name= $('.j-user_curriculum input[name="high_school"]').val();
     $academic_date= $('.j-user_curriculum input[name="high_grad"]').val();
     $academic_country= $('.j-user_curriculum input[name="country"]').val();
@@ -491,12 +478,6 @@ function addAcademic(){
     academic_data['country']=$academic_country;
     academic_data['city']=$academic_city;
 
-    //$('.j-user_curriculum input[name="tournament_data[]"]').val($academic_name);
-    //$('.j-user_curriculum input[name="tournament_date_data[]"]').val($academic_date);
-    //$('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_country);
-    //$('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_city);
-    
-    //$('.j-user_curriculum').append( '<div class="[ form-group ] [ row ] [ j-del-tournament ] [ border-bottom margin-bottom ] "><p id="nameTournament" class="[ col-xs-12 ]"><b>'+$academic_name+'</b></p>'  + '<p id="Fecha" class="[ col-xs-6 ]"><b>Date:<br/></b> '+$tournament_date+'</p>' + '<p id="tournamentRank" class="[ col-xs-4 ]"><b>Ranked:<br/></b> '+$tournament_rank+'</p>' + '<a onclick="delete_dinamic_tournament(this)" class="[ col-xs-2 ] [ color-success ] [ j-delete-tournament ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>' );
 
     $append='<div class="[ form-group ] [ row ] [ border-bottom ]"> <p class="[ col-xs-6 ]"> Year: <br><b>'+$academic_date+
     '</b></p><p class="[ col-xs-4 ]"> School: <br><b>'+$academic_name+
@@ -505,21 +486,16 @@ function addAcademic(){
     '</b></p><a class="[ col-xs-2 ] [ color-success ] [ j-delete-academic ] [ text-right ]"> <i class="fa fa-times-circle fa-2x"></i></a></div>'
     $('.j-academic').append($append); 
 
-      //$('.j-user_curriculum input[name="tournament_rank_data[]"]').val($academic_city);
-
     $('.j-user_curriculum input[name="high_school"]').val("");
     $('.j-user_curriculum input[name="high_grad"]').val("");
     $('.j-user_curriculum input[name="country"]').val("");
     $('.j-user_curriculum input[name="city"]').val("");
-    //updateCurriculum();
-    console.log(academic_data);
+    
     var data = $('.j-user_curriculum').serialize();
-    //console.log(academic_data.serialize());
 
       $.get(
         site_url+'/dashboard/'+'?high_school='+$academic_name+'&high_grad='+$academic_date+'&country='+$academic_country+'&city='+$academic_city+'',
         function(response){
-          console.log(response);
         } //response
       ); 
   //}
@@ -560,7 +536,6 @@ function deleteAdvisor(id){
           console.log(response);
           var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se ha eliminado el advisor.</div>';
             $(html_feedback).appendTo('.j-confirm');
-          //var msg = $.parseJSON(response);
         }// response
     ); 
 }
@@ -659,7 +634,6 @@ function registerAdvisor() {
               var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han registrados los datos del advisor.</div>';
               $(html_feedback).appendTo('.j-form-confirm');
               $('.hide-form-advisor').hide();
-              //window.location = site_url + '/dashboard-admin';
 
               var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]"> Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]"> Delete </a> </p>';
               $(createdAdvisor).appendTo('.j-advisors-db');
@@ -698,7 +672,6 @@ function createCurriculum() {
       user_curriculum_data,
       function(response){
           console.log(response);
-          //window.location = site_url + '/dashboard';
       } //response
   ); 
 }// createCurriculum
@@ -937,7 +910,6 @@ function sendMail(){
          coach_data,
          function(response){
              console.log(response);
-             //window.location = site_url + '/dashboard';
          } //response
      );
 }
@@ -952,7 +924,6 @@ function sendMessage(){
          ajax_url,
          message_data,
          function(response){
-             //window.location = site_url + '/dashboard';
          } //response
      );
 }

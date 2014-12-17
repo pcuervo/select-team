@@ -275,14 +275,12 @@ function pu_blank_login( $user ){
 			      	});
 			      	$('#sportAll button').on('click', function(){
 				        var sport = $(this).attr('data-filter');
-				        console.log(sport);
 				        $('#sportAll').attr('data-active', sport);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				    });
 				    $('#genderAll button').on('click', function(){
 				        var gender = $(this).attr('data-filter');
-				        //console.log(gender);
 				        $('#genderAll').attr('data-active', gender);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
@@ -356,13 +354,11 @@ function pu_blank_login( $user ){
 						});
 						$('.j-update-basic-profile button').on('click', function(e){
 							e.preventDefault();
-							console.log('actualizando perfil...');
 							updateUserInfo();
 						});
 						
 						$('.j-update-curriculum-update').on('click', function(e){
 							e.preventDefault();
-							console.log('actualizando curriculum...');
 							updateAllCurriculum();
 						});
 
@@ -378,20 +374,17 @@ function pu_blank_login( $user ){
 
 						$('.j-add-academic').on('click', function(e){
 							e.preventDefault();
-							console.log('add academic');
 							addAcademic();
 						});
 
 						$('.j-delete-academic').on('click', function(e){
-							//e.preventDefault();
-							console.log('delete academic');
-							console.log($(this).parent());
+							e.preventDefault();
+							deleteAcademic($(this).parent());
 						});
 
 						$('.j-update-curriculum-create').on('click', function(e){
 							e.preventDefault();
-							console.log('creando curriculum...');
-							createCurriculum();  //Llamar a func que haga el INSERT
+							createCurriculum();
 						});
                         $(".profile_picture_preview").load(function() {
 							var width_picture = $(this).width();
@@ -1889,7 +1882,64 @@ function pu_blank_login( $user ){
 		return $mail_status;
 	}// register_email
 
+	/**
+	 * Crea un registro escolar.
+	 * @param  string  $high_school
+	 * @param  string  $high_grad
+	 * @param  string  $country
+	 * @param  string  $city
+	 * @return boolean
+	 */
 
+	function addAcademic($info){
+		global $wpdb;
+		
+		$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+        $high_school = $info['high_school'];
+        $high_grad = $info['high_grad'];
+        $country = $info['country'];
+        $country = $info['country'];
+        $city = $info['city'];
+
+	        $inserted = $wpdb->insert(
+			    $wpdb->st_academic,
+				    array(
+				    	'st_user_id'		=> $st_users_id,
+				    	'high_school'		=> $high_school,
+				    	'graduation_date'	=> $high_grad,
+				    	'country'			=> $country,
+				    	'city'				=> $city
+				    	),
+				    array(
+				    	'%d', 
+				    	'%s',
+				    	'%s',
+				    	'%s',
+				    	'%s'
+				    	)
+			);
+		die();
+	}
+
+	function deleteAcademic($info){
+		global $wpdb;
+		$id=$info['del'];
+		$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+
+		$deleted = $wpdb->delete(
+			$wpdb->st_academic,
+				array(
+					'st_user_id'=> $st_users_id,
+					'id'=> $id
+				),
+				array('%d')
+		);
+		die();
+	}
+	
 	/**
 	 * Crea un torneo.
 	 * @param  string  $tournament_name
