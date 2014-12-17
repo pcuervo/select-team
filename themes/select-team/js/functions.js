@@ -630,7 +630,7 @@ function registerAdvisor() {
             $(html_feedback).appendTo('.j-form-confirm');
             $('.hide-form-advisor').hide();
 
-            var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]" > Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]" > Delete </a> </p>';
+            var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]" onclick="location.reload()" > Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]" onclick="location.reload()"> Delete </a> </p>';
             $(createdAdvisor).appendTo('.j-advisors-db');
           }
     			else if(msg.error == 1)
