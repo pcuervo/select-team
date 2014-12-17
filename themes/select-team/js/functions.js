@@ -536,10 +536,7 @@ function getAdvisorBasicInfo(id){
         ajax_url,
         user_data,
         function(response){
-          console.log(1);
-    			console.log(response);
     			var msg = $.parseJSON(response.slice(0,-1));
-    			console.log(msg);
     			$('.j-register-advisor input[name="full_name"]').val(msg.full_name);
     			$('.j-register-advisor input[name="id"]').val(msg.ID);
     			$('.j-register-advisor input[name="username"]').val(msg.user_login);
@@ -772,10 +769,8 @@ function updateUserInfo() {
     user_data['video_url'] = $('.j-update-basic-profile input[name="video_url"]').val();
     user_data['sport'] = $('.j-update-basic-profile input[name="sport"]').val();
 
-    console.log(user_data);
     switch(user_data['sport']){
         case 'tennis': 
-            //user_data['tennis_hand'] = $('.j-update-basic-profile select[name="tennis_hand"]').val();
             user_data['fmt_ranking'] = $('.j-update-basic-profile input[name="fmt_ranking"]').val();
             user_data['atp_tournament'] = $('.j-update-basic-profile select[name="atp_tournament"]').val();
             break;
@@ -784,12 +779,11 @@ function updateUserInfo() {
             break;
         case 'soccer':
             user_data['soccer_position'] = $('.j-update-basic-profile select[name="soccer_position"]').val();
-            //user_data['soccer_height'] = $('.j-update-basic-profile input[name="soccer_height"]').val();
             break;
         case 'volleyball':
             user_data['volley_position'] = $('.j-update-basic-profile select[name="volley_position"]').val();
-            //user_data['volley_height'] = $('.j-update-basic-profile input[name="volley_height"]').val();
     }// switch
+
     $('.j-update-basic-profile .alert-success').remove();
      $.post(
          ajax_url,
@@ -800,7 +794,6 @@ function updateUserInfo() {
          } //response
      ); 
 }// updateUser
-
 
 function login(){
     var user_data = {};

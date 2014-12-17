@@ -251,14 +251,12 @@ function pu_blank_login( $user ){
 					});
 					$('#sportAll button').on('click', function(){
 				        var sport = $(this).attr('data-filter');
-				        console.log(sport);
 				        $('#sportAll').attr('data-active', sport);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				    });
 				    $('#genderAll button').on('click', function(){
 				        var gender = $(this).attr('data-filter');
-				        //console.log(gender);
 				        $('#genderAll').attr('data-active', gender);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
