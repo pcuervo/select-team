@@ -455,7 +455,7 @@ function registerUser() {
             user_data['volley_position'] = $('.j-register-user select[name="volley_position"]').val();
             user_data['volley_height'] = $('.j-register-user input[name="volley_height"]').val();
     }
-    console.log(user_data);
+
     $.post(
         ajax_url,
         user_data,
@@ -565,7 +565,6 @@ function updateAdvisor() {
     user_data['password'] = $('.j-register-advisor input[name="password"]').val();
     user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
    
-    console.log(user_data);
     $.post(
         ajax_url,
         user_data,
@@ -592,7 +591,6 @@ function updateBasicProfile() {
     user_data['action'] = 'update_advisor';
     user_data['full_name'] = $('input[name="full_name_perfil"]').val();
    
-    console.log(user_data);
     $.post(
         ajax_url,
         user_data,
@@ -660,7 +658,6 @@ function createCurriculum() {
   
   registerTournament();
 
-  console.log(user_curriculum_data);
   $.post(
       ajax_url,
       user_curriculum_data,
@@ -789,8 +786,6 @@ function loginUser(user, password){
     user_data['action'] = 'site_login';
     user_data['username'] = user;
     user_data['password'] = password;
-
-    console.log(user_data);
   
     $.post(
         ajax_url,
@@ -847,8 +842,6 @@ function sendContactMessage(){
   contact_data['name']    = $('.j-contact-message input[name="name"]').val();
   contact_data['email']   = $('.j-contact-message input[name="email"]').val();
   contact_data['message'] = $('.j-contact-message textarea[name="message"]').val();
-
-  console.log(contact_data);
 
   $.post(
         ajax_url,
@@ -912,7 +905,7 @@ function sendMessage(){
   message_data['action'] = 'send_message';
   message_data['email'] = $('.j-form-message-advisor select[name="selectMensajeAdvisor"]').val();
   message_data['message'] = $('.j-form-message-advisor textarea[name="txtareaMensajeAdvisor"]').val();
-  console.log(message_data);
+  
      $.post(
          ajax_url,
          message_data,
