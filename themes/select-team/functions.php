@@ -307,10 +307,10 @@ function pu_blank_login( $user ){
 					$('.btn-editar').hide();
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
-						$('.hide-form-advisor').hide();
-						$('.hide-form-advisor').show('slow');
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
+						$('.hide-form-advisor').hide();
+						$('.hide-form-advisor').show('slow');
 						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
 						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
 					});

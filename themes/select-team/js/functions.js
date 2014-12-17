@@ -621,33 +621,27 @@ function registerAdvisor() {
     user_data['password_confirmation'] = $('.j-register-advisor input[name="password_confirmation"]').val();
     user_data['email'] = $('.j-register-advisor input[name="email"]').val();
     user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
-    console.log(user_data);
+
     $.post(
         ajax_url,
         user_data,
         function(response){
-			
-			console.log(response);
-            var msg = $.parseJSON(response);
-            console.log(msg.id, user_data['action']);
-            if(msg.error == 0){
-              var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han registrados los datos del advisor.</div>';
-              $(html_feedback).appendTo('.j-form-confirm');
-              $('.hide-form-advisor').hide();
+          var msg = $.parseJSON(response);
+          if(msg.error == 0){
+            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han registrados los datos del advisor.</div>';
+            $(html_feedback).appendTo('.j-form-confirm');
+            $('.hide-form-advisor').hide();
 
-              var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ][ xxx ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]"> Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]"> Delete </a> </p>';
-              $(createdAdvisor).appendTo('.j-advisors-db');
-            }
-      			else if(msg.error == 1)
-      				alert('El usuario ya existe');
-      			else
-      				alert('Error, porfavor revisa los datos');
-        }// response
+            var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]" > Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]" > Delete </a> </p>';
+            $(createdAdvisor).appendTo('.j-advisors-db');
+          }
+    			else if(msg.error == 1)
+    				alert('El usuario ya existe');
+    			else
+    				alert('Error, porfavor revisa los datos');
+      }// response
     ); 
 }// registerAdvisor
-
-
-
 
 function createCurriculum() {
   var user_curriculum_data = {};
@@ -728,7 +722,6 @@ function updateAllCurriculum() {
         function(response){
             var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
             $(html_feedback).appendTo('.j-user_curriculum');
-          
       } //response
   ); 
 }// updateCurriculum
