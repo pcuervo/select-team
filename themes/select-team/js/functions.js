@@ -648,21 +648,25 @@ function createCurriculum() {
   user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
   user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
   user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
+  user_curriculum_data['SAT'] = $('.j-user_curriculum input[name="curriculum_SAT"]').val();
+  user_curriculum_data['toefl'] = $('.j-user_curriculum input[name="curriculum_toefl"]').val();
   user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
   user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
   user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
+  user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
   
   //Sports Development
   if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
       addTournament();
   
-  registerTournament();
+  //registerTournament();
 
   $.post(
       ajax_url,
       user_curriculum_data,
       function(response){
-          console.log(response);
+          var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+            $(html_feedback).appendTo('.j-user_curriculum');
       } //response
   ); 
 }// createCurriculum
@@ -679,7 +683,9 @@ function updateCurriculum() {
     user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
     user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
     user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
-  
+    user_curriculum_data['SAT'] = $('.j-user_curriculum input[name="curriculum_SAT"]').val();
+    user_curriculum_data['toefl'] = $('.j-user_curriculum input[name="curriculum_toefl"]').val();      
+    
     //Sports Development
     if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
         addTournament();
@@ -704,11 +710,14 @@ function updateAllCurriculum() {
     user_curriculum_data['address'] = $('.j-user_curriculum input[name="curriculum_address"]').val();
     user_curriculum_data['phone'] = $('.j-user_curriculum input[name="curriculum_phone"]').val();
     user_curriculum_data['mobile_phone'] = $('.j-user_curriculum input[name="curriculum_mobile_phone"]').val();
-    user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
-    user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
-    user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
-    user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
-  
+    //user_curriculum_data['high_school'] = $('.j-user_curriculum input[name="high_school"]').val();
+    //user_curriculum_data['grade'] = $('.j-user_curriculum select[name="grade"]').val();
+    //user_curriculum_data['high_grad'] = $('.j-user_curriculum input[name="high_grad"]').val();
+    //user_curriculum_data['video_host'] = $('.j-user_curriculum input:selected').val();
+    user_curriculum_data['SAT'] = $('.j-user_curriculum input[name="curriculum_SAT"]').val();
+    user_curriculum_data['toefl'] = $('.j-user_curriculum input[name="curriculum_toefl"]').val();
+    console.log(user_curriculum_data);
+    
     //Sports Development
     if($('.j-user_curriculum input[name="tournament"]').val()!='' && $('.j-user_curriculum select[name="tournament_rank"]').val()!='')
         addTournament();

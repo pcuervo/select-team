@@ -1203,32 +1203,31 @@ function pu_blank_login( $user ){
 	   	$address 		= $_POST['address'];
 	   	$phone 			= $_POST['phone'];
 	   	$mobile_phone	= $_POST['mobile_phone'];
-	   	$high_school	= $_POST['high_school'];
-	   	$grade 			= $_POST['grade'];
-	   	$high_grad		= $_POST['high_grad'];
+	   	//$high_school	= $_POST['high_school'];
+	   	//$grade 			= $_POST['grade'];
+	   	//$high_grad		= $_POST['high_grad'];
+	   	$SAT 			= $_POST['SAT'];
+	   	$toefl 			= $_POST['toefl'];
 
-	   	
 	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
 
 		$updated = $wpdb->update(
 		    $wpdb->st_curriculum,
 			    array(
-			     	'address' 			=> $address,
-			     	'phone' 			=> $phone,
-			     	'mobile_phone' 		=> $mobile_phone,
-			     	'graduate_year' 	=> $grade,
-			     	'high_school' 		=> $high_school,		     
-			     	'graduation_date' 	=> $high_grad
+			     	'address' 		=> $address,
+			     	'phone' 		=> $phone,
+			     	'mobile_phone' 	=> $mobile_phone,
+			     	'sat' 			=> $SAT,
+			     	'toefl' 		=> $toefl
 		 		),
 			    array('st_user_id' => $st_users_id),
 			    array(
 			    	'%s',
 			    	'%s',
 			    	'%s',
-			    	'%s',
-			    	'%s',
-			    	'%s'
+			    	'%d',
+			    	'%d'
 			     )
 		);
 		die();
@@ -1253,10 +1252,11 @@ function pu_blank_login( $user ){
 	   	$address 		= $_POST['address'];
 	   	$phone 			= $_POST['phone'];
 	   	$mobile_phone	= $_POST['mobile_phone'];
-	   	$high_school	= $_POST['high_school'];
-	   	$grade 			= $_POST['grade'];
-	   	$high_grad		= $_POST['high_grad'];
-
+	   	//$high_school	= $_POST['high_school'];
+	   	//$grade 			= $_POST['grade'];
+	   	//$high_grad		= $_POST['high_grad'];
+	   	$SAT 			= $_POST['SAT'];
+	   	$toefl 			= $_POST['toefl'];
 	   	
 	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
@@ -1264,22 +1264,20 @@ function pu_blank_login( $user ){
 		$inserted = $wpdb->insert(
 		    $wpdb->st_curriculum,
 			    array(
-			    	'st_user_id' 		=> $st_users_id,
-			     	'address' 			=> $address,
-			     	'phone' 			=> $phone,
-			     	'mobile_phone' 		=> $mobile_phone,
-			     	'graduate_year' 	=> $grade,
-			     	'high_school' 		=> $high_school,		     
-			     	'graduation_date' 	=> $high_grad
+			    	'st_user_id' 	=> $st_users_id,
+			     	'address' 		=> $address,
+			     	'phone' 		=> $phone,
+			     	'mobile_phone' 	=> $mobile_phone,
+			     	'sat' 			=> $SAT,
+			     	'toefl' 		=> $toefl
 		 		),
 			    array(
 			    	'%d',
 			    	'%s',
 			    	'%s',
 			    	'%s',
-			    	'%s',
-			    	'%s',
-			    	'%s'
+			    	'%d',
+			    	'%d'
 			     )
 		);
 		die();

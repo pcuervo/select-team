@@ -28,7 +28,7 @@
                 unset($_SESSION['name']);
             }
 
-            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = $video_host = $video_url = '';
+            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = $video_host = $video_url = $SAT = $toefl = '';
             $created_curriculum = false;
 
             $prospect_info = get_user_basic_info(get_current_user_id()); 
@@ -36,7 +36,6 @@
             if($prospect_info){
                 $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
                 $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
-                $academic_hist = "";
                 $academic_hist = get_user_academic_info($prospect_info->st_user_id);
                 //var_dump($academic_hist);
             }
@@ -45,12 +44,12 @@
                 $address        =  $created_curriculum->address;
                 $phone          =  $created_curriculum->phone;
                 $mob_phone      =  $created_curriculum->mobile_phone;
-                $grad_year      =  $created_curriculum->graduate_year;
-                $high_school    =  $created_curriculum->high_school;
-                //$grad_date      =  $created_curriculum->graduation_date;
-                $grad_dateArr = explode(' ', $created_curriculum->graduation_date);
-                $grad_date = $grad_dateArr[0];
-
+                //$grad_year      =  $created_curriculum->graduate_year;
+                //$high_school    =  $created_curriculum->high_school;
+                //$grad_dateArr = explode(' ', $created_curriculum->graduation_date);
+                //$grad_date = $grad_dateArr[0];
+                $SAT = $created_curriculum->sat;
+                $toefl = $created_curriculum->toefl;
                 $tournament_info = get_user_tournament($prospect_info->st_user_id);
             }
         ?>
@@ -403,6 +402,22 @@
                                     <label for="mPhone">Mobile Phone</label>
                                 <?php } ?>
                                 <input type="text" class="[ form-control ]" id="mPhone" name="curriculum_mobile_phone" value="<?php echo $mob_phone; ?>">
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="SAT">SAT</label>
+                                <?php } else { ?>
+                                    <label for="SAT">SAT</label>
+                                <?php } ?>
+                                <input type="text" class="[ form-control ]" id="SAT" name="curriculum_SAT" value="<?php echo $SAT; ?>">
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="toefl">Toefl</label>
+                                <?php } else { ?>
+                                    <label for="toefl">Toefl</label>
+                                <?php } ?>
+                                <input type="text" class="[ form-control ]" id="toefl" name="curriculum_toefl" value="<?php echo $toefl; ?>">
                             </div>
                             <div class="[ clear ] [ margin-bottom ]"></div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
