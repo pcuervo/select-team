@@ -19,13 +19,33 @@
 		<h2 class="[ col-xs-12 ]"><?php echo $user->full_name ?></h2>
 		<?php if( is_user_logged_in() ){
 			if ( $role != 'subscriber' AND $role != 'author') { ?>
-				<span class="[ j-delete-prospect ] [ col-xs-12 ] [ text-right ] [ margin-bottom ] [ delete-prospect ]">  <i class="fa fa-times-circle"></i> <b class="hidden-xs">Eliminar prospecto</b></span>
-			<?php
-			}
-		} ?>
+				<?php if (qtrans_getLanguage() == 'es'){ ?>
+					<span class="[ j-delete-prospect ] [ col-xs-12 ] [ text-right ] [ margin-bottom ] [ delete-prospect ]">  <i class="fa fa-times-circle"></i> <b class="hidden-xs">Eliminar prospecto</b></span>
+					<?php if($user->status=='1'){ ?>
+						<span class="[ j-status-deactivate ] [ col-xs-12 ] [ text-right ] [ margin-bottom ]">  <b class="hidden-xs">Desactivar prospecto</b></span>
+					<?php } else { ?>
+						<span class="[ j-status-activate ] [ col-xs-12 ] [ text-right ] [ margin-bottom ]">  <b class="hidden-xs">Activar prospecto</b></span>
+					<?php } ?>
+				<?php } else { ?>
+					<span class="[ j-delete-prospect ] [ col-xs-12 ] [ text-right ] [ margin-bottom ] [ delete-prospect ]">  <i class="fa fa-times-circle"></i> <b class="hidden-xs">Delete prospect</b></span>
+					<?php if($user->status=='1'){ ?>
+						<span class="[ j-status-deactivate ] [ col-xs-12 ] [ text-right ] [ margin-bottom ] "> <b class="hidden-xs">Deactivate prospect</b></span>
+					<?php } else { ?>
+						<span class="[ j-status-activate ] [ col-xs-12 ] [ text-right ] [ margin-bottom ] "> <b class="hidden-xs">Activate prospect</b></span>
+					<?php }
+					}
+				}
+			} ?>
+
 		<div class="clear"></div>
 		<div class="col-xs-12 col-sm-6 col-md-4 student-info margin-bottom right">
-			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="margin-bottom">
+		<?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
+	        <img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
+	        <?php } elseif ($user->gender=='male') { ?>
+	            <img src="<?php echo THEMEPATH.'profile_pictures/profile-01.png'?>" alt="" class="">
+	        <?php } elseif ($user->gender=='female') { ?>
+	            <img src="<?php echo THEMEPATH.'profile_pictures/profile-02.png'?>" alt="" class="">
+	        <?php } ?>
 			<button type="button" class="btn btn-primary [ center block ]" data-toggle="modal" data-target="#student-video"><i class="fa fa-play-circle-o"></i> Watch video</button>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 student-info margin-bottom">

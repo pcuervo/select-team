@@ -781,6 +781,14 @@ function login(){
     ); 
 }
 
+function changeStatus(valor){
+  $.get(
+    site_url+'/prospect/prospects/?v='+valor,
+    function(response){
+    } //response
+  );  
+}
+
 function loginUser(user, password){
     var user_data = {};
     user_data['action'] = 'site_login';

@@ -265,6 +265,15 @@ function pu_blank_login( $user ){
 						e.preventDefault();
 						deleteProspect($('.p_id').val());
 					});
+				    $('.j-status-deactivate').on('click', function(e){
+				    	console.log('De');
+				    	changeStatus('0');
+				    });
+					$('.j-status-activate').on('click', function(e){
+						console.log('Ac');
+						changeStatus('1');
+				    });
+
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
@@ -918,7 +927,7 @@ function pu_blank_login( $user ){
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
-	}// get_users_basic_info
+	}// get_advisors_basic_info
 
 	/**
 	 * Jalar "basic profile" de todos los usuarios
@@ -932,7 +941,7 @@ function pu_blank_login( $user ){
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
-	}// get_users_basic_info
+	}// get_user_conversations
 
 	/**
 	 * Jalar "basic profile" de todos los usuarios
@@ -1734,7 +1743,7 @@ function pu_blank_login( $user ){
 	function get_users_basic_info(){
 	    global $wpdb;
 
-	    $query = "SELECT id, full_name, sport, gender, profile_picture FROM v_basic_profile";
+	    $query = "SELECT id, full_name, sport, gender, profile_picture, status FROM v_basic_profile";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
