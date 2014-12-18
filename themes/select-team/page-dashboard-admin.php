@@ -5,6 +5,11 @@
         exit;
     }
 
+    if(isset($_GET['v'])){
+        $status=$_GET['v'];
+        changeStatus($status, $_GET['id']);
+    }
+
     $role = get_current_user_role();
     if( $role == 'subscriber' ) {
         $location = site_url().'/dashboard';

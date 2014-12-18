@@ -781,10 +781,11 @@ function login(){
     ); 
 }
 
-function changeStatus(valor){
+function changeStatus(valor, id){
   $.get(
-    site_url+'/prospect/prospects/?v='+valor,
+    site_url + '/dashboard-admin/?v='+valor+'&id='+id,
     function(response){
+      location.reload();
     } //response
   );  
 }

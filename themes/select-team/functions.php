@@ -267,11 +267,11 @@ function pu_blank_login( $user ){
 					});
 				    $('.j-status-deactivate').on('click', function(e){
 				    	console.log('De');
-				    	changeStatus('0');
+				    	changeStatus('0', $('.p_id').val());
 				    });
 					$('.j-status-activate').on('click', function(e){
 						console.log('Ac');
-						changeStatus('1');
+						changeStatus('1', $('.p_id').val());
 				    });
 
 				</script>
@@ -2036,6 +2036,20 @@ function pu_blank_login( $user ){
 	add_action("wp_ajax_nopriv_contact_message", "contact_message");
 	add_action("wp_ajax_contact_message", "contact_message");
 
+	function changeStatus($val, $id){
+		global $wpdb;
+		echo get_current_user_id();
+		$updated = $wpdb->update(
+		    $wpdb->st_users,
+			    array(
+			     	'status' 	=> $val
+		 		),
+			    array('wp_user_id' => $id),
+			    array('%s')
+		);
+		var_dump($updated);
+		die();
+	}
 
 	function send_coach_emailX($mail_to, $form_info){
 		$q1 = $q2 = $q3 = $q4 = $q5 = $q6 = $q7 = $q8 = $q9 = $q10 = '';
