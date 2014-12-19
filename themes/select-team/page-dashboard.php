@@ -435,7 +435,7 @@
                                 <h4 class="[ col-xs-12 ]">Academic career</h4>
                             <?php } ?>
                                 <div class="[ form-group ] [ col-xs-12 ][ j-academic ]">
-                                <?php  if (sizeof($created_curriculum)>0)
+                                <?php  if (sizeof($prospect_info))
                                      if(sizeof($academic_hist)>0) { ?>
                                         <?php foreach ($academic_hist as $key => $value) { ?>
                                             <div class="[ form-group ] [ row ] [ border-bottom ]">
