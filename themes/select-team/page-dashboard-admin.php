@@ -33,8 +33,7 @@
                         <?php } else { ?>
                             <h3>Basic Profile</h3>
                         <?php } ?>
-                        <form id="userForm" role="form" class="[ row ]" >
-                            
+                        <form id="userForm2" role="form" class="[ row ][ j-user-basic-profile ]" >
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="username">Nombre de usuario</label>
@@ -58,17 +57,18 @@
                                     <input type="text" class="[ form-control ][ required ]" name="full_name_perfil" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
-									<?php if(isset($bp)){ ?>
-                                    <input type="text" class="[ form-control ][ required ]" name="full_name_perfil" value="<?php echo $bp->full_name; ?>" >
+									<?php if(isset($bp)){ 
+                                        if($bp->full_name!='')?>
+                                    <input type="text" class="[ form-control ][ required ]" name="full_name_perfil" value="<?php echo $bp->full_name;?>">
 									<?php } else { ?>
-										<input type="text" class="[ form-control ][ required ]" name="full_name_perfil" >
+										<input type="text" class="[ form-control ][ required ]" name="full_name_perfil">
 									<?php } ?>
                                 <?php } ?>
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Guardar cambios</button>
+                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]">Guardar cambios</button>
                             <?php } else { ?>
-                                <button type="button" class="[ btn btn-primary ] [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Save changes</button>
+                                <button type="button" class="[ btn btn-primary ] [ margin-bottom ] [ btn-guardar-profile ]">Save changes</button>
                             <?php } ?>
                         </form>
                     </div>
