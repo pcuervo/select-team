@@ -223,16 +223,39 @@
                     </div>
                 <?php } ?>
                 <div class="[ row ] [ js-dashboard-section ] [ js-messages-admin ] [ margin-bottom ]"  id="">
-                    <div class="[ col-xs-12 col-sm-7 ]">
+                    <div class="[ col-xs-12 col-sm-10 ]">
+                        <h3>My conversations</h3>
                         <?php 
                             $user_id = get_current_user_id();
                             $conversations = get_user_conversations(); 
                             foreach ($conversations as $key => $conver) {
-                        ?>  
-                            <?php if($user_id == $conver->from_id){ ?>
-                                <p><?php echo $conver->to; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+                        ?> 
+                        <ul class="[ conversation-list ]"> 
+                            <li>
+                                <?php if($user_id == $conver->from_id){ ?>
+                                    <p><?php echo $conver->to; ?> <span><a href="mensaje?id=<?php echo $conver->id; ?>"><i class="fa fa-comments-o"></i> 
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Ver</a></span></p>
+                                    <?php } else { ?>
+                                        See</a></span></p>
+                                    <?php } ?>
+                                    
+                                <?php } else { ?>
+                                    <p><?php echo $conver->from; ?><span><a href="mensaje?id=<?php echo $conver->id; ?>"><i class="fa fa-comments-o"></i> 
+                                   <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Ver</a></span></p>
+                                    <?php } else { ?>
+                                        See</a></span></p>
+                                    <?php } ?>
+                                <?php } ?>
+                            </li>
+                        </ul>
+                        <?php } ?>
+                        <?php if(count($conversations) <= 0){ ?>
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <p>No tienes mensajes.</p>
                             <?php } else { ?>
-                                <p><?php echo $conver->from; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+                                <p>You don't have any messages.</p>
                             <?php } ?>
                         <?php } ?>
                     </div>
