@@ -63,7 +63,7 @@
     <div class="[ container-fluid ]" id="page-content">
         <div class="[ row ] [ margin-bottom ]" id="profile">
             <div class="[ col-xs-12 col-sm-7 center block ]">
-				<form role="form" method="post" >
+				<form role="form" method="post" class="[ j-message ]">
 					<img class="[ img-responsive ] [ margin-bottom ]" src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" alt="Select Team"/>
 					<?php if (qtrans_getLanguage() == 'es'){ ?>
 						<p class="[ margin-bottom ] [ text-right ] [ border-bottom ]"><a href="<?php echo site_url('dashboard'); ?>"><b class=""><i class="fa fa-cogs"></i> Volver a Dashboard</b></a></p>

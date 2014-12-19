@@ -852,6 +852,10 @@ function formValidation(forma){
         },
         submitHandler:function(){
             switch(forma){
+                case '.j-send-mes':
+                    console.log('entra');
+                    document.getElementById("j-send-mes").submit();
+                    break;
                 case '.j-user-basic-profile':
                     console.log('entra');
                     updateBasicProfile();
