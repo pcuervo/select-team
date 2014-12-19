@@ -599,13 +599,13 @@ function updateAdvisor() {
 
           if(msg.error == 0){
             alert('Advisor guardado con exito');
-			location.reload();
-		  }
+			      location.reload();
+		      }
           else if (msg.error == 1) {
-			alert('El usuario ya existe');
-		  } else {
-			alert('Error, porfavor revisa los datos');
-		  }
+			      alert('El usuario ya existe'); 
+		      } else {
+			      alert('Error, porfavor revisa los datos');
+		      }
         }// response
     );
 }// updateAdvisor
@@ -625,7 +625,7 @@ function updateBasicProfile() {
         var msg = $.parseJSON(response);
 
         if(msg.error == 0)
-          alert('Advisor guardado con exito*');
+          alert('Advisor modificado con exito*');
         else if(msg.error == 1)
 				  alert('El usuario ya existe');
         else
@@ -657,6 +657,7 @@ function registerAdvisor() {
 
             var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]" onclick="location.reload()" > Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]" onclick="location.reload()"> Delete </a> </p>';
             $(createdAdvisor).appendTo('.j-advisors-db');
+            location.reload();
           }
     			else if(msg.error == 1)
     				alert('El usuario ya existe');
@@ -843,7 +844,6 @@ function loginUser(user, password){
 * @return void
 **/
 function formValidation(forma){
-    console.log(forma);
     $(forma).validate({
         rules: {
           password_confirmation:{
@@ -853,11 +853,13 @@ function formValidation(forma){
         submitHandler:function(){
             switch(forma){
                 case '.j-send-mes':
-                    console.log('entra');
                     document.getElementById("j-send-mes").submit();
                     break;
-                case '.j-user-basic-profile':
+                case '.j-message':
                     console.log('entra');
+                    document.getElementById("j-message").submit();
+                    break;
+                case '.j-user-basic-profile':
                     updateBasicProfile();
                     break;
                 case '.j-register-user':

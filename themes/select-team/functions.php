@@ -128,7 +128,7 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Dashboard Admin')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
         
-        if (get_the_title()=='Dashboard' || get_the_title()=='Mensajes')
+        if (get_the_title()=='Dashboard' || get_the_title()=='Mensajes' || get_the_title()=='Mensajes-new')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
 		if (is_home())
@@ -466,10 +466,34 @@ function pu_blank_login( $user ){
 				<script type="text/javascript">
 					$( function() {
 						$('.j-send-mes .btn-enviar').on('click', function(e){
-							//e.preventDefault();
 							formValidation('.j-send-mes');
 						});
 					});
+				</script>
+			<?php } elseif (get_the_title()=='Mensajes-new') { ?>
+				<script type="text/javascript">
+					$( function() {
+						$('.j-message .btn-enviar').on('click', function(e){
+							formValidation('.j-message');
+						});
+					});
+					$('.j-select-user').on('change', function(e){
+						console.log($('.j-select-user').val());
+						if($('.j-select-user').val()!='-1'){
+							$('.j-select-advisor').hide('slow');
+						}else{
+							$('.j-select-advisor').show('slow');
+						}
+					});
+					$('.j-select-advisor').on('change', function(e){
+						console.log($('.j-select-advisor').val());
+						if($('.j-select-advisor').val()!='-1'){
+							$('.j-select-user').hide('slow');
+						}else{
+							$('.j-select-user').show('slow');
+						}
+					});
+					
 				</script>
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
