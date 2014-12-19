@@ -71,7 +71,7 @@
 						</div>
 					<?php } ?>
 				<?php } ?>
-				<form role="form" class="" method="post" >
+				<form role="form" id="j-send-mes" method="post" class="[ j-send-mes ]">
 					<input type="hidden" name="conv" value="<?php echo $conv ?>">
 					<input type="hidden" name="email-advisor" value="<?php echo $from ?>">
 					<div class="[ clear ] [ margin-bottom ]"></div>
@@ -81,7 +81,7 @@
 						<?php } else { ?>
 							<label for="">Your message:</label>
 						<?php } ?>
-							<textarea class="[ form-control ] [ margin-bottom ]" rows="4" cols="50" name="mensaje"></textarea>
+							<textarea class="[ form-control ] [ margin-bottom ][ required ]" rows="4" cols="50" name="mensaje"></textarea>
 						</div>
 						<div class="clear"></div>
 						<?php if (qtrans_getLanguage() == 'es'){ ?>

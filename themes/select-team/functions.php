@@ -128,7 +128,7 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Dashboard Admin')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
         
-        if (get_the_title()=='Dashboard')
+        if (get_the_title()=='Dashboard' || get_the_title()=='Mensajes')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
 		if (is_home())
@@ -462,11 +462,12 @@ function pu_blank_login( $user ){
 						});
 					});
 				</script>
-			<?php } elseif (get_the_title()=='Contacto') { ?>
+			<?php } elseif (get_the_title()=='Mensajes') { ?>
 				<script type="text/javascript">
 					$( function() {
-						$('.j-contact-button').on('click', function(e){
-							formValidation('.j-contact-message');
+						$('.j-send-mes .btn-enviar').on('click', function(e){
+							//e.preventDefault();
+							formValidation('.j-send-mes');
 						});
 					});
 				</script>
