@@ -251,14 +251,12 @@ function pu_blank_login( $user ){
 					});
 					$('#sportAll button').on('click', function(){
 				        var sport = $(this).attr('data-filter');
-				        console.log(sport);
 				        $('#sportAll').attr('data-active', sport);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				    });
 				    $('#genderAll button').on('click', function(){
 				        var gender = $(this).attr('data-filter');
-				        //console.log(gender);
 				        $('#genderAll').attr('data-active', gender);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
@@ -267,6 +265,16 @@ function pu_blank_login( $user ){
 						e.preventDefault();
 						deleteProspect($('.p_id').val());
 					});
+				    $('.j-status-deactivate').on('click', function(e){
+				    	changeStatus('0', $('.p_id').val());
+				    });
+					$('.j-status-activate').on('click', function(e){
+						changeStatus('1', $('.p_id').val());
+				    });
+				    $('.back-dashboard').on('click', function(e){
+				    	location.replace(current_url.value+'/dashboard-admin');
+				    });
+
 				</script>
 			<?php } elseif ( get_the_title()=='Dashboard Admin') { ?>
 				<script type="text/javascript">
@@ -277,14 +285,12 @@ function pu_blank_login( $user ){
 			      	});
 			      	$('#sportAll button').on('click', function(){
 				        var sport = $(this).attr('data-filter');
-				        console.log(sport);
 				        $('#sportAll').attr('data-active', sport);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
 				    });
 				    $('#genderAll button').on('click', function(){
 				        var gender = $(this).attr('data-filter');
-				        //console.log(gender);
 				        $('#genderAll').attr('data-active', gender);
 				        reorder($(this), '.isotope-container-sports');
 				        return false;
@@ -311,10 +317,10 @@ function pu_blank_login( $user ){
 					$('.btn-editar').hide();
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
-						$('.hide-form-advisor').hide();
-						$('.hide-form-advisor').show('slow');
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
+						$('.hide-form-advisor').hide();
+						$('.hide-form-advisor').show('slow');
 						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
 						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
 					});
@@ -358,19 +364,15 @@ function pu_blank_login( $user ){
 						});
 						$('.j-update-basic-profile button').on('click', function(e){
 							e.preventDefault();
-							console.log('actualizando perfil...');
 							updateUserInfo();
 						});
 						
 						$('.j-update-curriculum-update').on('click', function(e){
-							e.preventDefault();
-							console.log('actualizando curriculum...');
-							updateAllCurriculum();
+							formValidation('.j-user_curriculum_update');
 						});
 
 						$('.j-add-tournament').on('click', function(e){
-							e.preventDefault();
-							addTournament();
+							formValidation('.j-user_curriculum_tournament');
 						});
 
 						$('.j-delete-tournament').on('click', function(e){
@@ -379,22 +381,23 @@ function pu_blank_login( $user ){
 						});
 
 						$('.j-add-academic').on('click', function(e){
-							e.preventDefault();
-							console.log('add academic');
-							addAcademic();
+							formValidation('.j-user_curriculum_academic');
 						});
 
 						$('.j-delete-academic').on('click', function(e){
-							//e.preventDefault();
-							console.log('delete academic');
-							console.log($(this).parent());
+							e.preventDefault();
+							deleteAcademic($(this).parent());
+						});
+
+						$('.j-academic').on('click', '.j-delete-academic-new', function(e){
+							e.preventDefault();
+							deletedinAcademic($(this).parent());
 						});
 
 						$('.j-update-curriculum-create').on('click', function(e){
-							e.preventDefault();
-							console.log('creando curriculum...');
-							createCurriculum();  //Llamar a func que haga el INSERT
+							formValidation('.j-user_curriculum');
 						});
+
                         $(".profile_picture_preview").load(function() {
 							var width_picture = $(this).width();
 							var height_picture = $(this).height();
@@ -927,7 +930,7 @@ function pu_blank_login( $user ){
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
-	}// get_users_basic_info
+	}// get_advisors_basic_info
 
 	/**
 	 * Jalar "basic profile" de todos los usuarios
@@ -941,7 +944,7 @@ function pu_blank_login( $user ){
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
-	}// get_users_basic_info
+	}// get_user_conversations
 
 	/**
 	 * Jalar "basic profile" de todos los usuarios
@@ -1203,32 +1206,31 @@ function pu_blank_login( $user ){
 	   	$address 		= $_POST['address'];
 	   	$phone 			= $_POST['phone'];
 	   	$mobile_phone	= $_POST['mobile_phone'];
-	   	$high_school	= $_POST['high_school'];
-	   	$grade 			= $_POST['grade'];
-	   	$high_grad		= $_POST['high_grad'];
+	   	//$high_school	= $_POST['high_school'];
+	   	//$grade 			= $_POST['grade'];
+	   	//$high_grad		= $_POST['high_grad'];
+	   	$SAT 			= $_POST['SAT'];
+	   	$toefl 			= $_POST['toefl'];
 
-	   	
 	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
 
 		$updated = $wpdb->update(
 		    $wpdb->st_curriculum,
 			    array(
-			     	'address' 			=> $address,
-			     	'phone' 			=> $phone,
-			     	'mobile_phone' 		=> $mobile_phone,
-			     	'graduate_year' 	=> $grade,
-			     	'high_school' 		=> $high_school,		     
-			     	'graduation_date' 	=> $high_grad
+			     	'address' 		=> $address,
+			     	'phone' 		=> $phone,
+			     	'mobile_phone' 	=> $mobile_phone,
+			     	'sat' 			=> $SAT,
+			     	'toefl' 		=> $toefl
 		 		),
 			    array('st_user_id' => $st_users_id),
 			    array(
 			    	'%s',
 			    	'%s',
 			    	'%s',
-			    	'%s',
-			    	'%s',
-			    	'%s'
+			    	'%d',
+			    	'%d'
 			     )
 		);
 		die();
@@ -1253,10 +1255,11 @@ function pu_blank_login( $user ){
 	   	$address 		= $_POST['address'];
 	   	$phone 			= $_POST['phone'];
 	   	$mobile_phone	= $_POST['mobile_phone'];
-	   	$high_school	= $_POST['high_school'];
-	   	$grade 			= $_POST['grade'];
-	   	$high_grad		= $_POST['high_grad'];
-
+	   	//$high_school	= $_POST['high_school'];
+	   	//$grade 			= $_POST['grade'];
+	   	//$high_grad		= $_POST['high_grad'];
+	   	$SAT 			= $_POST['SAT'];
+	   	$toefl 			= $_POST['toefl'];
 	   	
 	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
@@ -1264,22 +1267,20 @@ function pu_blank_login( $user ){
 		$inserted = $wpdb->insert(
 		    $wpdb->st_curriculum,
 			    array(
-			    	'st_user_id' 		=> $st_users_id,
-			     	'address' 			=> $address,
-			     	'phone' 			=> $phone,
-			     	'mobile_phone' 		=> $mobile_phone,
-			     	'graduate_year' 	=> $grade,
-			     	'high_school' 		=> $high_school,		     
-			     	'graduation_date' 	=> $high_grad
+			    	'st_user_id' 	=> $st_users_id,
+			     	'address' 		=> $address,
+			     	'phone' 		=> $phone,
+			     	'mobile_phone' 	=> $mobile_phone,
+			     	'sat' 			=> $SAT,
+			     	'toefl' 		=> $toefl
 		 		),
 			    array(
 			    	'%d',
 			    	'%s',
 			    	'%s',
 			    	'%s',
-			    	'%s',
-			    	'%s',
-			    	'%s'
+			    	'%d',
+			    	'%d'
 			     )
 		);
 		die();
@@ -1757,7 +1758,7 @@ function pu_blank_login( $user ){
 	function get_users_basic_info(){
 	    global $wpdb;
 
-	    $query = "SELECT id, full_name, sport, gender, profile_picture FROM v_basic_profile";
+	    $query = "SELECT id, full_name, sport, gender, profile_picture, status FROM v_basic_profile";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
@@ -1905,7 +1906,84 @@ function pu_blank_login( $user ){
 		return $mail_status;
 	}// register_email
 
+	/**
+	 * Crea un registro escolar.
+	 * @param  string  $high_school
+	 * @param  string  $high_grad
+	 * @param  string  $country
+	 * @param  string  $city
+	 * @return boolean
+	 */
 
+	function addAcademic($info){
+		global $wpdb;
+		
+		$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+		
+        $high_school = $info['high_school'];
+        $high_grad = $info['high_grad'];
+        $country = $info['country'];
+        $country = $info['country'];
+        $city = $info['city'];
+
+	        $inserted = $wpdb->insert(
+			    $wpdb->st_academic,
+				    array(
+				    	'st_user_id'		=> $st_users_id,
+				    	'high_school'		=> $high_school,
+				    	'graduation_date'	=> $high_grad,
+				    	'country'			=> $country,
+				    	'city'				=> $city
+				    	),
+				    array(
+				    	'%d', 
+				    	'%s',
+				    	'%s',
+				    	'%s',
+				    	'%s'
+				    	)
+			);
+		die();
+	}
+
+	function deleteAcademic($info){
+		global $wpdb;
+		$id=$info['del'];
+		$prospect_info = get_user_basic_info(get_current_user_id()); 
+        $st_users_id=$prospect_info->st_user_id;
+	
+		if($id=='0'){			
+			$deleted = $wpdb->delete(
+				$wpdb->st_academic,
+					array(
+						'st_user_id'=> $st_users_id,
+						'country'=> $_GET['country'],
+						'city'=> $_GET['city'],
+						'high_school'=> $_GET['nom'],
+					),
+					array(
+						'%d',
+						'%d',
+						'%d',
+						'%d'
+						)
+			);
+		}
+		else {
+			$deleted = $wpdb->delete(
+				$wpdb->st_academic,
+					array(
+						'id'=> $id
+					),
+					array(
+						'%d'
+						)
+			);
+		}
+		die();
+	}
+	
 	/**
 	 * Crea un torneo.
 	 * @param  string  $tournament_name
@@ -1993,6 +2071,20 @@ function pu_blank_login( $user ){
 	add_action("wp_ajax_nopriv_contact_message", "contact_message");
 	add_action("wp_ajax_contact_message", "contact_message");
 
+	function changeStatus($val, $id){
+		global $wpdb;
+		echo get_current_user_id();
+		$updated = $wpdb->update(
+		    $wpdb->st_users,
+			    array(
+			     	'status' 	=> $val
+		 		),
+			    array('wp_user_id' => $id),
+			    array('%s')
+		);
+		var_dump($updated);
+		die();
+	}
 
 	function send_coach_emailX($mail_to, $form_info){
 		$q1 = $q2 = $q3 = $q4 = $q5 = $q6 = $q7 = $q8 = $q9 = $q10 = '';

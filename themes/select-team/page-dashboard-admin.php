@@ -5,6 +5,11 @@
         exit;
     }
 
+    if(isset($_GET['v'])){
+        $status=$_GET['v'];
+        changeStatus($status, $_GET['id']);
+    }
+
     $role = get_current_user_role();
     if( $role == 'subscriber' ) {
         $location = site_url().'/dashboard';
@@ -99,7 +104,7 @@
                                         if($user->profile_picture!='') { ?>
                                             <a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
                                                 <div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                                     <?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
+                                                    <?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
                                                     <img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
                                                     <?php } elseif ($user->gender=='male') { ?>
                                                         <img src="<?php echo THEMEPATH.'profile_pictures/profile-01.png'?>" alt="" class="">
@@ -107,8 +112,9 @@
                                                         <img src="<?php echo THEMEPATH.'profile_pictures/profile-02.png'?>" alt="" class="">
                                                     <?php } ?>
                                                     <div class=" info">
-                                                      <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
-                                                      <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
+                                                        <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
+                                                        <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
+                                                        <p class="center-text">Status: <span><?php if($user->status=='1') echo 'Active'; else echo 'Inactive'; ?></span></p>
                                                     </div>
                                                 </div>
                                             </a>

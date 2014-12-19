@@ -483,6 +483,15 @@ button, a{
 		}
 	}
 
+	.profile_picture_preview{ max-width: 200px; height: auto !important; }
+
+	.prospect-inactive{ color: @gray; cursor: pointer; .transition;
+		&:hover{ color: @gray-lighter; }
+	}
+	.prospect-active{ color: @green; cursor: pointer; .transition;
+		&:hover{ color: lighten(@green, 30%); }
+	}
+
 
 
 //***************************************************
@@ -513,6 +522,17 @@ button, a{
 	.conversation-date{ color: @gray; font-style: italic; }
 	&.user{ border-bottom: 1px solid @gray-lighter; text-align: right; }
 	&.advisor{ border-bottom: 1px solid @gray-lighter; }
+}
+
+.conversation-list{  
+	list-style: none;
+	font-weight: bold;
+	font-size: 1.2em;
+	padding: 0;
+	li{ border-bottom: 1px solid @gray-lighter; padding: 15px; }
+	span{ float: right; font-weight: normal; color: @gray;
+		i,a{ color: @gray-light; .transition }
+	}
 }
 
 

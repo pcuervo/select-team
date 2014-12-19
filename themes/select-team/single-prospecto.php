@@ -19,14 +19,56 @@
 		<h2 class="[ col-xs-12 ]"><?php echo $user->full_name ?></h2>
 		<?php if( is_user_logged_in() ){
 			if ( $role != 'subscriber' AND $role != 'author') { ?>
-				<span class="[ j-delete-prospect ] [ col-xs-12 ] [ text-right ] [ margin-bottom ] [ delete-prospect ]">  <i class="fa fa-times-circle"></i> <b class="hidden-xs">Eliminar prospecto</b></span>
-			<?php
-			}
-		} ?>
+				<?php if (qtrans_getLanguage() == 'es'){ ?>
+					<span class="[ j-delete-prospect ] [  ] [ margin-bottom ] [ delete-prospect ]">  <i class="fa fa-times-circle"></i> <b class="">Eliminar prospecto</b></span>
+					<div class="[ clear ] [ margin-bottom ]"></div>
+					<?php if($user->status=='1'){ ?>
+						<span class="[ j-status-deactivate ] [  ] [ margin-bottom ] [ delete-prospect ]">  <i class="[ fa fa-dot-circle-o ]"></i> <b class="">Desactivar prospecto</b></span>
+						<div class="[ clear ] [ margin-bottom ]"></div>
+					<?php } else { ?>
+						<span class="[ j-status-activate ] [  ] [ margin-bottom ] [ prospect-inactive ]">  <i class="[ fa fa-circle-o ]"></i> <b class="">Activar prospecto</b></span>
+						<div class="[ clear ] [ margin-bottom ]"></div>
+					<?php } ?>
+				<?php } else { ?>
+					<span class="[ j-delete-prospect ] [  ] [ margin-bottom ] [ delete-prospect ]">  <i class="fa fa-times-circle"></i> <b class="">Delete prospect</b></span>
+					<div class="[ clear ] [ margin-bottom ]"></div>
+					<?php if($user->status=='1'){ ?>
+						<span class="[ j-status-deactivate ] [  ] [ margin-bottom ] [ delete-prospect ]"> <i class="[ fa fa-dot-circle-o ]"></i> <b class="">Deactivate prospect</b></span>
+						<div class="[ clear ] [ margin-bottom ]"></div>
+					<?php } else { ?>
+						<span class="[ j-status-activate ] [  ] [ margin-bottom ] [ prospect-inactive ]"> <i class="[ fa fa-circle-o ]"></i> <b class="">Activate prospect</b></span>
+						<div class="[ clear ] [ margin-bottom ]"></div>
+					<?php }
+					}
+				}
+			} ?>
+
 		<div class="clear"></div>
 		<div class="col-xs-12 col-sm-6 col-md-4 student-info margin-bottom right">
-			<img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="margin-bottom">
-			<button type="button" class="btn btn-primary [ center block ]" data-toggle="modal" data-target="#student-video"><i class="fa fa-play-circle-o"></i> Watch video</button>
+		<?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
+	        <img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
+	        <?php } elseif ($user->gender=='male') { ?>
+	            <img src="<?php echo THEMEPATH.'profile_pictures/profile-01.png'?>" alt="" class="">
+	        <?php } elseif ($user->gender=='female') { ?>
+	            <img src="<?php echo THEMEPATH.'profile_pictures/profile-02.png'?>" alt="" class="">
+	        <?php } ?>
+    	    <div class="[ clear ] [ margin-bottom ]"></div>
+    	    <?php if (qtrans_getLanguage() == 'es'){ ?>
+				<button type="button" class="btn btn-primary [ center block ]" data-toggle="modal" data-target="#student-video"><i class="fa fa-play-circle-o"></i> Ver video</button>
+			<?php } else { ?>
+				<button type="button" class="btn btn-primary [ center block ]" data-toggle="modal" data-target="#student-video"><i class="fa fa-play-circle-o"></i> Watch video</button>
+			<?php } ?>
+			<div class="[ clear ] [ margin-bottom ]"></div>
+			
+			<?php if( is_user_logged_in() ){
+				if ( $role != 'subscriber' AND $role != 'author') { ?>
+					<?php if (qtrans_getLanguage() == 'es'){ ?>
+						<button type="button" class="[ btn btn-primary ] [ center block ] [ back-dashboard ]" data-toggle="modal" data-target="#student-video"></i> Todos los prospectos </button>
+					<?php } else { ?>
+						<button type="button" class="[ btn btn-primary ] [ center block ] [ back-dashboard ]" data-toggle="modal"></i> All the prospects </button>
+						<?php }
+					}
+				} ?>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 student-info margin-bottom">
 			<?php if (qtrans_getLanguage() == 'es'){ ?>
