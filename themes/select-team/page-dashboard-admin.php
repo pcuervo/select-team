@@ -33,7 +33,7 @@
                         <?php } else { ?>
                             <h3>Basic Profile</h3>
                         <?php } ?>
-                        <form id="userForm2" role="form" class="[ row ][ j-user-basic-profile ]" >
+                        <form id="userForm" role="form" class="[ row ] [ j-user-basic-profile ]" >
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="username">Nombre de usuario</label>
@@ -66,9 +66,9 @@
                                 <?php } ?>
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]">Guardar cambios</button>
+                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]">Guardar cambios</button>
                             <?php } else { ?>
-                                <button type="button" class="[ btn btn-primary ] [ margin-bottom ] [ btn-guardar-profile ]">Save changes</button>
+                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ btn-guardar-profile ]">Save changes</button>
                             <?php } ?>
                         </form>
                     </div>

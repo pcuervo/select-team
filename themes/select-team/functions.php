@@ -311,7 +311,7 @@ function pu_blank_login( $user ){
 						$('.btn-editar').hide();
 						$('.btn-agregar').show();
 					});
-					$('.btn-guardar-profile').on('click', function(){
+					$('.j-user-basic-profile .btn-guardar-profile').on('click', function(){
 						formValidation('.j-user-basic-profile');
 					});
 					$('.btn-editar').hide();
