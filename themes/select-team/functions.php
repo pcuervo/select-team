@@ -266,12 +266,13 @@ function pu_blank_login( $user ){
 						deleteProspect($('.p_id').val());
 					});
 				    $('.j-status-deactivate').on('click', function(e){
-				    	console.log('De');
 				    	changeStatus('0', $('.p_id').val());
 				    });
 					$('.j-status-activate').on('click', function(e){
-						console.log('Ac');
 						changeStatus('1', $('.p_id').val());
+				    });
+				    $('.back-dashboard').on('click', function(e){
+				    	location.replace(current_url.value+'/dashboard-admin');
 				    });
 
 				</script>
@@ -380,9 +381,7 @@ function pu_blank_login( $user ){
 						});
 
 						$('.j-add-academic').on('click', function(e){
-							//e.preventDefault();
 							formValidation('.j-user_curriculum_academic');
-							//addAcademic();
 						});
 
 						$('.j-delete-academic').on('click', function(e){
