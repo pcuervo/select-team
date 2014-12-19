@@ -2,10 +2,22 @@
 	$status = null;
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$mensaje = $_POST["mensaje"];
-		$to = $_POST["email-advisor"];
-		$from = get_current_user_id();
+		$to = null;
 		
+		if($_POST["email-advisor"] != -1){
+			$to = $_POST["email-advisor"];
+		}else if($_POST["email-advisor-user"] != -1){
+			$to = $_POST["email-advisor-user"];
+		}
+		
+		$from = get_current_user_id();
 		$status = register_mensaje($mensaje, $from, $to);
+	}
+	$role = get_current_user_role();
+	$users_st = null;
+
+	if ( $role == 'administrator' ){
+		$users_st = get_all_st_user();
 	}
 
 ?>
@@ -64,7 +76,21 @@
 						<?php } else { ?>
 							<label for="">Send to:</label>
 						<?php } ?>
+						
+						<?php if($users_st != null){ ?>
+							<select class="[ form-control ]" name="email-advisor-user">
+								<option value="-1">Select user</option>
+							<?php 
+								foreach ($users_st as $key => $user) 
+								{
+							?>
+								<option value="<?php echo $user->id; ?>"><?php echo $user->full_name; ?></option>
+							<?php } ?>
+							</select>
+						<?php } ?>
+						
 						<select class="[ form-control ]" name="email-advisor">
+							<option value="-1">Or select advisor</option>
 							<?php 
 								$users = get_advisors_basic_info(); 
 								foreach ($users as $key => $user) 

@@ -12,10 +12,13 @@
 	}else if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 		$conv = $_GET["id"];
 		$convData = get_conversacion_info($conv);
-		if($user_id == $convData[0]->from_id){
+		
+		if ($user_id == $convData[0]->from_id){
 			$from = $convData[0]->to_id;
-		}else{
+		}else if ($user_id == $convData[0]->to_id){
 			$from = $convData[0]->from_id;
+		}else {
+			header( 'Location: ../' );
 		}
 	}
 
@@ -56,14 +59,17 @@
 				<?php 
 					foreach ($mensajes as $key => $mensaje) {
 				?>	
-					<div class="[ message user ]">
-						<p class="[ conversation-date ]"><?php echo $mensaje->date; ?></p>
-						<p class="[ conversation-text ]"><?php echo $mensaje->message; ?></p>					
-					</div>
-					<div class="[ message advisor ]">
-						<p class="[ conversation-date ]"><?php echo $mensaje->date; ?></p>
-						<p class="[ conversation-text ]"><?php echo $mensaje->message; ?></p>
-					</div>
+					<?php if($mensaje->receptor == $user_id) {?>
+						<div class="[ message user ]">
+							<p class="[ conversation-date ]"><?php echo $mensaje->date; ?></p>
+							<p class="[ conversation-text ]"><?php echo $mensaje->message; ?></p>					
+						</div>
+					<?php } else { ?>
+						<div class="[ message advisor ]">
+							<p class="[ conversation-date ]"><?php echo $mensaje->date; ?></p>
+							<p class="[ conversation-text ]"><?php echo $mensaje->message; ?></p>
+						</div>
+					<?php } ?>
 				<?php } ?>
 				<form role="form" class="" method="post" >
 					<input type="hidden" name="conv" value="<?php echo $conv ?>">
