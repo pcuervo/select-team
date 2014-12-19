@@ -1935,26 +1935,38 @@ function pu_blank_login( $user ){
 
 	function deleteAcademic($info){
 		global $wpdb;
-		var_dump($_GET);
 		$id=$info['del'];
 		$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
-
-		$deleted = $wpdb->delete(
-			$wpdb->st_academic,
-				array(
-					'st_user_id'=> $st_users_id,
-					'country'=> $_GET['country'],
-					'city'=> $_GET['city'],
-					'high_school'=> $_GET['nom'],
-				),
-				array(
-					'%d',
-					'%d',
-					'%d',
-					'%d'
-					)
-		);
+	
+		if($id=='0'){			
+			$deleted = $wpdb->delete(
+				$wpdb->st_academic,
+					array(
+						'st_user_id'=> $st_users_id,
+						'country'=> $_GET['country'],
+						'city'=> $_GET['city'],
+						'high_school'=> $_GET['nom'],
+					),
+					array(
+						'%d',
+						'%d',
+						'%d',
+						'%d'
+						)
+			);
+		}
+		else {
+			$deleted = $wpdb->delete(
+				$wpdb->st_academic,
+					array(
+						'id'=> $id
+					),
+					array(
+						'%d'
+						)
+			);
+		}
 		die();
 	}
 	
