@@ -2,14 +2,18 @@
 	$status = null;
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$mensaje = $_POST["mensaje"];
-		$to = $_POST["email-advisor"];
-		$from = get_current_user_id();
+		$to = null;
 		
+		if($_POST["email-advisor"] != -1){
+			$to = $_POST["email-advisor"];
+		}else if($_POST["email-advisor-user"] != -1){
+			$to = $_POST["email-advisor-user"];
+		}
+		
+		$from = get_current_user_id();
 		$status = register_mensaje($mensaje, $from, $to);
 	}
 	$role = get_current_user_role();
-	echo $role;
-
 	$users_st = null;
 
 	if ( $role == 'administrator' ){
