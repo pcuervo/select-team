@@ -843,6 +843,7 @@ function loginUser(user, password){
 * @return void
 **/
 function formValidation(forma){
+    console.log(forma);
     $(forma).validate({
         rules: {
           password_confirmation:{
@@ -851,6 +852,10 @@ function formValidation(forma){
         },
         submitHandler:function(){
             switch(forma){
+                case '.j-user-basic-profile':
+                    console.log('entra');
+                    updateBasicProfile();
+                    break;
                 case '.j-register-user':
                     registerUser();
                     break;

@@ -311,8 +311,8 @@ function pu_blank_login( $user ){
 						$('.btn-editar').hide();
 						$('.btn-agregar').show();
 					});
-					$('.btn-guardar-profile').on('click', function(){
-						updateBasicProfile();
+					$('.j-user-basic-profile .btn-guardar-profile').on('click', function(){
+						formValidation('.j-user-basic-profile');
 					});
 					$('.btn-editar').hide();
 					$('.edit-advisor').on('click', function(e){
@@ -452,6 +452,14 @@ function pu_blank_login( $user ){
 						});
 						elegirDeporte('');
 						elegirDeporte($('#sport').val());
+					});
+				</script>
+			<?php } elseif (get_the_title()=='Contacto') { ?>
+				<script type="text/javascript">
+					$( function() {
+						$('.j-contact-button').on('click', function(e){
+							formValidation('.j-contact-message');
+						});
 					});
 				</script>
 			<?php } elseif (get_the_title()=='Contacto') { ?>
