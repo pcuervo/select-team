@@ -367,13 +367,11 @@ function pu_blank_login( $user ){
 						});
 						
 						$('.j-update-curriculum-update').on('click', function(e){
-							e.preventDefault();
-							updateAllCurriculum();
+							formValidation('.j-user_curriculum_update');
 						});
 
 						$('.j-add-tournament').on('click', function(e){
-							e.preventDefault();
-							addTournament();
+							formValidation('.j-user_curriculum_tournament');
 						});
 
 						$('.j-delete-tournament').on('click', function(e){
@@ -382,8 +380,9 @@ function pu_blank_login( $user ){
 						});
 
 						$('.j-add-academic').on('click', function(e){
-							e.preventDefault();
-							addAcademic();
+							//e.preventDefault();
+							formValidation('.j-user_curriculum_academic');
+							//addAcademic();
 						});
 
 						$('.j-delete-academic').on('click', function(e){
@@ -391,10 +390,15 @@ function pu_blank_login( $user ){
 							deleteAcademic($(this).parent());
 						});
 
-						$('.j-update-curriculum-create').on('click', function(e){
+						$('.j-academic').on('click', '.j-delete-academic-new', function(e){
 							e.preventDefault();
-							createCurriculum();
+							deletedinAcademic($(this).parent());
 						});
+
+						$('.j-update-curriculum-create').on('click', function(e){
+							formValidation('.j-user_curriculum');
+						});
+
                         $(".profile_picture_preview").load(function() {
 							var width_picture = $(this).width();
 							var height_picture = $(this).height();
@@ -1932,6 +1936,7 @@ function pu_blank_login( $user ){
 
 	function deleteAcademic($info){
 		global $wpdb;
+		var_dump($_GET);
 		$id=$info['del'];
 		$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
@@ -1940,9 +1945,16 @@ function pu_blank_login( $user ){
 			$wpdb->st_academic,
 				array(
 					'st_user_id'=> $st_users_id,
-					'id'=> $id
+					'country'=> $_GET['country'],
+					'city'=> $_GET['city'],
+					'high_school'=> $_GET['nom'],
 				),
-				array('%d')
+				array(
+					'%d',
+					'%d',
+					'%d',
+					'%d'
+					)
 		);
 		die();
 	}
