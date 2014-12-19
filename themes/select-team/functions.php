@@ -950,7 +950,7 @@ function pu_blank_login( $user ){
 	function get_mensajes_conversations($conversation_id ){
 	    global $wpdb;
 		
-	    $query = "SELECT * FROM select_team.st_messages where conversation_id ='".$conversation_id."'";
+	    $query = "SELECT * FROM st_messages where conversation_id ='".$conversation_id."'";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
@@ -1499,6 +1499,20 @@ function pu_blank_login( $user ){
 		     array( '%s'),
 		     array( '%d')
 		 );
+	}// add_profile_picture
+	
+	/**
+	 * Agrega foto de perfil de usuario.
+	 * @param int $wp_user_id, string $profile_pic
+	 * @return 1 si no hay errores, -1 username vacío, -2 email vacío, -3 password inválido, -4 passwords no son iguales
+	 */
+	function get_all_st_user(){
+		 global $wpdb;
+
+	    $query = "SELECT wp_user_id as id, full_name FROM select_team.st_users;";
+	    $users = $wpdb->get_results($query);
+		
+		return $users;
 	}// add_profile_picture
 
 	/**
