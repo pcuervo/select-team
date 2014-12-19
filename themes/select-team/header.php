@@ -250,12 +250,19 @@
 							<?php if( $role != 'author' ) { ?>
 								<li>
 									<?php if (qtrans_getLanguage() == 'es'){ ?>
-										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-envelope-o"></i> Agentes</a>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-briefcase"></i> Agentes</a>
 									<?php } else { ?>
-										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-envelope-o"></i> Advisors</a>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-briefcase"></i> Advisors</a>
 									<?php } ?>
 								</li>
 							<?php } ?>
+							<li>
+								<?php if (qtrans_getLanguage() == 'es'){ ?>
+									<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages-admin ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+								<?php } else { ?>
+									<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages-admin ]"><i class="fa fa-envelope-o"></i> Messages</a>
+								<?php } ?>
+							</li>
 						<?php }  ?>
 						<!-- Para el register usuario o advisor -->
 					</ul>

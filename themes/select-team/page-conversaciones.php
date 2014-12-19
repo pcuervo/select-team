@@ -5,9 +5,9 @@
 	foreach ($conversations as $key => $conver) {
 ?>	
 	<?php if($user_id == $conver->from_id){ ?>
-		<p><?php echo $conver->to; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+		<p><?php echo $conver->to; ?></p><a href="mensajes?id=<?php echo $conver->id; ?>&f=<?php echo $conver->to_id; ?>">Ver</a>
 	<?php } else { ?>
-		<p><?php echo $conver->from; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+		<p><?php echo $conver->from; ?></p><a href="mensajes?id=<?php echo $conver->id; ?>&f=<?php echo $conver->from_id; ?>">Ver</a>
 	<?php } ?>
 <?php } ?>
 <?php get_footer(); ?>

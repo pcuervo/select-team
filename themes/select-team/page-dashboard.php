@@ -28,7 +28,7 @@
                 unset($_SESSION['name']);
             }
 
-            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = $video_host = $video_url = '';
+            $address = $phone = $mob_phone = $grad_year = $high_school = $grad_date = $video_host = $video_url = $SAT = $toefl = '';
             $created_curriculum = false;
 
             $prospect_info = get_user_basic_info(get_current_user_id()); 
@@ -36,7 +36,6 @@
             if($prospect_info){
                 $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
                 $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
-                $academic_hist = "";
                 $academic_hist = get_user_academic_info($prospect_info->st_user_id);
                 //var_dump($academic_hist);
             }
@@ -45,12 +44,12 @@
                 $address        =  $created_curriculum->address;
                 $phone          =  $created_curriculum->phone;
                 $mob_phone      =  $created_curriculum->mobile_phone;
-                $grad_year      =  $created_curriculum->graduate_year;
-                $high_school    =  $created_curriculum->high_school;
-                //$grad_date      =  $created_curriculum->graduation_date;
-                $grad_dateArr = explode(' ', $created_curriculum->graduation_date);
-                $grad_date = $grad_dateArr[0];
-
+                //$grad_year      =  $created_curriculum->graduate_year;
+                //$high_school    =  $created_curriculum->high_school;
+                //$grad_dateArr = explode(' ', $created_curriculum->graduation_date);
+                //$grad_date = $grad_dateArr[0];
+                $SAT = $created_curriculum->sat;
+                $toefl = $created_curriculum->toefl;
                 $tournament_info = get_user_tournament($prospect_info->st_user_id);
             }
         ?>
@@ -404,6 +403,22 @@
                                 <?php } ?>
                                 <input type="text" class="[ form-control ]" id="mPhone" name="curriculum_mobile_phone" value="<?php echo $mob_phone; ?>">
                             </div>
+                            <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="SAT">SAT</label>
+                                <?php } else { ?>
+                                    <label for="SAT">SAT</label>
+                                <?php } ?>
+                                <input type="text" class="[ form-control ]" id="SAT" name="curriculum_SAT" value="<?php echo $SAT; ?>">
+                            </div>
+                            <div class="[ form-group ] [ col-xs-12 col-sm-6 ]">
+                                <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                    <label for="toefl">Toefl</label>
+                                <?php } else { ?>
+                                    <label for="toefl">Toefl</label>
+                                <?php } ?>
+                                <input type="text" class="[ form-control ]" id="toefl" name="curriculum_toefl" value="<?php echo $toefl; ?>">
+                            </div>
                             <div class="[ clear ] [ margin-bottom ]"></div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h4 class="[ col-xs-12 ]">Educación</h4>
@@ -589,45 +604,49 @@
                         </form>
                     </div>
                 </div>
-                <div class="[ row ] [ js-dashboard-section ] [ js-messages ] [ margin-bottom ]"  id="messages">
-                    <div class="[ col-xs-12 col-sm-7 ]">
-                        <?php if (qtrans_getLanguage() == 'es'){ ?>
-                            <h3>Mensajes</h3>
-                            <p class="help-block">Envía un mensaje a uno de nuestros agentes.</p>
-                        <?php } else { ?>
-                            <h3>Messages</h3>
-                            <p class="help-block">Send a message to one of our managers.</p>
+                <div class="[ row ] [ js-dashboard-section ] [ js-messages ] [ margin-bottom ]"  id="">
+                    <div class="[ col-xs-12 col-sm-10 ]">
+                        <h3>My conversations</h3>
+                        <?php 
+                            $user_id = get_current_user_id();
+                            $conversations = get_user_conversations(); 
+                            foreach ($conversations as $key => $conver) {
+                        ?> 
+                        <ul class="[ conversation-list ]"> 
+                            <li>
+                                <?php if($user_id == $conver->from_id){ ?>
+                                    <p><?php echo $conver->to; ?> <span><a href="mensaje?id=<?php echo $conver->id; ?>"><i class="fa fa-comments-o"></i> 
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Ver</a></span></p>
+                                    <?php } else { ?>
+                                        See</a></span></p>
+                                    <?php } ?>
+                                    
+                                <?php } else { ?>
+                                    <p><?php echo $conver->from; ?><span><a href="mensaje?id=<?php echo $conver->id; ?>"><i class="fa fa-comments-o"></i> 
+                                   <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Ver</a></span></p>
+                                    <?php } else { ?>
+                                        See</a></span></p>
+                                    <?php } ?>
+                                <?php } ?>
+                            </li>
+                        </ul>
                         <?php } ?>
-                        <form role="form" class="[ row ] [ j-form-message-advisor ]">
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="manager" id="manager" name="agent">Selecciona un agente:</label>
-                                    <select class="[ form-control ] [ selectMensajeAdvisor ] [ required ]" id="selectMensajeAdvisor">
-                                        <option value="zurol@pcuervo.com">Luis Mendoza</option>
-                                        <option value="miguel@pcuervo.com">Nair Tolomeo</option>
-                                    </select>
-                                <?php } else { ?>
-                                    <label for="manager" id="manager" name="agent">Select an advisor:</label>
-                                    <select class="[ form-control ][ selectMensajeAdvisor ] [ required ]" id="selectMensajeAdvisor" name="selectMensajeAdvisor">
-                                        <option value="zurol@pcuervo.com">Luis Mendoza</option>
-                                        <option value="miguel@pcuervo.com">Nair Tolomeo</option>
-                                    </select>
-                                <?php } ?>
-                            </div>
-                            <div class="[ form-group ] [ col-xs-12 ]">
-                                <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <label for="message">Tu mensaje</label>
-                                <?php } else { ?>
-                                    <label for="message">Your message</label>
-                                <?php } ?>
-                                <textarea class="[ form-control ] [ txtareaMensajeAdvisor ] [ required ]" rows="3" id="txtareaMensajeAdvisor" name="txtareaMensajeAdvisor"></textarea>
-                            </div>
+                        <?php if(count($conversations) <= 0){ ?>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-mensaje-advisor ]">Enviar mensaje</button>
+                                <p>No tienes mensajes.</p>
                             <?php } else { ?>
-                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-mensaje-advisor ]">Send Message</button>
+                                <p>You don't have any messages.</p>
                             <?php } ?>
-                        </form>
+						<?php } ?>
+                    </div>
+                    <div class="[ col-xs-12 ]">
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <a href="<?php echo site_url('mensajes-new'); ?>" class="[ btn btn-primary btn-new-message ]">Nuevo mensaje</a>
+                        <?php } else { ?>
+                            <a href="<?php echo site_url('mensajes-new'); ?>" class="[ btn btn-primary btn-new-message ]">New message</a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

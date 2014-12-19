@@ -5,6 +5,11 @@
         exit;
     }
 
+    if(isset($_GET['v'])){
+        $status=$_GET['v'];
+        changeStatus($status, $_GET['id']);
+    }
+
     $role = get_current_user_role();
     if( $role == 'subscriber' ) {
         $location = site_url().'/dashboard';
@@ -99,7 +104,7 @@
                                         if($user->profile_picture!='') { ?>
                                             <a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
                                                 <div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
-                                                     <?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
+                                                    <?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
                                                     <img src="<?php echo THEMEPATH.'profile_pictures/'.$user->profile_picture ?>" alt="" class="">
                                                     <?php } elseif ($user->gender=='male') { ?>
                                                         <img src="<?php echo THEMEPATH.'profile_pictures/profile-01.png'?>" alt="" class="">
@@ -107,8 +112,9 @@
                                                         <img src="<?php echo THEMEPATH.'profile_pictures/profile-02.png'?>" alt="" class="">
                                                     <?php } ?>
                                                     <div class=" info">
-                                                      <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
-                                                      <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
+                                                        <h4 class="center-text"> <?php echo $user->full_name; ?> </h4>
+                                                        <p class="center-text">Sport: <span><?php echo $user->sport; ?></span></p>
+                                                        <p class="center-text">Status: <span><?php if($user->status=='1') echo 'Active'; else echo 'Inactive'; ?></span></p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -119,7 +125,7 @@
                     </div>
                 </div>
                 <?php if( $role != 'author' ) { ?>
-                    <div class="[ row ] [ dashboard-profile ] [ j-advisors ] [ js-dashboard-section ] [ margin-bottom ]" id="advisors">
+                    <div class="[ row ] [ j-advisors ] [ js-dashboard-section ] [ js-advisors ] [ margin-bottom ]" id="advisors">
                         <div class="[ col-xs-12 col-sm-12 ][ j-advisor-confirm ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h3 class="[ margin-bottom ]">Agentes</h3>
@@ -194,7 +200,7 @@
                                 $users = get_advisors_basic_info(); 
                                 foreach ($users as $key => $user) {
                             ?>
-                                    <p class="[ col-xs-12 col-sm-6 ]">
+                                    <p class="[ col-xs-12 ]">
                                         <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a>
                                         <a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
                                         <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -214,32 +220,30 @@
                             <?php } ?>
                         </div>
                         <div class="[ j-confirm ]"></div>
-                    </div><!-- .dashboard-profile -->
-                        <div class="clear"></div>
-                        <?php 
-                            $users = get_advisors_basic_info(); 
-                            foreach ($users as $key => $user) {
-                        ?>
-                                <p class="[ col-xs-12 col-sm-6 ]">
-                                    <i class="fa fa-briefcase"></i> <b><?php echo $user->full_name; ?></b> - <a href="mailto:<?php echo $user->user_email; ?>"><?php echo $user->user_email; ?></a>
-                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ edit-advisor ]"> 
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        Editar
-                                    <?php } else { ?>
-                                        Edit
-                                    <?php } ?>
-                                    </a> / 
-                                    <a href="#" data-id="<?php echo $user->ID; ?>" class="[ delete-advisor ]"> 
-                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                        Borrar
-                                    <?php } else { ?>
-                                        Delete
-                                    <?php } ?>
-                                    </a>
-                                </p>
-                        <?php } ?>
                     </div>
                 <?php } ?>
+                <div class="[ row ] [ js-dashboard-section ] [ js-messages-admin ] [ margin-bottom ]"  id="">
+                    <div class="[ col-xs-12 col-sm-7 ]">
+                        <?php 
+                            $user_id = get_current_user_id();
+                            $conversations = get_user_conversations(); 
+                            foreach ($conversations as $key => $conver) {
+                        ?>  
+                            <?php if($user_id == $conver->from_id){ ?>
+                                <p><?php echo $conver->to; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+                            <?php } else { ?>
+                                <p><?php echo $conver->from; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                    <div class="[ col-xs-12 ]">
+                        <?php if (qtrans_getLanguage() == 'es'){ ?>
+                            <a href="<?php echo site_url('mensajes-new'); ?>" class="[ btn btn-primary btn-new-message ]">Nuevo mensaje</a>
+                        <?php } else { ?>
+                            <a href="<?php echo site_url('mensajes-new'); ?>" class="[ btn btn-primary btn-new-message ]">New message</a>
+                        <?php } ?>
+                    </div>
+                </div>
             </div><!-- /container-fluid -->
         </div> <!-- /#page-content-wrapper -->
     </div><!-- #dashboard -->
