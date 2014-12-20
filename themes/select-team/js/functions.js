@@ -559,7 +559,8 @@ function deleteAdvisor(id){
         advisor_data,
         function(response){
           console.log(response);
-          var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se ha eliminado el advisor.</div>';
+          $('.j-advisor-feedback').hide('slow');
+          var html_feedback = '<div class="[ alert alert-success ] [ j-advisor-feedback ] [ col-xs-12 ]" role="alert">Se ha eliminado el advisor.</div>';
             $(html_feedback).appendTo('.j-confirm');
         }// response
     ); 
@@ -691,7 +692,8 @@ function createCurriculum() {
       ajax_url,
       user_curriculum_data,
       function(response){
-          var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+          $('.j-curriculum-feedback').hide();
+          var html_feedback = '<div class="[ alert alert-success ] [ j-curriculum-feedback ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
             $(html_feedback).appendTo('.j-user_curriculum');
       } //response
   ); 
@@ -722,8 +724,9 @@ function updateCurriculum() {
         ajax_url,
         user_curriculum_data,
         function(response){
-            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos del torneo.</div>';
-            $(html_feedback).appendTo('.j-user_curriculum');
+          $('.j-curriculum-feedback').hide();
+          var html_feedback = '<div class="[ alert alert-success ] [ j-curriculum-feedback ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+          $(html_feedback).appendTo('.j-user_curriculum');
           
       } //response
   ); 
@@ -748,8 +751,9 @@ function updateAllCurriculum() {
         ajax_url,
         user_curriculum_data,
         function(response){
-            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
-            $(html_feedback).appendTo('.j-user_curriculum');
+          $('.j-curriculum-feedback').hide('slow');
+          var html_feedback = '<div class="[ alert alert-success ] [ j-curriculum-feedback ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+          $(html_feedback).appendTo('.j-user_curriculum');
       } //response
   ); 
 }// updateCurriculum
@@ -856,8 +860,10 @@ function formValidation(forma){
                     document.getElementById("j-send-mes").submit();
                     break;
                 case '.j-message':
-                    console.log('entra');
                     document.getElementById("j-message").submit();
+                    break;
+                case '.j-upload-profile-picture':
+                    document.getElementById("j-upload-profile-picture").submit();
                     break;
                 case '.j-user-basic-profile':
                     updateBasicProfile();
@@ -909,7 +915,7 @@ function sendContactMessage(){
         ajax_url,
         contact_data,
         function(response){
-          console.log(response);
+          //console.log(response);
         } //response
     );
 }

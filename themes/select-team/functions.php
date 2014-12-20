@@ -339,6 +339,9 @@ function pu_blank_login( $user ){
 						$('.j-mensaje-advisor').on('click', function(e) {
 							formValidation('.j-form-message-advisor');
 						});
+						$('.j-upload-profile-picture .j-send-button').on('click', function(e) {
+							formValidation('.j-upload-profile-picture');
+						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
 							changeYear: true,
