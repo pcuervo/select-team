@@ -175,6 +175,8 @@ button, a{
  	label.error{ color: @brand-info !important; }
  }
 
+ label.error{ color: @brand-info !important; }
+
 //HEADER*******
 .header__frontend{ background-color: @brand-primary; position: relative; z-index: 2; }
 
@@ -296,6 +298,7 @@ button, a{
 
 .header__dashboard__top{ text-indent: 0px !important; background: @brand-primary;
 	&:hover{ background: @brand-primary !important; }
+	img{ width: 25%; }
 	li{  }
 	a{ padding: 4px !important; text-align: center; color: @white !important; }
 }
@@ -755,6 +758,18 @@ figure.effect-sadie:hover figcaption::before {
 			img{ width: 25%; float: left; margin: 0; }
 		}
 	}
+
+	.dashboard__privacy-policy{ 
+		width: 250px;
+		height: 100px;
+		color: #fff;
+		margin-top: 20px;
+		background-color: darken(@brand-success, 30%);
+		position: absolute;
+		bottom: 0;
+		a, p{ border: none; font-size: .8em; background: none; }
+		a{ margin-bottom: 6px; }						
+	}
 }
 
 
@@ -944,7 +959,6 @@ figure.effect-sadie:hover figcaption::before {
 
 .sidebar-nav {
     width: 250px;
-    min-height: 400px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -952,6 +966,7 @@ figure.effect-sadie:hover figcaption::before {
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
 
 .sidebar-nav li {
 	width: 250px;
@@ -1011,7 +1026,8 @@ figure.effect-sadie:hover figcaption::before {
 }
 
 .dashboard__privacy-policy{ 
-	
+	width: 250px;
+	height: 100px;
 	color: #fff;
 	margin-top: 20px;
 	background-color: darken(@brand-success, 30%);
@@ -1019,6 +1035,19 @@ figure.effect-sadie:hover figcaption::before {
 	bottom: 0;
 	a, p{ border: none; font-size: .8em; background: none; }
 	a{ margin-bottom: 6px; }						
+}
+
+
+@media(min-width:350px) {
+	.sidebar-nav {
+		width: 250px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		position: relative;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
 }
 
 @media(min-width:768px) {
@@ -1041,7 +1070,6 @@ figure.effect-sadie:hover figcaption::before {
 
     .sidebar-nav {
 	    width: 250px;
-	    min-height: 400px;
 	    margin: 0;
 	    padding: 0;
 	    list-style: none;

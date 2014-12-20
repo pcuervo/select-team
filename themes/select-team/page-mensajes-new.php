@@ -63,7 +63,7 @@
     <div class="[ container-fluid ]" id="page-content">
         <div class="[ row ] [ margin-bottom ]" id="profile">
             <div class="[ col-xs-12 col-sm-7 center block ]">
-				<form role="form" method="post" >
+				<form role="form" method="post" class="[ j-message ]" id="j-message">
 					<img class="[ img-responsive ] [ margin-bottom ]" src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" alt="Select Team"/>
 					<?php if (qtrans_getLanguage() == 'es'){ ?>
 						<p class="[ margin-bottom ] [ text-right ] [ border-bottom ]"><a href="<?php echo site_url('dashboard'); ?>"><b class=""><i class="fa fa-cogs"></i> Volver a Dashboard</b></a></p>
@@ -78,7 +78,7 @@
 						<?php } ?>
 						
 						<?php if($users_st != null){ ?>
-							<select class="[ form-control ]" name="email-advisor-user">
+							<select class="[ form-control ][ required ][ j-select-user ]" name="email-advisor-user">
 								<option value="-1">Select user</option>
 							<?php 
 								foreach ($users_st as $key => $user) 
@@ -89,7 +89,7 @@
 							</select>
 						<?php } ?>
 						
-						<select class="[ form-control ]" name="email-advisor">
+						<select class="[ form-control ][ required ][ j-select-advisor ]" name="email-advisor">
 							<option value="-1">Or select advisor</option>
 							<?php 
 								$users = get_advisors_basic_info(); 
@@ -107,7 +107,7 @@
 					<?php } else { ?>
 						<label for="">Your message:</label>
 					<?php } ?>
-						<textarea class="[ form-control ] [ margin-bottom ]" rows="4" cols="50" name="mensaje"></textarea>
+						<textarea class="[ form-control ] [ margin-bottom ] [ required ]" rows="4" cols="50" name="mensaje"></textarea>
 					</div>
 					<div class="clear"></div>
 					<?php if (qtrans_getLanguage() == 'es'){ ?>

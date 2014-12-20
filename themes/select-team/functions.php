@@ -128,7 +128,7 @@ function pu_blank_login( $user ){
 		if (get_the_title()=='Dashboard Admin')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
         
-        if (get_the_title()=='Dashboard')
+        if (get_the_title()=='Dashboard' || get_the_title()=='Mensajes' || get_the_title()=='Mensajes-new')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
 		if (is_home())
@@ -311,8 +311,8 @@ function pu_blank_login( $user ){
 						$('.btn-editar').hide();
 						$('.btn-agregar').show();
 					});
-					$('.btn-guardar-profile').on('click', function(){
-						updateBasicProfile();
+					$('.j-user-basic-profile .btn-guardar-profile').on('click', function(){
+						formValidation('.j-user-basic-profile');
 					});
 					$('.btn-editar').hide();
 					$('.edit-advisor').on('click', function(e){
@@ -338,6 +338,9 @@ function pu_blank_login( $user ){
 					$( function() {
 						$('.j-mensaje-advisor').on('click', function(e) {
 							formValidation('.j-form-message-advisor');
+						});
+						$('.j-upload-profile-picture .j-send-button').on('click', function(e) {
+							formValidation('.j-upload-profile-picture');
 						});
 						$("#datepicker-date-of-birth").datepicker({
 							changeMonth: true,
@@ -461,6 +464,39 @@ function pu_blank_login( $user ){
 							formValidation('.j-contact-message');
 						});
 					});
+				</script>
+			<?php } elseif (get_the_title()=='Mensajes') { ?>
+				<script type="text/javascript">
+					$( function() {
+						$('.j-send-mes .btn-enviar').on('click', function(e){
+							formValidation('.j-send-mes');
+						});
+					});
+				</script>
+			<?php } elseif (get_the_title()=='Mensajes-new') { ?>
+				<script type="text/javascript">
+					$( function() {
+						$('.j-message .btn-enviar').on('click', function(e){
+							formValidation('.j-message');
+						});
+					});
+					$('.j-select-user').on('change', function(e){
+						console.log($('.j-select-user').val());
+						if($('.j-select-user').val()!='-1'){
+							$('.j-select-advisor').hide('slow');
+						}else{
+							$('.j-select-advisor').show('slow');
+						}
+					});
+					$('.j-select-advisor').on('change', function(e){
+						console.log($('.j-select-advisor').val());
+						if($('.j-select-advisor').val()!='-1'){
+							$('.j-select-user').hide('slow');
+						}else{
+							$('.j-select-user').show('slow');
+						}
+					});
+					
 				</script>
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
@@ -1300,7 +1336,7 @@ function pu_blank_login( $user ){
 		
 		$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
-		
+		var_dump($_POST);
         $tournament_name = $_POST['tournament_name'];
         $tournament_date = $_POST['tournament_date'];
         $tournament_rank = $_POST['tournament_rank'];
@@ -1315,6 +1351,7 @@ function pu_blank_login( $user ){
 			    	),
 			    array('%d')
 		);
+		var_dump($wpdb, 'sldj');
 		die();
 	}
 	add_action("wp_ajax_nopriv_delete_tournament", "delete_tournament");

@@ -44,10 +44,6 @@
                 $address        =  $created_curriculum->address;
                 $phone          =  $created_curriculum->phone;
                 $mob_phone      =  $created_curriculum->mobile_phone;
-                //$grad_year      =  $created_curriculum->graduate_year;
-                //$high_school    =  $created_curriculum->high_school;
-                //$grad_dateArr = explode(' ', $created_curriculum->graduation_date);
-                //$grad_date = $grad_dateArr[0];
                 $SAT = $created_curriculum->sat;
                 $toefl = $created_curriculum->toefl;
                 $tournament_info = get_user_tournament($prospect_info->st_user_id);
@@ -67,7 +63,7 @@
                         <?php if ( $prospect_info->profile_picture != '' && $prospect_info->profile_picture != '-' ) { ?>
                             <img class="profile_picture_preview" src="<?php echo THEMEPATH.'profile_pictures/'.$prospect_info->profile_picture ?>" />
                         <?php } ?>
-                        <form action="<?php echo THEMEPATH; ?>upload_picture.php" method="POST" role="form" class="[ row ] [ j-upload-profile-picture ]" enctype="multipart/form-data">
+                        <form action="<?php echo THEMEPATH; ?>upload_picture.php" method="POST" role="form" class="[ row ] [ j-upload-profile-picture ] [ required ]" enctype="multipart/form-data" id="j-upload-profile-picture">
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <label for="exampleInputFile">Sube una foto de perfil</label>
@@ -82,13 +78,13 @@
                                 <input type="hidden" name="site_url" value="<?php echo site_url(); ?>">
                                 <input type="hidden" name="st_user_id" value="<?php echo $prospect_info->st_user_id ?>">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="400000" />
-                                <input class="columna xsmall-12 medium-4 block" type="file" name="filename" id="filename">
+                                <input class="[ required ] columna xsmall-12 medium-4 block" type="file" name="filename" id="filename">
                             </div>
                             <div class="[ form-group ] [ col-xs-12 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Subir foto</button>
+                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ j-send-button ]" id="subB">Subir foto</button>
                                 <?php } else { ?>
-                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]" id="subB">Upload file</button>
+                                    <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ j-send-button ]" id="subB">Upload file</button>
                                 <?php } ?>
                             </div>
                         </form>
@@ -366,7 +362,6 @@
                                     <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ]">Save changes</button>
                                 <?php } ?>
                             </div>
-                            
                         </form>
                     </div>
                 </div>
@@ -426,6 +421,7 @@
                                 <?php } else { ?>
                                     <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ j-update-curriculum<?php if(sizeof($created_curriculum)>0)echo "-update"; else echo "-create"; ?> ] ">Save changes</button>
                                 <?php } ?>
+                            <div class="clear"></div>
                             </form>
                             <form role="form" class="[ row ][ j-user_curriculum_academic ]">
                             <div class="[ clear ] [ margin-bottom ]"></div>

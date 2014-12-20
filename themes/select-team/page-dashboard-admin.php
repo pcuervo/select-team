@@ -33,8 +33,7 @@
                         <?php } else { ?>
                             <h3>Basic Profile</h3>
                         <?php } ?>
-                        <form id="userForm" role="form" class="[ row ]" >
-                            
+                        <form id="userForm" role="form" class="[ row ] [ j-user-basic-profile ]" >
                                 <div class="[ form-group ] [ col-xs-12 ]">
                                     <?php if (qtrans_getLanguage() == 'es'){ ?>
                                         <label for="username">Nombre de usuario</label>
@@ -58,17 +57,18 @@
                                     <input type="text" class="[ form-control ][ required ]" name="full_name_perfil" >
                                 <?php } else { ?>
                                     <label for="full_name">Full name</label>
-									<?php if(isset($bp)){ ?>
-                                    <input type="text" class="[ form-control ][ required ]" name="full_name_perfil" value="<?php echo $bp->full_name; ?>" >
+									<?php if(isset($bp)){ 
+                                        if($bp->full_name!='')?>
+                                    <input type="text" class="[ form-control ][ required ]" name="full_name_perfil" value="<?php echo $bp->full_name;?>">
 									<?php } else { ?>
-										<input type="text" class="[ form-control ][ required ]" name="full_name_perfil" >
+										<input type="text" class="[ form-control ][ required ]" name="full_name_perfil">
 									<?php } ?>
                                 <?php } ?>
                             </div>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
-                                <button type="button" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Guardar cambios</button>
+                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-guardar-profile ]">Guardar cambios</button>
                             <?php } else { ?>
-                                <button type="button" class="[ btn btn-primary ] [ margin-bottom ] [ btn-guardar-profile ]" id="subB">Save changes</button>
+                                <button type="submit" class="[ btn btn-primary ] [ margin-bottom ] [ btn-guardar-profile ]">Save changes</button>
                             <?php } ?>
                         </form>
                     </div>
@@ -223,16 +223,39 @@
                     </div>
                 <?php } ?>
                 <div class="[ row ] [ js-dashboard-section ] [ js-messages-admin ] [ margin-bottom ]"  id="">
-                    <div class="[ col-xs-12 col-sm-7 ]">
+                    <div class="[ col-xs-12 col-sm-10 ]">
+                        <h3>My conversations</h3>
                         <?php 
                             $user_id = get_current_user_id();
                             $conversations = get_user_conversations(); 
                             foreach ($conversations as $key => $conver) {
-                        ?>  
-                            <?php if($user_id == $conver->from_id){ ?>
-                                <p><?php echo $conver->to; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+                        ?> 
+                        <ul class="[ conversation-list ]"> 
+                            <li>
+                                <?php if($user_id == $conver->from_id){ ?>
+                                    <p><?php echo $conver->to; ?> <span><a href="mensaje?id=<?php echo $conver->id; ?>"><i class="fa fa-comments-o"></i> 
+                                    <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Ver</a></span></p>
+                                    <?php } else { ?>
+                                        See</a></span></p>
+                                    <?php } ?>
+                                    
+                                <?php } else { ?>
+                                    <p><?php echo $conver->from; ?><span><a href="mensaje?id=<?php echo $conver->id; ?>"><i class="fa fa-comments-o"></i> 
+                                   <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                        Ver</a></span></p>
+                                    <?php } else { ?>
+                                        See</a></span></p>
+                                    <?php } ?>
+                                <?php } ?>
+                            </li>
+                        </ul>
+                        <?php } ?>
+                        <?php if(count($conversations) <= 0){ ?>
+                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                <p>No tienes mensajes.</p>
                             <?php } else { ?>
-                                <p><?php echo $conver->from; ?></p><a href="mensaje?id=<?php echo $conver->id; ?>">Ver</a>
+                                <p>You don't have any messages.</p>
                             <?php } ?>
                         <?php } ?>
                     </div>

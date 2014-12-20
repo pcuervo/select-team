@@ -559,7 +559,8 @@ function deleteAdvisor(id){
         advisor_data,
         function(response){
           console.log(response);
-          var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se ha eliminado el advisor.</div>';
+          $('.j-advisor-feedback').hide('slow');
+          var html_feedback = '<div class="[ alert alert-success ] [ j-advisor-feedback ] [ col-xs-12 ]" role="alert">Se ha eliminado el advisor.</div>';
             $(html_feedback).appendTo('.j-confirm');
         }// response
     ); 
@@ -599,13 +600,13 @@ function updateAdvisor() {
 
           if(msg.error == 0){
             alert('Advisor guardado con exito');
-			location.reload();
-		  }
+			      location.reload();
+		      }
           else if (msg.error == 1) {
-			alert('El usuario ya existe');
-		  } else {
-			alert('Error, porfavor revisa los datos');
-		  }
+			      alert('El usuario ya existe'); 
+		      } else {
+			      alert('Error, porfavor revisa los datos');
+		      }
         }// response
     );
 }// updateAdvisor
@@ -625,7 +626,7 @@ function updateBasicProfile() {
         var msg = $.parseJSON(response);
 
         if(msg.error == 0)
-          alert('Advisor guardado con exito*');
+          alert('Advisor modificado con exito*');
         else if(msg.error == 1)
 				  alert('El usuario ya existe');
         else
@@ -657,6 +658,7 @@ function registerAdvisor() {
 
             var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]" onclick="location.reload()" > Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]" onclick="location.reload()"> Delete </a> </p>';
             $(createdAdvisor).appendTo('.j-advisors-db');
+            location.reload();
           }
     			else if(msg.error == 1)
     				alert('El usuario ya existe');
@@ -690,7 +692,8 @@ function createCurriculum() {
       ajax_url,
       user_curriculum_data,
       function(response){
-          var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+          $('.j-curriculum-feedback').hide();
+          var html_feedback = '<div class="[ alert alert-success ] [ j-curriculum-feedback ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
             $(html_feedback).appendTo('.j-user_curriculum');
       } //response
   ); 
@@ -721,8 +724,9 @@ function updateCurriculum() {
         ajax_url,
         user_curriculum_data,
         function(response){
-            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos del torneo.</div>';
-            $(html_feedback).appendTo('.j-user_curriculum');
+          $('.j-curriculum-feedback').hide();
+          var html_feedback = '<div class="[ alert alert-success ] [ j-curriculum-feedback ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+          $(html_feedback).appendTo('.j-user_curriculum');
           
       } //response
   ); 
@@ -747,8 +751,9 @@ function updateAllCurriculum() {
         ajax_url,
         user_curriculum_data,
         function(response){
-            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
-            $(html_feedback).appendTo('.j-user_curriculum');
+          $('.j-curriculum-feedback').hide('slow');
+          var html_feedback = '<div class="[ alert alert-success ] [ j-curriculum-feedback ] [ col-xs-12 ]" role="alert">Se han actualizado los datos de tu curriculum.</div>';
+          $(html_feedback).appendTo('.j-user_curriculum');
       } //response
   ); 
 }// updateCurriculum
@@ -851,6 +856,18 @@ function formValidation(forma){
         },
         submitHandler:function(){
             switch(forma){
+                case '.j-send-mes':
+                    document.getElementById("j-send-mes").submit();
+                    break;
+                case '.j-message':
+                    document.getElementById("j-message").submit();
+                    break;
+                case '.j-upload-profile-picture':
+                    document.getElementById("j-upload-profile-picture").submit();
+                    break;
+                case '.j-user-basic-profile':
+                    updateBasicProfile();
+                    break;
                 case '.j-register-user':
                     registerUser();
                     break;
@@ -898,7 +915,7 @@ function sendContactMessage(){
         ajax_url,
         contact_data,
         function(response){
-          console.log(response);
+          //console.log(response);
         } //response
     );
 }
