@@ -1336,7 +1336,7 @@ function pu_blank_login( $user ){
 		
 		$prospect_info = get_user_basic_info(get_current_user_id()); 
         $st_users_id=$prospect_info->st_user_id;
-		
+		var_dump($_POST);
         $tournament_name = $_POST['tournament_name'];
         $tournament_date = $_POST['tournament_date'];
         $tournament_rank = $_POST['tournament_rank'];
@@ -1351,6 +1351,7 @@ function pu_blank_login( $user ){
 			    	),
 			    array('%d')
 		);
+		var_dump($wpdb, 'sldj');
 		die();
 	}
 	add_action("wp_ajax_nopriv_delete_tournament", "delete_tournament");
