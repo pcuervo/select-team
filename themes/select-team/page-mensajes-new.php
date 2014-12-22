@@ -4,14 +4,18 @@
 		$mensaje = $_POST["mensaje"];
 		$to = null;
 		
-		if($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ){
+		if($_POST["email-advisor"] == -1){
+			$to = '-1';
+			$id = get_user_id('luismendoza@selectteambecas.com');
+			//$id = get_user_id('alejandro@pcuervo.com');
+			$to = $id[0]->ID;
+		}elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
 			$to = $_POST["email-advisor"];
-		}else if($_POST["email-advisor-user"] != -1 && $_POST["email-advisor-user"] != ''){
-			$to = $_POST["email-advisor-user"];
-		}elseif ($_POST["email-advisor-user"] == -1) {
-			$to = 'luismendoza@selectteambecas.com';
+		}elseif (isset($_POST['email-advisor-user'])) {
+			if ($_POST['email-advisor-user']!='') {
+					$to = $_POST["email-advisor-user"];
+			}
 		}
-		
 		$from = get_current_user_id();
 		$status = register_mensaje($mensaje, $from, $to);
 	}

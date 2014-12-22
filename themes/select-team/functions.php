@@ -866,8 +866,7 @@ function pu_blank_login( $user ){
 	 * @param  string  $para quien
 	 * @param  string  $password 
 	 * @param string  $email
-	 * @return boolean TODO
-	 
+	 * @return boolean TODO	 
 	 */
 	function has_conversacion($id,$to){
 		 global $wpdb;
@@ -887,8 +886,7 @@ function pu_blank_login( $user ){
 	 * @param  string  $para quien
 	 * @param  string  $password 
 	 * @param string  $email
-	 * @return boolean TODO
-	 
+	 * @return boolean TODO	 
 	 */
 	function get_conversacion_info($id){
 		global $wpdb;
@@ -932,6 +930,9 @@ function pu_blank_login( $user ){
 	 */
 	function register_mensaje($message,$from_id,$to_id){
 		
+		if( $to_id==-1 ){
+			$to_id = 1;
+		}
 		$conversation_id = has_conversacion($from_id, $to_id);
 		if( $conversation_id <= 0){
 			$conversation_id = register_conversacion($from_id,$to_id );
@@ -986,6 +987,20 @@ function pu_blank_login( $user ){
 
 	/**
 	 * Jalar "basic profile" de todos los usuarios
+	 * @return mixed $users_basic_info
+	 */
+	function get_user_id($email){
+	    global $wpdb;
+		
+	    $query = "SELECT ID FROM wp_users where user_email ='".$email."'";
+	    $users = $wpdb->get_results($query);
+
+		return $users;
+	}// get_user_id
+	
+
+	/**
+	 * Retorna el id de un correo.
 	 * @return mixed $users_basic_info
 	 */
 	function get_mensajes_conversations($conversation_id ){
