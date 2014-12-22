@@ -993,7 +993,7 @@ function pu_blank_login( $user ){
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
-	}// get_users_basic_info
+	}// get_mensajes_conversations
 
 	/**
 	 * Jalar "basic profile" de todos los usuarios
