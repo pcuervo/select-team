@@ -171,13 +171,14 @@
                                             <?php } else { ?>
                                                 <label for="password">Password</label>
                                             <?php } ?>
-                                            <input type="password" class="[ form-control ]" name="password" id="password">
+                                            <input type="password" class="[ form-control ][ required ]" name="password" id="password">
+                                            <br/>
                                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                                 <label for="password">Confirmar contraseña</label>
                                             <?php } else { ?>
                                                 <label for="password">Password Confirmation</label>
                                             <?php } ?>
-                                            <input type="password" class="[ form-control ]" name="password_confirmation" id="password_confirmation">
+                                            <input type="password" class="[ form-control ][ required ]" name="password_confirmation" id="password_confirmation">
                                             <label for="validate" id="validate"></label>   
                                         </div>
                                         <div class="[ form-group ]">

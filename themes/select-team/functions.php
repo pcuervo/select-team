@@ -303,7 +303,7 @@ function pu_blank_login( $user ){
 					});
 					$('.hide-form-advisor').hide();
 					$('.btn-registrar-nuevo').on('click', function(){
-						$('.j-register-advisor ').trigger("reset");
+						$('.j-register-advisor').trigger("reset");
 						$('.hide-form-advisor').hide();
 						$('.hide-form-advisor').show('slow');
 						$('.j-register-advisor input[name="username"]').removeAttr('disabled');
@@ -323,6 +323,8 @@ function pu_blank_login( $user ){
 						$('.hide-form-advisor').show('slow');
 						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
 						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
+						$('.j-register-advisor input[name="password"]').removeClass('required');
+						$('.j-register-advisor input[name="password_confirmation"]').removeClass('required');
 					});
 					$('.delete-advisor').on('click', function(e){
 						e.preventDefault();
@@ -482,18 +484,18 @@ function pu_blank_login( $user ){
 					});
 					$('.j-select-user').on('change', function(e){
 						console.log($('.j-select-user').val());
-						if($('.j-select-user').val()!='-1'){
-							$('.j-select-advisor').hide('slow');
+						if($('.j-select-user').val()!=''){
+							$('.j-select-advisor').parent().hide('slow');
 						}else{
-							$('.j-select-advisor').show('slow');
+							$('.j-select-advisor').parent().show('slow');
 						}
 					});
 					$('.j-select-advisor').on('change', function(e){
 						console.log($('.j-select-advisor').val());
-						if($('.j-select-advisor').val()!='-1'){
-							$('.j-select-user').hide('slow');
+						if($('.j-select-advisor').val()!=''){
+							$('.j-select-user').parent().hide('slow');
 						}else{
-							$('.j-select-user').show('slow');
+							$('.j-select-user').parent().show('slow');
 						}
 					});
 					
@@ -1158,8 +1160,7 @@ function pu_blank_login( $user ){
 
 				$user_id = wp_insert_user( $userdata ) ;
 
-				$mail_status = register_email($email, $username, $password);
-				var_dump($mail_status);
+				//$mail_status = register_email($email, $username, $password);
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
@@ -1928,18 +1929,18 @@ function pu_blank_login( $user ){
 	 * @param string $email_to, $message
 	 * @return int TRUE or FALSE
 	 */
-	function register_email($mail_to, $username, $password){
-		$st_mail="zurol@pcuervo.com";
+	function register_email($mail, $username){
+		$st_mail="luismendoza@selectteambecas.com";
 
 		$subject = "Select team register message \r\n";
-		$body_message = ".......\r\n";
+		$body_message = "User Activated.\r\n";
 		$body_message .= "USER:".$username."\r\n";
-		$body_message .= "PASSWORD:".$password."\r\n";
+		$body_message .= "EMAIL:".$mail."\r\n";
 		
 		$headers = "From: Select Team\r\n";
-		$headers .= "Reply-To: ".$st_mail."\r\n";
+		//$headers .= "Reply-To: ".$st_mail."\r\n";
 
-		$mail_status = mail($mail_to, $subject, $body_message, $headers);
+		$mail_status = mail($st_mail, $subject, $body_message, $headers);
 		return $mail_status;
 	}// register_email
 
@@ -2110,7 +2111,8 @@ function pu_blank_login( $user ){
 
 	function changeStatus($val, $id){
 		global $wpdb;
-		echo get_current_user_id();
+		//echo get_current_user_id();
+		
 		$updated = $wpdb->update(
 		    $wpdb->st_users,
 			    array(
@@ -2119,7 +2121,14 @@ function pu_blank_login( $user ){
 			    array('wp_user_id' => $id),
 			    array('%s')
 		);
-		var_dump($updated);
+		if($updated){
+			if($val=='1'){
+				$prospecto = get_userdata( $id );
+				$email = $prospecto->user_email;
+				$username = $prospecto->user_login;
+				$mail_status = register_email($email, $username);
+			}//
+		}
 		die();
 	}
 

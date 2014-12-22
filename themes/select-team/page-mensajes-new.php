@@ -4,10 +4,12 @@
 		$mensaje = $_POST["mensaje"];
 		$to = null;
 		
-		if($_POST["email-advisor"] != -1){
+		if($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ){
 			$to = $_POST["email-advisor"];
-		}else if($_POST["email-advisor-user"] != -1){
+		}else if($_POST["email-advisor-user"] != -1 && $_POST["email-advisor-user"] != ''){
 			$to = $_POST["email-advisor-user"];
+		}elseif ($_POST["email-advisor-user"] == -1) {
+			$to = 'luismendoza@selectteambecas.com';
 		}
 		
 		$from = get_current_user_id();
@@ -76,21 +78,29 @@
 						<?php } else { ?>
 							<label for="">Send to:</label>
 						<?php } ?>
-						
-						<?php if($users_st != null){ ?>
-							<select class="[ form-control ][ required ][ j-select-user ]" name="email-advisor-user">
-								<option value="-1">Select user</option>
-							<?php 
-								foreach ($users_st as $key => $user) 
-								{
-							?>
-								<option value="<?php echo $user->id; ?>"><?php echo $user->full_name; ?></option>
+						<div>
+							<?php if($users_st != null){ ?>
+								<select class="[ form-control ][ required ][ j-select-user ]" name="email-advisor-user">
+									<option value="">Select user</option>
+								<?php 
+									foreach ($users_st as $key => $user) 
+									{
+								?>
+									<option value="<?php echo $user->id; ?>"><?php echo $user->full_name; ?></option>
+								<?php } ?>
+								</select>
+								<br/>
 							<?php } ?>
-							</select>
-						<?php } ?>
-						
+						</div>
+					<div>
 						<select class="[ form-control ][ required ][ j-select-advisor ]" name="email-advisor">
-							<option value="-1">Or select advisor</option>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<option value="">Selecciona un agente o administrador</option>
+								<option value="-1">Administrador</option>
+							<?php } else { ?>
+								<option value="">Select advisor or administrator</option>
+								<option value="-1">Administrator</option>
+							<?php } ?>
 							<?php 
 								$users = get_advisors_basic_info(); 
 								foreach ($users as $key => $user) 
@@ -99,6 +109,7 @@
 								<option value="<?php echo $user->ID; ?>"><?php echo $user->full_name; ?></option>
 							<?php } ?>
 						</select>
+					</div>
 					</div>
 					<div class="clear"></div>
 					<div class="[ form-group ]">
