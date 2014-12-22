@@ -100,8 +100,7 @@
                                 <div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
                                     <?php
                                     $users = get_users_basic_info(); 
-                                    foreach ($users as $key => $user) 
-                                        if($user->profile_picture!='') { ?>
+                                    foreach ($users as $key => $user) { ?>
                                             <a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
                                                 <div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
                                                     <?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
