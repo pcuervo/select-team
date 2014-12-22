@@ -100,8 +100,7 @@
                                 <div class="[ margin-bottom ] [ sportContainer ] [ isotope-container-sports ]">
                                     <?php
                                     $users = get_users_basic_info(); 
-                                    foreach ($users as $key => $user) 
-                                        if($user->profile_picture!='') { ?>
+                                    foreach ($users as $key => $user) { ?>
                                             <a href="<?php echo site_url('prospects').'?p_id='.$user->id ?>">
                                                 <div class="<?php echo $user->gender.' '.$user->sport; ?> player col-xs-5 col-sm-3 col-md-3 col-lg-2 clearfix margin-bottom">
                                                     <?php if ( $user->profile_picture != '' && $user->profile_picture != '-' ) { ?>
@@ -172,13 +171,14 @@
                                             <?php } else { ?>
                                                 <label for="password">Password</label>
                                             <?php } ?>
-                                            <input type="password" class="[ form-control ]" name="password" id="password">
+                                            <input type="password" class="[ form-control ][ required ]" name="password" id="password">
+                                            <br/>
                                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                                 <label for="password">Confirmar contraseña</label>
                                             <?php } else { ?>
                                                 <label for="password">Password Confirmation</label>
                                             <?php } ?>
-                                            <input type="password" class="[ form-control ]" name="password_confirmation" id="password_confirmation">
+                                            <input type="password" class="[ form-control ][ required ]" name="password_confirmation" id="password_confirmation">
                                             <label for="validate" id="validate"></label>   
                                         </div>
                                         <div class="[ form-group ]">
