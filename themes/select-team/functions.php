@@ -998,6 +998,15 @@ function pu_blank_login( $user ){
 		return $users;
 	}// get_user_id
 	
+	function get_user_display_name($id){
+	    global $wpdb;
+		
+	    $query = "SELECT display_name FROM wp_users where ID ='".$id."'";
+	    $users = $wpdb->get_results($query);
+
+		return $users;
+	}// get_user_id
+	
 
 	/**
 	 * Retorna el id de un correo.
@@ -1947,15 +1956,14 @@ function pu_blank_login( $user ){
 	function register_email($mail, $username){
 		$st_mail="luismendoza@selectteambecas.com";
 
-		$subject = "Select team register message \r\n";
-		$body_message = "User Activated.\r\n";
-		$body_message .= "USER:".$username."\r\n";
-		$body_message .= "EMAIL:".$mail."\r\n";
+		$subject = "Bienvenido(a) a Select Team Becas. \r\n";
+		$body_message = "El usuario con el que estás registrado en la plataforma es: ".$username."\r\n";
+		$body_message .= "Tu correo: ".$mail."\r\n";
 		
-		$headers = "From: Select Team\r\n";
+		$headers = "Atentamente,\r\n El equipo de Select Team Becas.\r\n";
 		//$headers .= "Reply-To: ".$st_mail."\r\n";
 
-		$mail_status = mail($st_mail, $subject, $body_message, $headers);
+		$mail_status = mail($mail, $subject, $body_message, $headers);
 		return $mail_status;
 	}// register_email
 

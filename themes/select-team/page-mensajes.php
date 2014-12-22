@@ -21,7 +21,11 @@
 			header( 'Location: ../' );
 		}
 	}
-
+	$dest=$convData[0]->to_id;
+	//var_dump($convData);
+	$display_name= get_user_display_name($dest);
+	$disp_name=$display_name[0]->display_name;
+	
 	$mensajes = get_mensajes_conversations($conv);
 
 ?>
@@ -52,10 +56,11 @@
             	<img class="[ img-responsive ] [ margin-bottom ]" src="<?php echo THEMEPATH; ?>images/logo-select-team-mobile.png" alt="Select Team"/>
             	<?php if (qtrans_getLanguage() == 'es'){ ?>
 					<p class="[ margin-bottom ] [ text-right ] [ border-bottom ]"><a href="<?php echo site_url('dashboard'); ?>"><b class=""><i class="fa fa-cogs"></i> Volver a Dashboard</b></a></p>
+					<h3>Conversación con <?php echo $disp_name; ?></h3>
 				<?php } else { ?>
 					<p class="[ margin-bottom ] [ text-right ] [ border-bottom ]"><a href="<?php echo site_url('dashboard'); ?>"><b class=""><i class="fa fa-cogs"></i> Go back to Dashboard</b></a></p>
+					<h3>Conversation with <?php echo $disp_name; ?></h3>
 				<?php } ?>
-            	<h3>Conversation with advisor</h3>
 				<?php 
 					foreach ($mensajes as $key => $mensaje) {
 				?>	
