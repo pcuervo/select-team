@@ -1153,6 +1153,113 @@ function pu_blank_login( $user ){
 
 		return 0;
 	}
+
+	/**
+	 * Registra un usuario nuevo
+	 * @param  string  $username
+	 * @param  string  $password 
+	 * @param string  $email
+	 * @return boolean
+	 */
+	function register_user_new($data){
+		$is_valid = validate_user_data();
+		switch ($is_valid) {
+			case USUARIO_INVALIDO:
+				echo json_encode(array("error" => "Nombre de usuario inválido"), JSON_FORCE_OBJECT ); 
+				break;
+			case EMAIL_INVALIDO:
+				echo json_encode(array("error" => "Email inválido"), JSON_FORCE_OBJECT ); 
+				break;
+			case PASSWORD_INVALIDO:
+				echo json_encode(array("error" => "Password inválido"), JSON_FORCE_OBJECT ); 
+				break;
+			case PASSWORD_DIFERENTE:
+				echo json_encode(array("error" => "Passwords diferentes"), JSON_FORCE_OBJECT ); 
+				break;
+			default:
+				// Create wp_user
+				$username =  $data['username'];
+				//$password =  $data['password'];
+				$password = 'S3l3ctT34m';
+				$email =  $data['email'];
+
+				$userdata = array(
+				    'user_login'  	=> $username,
+				    'user_pass'   	=> $password, 
+				    'user_email'	=> $email,
+				    'role'			=> 'subscriber',
+				);
+
+				$user_id = wp_insert_user( $userdata ) ;
+
+				
+				//$user_id = 8;
+				if(is_wp_error($user_id)){
+					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
+					die();
+				}
+				$mail_status = welcome_email($email);
+
+				// Create st_user
+				$full_name = $data['full_name'];
+				$gender = $data['gender'];
+				$date_of_birth = $data['date_of_birth'];
+				$sport = $data['sport'];
+
+				switch ($sport) {
+					case 'tennis':
+						$sport_id = TENNIS;
+						$sport_data = array(
+							TENNIS_HAND 	=> $data['tennis_hand'],
+							FMT_RANKING		=> $data['fmt_ranking'],
+							ATP_TOURNAMENT	=> $data['atp_tournament'],
+							);
+						break;
+					case 'soccer':
+						$sport_id = SOCCER;
+						$sport_data = array(
+							SOCCER_POSITION => $data['soccer_position'],
+							SOCCER_HEIGHT	=> $data['soccer_height'],
+							);
+						break;
+					case 'golf':
+						$sport_id = GOLF;
+						$sport_data = array(
+							AVERAGE_SCORE => $data['average_score']
+							);
+						break;
+					case 'volleyball':
+						$sport_id = VOLLEYBALL;
+						$sport_data = array(
+							VOLLEY_POSITION => $data['volley_position'],
+							VOLLEY_HEIGHT	=> $data['volley_height'],
+							);
+						break;
+				}// switch
+
+				$st_user_data = array(
+					'wp_user_id'		=> $user_id,
+					'full_name'			=> $full_name,
+					'gender'			=> $gender,
+					'date_of_birth'		=> $date_of_birth,
+					'sport_id'			=> $sport_id,
+					'video_host'		=> '-',
+					'video_url'			=> '-',
+					'profile_picture'	=> '-',
+					);
+
+				$st_user_id = add_st_user($st_user_data);
+				add_sport_answers($st_user_id, $sport_data);
+				$msg = array(
+					"success" => "Usuario registrado",
+					"error"	  => 0
+					);
+				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
+
+		}// switch
+	} // register_user
+
+
 	/**
 	 * Registra un usuario nuevo
 	 * @param  string  $username
@@ -1599,7 +1706,8 @@ function pu_blank_login( $user ){
 		
 		var_dump(im_active($username));
 
-		if(im_active($username))
+
+		//if(im_active($username))
 		$user = wp_signon( $creds, false );
 		
 		if ( is_wp_error($user) ){
@@ -1609,6 +1717,15 @@ function pu_blank_login( $user ){
 	}// login_user
 
 	function im_active($user){
+		global $wpdb;
+		$query = "SELECT ID FROM wp_users WHERE user_login = '".$user."';";
+	    $user_id = $wpdb->get_results($query);
+	    $query = "SELECT status FROM st_users WHERE wp_user_id ='".$user_id[0]->ID."';";
+	    $user_basic_info = $wpdb->get_results($query);
+		return $user_basic_info[0]->status;
+	}
+
+	function user_rol($user){
 		global $wpdb;
 		$query = "SELECT ID FROM wp_users WHERE user_login = '".$user."';";
 	    $user_id = $wpdb->get_results($query);

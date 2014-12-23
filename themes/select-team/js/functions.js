@@ -454,6 +454,7 @@ function registerTournament(){
 }
 
 function registerUser() {
+    $('.j-warning').hide('slow');
     var user_data = {};
 
     user_data['action'] = 'register_user';
@@ -486,11 +487,24 @@ function registerUser() {
     }
     console.log(user_data);
     $.post(
-        ajax_url,
+        site_url+"/register",
         user_data,
         function(response){
-            console.log(response);
-            //window.location = site_url + '/?reg=1';
+            var msg = $.parseJSON(response);
+            console.log(msg);
+            //if(msg.wp-error)
+            console.log(msg['success']);
+            if(msg['success']){
+              var html_feedback = '<div class="[ alert alert-success ] [ j-warning ] [ col-xs-12 ]" role="alert">Usuario registrado correctamente.</div>';
+              $(html_feedback).appendTo('.j-alerts');
+              setTimeout(function() {window.location = site_url + '/?reg=1';}, 3000);
+            }else if(msg['wp-error']['0']=='existing_user_login'){
+              var html_feedback = '<div class="[ alert alert-warning ] [ j-warning ] [ col-xs-12 ]" role="alert">Error: nombre de usuario registrado actualmente.</div>';
+              $(html_feedback).appendTo('.j-alerts');
+            } else if(msg['wp-error']['0']=='existing_user_email'){
+              var html_feedback = '<div class="[ alert alert-warning ] [ j-warning ] [ col-xs-12 ]" role="alert">Error: dirección de correo registrada actualmente.</div>';
+              $(html_feedback).appendTo('.j-alerts');
+            }
         }// response
     ); 
 }// registerUser
