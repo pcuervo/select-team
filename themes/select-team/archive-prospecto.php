@@ -1,4 +1,10 @@
 <?php get_header(); ?>
+
+<?php 
+$oo = is_prospect('hola5');
+//var_dump($oo);
+ ?>
+
 	<div class="jumbotron banner-prospects" style="background-image:url(' <?php echo THEMEPATH ?>images/banner-golf2.jpg')" ></div>
 	<div id="filters">
 		<div class="container center block clearfix margin-bottom ui-group prospect-filters">

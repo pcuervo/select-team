@@ -1704,11 +1704,14 @@ function pu_blank_login( $user ){
 		$creds['user_password'] = $password;
 		$creds['remember'] = true;
 		
-		var_dump(im_active($username));
+		//var_dump(im_active($username));
 
-
-		//if(im_active($username))
-		$user = wp_signon( $creds, false );
+		if(is_prospect($username)){
+			if(im_active($username))
+				$user = wp_signon( $creds, false );
+		}else{
+			$user = wp_signon( $creds, false );
+		}
 		
 		if ( is_wp_error($user) ){
 			return $user->get_error_message();
@@ -1725,13 +1728,20 @@ function pu_blank_login( $user ){
 		return $user_basic_info[0]->status;
 	}
 
-	function user_rol($user){
+	function is_prospect($user){
 		global $wpdb;
 		$query = "SELECT ID FROM wp_users WHERE user_login = '".$user."';";
 	    $user_id = $wpdb->get_results($query);
 	    $query = "SELECT status FROM st_users WHERE wp_user_id ='".$user_id[0]->ID."';";
 	    $user_basic_info = $wpdb->get_results($query);
-		return $user_basic_info[0]->status;
+	    if($user_basic_info==null){
+	    	return false;
+	    }
+	    else {
+	    	return true;
+	    }
+
+		//return $user_basic_info[0]->status;
 	}
 
 	/**
