@@ -137,7 +137,7 @@
                                 <button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
                             <?php } ?>
                             <div class="clear"></div>
-                            <div class="[ j-form-confirm ]">
+                            <div class="[ j-form-confirm-register ]">
                                 <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ][ j-register-form ]">
                                     <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
                                         <input type="hidden" class="[ form-control ]" name="id">
@@ -193,7 +193,7 @@
                             </div>
                             <!--2nd Form-->
                             <div class="clear"></div>
-                            <div class="[ j-form-confirm ]">
+                            <div class="[ j-form-confirm-update ]">
                                 <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ][ j-update-form ]">
                                     <form id="userForm" role="form" class="[ row ] [ j-update-advisor ]" >
                                         <input type="hidden" class="[ form-control ]" name="id">

@@ -595,8 +595,10 @@ function updateAdvisor() {
           var msg = $.parseJSON(response);
 
           if(msg.error == 0){
-            alert('Advisor guardado con exito');
-			      location.reload();
+            var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Advisor modificado con éxito.</div>';
+            $(html_feedback).appendTo('.j-form-confirm-update');
+            $('.hide-form-advisor').hide();
+
 		      }
           else if (msg.error == 1) {
 			      alert('El usuario ya existe'); 
@@ -649,12 +651,12 @@ function registerAdvisor() {
           var msg = $.parseJSON(response);
           if(msg.error == 0){
             var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Se han registrados los datos del advisor.</div>';
-            $(html_feedback).appendTo('.j-form-confirm');
+            $(html_feedback).appendTo('.j-form-confirm-register');
             $('.hide-form-advisor').hide();
 
             var createdAdvisor = '<p class="[ col-xs-12 col-sm-6 ]"> <i class="fa fa-briefcase"></i> <b>'+user_data['full_name']+'</b> - <a href="mailto:'+user_data['email']+'">'+user_data['email']+'</a><a href="#" data-id="'+msg.id+'" class="[ edit-advisor ]" onclick="location.reload()" > Edit </a> / <a href="#" data-id="'+msg.id+'" class="[ delete-advisor ]" onclick="location.reload()"> Delete </a> </p>';
             $(createdAdvisor).appendTo('.j-advisors-db');
-            location.reload();
+            //location.reload();
           }
     			else if(msg.error == 1)
     				alert('El usuario ya existe');
