@@ -13,6 +13,7 @@
    	
    	$user_curriculum = get_user_curriculum($user->st_user_id);
    	$tournament_info = get_user_tournament($user->st_user_id);
+   	//var_dump($user_curriculum);
 ?>
 	<div class="container profile clearfix">
 		<input type="hidden" class="p_id" value="<?php echo $_GET['p_id']; ?>">
@@ -77,13 +78,18 @@
 				<p><b>Date of birth:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo $user->date_of_birth ?></p>
 			<?php } ?>
 			<hr>
-			<?php if (qtrans_getLanguage() == 'es'){ ?>
-				<p><b>Escuela:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->high_school) ? $user_curriculum->high_school : '-';  ?></p>
-				<hr>
-			<?php } else { ?>
-				<p><b>School:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->high_school) ? $user_curriculum->high_school : '-';  ?></p>
-				<hr>
-			<?php } ?>
+			
+			<?php if( is_user_logged_in() ){	
+				if ( $role != 'subscriber' AND $role != 'author') { ?>
+					<?php if (qtrans_getLanguage() == 'es'){ ?>
+						<p><b>Escuela:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->high_school) ? $user_curriculum->high_school : '-';  ?></p>
+						<hr>
+					<?php } else { ?>
+						<p><b>School:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->high_school) ? $user_curriculum->high_school : '-';  ?></p>
+						<hr>
+					<?php } ?>
+				<?php }
+				} ?>
 			<?php if (qtrans_getLanguage() == 'es'){ ?>
 				<p><b>Fecha de graduación:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->graduation_date) ? substr($user_curriculum->graduation_date , 0, 10) : '-';  ?></p>
 				<hr>
@@ -91,6 +97,7 @@
 				<p><b>Expected graduation:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->graduation_date) ? substr($user_curriculum->graduation_date , 0, 10) : '-';  ?></p>
 				<hr>
 			<?php } ?>
+			
 			<?php if (qtrans_getLanguage() == 'es'){ ?>
 				<p><b>Año escolar actual:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->graduate_year) ? $user_curriculum->graduate_year : '-'; ?></p>
 				<hr>
@@ -98,8 +105,30 @@
 				<p><b>Current academic level:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->graduate_year) ? $user_curriculum->graduate_year : '-'; ?></p>
 				<hr>
 			<?php } ?>
-			<p><b>Email:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo $user->user_email ?></p>
-			<hr>
+
+			<?php if( is_user_logged_in() ){
+				if ( $role != 'subscriber' AND $role != 'author') { ?>
+					<p><b>Email:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo $user->user_email ?></p>
+					<hr>
+				<?php }
+			} ?>
+
+			<?php if (qtrans_getLanguage() == 'es'){ ?>
+				<p><b>Resultado SAT:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->sat) ? $user_curriculum->sat : '-'; ?></p>
+				<hr>
+			<?php } else { ?>
+				<p><b>SAT Score:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->sat) ? $user_curriculum->sat : '-'; ?></p>
+				<hr>
+			<?php } ?>
+
+			<?php if (qtrans_getLanguage() == 'es'){ ?>
+				<p><b>Resultado TOEFL:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->toefl) ? $user_curriculum->toefl : '-'; ?></p>
+				<hr>
+			<?php } else { ?>
+				<p><b>TOEFL Score:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->toefl) ? $user_curriculum->toefl : '-'; ?></p>
+				<hr>
+			<?php } ?>
+
 			<?php if (qtrans_getLanguage() == 'es'){ ?>
 				<p><b>Deporte:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo $user->sport; ?></p>
 				<hr>
