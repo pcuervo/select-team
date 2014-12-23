@@ -137,8 +137,8 @@
                                 <button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
                             <?php } ?>
                             <div class="clear"></div>
-                            <div class="[ j-form-confirm ][ j-register-form ]">
-                                <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
+                            <div class="[ j-form-confirm ]">
+                                <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ][ j-register-form ]">
                                     <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
                                         <input type="hidden" class="[ form-control ]" name="id">
                                         <div class="[ form-group ] [ col-xs-12 ]">
@@ -193,8 +193,8 @@
                             </div>
                             <!--2nd Form-->
                             <div class="clear"></div>
-                            <div class="[ j-form-confirm ][ j-update-form ]">
-                                <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
+                            <div class="[ j-form-confirm ]">
+                                <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ][ j-update-form ]">
                                     <form id="userForm" role="form" class="[ row ] [ j-update-advisor ]" >
                                         <input type="hidden" class="[ form-control ]" name="id">
                                         <div class="[ form-group ] [ col-xs-12 ]">
@@ -227,14 +227,14 @@
                                             <?php } else { ?>
                                                 <label for="password">Password</label>
                                             <?php } ?>
-                                            <input type="password" class="[ form-control ][ required ]" name="password" id="password">
+                                            <input type="password" class="[ form-control ][  ]" name="password2" id="password2">
                                             <br/>
                                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                                 <label for="password">Confirmar contraseña</label>
                                             <?php } else { ?>
                                                 <label for="password">Password Confirmation</label>
                                             <?php } ?>
-                                            <input type="password" class="[ form-control ][ required ]" name="password_confirmation" id="password_confirmation">
+                                            <input type="password" class="[ form-control ][  ]" name="password_confirmation2" id="password_confirmation2">
                                             <label for="validate" id="validate"></label>   
                                         </div>
                                         <div class="[ form-group ]">

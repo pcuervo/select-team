@@ -298,19 +298,22 @@ function pu_blank_login( $user ){
 					$('.j-register-advisor .btn-agregar').on('click', function(e){
 						formValidation('.j-register-advisor');
 					});
-					$('.j-register-advisor .btn-editar').on('click', function(e){
+					$('.j-update-advisor .btn-editar').on('click', function(e){
 						formValidation('.j-update-advisor');
 					});
 					$('.hide-form-advisor').hide();
+
 					$('.btn-registrar-nuevo').on('click', function(){
 						$('.j-register-advisor').trigger("reset");
 						$('.hide-form-advisor').hide();
 						$('.hide-form-advisor').show('slow');
+						$('.j-update-form').hide();
 						$('.j-register-advisor input[name="username"]').removeAttr('disabled');
 						$('.j-register-advisor input[name="email"]').removeAttr('disabled');
 						//$('.btn-editar').hide();
 						$('.btn-agregar').show();
 					});
+					
 					$('.j-user-basic-profile .btn-guardar-profile').on('click', function(){
 						formValidation('.j-user-basic-profile');
 					});
@@ -320,12 +323,14 @@ function pu_blank_login( $user ){
 						var id = $(this).data('id');
 						getAdvisorBasicInfo(id);
 						$('.hide-form-advisor').hide();
-						$('.hide-form-advisor').show('slow');
-						$('.j-register-advisor input[name="username"]').attr('disabled', 'disabled');
-						$('.j-register-advisor input[name="email"]').attr('disabled', 'disabled');
-						$('.j-register-advisor input[name="password"]').removeClass('required');
-						$('.j-register-advisor input[name="password_confirmation"]').removeClass('required');
-					});
+						$('.j-update-form').show('slow');
+						$('.j-register-form').hide();
+						$('.j-update-advisor input[name="username"]').attr('disabled', 'disabled');
+						$('.j-update-advisor input[name="email"]').attr('disabled', 'disabled');
+						//$('.j-update-advisor input[name="password"]').removeClass('required');
+						//$('.j-update-advisor input[name="password_confirmation"]').removeClass('required');
+					});	
+
 					$('.delete-advisor').on('click', function(e){
 						e.preventDefault();
 						if(confirm("Are you sure?")){

@@ -538,14 +538,10 @@ function getAdvisorBasicInfo(id){
         user_data,
         function(response){
     			var msg = $.parseJSON(response.slice(0,-1));
-    			$('.j-register-advisor input[name="full_name"]').val(msg.full_name);
-    			$('.j-register-advisor input[name="id"]').val(msg.ID);
-    			$('.j-register-advisor input[name="username"]').val(msg.user_login);
-    			$('.j-register-advisor input[name="email"]').val(msg.user_email);
-    			
-    			$('.hide-form-advisor').show('slow');
-    			$('.btn-agregar').hide();
-          $('.btn-editar').show();
+    			$('.j-update-advisor input[name="full_name"]').val(msg.full_name);
+    			$('.j-update-advisor input[name="id"]').val(msg.ID);
+    			$('.j-update-advisor input[name="username"]').val(msg.user_login);
+    			$('.j-update-advisor input[name="email"]').val(msg.user_email);
         }// response
     ); 
 }
@@ -587,10 +583,10 @@ function updateAdvisor() {
     var user_data = {};
 
     user_data['action'] = 'update_advisor';
-  	user_data['id'] = $('.j-register-advisor input[name="id"]').val();
-    user_data['password'] = $('.j-register-advisor input[name="password"]').val();
-    user_data['full_name'] = $('.j-register-advisor input[name="full_name"]').val();
-   
+  	user_data['id'] = $('.j-update-advisor input[name="id"]').val();
+    user_data['password'] = $('.j-update-advisor input[name="password"]').val();
+    user_data['full_name'] = $('.j-update-advisor input[name="full_name"]').val();
+    console.log(user_data);
     $.post(
         ajax_url,
         user_data,
@@ -852,6 +848,9 @@ function formValidation(forma){
         rules: {
           password_confirmation:{
             equalTo: "#password"
+          },
+          password_confirmation2:{
+            equalTo: "#password2"
           }
         },
         submitHandler:function(){
