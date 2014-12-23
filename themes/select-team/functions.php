@@ -329,6 +329,7 @@ function pu_blank_login( $user ){
 						$('.j-update-advisor input[name="email"]').attr('disabled', 'disabled');
 						//$('.j-update-advisor input[name="password"]').removeClass('required');
 						//$('.j-update-advisor input[name="password_confirmation"]').removeClass('required');
+						//$('.j-form-confirm-update').hide();
 					});	
 
 					$('.delete-advisor').on('click', function(e){
@@ -1964,9 +1965,9 @@ function pu_blank_login( $user ){
 		$subject = "Bienvenido(a) a Select Team Becas. \r\n";
 		$body_message = "El usuario con el que estás registrado en la plataforma es: ".$username."\r\n";
 		$body_message .= "Tu correo: ".$mail."\r\n";
+		$body_message .= "\r\n"."Atentamente,\r\n El equipo de Select Team Becas.\r\n";
 		
-		$headers = "Atentamente,\r\n El equipo de Select Team Becas.\r\n";
-		//$headers .= "Reply-To: ".$st_mail."\r\n";
+		$headers = "Bienvenido(a) a Select Team Becas. \r\n";
 
 		$mail_status = mail($mail, $subject, $body_message, $headers);
 		return $mail_status;
