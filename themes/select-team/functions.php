@@ -1178,7 +1178,8 @@ function pu_blank_login( $user ){
 			default:
 				// Create wp_user
 				$username =  $_POST['username'];
-				$password =  $_POST['password'];
+				//$password =  $_POST['password'];
+				$password = 'S3l3ctT34m';
 				$email =  $_POST['email'];
 
 				$userdata = array(
@@ -1190,12 +1191,13 @@ function pu_blank_login( $user ){
 
 				$user_id = wp_insert_user( $userdata ) ;
 
-				//$mail_status = register_email($email, $username, $password);
+				
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
 					die();
 				}
+				$mail_status = welcome_email($email);
 
 				// Create st_user
 				$full_name = $_POST['full_name'];
@@ -1595,6 +1597,9 @@ function pu_blank_login( $user ){
 		$creds['user_password'] = $password;
 		$creds['remember'] = true;
 		
+		var_dump(im_active($username));
+
+		if(im_active($username))
 		$user = wp_signon( $creds, false );
 		
 		if ( is_wp_error($user) ){
@@ -1602,6 +1607,15 @@ function pu_blank_login( $user ){
 		}
 		return 1;
 	}// login_user
+
+	function im_active($user){
+		global $wpdb;
+		$query = "SELECT ID FROM wp_users WHERE user_login = '".$user."';";
+	    $user_id = $wpdb->get_results($query);
+	    $query = "SELECT status FROM st_users WHERE wp_user_id ='".$user_id[0]->ID."';";
+	    $user_basic_info = $wpdb->get_results($query);
+		return $user_basic_info[0]->status;
+	}
 
 	/**
 	 * Loggear a un usuario a la plataforma desde la página.
@@ -1977,6 +1991,27 @@ function pu_blank_login( $user ){
 		$mail_status = mail($mail, $subject, $body_message, $headers);
 		return $mail_status;
 	}// register_email
+
+		/**
+	 * Manda un correo con las credenciales del registro.
+	 * @param string $email_to, $message
+	 * @return int TRUE or FALSE
+	 */
+	function welcome_email($mail){
+		//$st_mail="luismendoza@selectteambecas.com";
+
+		$subject = "Registro de Select Team Becas. \r\n";
+		$headers = "Bienvenido(a) a Select Team Becas. \r\n";
+
+		$body_message = "Tu usuario ha sido enviado para aprobación por parte del administrador.\n";
+		$body_message.= "Una vez que haya sido aprobado te enviaremos tu usuario y contraseña.\n\n";
+		
+		$body_message .= "\r\n"."Atentamente,\r\n El equipo de Select Team Becas.\r\n";
+		
+		$mail_status = mail($mail, $subject, $body_message, $headers);
+		return $mail_status;
+	}// register_email
+
 
 	/**
 	 * Crea un registro escolar.

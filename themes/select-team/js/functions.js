@@ -458,8 +458,9 @@ function registerUser() {
 
     user_data['action'] = 'register_user';
     user_data['username'] = $('.j-register-user input[name="username"]').val();
-    user_data['password'] = $('.j-register-user input[name="password"]').val();
-    user_data['password_confirmation'] = $('.j-register-user input[name="password_confirmation"]').val();
+    //user_data['password'] = $('.j-register-user input[name="password"]').val();
+    user_data['password'] = 'S3l3ctT34m';
+    user_data['password_confirmation'] = 'S3l3ctT34m';
     user_data['email'] = $('.j-register-user input[name="email"]').val();
     user_data['gender'] = $('.j-register-user select[name="gender"]').val();
     user_data['full_name'] = $('.j-register-user input[name="full_name"]').val();
@@ -483,12 +484,13 @@ function registerUser() {
             user_data['volley_position'] = $('.j-register-user select[name="volley_position"]').val();
             user_data['volley_height'] = $('.j-register-user input[name="volley_height"]').val();
     }
-
+    console.log(user_data);
     $.post(
         ajax_url,
         user_data,
         function(response){
-            window.location = site_url + '/?reg=1';
+            console.log(response);
+            //window.location = site_url + '/?reg=1';
         }// response
     ); 
 }// registerUser
