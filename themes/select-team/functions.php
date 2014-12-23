@@ -308,13 +308,13 @@ function pu_blank_login( $user ){
 						$('.hide-form-advisor').show('slow');
 						$('.j-register-advisor input[name="username"]').removeAttr('disabled');
 						$('.j-register-advisor input[name="email"]').removeAttr('disabled');
-						$('.btn-editar').hide();
+						//$('.btn-editar').hide();
 						$('.btn-agregar').show();
 					});
 					$('.j-user-basic-profile .btn-guardar-profile').on('click', function(){
 						formValidation('.j-user-basic-profile');
 					});
-					$('.btn-editar').hide();
+					//$('.btn-editar').hide();
 					$('.edit-advisor').on('click', function(e){
 						e.preventDefault();
 						var id = $(this).data('id');

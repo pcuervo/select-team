@@ -137,9 +137,9 @@
                                 <button class="[ btn btn-primary ] [ margin-bottom ] [ btn-registrar-nuevo ]"><i class="[ fa fa-plus ]"></i> Register advisor</button>
                             <?php } ?>
                             <div class="clear"></div>
-                            <div class="[ j-form-confirm ]">
+                            <div class="[ j-form-confirm ][ j-register-form ]">
                                 <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
-                                    <form id="userForm" role="form" class="[ row ] [ j-register-advisor ][ j-update-advisor ]" >
+                                    <form id="userForm" role="form" class="[ row ] [ j-register-advisor ]" >
                                         <input type="hidden" class="[ form-control ]" name="id">
                                         <div class="[ form-group ] [ col-xs-12 ]">
                                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -184,9 +184,63 @@
                                         <div class="[ form-group ]">
                                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                                 <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Agregar agente</button>
-                                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Editar</button>
                                             <?php } else { ?>
                                                 <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-agregar ]" id="subB">Add Advisor</button>
+                                            <?php } ?>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--2nd Form-->
+                            <div class="clear"></div>
+                            <div class="[ j-form-confirm ][ j-update-form ]">
+                                <div class="[ col-xs-12 col-md-6 ] [ hide-form-advisor ]">
+                                    <form id="userForm" role="form" class="[ row ] [ j-update-advisor ]" >
+                                        <input type="hidden" class="[ form-control ]" name="id">
+                                        <div class="[ form-group ] [ col-xs-12 ]">
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <label for="full_name">Nombre completo</label>
+                                            <?php } else { ?>
+                                                <label for="full_name">Full name</label>
+                                            <?php } ?>
+                                            <input type="text" class="[ form-control ][ required ]" name="full_name">
+                                        </div>
+                                        <div class="[ form-group ] [ col-xs-12 ]">
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <label for="username">Nombre de usuario</label>
+                                            <?php } else { ?>
+                                                <label for="username">Username</label>
+                                            <?php } ?>
+                                            <input type="text" class="[ form-control ][ required ]" name="username">
+                                        </div>
+                                        <div class="[ form-group ] [ col-xs-12 ]">
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <label for="email">Correo electrónico</label>
+                                            <?php } else { ?>
+                                                <label for="email">Email</label>
+                                            <?php } ?>
+                                            <input type="email" class="[ form-control ][ required email ]" name="email"> 
+                                        </div>
+                                        <div class="[ form-group ] [ col-xs-12 ]">
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <label for="password">Contraseña</label>
+                                            <?php } else { ?>
+                                                <label for="password">Password</label>
+                                            <?php } ?>
+                                            <input type="password" class="[ form-control ][ required ]" name="password" id="password">
+                                            <br/>
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <label for="password">Confirmar contraseña</label>
+                                            <?php } else { ?>
+                                                <label for="password">Password Confirmation</label>
+                                            <?php } ?>
+                                            <input type="password" class="[ form-control ][ required ]" name="password_confirmation" id="password_confirmation">
+                                            <label for="validate" id="validate"></label>   
+                                        </div>
+                                        <div class="[ form-group ]">
+                                            <?php if (qtrans_getLanguage() == 'es'){ ?>
+                                                <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Editar</button>
+                                            <?php } else { ?>
                                                 <button type="submit" class="[ btn btn-primary ]  [ margin-bottom ] [ btn-editar ]">Edit</button>
                                             <?php } ?>
                                         </div>
