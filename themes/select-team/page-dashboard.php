@@ -37,6 +37,7 @@
                 $prospect_sport_answers = get_user_sport_answers($prospect_info->st_user_id);
                 $created_curriculum= get_user_curriculum_info($prospect_info->st_user_id);
                 $academic_hist = get_user_academic_info($prospect_info->st_user_id);
+                $tournament_info = get_user_tournament($prospect_info->st_user_id);
                 //var_dump($academic_hist);
             }
             
@@ -46,7 +47,7 @@
                 $mob_phone      =  $created_curriculum->mobile_phone;
                 $SAT            = $created_curriculum->sat;
                 $toefl          = $created_curriculum->toefl;
-                $tournament_info = get_user_tournament($prospect_info->st_user_id);
+                
             }
         ?>
         <!-- Page Content -->
@@ -532,7 +533,7 @@
                                     <h4 class="[ col-xs-12 ]">Sports Development</h4>
                                 <?php } ?>
                                 <div class="[ form-group ] [ col-xs-12 ][ j-tournaments ]">
-                                <?php  if (sizeof($created_curriculum)>0)
+                                <?php  if (sizeof($prospect_info))
                                      if(sizeof($tournament_info)>0) { ?>
                                         <?php foreach ($tournament_info as $key => $value) { ?>
                                             <div class="[ form-group ] [ row ] [ border-bottom ] [ j-tournament_<?php echo $key;?> ]" id="tournament_<?php echo $key; ?>">
