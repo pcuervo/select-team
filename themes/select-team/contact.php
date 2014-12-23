@@ -20,7 +20,7 @@
             <p><i class="fa fa-envelope"></i> <a href="mailto:info@selectteam.com">info@selectteam.com</a></p>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6 margin-bottom">
+        <div class="col-xs-12 col-sm-6 margin-bottom [ j-response ]">
           <h3 class="red">Leave a comment</h3>
           <form role="form">
             <div class="form-group">
@@ -35,9 +35,11 @@
               <label for="mail">Write your comment</label>
               <textarea class="form-control" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary right">Submit</button>
+            <button type="submit" class="btn btn-primary right">Submit</button><br/>
           </form>
+        <div class="[ clear ]"></div>
         </div>
+
       </div>
 
 

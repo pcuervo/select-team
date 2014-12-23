@@ -598,7 +598,6 @@ function updateAdvisor() {
             var html_feedback = '<div class="[ alert alert-success ] [ col-xs-12 ]" role="alert">Advisor modificado con éxito.</div>';
             $(html_feedback).appendTo('.j-form-confirm-update');
             $('.hide-form-advisor').hide();
-
 		      }
           else if (msg.error == 1) {
 			      alert('El usuario ya existe'); 
@@ -916,7 +915,11 @@ function sendContactMessage(){
         ajax_url,
         contact_data,
         function(response){
-          //console.log(response);
+            $('.j-msj').hide('slow');
+            var html_feedback = '<div class="[ alert alert-success ] [ j-msj ][ col-xs-12 ]" role="alert">Mensaje enviado con éxito.</div>';
+            $(html_feedback).appendTo('.j-contact-message');
+            $('.j-contact-message').trigger("reset");
+            //$('.hide-form-advisor').hide();
         } //response
     );
 }

@@ -2100,7 +2100,7 @@ function pu_blank_login( $user ){
 	 */
 
 	function send_coach_email(){
-		$sent=send_coach_emailX("luis.mendoza@selectteam.com", $_POST);
+		$sent=send_coach_emailX("luismendoza@selectteam.com", $_POST);
 	}
 
 	add_action("wp_ajax_nopriv_send_coach_email", "send_coach_email");
@@ -2108,18 +2108,18 @@ function pu_blank_login( $user ){
 
 
 	function send_contact_email($name, $email_address, $comment){
-		$mail_to = 'zurol@pcuervo.com, raul@pcuervo.com, alejandro@pcuervo.com'; //Comentar luego.
+		//$mail_to = 'zurol@pcuervo.com, raul@pcuervo.com, alejandro@pcuervo.com'; //Comentar luego.
+		$mail_to = 'luismendoza@selectteambecas.com';
 
 		$body_message = "";
-		$subject = 'Select team coach - Comment';
+		$subject = 'Contact form - Select team';
 
 		$body_message = "Name: ".$name."\n";
 		$body_message .= "Email: ".$email_address."\n\n";
 
-		$body_message .= "".$comment;
+		$body_message .= "Comment:\n".$comment."\n\n";
 
-		$headers = 'From: '.$name."\r\n";
-		$headers .= 'Reply-To: '.$email_address."\r\n";
+		$headers = 'Reply-To: '.$email_address."\r\n";
 		
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
 
