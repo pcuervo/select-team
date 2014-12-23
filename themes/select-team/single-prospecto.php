@@ -13,7 +13,8 @@
    	
    	$user_curriculum = get_user_curriculum($user->st_user_id);
    	$tournament_info = get_user_tournament($user->st_user_id);
-   	//var_dump($user_curriculum);
+   	$academic_info = get_user_academic_info($user->st_user_id);
+   	
 ?>
 	<div class="container profile clearfix">
 		<input type="hidden" class="p_id" value="<?php echo $_GET['p_id']; ?>">
@@ -90,21 +91,6 @@
 					<?php } ?>
 				<?php }
 				} ?>
-			<?php if (qtrans_getLanguage() == 'es'){ ?>
-				<p><b>Fecha de graduación:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->graduation_date) ? substr($user_curriculum->graduation_date , 0, 10) : '-';  ?></p>
-				<hr>
-			<?php } else { ?>
-				<p><b>Expected graduation:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->graduation_date) ? substr($user_curriculum->graduation_date , 0, 10) : '-';  ?></p>
-				<hr>
-			<?php } ?>
-			
-			<?php if (qtrans_getLanguage() == 'es'){ ?>
-				<p><b>Año escolar actual:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->graduate_year) ? $user_curriculum->graduate_year : '-'; ?></p>
-				<hr>
-			<?php } else { ?>
-				<p><b>Current academic level:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->graduate_year) ? $user_curriculum->graduate_year : '-'; ?></p>
-				<hr>
-			<?php } ?>
 
 			<?php if( is_user_logged_in() ){
 				if ( $role != 'subscriber' AND $role != 'author') { ?>
@@ -237,14 +223,41 @@
 							<p><b>Mobile Phone:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->mobile_phone) ? $user_curriculum->mobile_phone : '-'; ?></p>
 							<hr>
 						<?php } ?>
+						<?php if(sizeof($academic_info)>0) { ?>
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<p><b>Historial Académico:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
+								<hr>
+							<?php } else { ?>
+								<p><b>Academic History:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
+								<hr>
+							<?php } ?>
+							<?php foreach ($academic_info as $academic) { ?>
+								<div class="[ border-bottom ] [ row ]">
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										<p id="Fecha" class="[ col-xs-6 ]"><b>Nombre de la escuela:<br/></b><?php echo $academic->high_school; ?></p>
+										<p id="Fecha" class="[ col-xs-6 ]"><b>Fecha de graduación:<br/></b><?php echo substr($academic->graduation_date , 0, 10); ?></p>
+										<p id="tournamentRank" class="[ col-xs-6 ]"><b>País:<br/></b><?php echo $academic->country; ?></p>
+										<p id="tournamentRank" class="[ col-xs-6 ]"><b>Ciudad:<br/></b><?php echo $academic->city; ?></p>
+									<?php } else { ?>
+										<p id="Fecha" class="[ col-xs-6 ]"><b>School Name:<br/></b><?php echo $academic->high_school; ?></p>
+										<p id="Fecha" class="[ col-xs-6 ]"><b>Graduation date:<br/></b><?php echo substr($academic->graduation_date , 0, 10); ?></p>
+										<p id="tournamentRank" class="[ col-xs-6 ]"><b>Country:<br/></b><?php echo $academic->country; ?></p>
+										<p id="tournamentRank" class="[ col-xs-6 ]"><b>City:<br/></b><?php echo $academic->city; ?></p>
+									<?php } ?>
+								</div>
+							<?php } ?>
+
+						<?php  } ?>
+
 						<?php if(sizeof($tournament_info)>0) { ?>
+						<br/>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
 								<p><b>Torneos:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
 								<hr>
 							<?php } else { ?>
 								<p><b>Tournaments:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
 								<hr>
-							<?php } ?>
+							<?php } ?> 
 							<?php foreach ($tournament_info as $tournament) { ?>
 								<div class="[ border-bottom ] [ row ]">
 									<?php if (qtrans_getLanguage() == 'es'){ ?>
