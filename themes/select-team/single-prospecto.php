@@ -79,18 +79,6 @@
 				<p><b>Date of birth:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo $user->date_of_birth ?></p>
 			<?php } ?>
 			<hr>
-			
-			<?php if( is_user_logged_in() ){	
-				if ( $role != 'subscriber' AND $role != 'author') { ?>
-					<?php if (qtrans_getLanguage() == 'es'){ ?>
-						<p><b>Escuela:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->high_school) ? $user_curriculum->high_school : '-';  ?></p>
-						<hr>
-					<?php } else { ?>
-						<p><b>School:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->high_school) ? $user_curriculum->high_school : '-';  ?></p>
-						<hr>
-					<?php } ?>
-				<?php }
-				} ?>
 
 			<?php if( is_user_logged_in() ){
 				if ( $role != 'subscriber' AND $role != 'author') { ?>
@@ -222,7 +210,7 @@
 						<?php } else { ?>
 							<p><b>Mobile Phone:</b> <br class="hidden-sm hidden-md hidden-lg"><?php echo isset($user_curriculum->mobile_phone) ? $user_curriculum->mobile_phone : '-'; ?></p>
 							<hr>
-						<?php } ?>
+						<?php } ?><br/>
 						<?php if(sizeof($academic_info)>0) { ?>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
 								<p><b>Historial Académico:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
@@ -248,8 +236,9 @@
 							<?php } ?>
 
 						<?php  } ?>
-
+						
 						<?php if(sizeof($tournament_info)>0) { ?>
+						<br/>
 						<br/>
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
 								<p><b>Torneos:</b> <br class="hidden-sm hidden-md hidden-lg"></p>
