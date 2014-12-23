@@ -44,8 +44,8 @@
                 $address        =  $created_curriculum->address;
                 $phone          =  $created_curriculum->phone;
                 $mob_phone      =  $created_curriculum->mobile_phone;
-                $SAT = $created_curriculum->sat;
-                $toefl = $created_curriculum->toefl;
+                $SAT            = $created_curriculum->sat;
+                $toefl          = $created_curriculum->toefl;
                 $tournament_info = get_user_tournament($prospect_info->st_user_id);
             }
         ?>

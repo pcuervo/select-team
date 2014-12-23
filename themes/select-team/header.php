@@ -205,23 +205,23 @@
 							</li>
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#profile" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Perfil</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Perfil</a>
 								<?php } else { ?>
-									<a href="#profile" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Profile</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Profile</a>
 								<?php } ?>
 							</li>
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#curriculum" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Currículum</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Currículum</a>
 								<?php } else { ?>
-									<a href="#curriculum" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Curriculum</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Curriculum</a>
 								<?php } ?>
 							</li>
 							<li>
 								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
 								<?php } else { ?>
-									<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Messages</a>
+									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Messages</a>
 								<?php } ?>
 							</li>
 							<li class="j-download">
