@@ -1963,12 +1963,17 @@ function pu_blank_login( $user ){
 		$st_mail="luismendoza@selectteambecas.com";
 
 		$subject = "Bienvenido(a) a Select Team Becas. \r\n";
-		$body_message = "El usuario con el que estás registrado en la plataforma es: ".$username."\r\n";
-		$body_message .= "Tu correo: ".$mail."\r\n";
-		$body_message .= "\r\n"."Atentamente,\r\n El equipo de Select Team Becas.\r\n";
-		
 		$headers = "Bienvenido(a) a Select Team Becas. \r\n";
 
+		$body_message = "¡Hola!\n Te damos la más cordial bienvenida al equipo de Select Team Becas.\n";
+		$body_message.= "Con estas credenciales podrás entrar a la plataforma para completar tu perfil:\n\n";
+
+		$body_message .= "URL: selectteambecas.com\n";
+		$body_message .= "Usuario: ".$username."\n";
+		$body_message .= "Contraseña: S3l3ctT34m\n\r";
+		
+		$body_message .= "\r\n"."Atentamente,\r\n El equipo de Select Team Becas.\r\n";
+		
 		$mail_status = mail($mail, $subject, $body_message, $headers);
 		return $mail_status;
 	}// register_email
