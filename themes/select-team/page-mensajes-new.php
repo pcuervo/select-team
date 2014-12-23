@@ -1,17 +1,16 @@
-<?php 
+<?php
 	$status = null;
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$mensaje = $_POST["mensaje"];
 		$to = null;
-		
 		if($_POST["email-advisor"] == -1){
 			$to = '-1';
 			$id = get_user_id('luismendoza@selectteambecas.com');
 			//$id = get_user_id('alejandro@pcuervo.com');
 			$to = $id[0]->ID;
-		}elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
+		} elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
 			$to = $_POST["email-advisor"];
-		}elseif (isset($_POST['email-advisor-user'])) {
+		} elseif (isset($_POST['email-advisor-user'])) {
 			if ($_POST['email-advisor-user']!='') {
 					$to = $_POST["email-advisor-user"];
 			}
@@ -46,8 +45,8 @@
 	    <script>try{Typekit.load();}catch(e){}</script>
 		<?php wp_head(); ?>
 	</head>
-<?php if($status != null){ ?> 
-	<?php if($status){ ?> 
+<?php if($status != null){ ?>
+	<?php if($status){ ?>
 	<div class="alert alert-success" role="alert">
 		<?php if (qtrans_getLanguage() == 'es'){ ?>
 			<p>Tu mensaje ha sido enviado. <i class="fa fa-check"></i></p>
@@ -86,8 +85,8 @@
 							<?php if($users_st != null){ ?>
 								<select class="[ form-control ][ required ][ j-select-user ]" name="email-advisor-user">
 									<option value="">Select user</option>
-								<?php 
-									foreach ($users_st as $key => $user) 
+								<?php
+									foreach ($users_st as $key => $user)
 									{
 								?>
 									<option value="<?php echo $user->id; ?>"><?php echo $user->full_name; ?></option>
@@ -105,9 +104,9 @@
 								<option value="">Select advisor or administrator</option>
 								<option value="-1">Administrator</option>
 							<?php } ?>
-							<?php 
-								$users = get_advisors_basic_info(); 
-								foreach ($users as $key => $user) 
+							<?php
+								$users = get_advisors_basic_info();
+								foreach ($users as $key => $user)
 								{
 							?>
 								<option value="<?php echo $user->ID; ?>"><?php echo $user->full_name; ?></option>
