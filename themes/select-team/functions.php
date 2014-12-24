@@ -944,7 +944,9 @@ function pu_blank_login( $user ){
 		if( $to_id==-1 ){
 			$to_id = 1;
 		}
+		
 		$conversation_id = has_conversacion($from_id, $to_id);
+		
 		if( $conversation_id <= 0){
 			$conversation_id = register_conversacion($from_id,$to_id );
 		}
