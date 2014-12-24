@@ -16,19 +16,19 @@
                             <div class="[ input-group ] [ margin-bottom-sm ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-user"></i></span>
-                                    <input class="[ form-control ]" type="text" placeholder="Nombre de usuario" name="j-email">
+                                    <input class="[ form-control ][ required ]" type="text" placeholder="Nombre de usuario" name="j-email">
                                 <?php } else { ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-user"></i></span>
-                                    <input class="[ form-control ]" type="text" placeholder="Username" name="j-email">
+                                    <input class="[ form-control ][ required ]" type="text" placeholder="Username" name="j-email">
                                 <?php } ?>
                             </div>
                             <div class="[ input-group ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-lock"></i></span>
-                                    <input class="[ form-control ]" type="password" placeholder="Contraseña" name="j-password">
+                                    <input class="[ form-control ][ required ]" type="password" placeholder="Contraseña" name="j-password">
                                 <?php } else { ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-lock"></i></span>
-                                    <input class="[ form-control ]" type="password" placeholder="Password" name="j-password">
+                                    <input class="[ form-control ][ required ]" type="password" placeholder="Password" name="j-password">
                                 <?php } ?>
                             </div>
                         </div><!-- .modal-body -->

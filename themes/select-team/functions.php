@@ -122,7 +122,7 @@ function pu_blank_login( $user ){
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
 		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
-		if (get_the_title()=='Register' || get_the_title()=='Contacto')
+		if (get_the_title()=='Register' || get_the_title()=='Contacto' || is_home())
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
 		if (get_the_title()=='Dashboard Admin')
@@ -178,6 +178,10 @@ function pu_blank_login( $user ){
 		                    if(window.location.href.indexOf("reg=1") > -1) {
 								$('#login').modal('show'); 
 							}
+
+							$('.j-login .btn-success').on('click', function(e){
+								formValidation('.j-login');
+							});
 
 		                    //On click/change/etc
 		                    filterQuestions();

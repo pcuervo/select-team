@@ -889,6 +889,9 @@ function formValidation(forma){
                 case '.j-message':
                     document.getElementById("j-message").submit();
                     break;
+                case '.j-login':
+                    document.getElementById("j-login").submit();
+                    break;
                 case '.j-upload-profile-picture':
                     document.getElementById("j-upload-profile-picture").submit();
                     break;
