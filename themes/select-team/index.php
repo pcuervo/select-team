@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+
+<?php 
+//header("Location: ".site_url()."\?login=paused");
+get_header(); ?>
+
     <div class="[ grid ]">
         <?php 
         if ( is_user_logged_in() ) { ?>

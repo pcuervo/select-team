@@ -827,9 +827,12 @@ function login(){
             console.log(response);
             if(response == 1){
                 redirectUserDashoard();
+            }else if(response=='-1'){
+              var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Tu cuenta está siendo aprovada. </p></div>';
+              $(html_error).prependTo('.modal-footer');
             }
             else{
-                var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
+                var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
                 $(html_error).prependTo('.modal-footer');
             }
         } //response
@@ -858,6 +861,9 @@ function loginUser(user, password){
             console.log(response);
             if(response == 1){
                 redirectUserDashoard();
+            }else if(response=='-1'){
+              var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Tu cuenta está siendo aprovada. </p></div>';
+              $(html_error).prependTo('.modal-footer');
             }
         } //response
     ); 

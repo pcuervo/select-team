@@ -531,6 +531,11 @@ function pu_blank_login( $user ){
 					$('#login').modal('show'); 
 					var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
 					$(html_error).prependTo('.modal-footer');
+				}else if(window.location.href.indexOf("login=paused") > -1) {
+					$('#paused').modal('show'); 
+					var html_error = '<div class="text-center alert alert-info" role="alert"><p>Tu usuario ha sido enviado para aprobación por parte del administrador.<br/><br/>Una vez que tu perfil haya sido aprobado te enviaremos tu usuario y contraseña.</p></div>';
+					$(html_error).prependTo('#paused .modal-footer');
+
 				}
 			</script>
     	<?php } }
@@ -1721,8 +1726,12 @@ function pu_blank_login( $user ){
 		//var_dump(im_active($username));
 
 		if(is_prospect($username)){
-			if(im_active($username))
+			if(im_active($username)){
 				$user = wp_signon( $creds, false );
+			}else{
+				header("Location: ".site_url()."\?login=paused");
+				return -1;	
+			}
 		}else{
 			$user = wp_signon( $creds, false );
 		}
@@ -1741,7 +1750,7 @@ function pu_blank_login( $user ){
 	    $user_basic_info = $wpdb->get_results($query);
 		return $user_basic_info[0]->status;
 	}
-
+ 	
 	function is_prospect($user){
 		global $wpdb;
 		$query = "SELECT ID FROM wp_users WHERE user_login = '".$user."';";
@@ -1769,6 +1778,8 @@ function pu_blank_login( $user ){
 		$logged_in = login_user($username, $password);
 		if($logged_in == '1'){
 			echo 1;
+		}elseif ($logged_in == '-1') {
+			return -1;
 		} else
 			echo 0;
 		die();
@@ -1780,6 +1791,8 @@ function pu_blank_login( $user ){
 		$logged_in = login_user($username, $password);
 		if($logged_in == '1'){
 			return 1;
+		}elseif ($logged_in == '-1') {
+			return -1;
 		} else
 			return 0;
 	}// site_login
