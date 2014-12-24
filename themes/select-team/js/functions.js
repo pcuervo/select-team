@@ -1021,4 +1021,23 @@ function sendMessage(){
      );
 }
 
+function loginValidate(){
 
+  var1 =  $('.j-login input[name="j-email"]').val();
+  var2 =  $('.j-login input[name="j-password"]').val();
+  
+  if(var1==''){
+    $('.lab1').show();
+  }else{
+    $('.lab1').hide();
+  }
+  if(var2==''){
+    $('.lab2').show();
+  }else{
+    $('.lab2').hide();
+  }
+  if(var1!='' && var2!=''){
+    document.getElementById("j-login").submit();
+  }
+
+}

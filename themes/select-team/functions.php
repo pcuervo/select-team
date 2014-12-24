@@ -179,8 +179,12 @@ function pu_blank_login( $user ){
 								$('#login').modal('show'); 
 							}
 
+							$('.j-error-validate').hide();
+
 							$('.j-login .btn-success').on('click', function(e){
-								formValidation('.j-login');
+								//formValidation('.j-login');
+								e.preventDefault();
+								loginValidate();
 							});
 
 		                    //On click/change/etc

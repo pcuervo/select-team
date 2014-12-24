@@ -3,7 +3,7 @@
         <div class="[ modal fade ]" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="[ modal-dialog ]">
                 <div class="[ modal-content ]">
-                    <form role="form" class="[ j-login ]" action="<?php echo site_url('login'); ?>" method="post">
+                    <form role="form" class="[ j-login ]" action="<?php echo site_url('login'); ?>" method="post" id="j-login">
                         <div class="[ modal-header ]">
                             <button type="button" class="[ close ]" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -22,6 +22,8 @@
                                     <input class="[ form-control ][ required ]" type="text" placeholder="Username" name="j-email">
                                 <?php } ?>
                             </div>
+                            <div class=" [ clear ] "></div>
+                            <label for="error" class="[ error ][ j-error-validate ][ lab1 ]">Este campo es obligatorio. / This field is required.</label><br/>
                             <div class="[ input-group ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-lock"></i></span>
@@ -31,6 +33,8 @@
                                     <input class="[ form-control ][ required ]" type="password" placeholder="Password" name="j-password">
                                 <?php } ?>
                             </div>
+                            <div class=" [ clear ] "></div>
+                            <label for="error" class="[ error ][ j-error-validate ][ lab2 ]">Este campo es obligatorio. / This field is required.</label>
                         </div><!-- .modal-body -->
                         <div class="[ modal-footer ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>

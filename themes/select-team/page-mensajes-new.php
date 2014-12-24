@@ -5,36 +5,44 @@
 		$mensaje = $_POST["mensaje"];
 		$to = null;
 		if(isset($_POST['email-advisor'])){
-			if($_POST['email-advisor']!='')	{
-				if($_POST["email-advisor"] == -1 && $_POST["email-advisor"] != '' ){
-					//echo "1";
-					$id = get_user_id('luismendoza@selectteambecas.com');
-					$id = get_user_id('zurol@pcuervo.com');
-					$to = $id[0]->ID;
-					} elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
-						//echo "2";
-						$to = $_POST["email-advisor"];
+			if ($_POST['email-advisor']=='') {
+				if (isset($_POST['email-advisor-user'])) {
+					if ($_POST['email-advisor-user'] != '-1' ) {
+						$to = $_POST["email-advisor-user"];
+					}elseif ($_POST['email-advisor-user'] == '-1') {
+						$id = get_user_id('luismendoza@selectteambecas.com');
+						$id = get_user_id('zurol@pcuervo.com');
+						$to = $id[0]->ID;
 					}
 				}
-			}	
-			elseif (isset($_POST['email-advisor-user'])) {
-				if ($_POST['email-advisor-user'] != '-1' ) {
-					//echo "3";
-					$to = $_POST["email-advisor-user"];
-				}elseif ($_POST['email-advisor-user'] == '-1') {
-					//echo "4";
+			}
+			if($_POST['email-advisor']!='')	{
+				echo "string";
+				if($_POST["email-advisor"] == -1 && $_POST["email-advisor"] != '' ){
 					$id = get_user_id('luismendoza@selectteambecas.com');
 					$id = get_user_id('zurol@pcuervo.com');
-					//var_dump($id);
 					$to = $id[0]->ID;
+				} 
+				elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
+					echo "string";
+					$to = $_POST["email-advisor"];
 				}
 			}
+		}	
+		elseif (isset($_POST['email-advisor-user'])) {
+			if ($_POST['email-advisor-user'] != '-1' ) {
+				$to = $_POST["email-advisor-user"];
+			}elseif ($_POST['email-advisor-user'] == '-1') {
+				$id = get_user_id('luismendoza@selectteambecas.com');
+				$id = get_user_id('zurol@pcuervo.com');
+				$to = $id[0]->ID;
+			}
+		}
 		$from = get_current_user_id();
 		$status = register_mensaje($mensaje, $from, $to);
 	}
 	$role = get_current_user_role();
 	$users_st = null;
-	//var_dump($role);
 	if ( $role == 'administrator' || $role == 'subscriber'){
 		$users_st = get_advisors_basic_info();
 	}
