@@ -16,9 +16,8 @@
 html, body{
 	min-height: 100% !important;
 	height: 100%;
-	overflow-x: hidden !important;
 }
-.home{ max-width: 100%; overflow: hidden; }
+.home{ max-width: 100%; overflow: hidden; overflow-x: hidden !important; }
 .content__dashboard{ padding-left: 0; .transition; }
 
 
@@ -37,7 +36,7 @@ html, body{
 
 
 //GENERAL*******************************
-
+.relative{ position: relative !important; }
 
 .color-success{ 
 	color: @brand-success;
@@ -765,7 +764,7 @@ figure.effect-sadie:hover figcaption::before {
 		color: #fff;
 		margin-top: 20px;
 		background-color: darken(@brand-success, 30%);
-		position: absolute;
+		position: fixed;
 		bottom: 0;
 		a, p{ border: none; font-size: .8em; background: none; }
 		a{ margin-bottom: 6px; }						
@@ -1031,7 +1030,7 @@ figure.effect-sadie:hover figcaption::before {
 	color: #fff;
 	margin-top: 20px;
 	background-color: darken(@brand-success, 30%);
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	a, p{ border: none; font-size: .8em; background: none; }
 	a{ margin-bottom: 6px; }						
@@ -1103,7 +1102,7 @@ figure.effect-sadie:hover figcaption::before {
 
     .dashboard__privacy-policy{ 
     	width: 250px;
-		position: fixed;
+		position: absolute;
 		bottom: 0;	
 		left: 0;				
 	}
