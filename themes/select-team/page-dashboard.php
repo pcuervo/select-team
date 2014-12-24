@@ -497,7 +497,7 @@
                                 <?php } else { ?>
                                     <span><label for="q3">When are you graduating?</label></span>
                                 <?php } ?>
-                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ][ required ]" type="text" id="datepicker-date-of-graduation"/>
+                                <input name="high_grad" class="[ form-control ] [ .j-datepicker ][ required ]" type="date" id="datepicker-date-of-graduation"/>
                             </div>
                             <div class="[ form-group ] [ col-xs-6 ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
