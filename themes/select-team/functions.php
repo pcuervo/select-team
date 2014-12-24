@@ -340,6 +340,13 @@ function pu_blank_login( $user ){
 								deleteAdvisor(id);
 							}
 				    });
+
+				    paddingDashboard();
+				    
+				    //Responsive
+	                $(window).resize(function(){
+	                    paddingDashboard();
+	                });
 				</script>
 			<?php } elseif (get_the_title()=='Dashboard' OR get_the_title()=='Admin Prospect Single') { ?>
 				<script type="text/javascript">
@@ -421,6 +428,12 @@ function pu_blank_login( $user ){
 							}
                         });
 					});
+					paddingDashboard();
+				    
+				    //Responsive
+	                $(window).resize(function(){
+	                    paddingDashboard();
+	                });
 				</script>
 			<?php } elseif (get_the_title()=='Register') { ?>
 				<script type="text/javascript">
@@ -510,6 +523,7 @@ function pu_blank_login( $user ){
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
 				<script>
 					footerBottom();
+					paddingDashboard();
 				</script>
 			<?php } ?>
     		<script>

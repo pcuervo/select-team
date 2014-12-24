@@ -53,7 +53,7 @@
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ js-dashboard-section ][ container-fluid ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
-                <div class="[ row ] [ js-profile ] [ margin-bottom ]"  id="upload_picture">
+                <div class="[ row ] [ js-profile ] [ js-dashboard-div ] [ margin-bottom ]"  id="upload_picture">
                     <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Foto de perfil</h3>
@@ -111,7 +111,7 @@
                         ?>   
                     </div>
                 </div>
-                <div class="[ row ] [ js-dashboard-section ] [ js-profile ] [ margin-bottom ]" id="profile">
+                <div class="[ row ] [ js-dashboard-section ] [ js-profile ] [ js-dashboard-div ] [ margin-bottom ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 ]">
                         
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -365,7 +365,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="[ row ] [ js-dashboard-section ] [ js-curriculum ] [ margin-bottom ]" id="curriculum">
+                <div class="[ row ] [ js-dashboard-section ] [ js-curriculum ] [ js-dashboard-div ] [ margin-bottom ]" id="curriculum">
                     <div class="[ col-xs-12 col-sm-7 ]">
                         <h3>Curriculum</h3>
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -604,7 +604,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="[ row ] [ js-dashboard-section ] [ js-messages ] [ margin-bottom ]"  id="">
+                <div class="[ row ] [ js-dashboard-section ] [ js-messages ] [ js-dashboard-div ] [ margin-bottom ]"  id="">
                     <div class="[ col-xs-12 col-sm-10 ]">
                         <h3>My conversations</h3>
                         <?php 
