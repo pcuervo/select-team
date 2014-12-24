@@ -182,24 +182,31 @@ $("#menu-toggle").click(function(e) {
     $("#dashboard, #sidebar-wrapper").toggleClass("toggled");
 });
 
+function paddingDashboard(){
+    var alturaFooter = $('.dashboard__privacy-policy').outerHeight();
+    $('.sidebar-nav').css('padding-bottom', alturaFooter );
+}
+
 $('#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-curriculum, #page-content-wrapper .js-messages , #page-content-wrapper .js-messages-admin').css('display','none');
 
-$('.dashboard-menu').click(function() {
-  if ($(this).hasClass('js-profile-admin')) {
-      $(".js-basic-profile").addClass('dashboard-active').siblings().removeClass('dashboard-active');
-      $("#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-messages-admin").hide('fast', function(){
-          $(".js-basic-profile").show();
+$('.dashboard-menu').on('click', function(e) {
+    $(window).scrollTop(0);
+    //$('.container-fluid').css('margin-top', '2000px');
+  if ( $(this).hasClass('js-profile-admin')) {
+        $(".js-basic-profile").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+        $("#page-content-wrapper .js-prospects , #page-content-wrapper .js-advisors, #page-content-wrapper .js-messages-admin").hide('fast', function(){
+            $(".js-basic-profile").show();
       });
   }
 
-  else if ( $(this).hasClass('js-prospects') ){
-      $(".js-prospects").addClass('dashboard-active').siblings().removeClass('dashboard-active');
-      $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-advisors, #page-content-wrapper .js-messages-admin").hide('fast', function(){
-          $(".js-prospects").show('fast', function(){
-            correIsotope('.isotope-container-sports', '.player', 'masonry');
-          });
-      });
-  }
+    else if ( $(this).hasClass('js-prospects') ){
+        $(".js-prospects").addClass('dashboard-active').siblings().removeClass('dashboard-active');
+        $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-advisors, #page-content-wrapper .js-messages-admin").hide('fast', function(){
+            $(".js-prospects").show('fast', function(){
+                correIsotope('.isotope-container-sports', '.player', 'masonry');
+            });
+        });   
+    }
   else if ($(this).hasClass('js-advisors')){
       $(".js-advisors").addClass('dashboard-active').siblings().removeClass('dashboard-active');
       $("#page-content-wrapper .js-basic-profile , #page-content-wrapper .js-prospects, #page-content-wrapper .js-messages-admin").hide('fast', function(){

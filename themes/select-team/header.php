@@ -20,7 +20,9 @@
 		<?php wp_head(); ?>
 	</head>
 	<?php $page_slug; if(is_page()) { $page_slug = 'page-'.$post->post_name; } ?>
+
 	<body <?php
+
 		if(is_page()){
 			body_class($page_slug);
 		} else {
@@ -175,105 +177,107 @@
 	        	<div class="[ content ] [ clearfix ]">
 	        <?php } else { ?>
 	        	<header id="sidebar-wrapper" class="[ header__dashboard ]">
-					<ul class="sidebar-nav">
-						<li class="header__dashboard__top">
-							<h1>
-								<a
-									<?php if (qtrans_getLanguage() == 'es'){ ?>
-										href="<?php echo site_url('es/'); ?>"
-									<?php } else { ?>
-										href="<?php echo site_url('en/'); ?>"
-									<?php } ?>
-								>
-									<img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
-								</a>
-							</h1>
-							<?php if ( ! is_user_logged_in() ) { ?>
-								<a class="[ text-center ]" href="" data-toggle="modal" data-target="#login"><i class="[ fa fa-sign-in ]"></i> Login</a>
-							<?php } else { ?>
-								<a class="[ text-center ]" href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>"><i class="[ fa fa-sign-out ]"></i> Logout</a>
-							<?php } ?>
-							<?php echo qtrans_generateLanguageSelectCode('text'); ?>
-						</li>
-						
-						<!-- Para el dashboard de usario -->
-						<?php 
-						if($role == 'subscriber'){
-						?>
-							<li class="sidebar-brand">
-								<a class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
-							</li>
-							<li>
-								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Perfil</a>
+	        		<div class="relative">
+						<ul class="sidebar-nav">
+							<li class="header__dashboard__top">
+								<h1>
+									<a
+										<?php if (qtrans_getLanguage() == 'es'){ ?>
+											href="<?php echo site_url('es/'); ?>"
+										<?php } else { ?>
+											href="<?php echo site_url('en/'); ?>"
+										<?php } ?>
+									>
+										<img class="[ img-responsive ]" src="<?php echo THEMEPATH; ?>images/logo-select-team.png" alt="Select Team"/>
+									</a>
+								</h1>
+								<?php if ( ! is_user_logged_in() ) { ?>
+									<a class="[ text-center ]" href="" data-toggle="modal" data-target="#login"><i class="[ fa fa-sign-in ]"></i> Login</a>
 								<?php } else { ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Profile</a>
+									<a class="[ text-center ]" href="<?php echo esc_url( wp_logout_url(site_url()) ); ?>"><i class="[ fa fa-sign-out ]"></i> Logout</a>
 								<?php } ?>
+								<?php echo qtrans_generateLanguageSelectCode('text'); ?>
 							</li>
-							<li>
-								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Currículum</a>
-								<?php } else { ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Curriculum</a>
-								<?php } ?>
-							</li>
-							<li>
-								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
-								<?php } else { ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Messages</a>
-								<?php } ?>
-							</li>
-							<li class="j-download">
-								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#" type="download"><i class="fa fa-download"></i> Manual de aplicante</a>
-								<?php } else { ?>
-									<a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
-								<?php } ?>
-							</li>
-						<?php } else { ?>
-							<!-- Para el dashboard de admin -->
-							<li>
-								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile-admin ]"><i class="fa fa-user"></i> Perfil</a>
-								<?php } else { ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile-admin ]"><i class="fa fa-user"></i> Profile</a>
-								<?php } ?>
-							</li>
-							<li>
-								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-prospects ]"><i class="fa fa-file-o"></i> Prospectos</a>
-								<?php } else { ?>
-									<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-prospects ]"><i class="fa fa-file-o"></i> Prospects</a>
-								<?php } ?>
-							</li>
-							<?php if( $role != 'author' ) { ?>
+							
+							<!-- Para el dashboard de usario -->
+							<?php 
+							if($role == 'subscriber'){
+							?>
+								<li class="sidebar-brand">
+									<a class="[ js-page-scroll ]"><i class="fa fa-cogs"></i> Dashboard</a>
+								</li>
 								<li>
 									<?php if (qtrans_getLanguage() == 'es'){ ?>
-										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-briefcase"></i> Agentes</a>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Perfil</a>
 									<?php } else { ?>
-										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-briefcase"></i> Advisors</a>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile ]"><i class="fa fa-user"></i> Profile</a>
 									<?php } ?>
 								</li>
-							<?php } ?>
-							<li>
-								<?php if (qtrans_getLanguage() == 'es'){ ?>
-									<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages-admin ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
-								<?php } else { ?>
-									<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages-admin ]"><i class="fa fa-envelope-o"></i> Messages</a>
+								<li>
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Currículum</a>
+									<?php } else { ?>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-curriculum ]"><i class="fa fa-file-o"></i> Curriculum</a>
+									<?php } ?>
+								</li>
+								<li>
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+									<?php } else { ?>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages ]"><i class="fa fa-envelope-o"></i> Messages</a>
+									<?php } ?>
+								</li>
+								<li class="j-download">
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										<a href="#" type="download"><i class="fa fa-download"></i> Manual de aplicante</a>
+									<?php } else { ?>
+										<a href="#" type="download"><i class="fa fa-download"></i> Applicant manual</a>
+									<?php } ?>
+								</li>
+							<?php } else { ?>
+								<!-- Para el dashboard de admin -->
+								<li>
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile-admin ]"><i class="fa fa-user"></i> Perfil</a>
+									<?php } else { ?>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-profile-admin ]"><i class="fa fa-user"></i> Profile</a>
+									<?php } ?>
+								</li>
+								<li>
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-prospects ]"><i class="fa fa-file-o"></i> Prospectos</a>
+									<?php } else { ?>
+										<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-prospects ]"><i class="fa fa-file-o"></i> Prospects</a>
+									<?php } ?>
+								</li>
+								<?php if( $role != 'author' ) { ?>
+									<li>
+										<?php if (qtrans_getLanguage() == 'es'){ ?>
+											<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-briefcase"></i> Agentes</a>
+										<?php } else { ?>
+											<a href="#" class="[ js-page-scroll ] [ dashboard-menu ] [ js-advisors ]"><i class="fa fa-briefcase"></i> Advisors</a>
+										<?php } ?>
+									</li>
 								<?php } ?>
-							</li>
-						<?php }  ?>
-						<!-- Para el register usuario o advisor -->
-					</ul>
-					<div class="[ dashboard__privacy-policy ] [ clearfix ]">
-						<?php if (qtrans_getLanguage() == 'es'){ ?>
-							<a class="[ btn btn-success ] [ center block ]" href="<?php echo site_url('privacy-policy'); ?>">Aviso de Privacidad.</a>
-			            	<p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
-						<?php } else { ?>
-							<a class="[ btn btn-success ] [ center block ]" href="<?php echo site_url('privacy-policy'); ?>">Privacy Policy</a>
-			            	<p class="[ col-xs-12 ] [ text-center ]" href="">All rights reserved. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
-						<?php } ?>
+								<li>
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+										<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages-admin ]"><i class="fa fa-envelope-o"></i> Mensajes</a>
+									<?php } else { ?>
+										<a href="#messages" class="[ js-page-scroll ] [ dashboard-menu ] [ js-messages-admin ]"><i class="fa fa-envelope-o"></i> Messages</a>
+									<?php } ?>
+								</li>
+							<?php }  ?>
+							<!-- Para el register usuario o advisor -->
+						</ul>
+						<div class="[ dashboard__privacy-policy ] [ clearfix ]">
+							<?php if (qtrans_getLanguage() == 'es'){ ?>
+								<a class="[ btn btn-success ] [ center block ]" href="<?php echo site_url('privacy-policy'); ?>">Aviso de Privacidad.</a>
+				            	<p class="[ col-xs-12 ] [ text-center ]" href="">Todos los derechos reservados. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+							<?php } else { ?>
+								<a class="[ btn btn-success ] [ center block ]" href="<?php echo site_url('privacy-policy'); ?>">Privacy Policy</a>
+				            	<p class="[ col-xs-12 ] [ text-center ]" href="">All rights reserved. <br class="[ hidden-sm hidden-md hidden-lg ]"> Select Team Becas 2014</p>
+							<?php } ?>
+						</div>
 					</div>
 	        	</header> <!-- /#sidebar-wrapper -->
 	        	<div class="[ content content__dashboard ] [ clearfix ]">

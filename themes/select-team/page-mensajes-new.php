@@ -11,7 +11,7 @@
 		} elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
 			$to = $_POST["email-advisor"];
 		} elseif (isset($_POST['email-advisor-user'])) {
-			if ($_POST['email-advisor-user']!='') {
+			if ($_POST['email-advisor-user'] != '') {
 					$to = $_POST["email-advisor-user"];
 			}
 		}
@@ -22,7 +22,7 @@
 	$users_st = null;
 
 	if ( $role == 'administrator' ){
-		$users_st = get_all_st_user();
+		$users_st = get_advisors_basic_info();
 	}
 
 ?>
@@ -84,12 +84,12 @@
 						<div>
 							<?php if($users_st != null){ ?>
 								<select class="[ form-control ][ required ][ j-select-user ]" name="email-advisor-user">
-									<option value="">Select user</option>
+									<option value="">Select Advisor</option>
 								<?php
 									foreach ($users_st as $key => $user)
 									{
 								?>
-									<option value="<?php echo $user->id; ?>"><?php echo $user->full_name; ?></option>
+									<option value="<?php echo $user->ID; ?>"><?php echo $user->full_name; ?></option>
 								<?php } ?>
 								</select>
 								<br/>
@@ -105,11 +105,11 @@
 								<option value="-1">Administrator</option>
 							<?php } ?>
 							<?php
-								$users = get_advisors_basic_info();
+								$users = get_all_st_user();
 								foreach ($users as $key => $user)
 								{
 							?>
-								<option value="<?php echo $user->ID; ?>"><?php echo $user->full_name; ?></option>
+								<option value="<?php echo $user->id; ?>"><?php echo $user->full_name; ?></option>
 							<?php } ?>
 						</select>
 					</div>

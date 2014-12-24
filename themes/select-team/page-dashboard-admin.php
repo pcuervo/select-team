@@ -26,7 +26,7 @@
         <div id="page-content-wrapper" class="[ margin-bottom ]">
             <div class="[ container-fluid ] [ js-dashboard-section ]" id="page-content">
                 <a href="#menu-toggle" id="menu-toggle" class="[ hidden-md hidden-lg ]"><i class="[ fa fa-bars fa-2x ]"></i></a>
-                <div class="[ row ] [ margin-bottom ] [ js-basic-profile ]" id="profile">
+                <div class="[ row ] [ margin-bottom ] [ js-basic-profile ] [ js-dashboard-div ]" id="profile">
                     <div class="[ col-xs-12 col-sm-7 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3>Perfil</h3>
@@ -73,7 +73,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="[ row ] [ js-dashboard-section ] [ js-prospects ] [ margin-bottom ]" id="prospects">
+                <div class="[ row ] [ js-dashboard-section ] [ js-prospects ] [ js-dashboard-div ] [ margin-bottom ]" id="prospects">
                     <div class="[ col-xs-12 col-sm-12 ]">
                         <?php if (qtrans_getLanguage() == 'es'){ ?>
                             <h3 class="[ margin-bottom ]">Prospectos</h3>
@@ -124,7 +124,7 @@
                     </div>
                 </div>
                 <?php if( $role != 'author' ) { ?>
-                    <div class="[ row ] [ j-advisors ] [ js-dashboard-section ] [ js-advisors ] [ margin-bottom ]" id="advisors">
+                    <div class="[ row ] [ j-advisors ] [ js-dashboard-section ] [ js-advisors ] [ js-dashboard-div ] [ margin-bottom ]" id="advisors">
                         <div class="[ col-xs-12 col-sm-12 ][ j-advisor-confirm ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
                                 <h3 class="[ margin-bottom ]">Agentes</h3>
@@ -276,7 +276,7 @@
                         <div class="[ j-confirm ]"></div>
                     </div>
                 <?php } ?>
-                <div class="[ row ] [ js-dashboard-section ] [ js-messages-admin ] [ margin-bottom ]"  id="">
+                <div class="[ row ] [ js-dashboard-section ] [ js-messages-admin ] [ js-dashboard-div ] [ margin-bottom ]"  id="">
                     <div class="[ col-xs-12 col-sm-10 ]">
                         <h3>My conversations</h3>
                         <?php 
