@@ -1,26 +1,32 @@
 <?php
 	$status = null;
-	//var_dump($_POST);
+	var_dump($_POST);
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$mensaje = $_POST["mensaje"];
 		$to = null;
 		if(isset($_POST['email-advisor']))
-			if($_POST['email-advisor']!='')
-			{
-			if($_POST["email-advisor"] == -1 && $_POST["email-advisor"] != '' ){
-				$id = get_user_id('luismendoza@selectteambecas.com');
-				$id = get_user_id('alejandro@pcuervo.com');
-				$to = $id[0]->ID;
-				} elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
-					$to = $_POST["email-advisor"];
-				}
-			} elseif (isset($_POST['email-advisor-user'])) {
+			{if($_POST['email-advisor']!='')
+						{
+						if($_POST["email-advisor"] == -1 && $_POST["email-advisor"] != '' ){
+							echo "1";
+							$id = get_user_id('luismendoza@selectteambecas.com');
+							$id = get_user_id('zurol@pcuervo.com');
+							$to = $id[0]->ID;
+							} elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
+								echo "2";
+								$to = $_POST["email-advisor"];
+							}
+						}
+					}
+			 elseif (isset($_POST['email-advisor-user'])) {
 				if ($_POST['email-advisor-user'] != '-1' ) {
+					echo "3";
 						$to = $_POST["email-advisor-user"];
 				}elseif ($_POST['email-advisor-user'] == '-1') {
+					echo "4";
 					$id = get_user_id('luismendoza@selectteambecas.com');
-					$id = get_user_id('alejandro@pcuervo.com');
-					//var_dump($id);
+					$id = get_user_id('zurol@pcuervo.com');
+					var_dump($id);
 					$to = $id[0]->ID;
 				}
 			}

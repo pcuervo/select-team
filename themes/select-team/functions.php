@@ -1790,7 +1790,7 @@ function pu_blank_login( $user ){
 	function site_login_post($username, $password){
 
 		$logged_in = login_user($username, $password);
-		var_dump($logged_in);
+
 		if($logged_in == '1'){
 			return 1;
 		}elseif ($logged_in == '-1') {
