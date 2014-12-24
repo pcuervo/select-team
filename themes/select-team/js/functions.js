@@ -811,7 +811,7 @@ function login(){
     user_data['action'] = 'site_login';
     user_data['username'] = $('.j-login input[name="j-email"]').val();
     user_data['password'] = $('.j-login input[name="j-password"]').val();
-  
+    console.log(user_data);
     $('.j-login .alert').remove();
     $.post(
         ajax_url,
@@ -820,11 +820,9 @@ function login(){
             console.log(response);
             if(response == 1){
                 redirectUserDashoard();
-            }else if(response=='-1'){
-              var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Tu cuenta está siendo aprovada. </p></div>';
-              $(html_error).prependTo('.modal-footer');
-            }
-            else{
+            } else if(response == -1 ) {
+                redirectPausedLogin();
+            } else {
                 var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
                 $(html_error).prependTo('.modal-footer');
             }
@@ -846,7 +844,8 @@ function loginUser(user, password){
     user_data['action'] = 'site_login';
     user_data['username'] = user;
     user_data['password'] = password;
-  
+    
+    console.log(user_data);
     $.post(
         ajax_url,
         user_data,
@@ -854,9 +853,8 @@ function loginUser(user, password){
             console.log(response);
             if(response == 1){
                 redirectUserDashoard();
-            }else if(response=='-1'){
-              var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Tu cuenta está siendo aprovada. </p></div>';
-              $(html_error).prependTo('.modal-footer');
+            }else if(response == -1){
+              redirectPausedLogin();
             }
         } //response
     ); 
@@ -961,6 +959,11 @@ function redirectUserDashoard(){
         } //response
     ); 
 }// redirectUserDashoard
+
+function redirectPausedLogin(){
+    window.location = site_url + '?login=paused';
+}// redirectPausedLogin
+
 
 function sendMail(){
   console.log("mail");

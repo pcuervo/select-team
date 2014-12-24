@@ -1715,7 +1715,6 @@ function pu_blank_login( $user ){
 			if(im_active($username)){
 				$user = wp_signon( $creds, false );
 			}else{
-				header("Location: ".site_url()."\?login=paused");
 				return -1;	
 			}
 		}else{
@@ -1765,7 +1764,7 @@ function pu_blank_login( $user ){
 		if($logged_in == '1'){
 			echo 1;
 		}elseif ($logged_in == '-1') {
-			return -1;
+			echo -1;
 		} else
 			echo 0;
 		die();
@@ -1775,6 +1774,7 @@ function pu_blank_login( $user ){
 	function site_login_post($username, $password){
 
 		$logged_in = login_user($username, $password);
+		var_dump($logged_in);
 		if($logged_in == '1'){
 			return 1;
 		}elseif ($logged_in == '-1') {
