@@ -23,7 +23,6 @@
 					$to = $id[0]->ID;
 				} 
 				elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
-					echo "string";
 					$to = $_POST["email-advisor"];
 				}
 			}
