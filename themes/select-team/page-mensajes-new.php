@@ -40,8 +40,6 @@
 		$status = register_mensaje($mensaje, $from, $to);
 	}
 	$role = get_current_user_role();
-	echo "rol: ";
-	echo $role;
 	$users_st = null;
 	if ( $role == 'administrator' || $role == 'subscriber'){
 		$users_st = get_advisors_basic_info();

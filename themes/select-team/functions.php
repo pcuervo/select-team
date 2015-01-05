@@ -1014,7 +1014,7 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 		
 		$user_id= get_current_user_id();
-	    $query = "SELECT T.display_name as 'to', F.display_name as 'from', C.* FROM select_team.st_conversations C INNER JOIN wp_users F ON F.ID = C.from_id INNER JOIN wp_users T ON T.ID = C.to_id WHERE from_id ='".$user_id."' or to_id ='".$user_id."'";
+	    $query = "SELECT T.display_name as 'to', F.display_name as 'from', C.* FROM st_conversations C INNER JOIN wp_users F ON F.ID = C.from_id INNER JOIN wp_users T ON T.ID = C.to_id WHERE from_id ='".$user_id."' or to_id ='".$user_id."'";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
@@ -1716,7 +1716,7 @@ function pu_blank_login( $user ){
 	function get_all_st_user(){
 		 global $wpdb;
 
-	    $query = "SELECT wp_user_id as id, full_name FROM select_team.st_users;";
+	    $query = "SELECT wp_user_id as id, full_name FROM st_users;";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
