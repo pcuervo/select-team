@@ -1,5 +1,6 @@
 <?php
 	$status = null;
+	$admin_mail = 'raul@pcuervo.com';
 	//var_dump($_POST);
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$mensaje = $_POST["mensaje"];
@@ -10,16 +11,14 @@
 					if ($_POST['email-advisor-user'] != '-1' ) {
 						$to = $_POST["email-advisor-user"];
 					}elseif ($_POST['email-advisor-user'] == '-1') {
-						$id = get_user_id('luismendoza@selectteambecas.com');
-						//$id = get_user_id('zurol@pcuervo.com');
+						$id = get_user_id($admin_mail);
 						$to = $id[0]->ID;
 					}
 				}
 			}
 			if($_POST['email-advisor']!='')	{
 				if($_POST["email-advisor"] == -1 && $_POST["email-advisor"] != '' ){
-					$id = get_user_id('luismendoza@selectteambecas.com');
-					//$id = get_user_id('zurol@pcuervo.com');
+					$id = get_user_id($admin_mail);
 					$to = $id[0]->ID;
 				} 
 				elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
@@ -31,8 +30,7 @@
 			if ($_POST['email-advisor-user'] != '-1' ) {
 				$to = $_POST["email-advisor-user"];
 			}elseif ($_POST['email-advisor-user'] == '-1') {
-				$id = get_user_id('luismendoza@selectteambecas.com');
-				//$id = get_user_id('zurol@pcuervo.com');
+				$id = get_user_id($admin_mail);
 				$to = $id[0]->ID;
 			}
 		}
