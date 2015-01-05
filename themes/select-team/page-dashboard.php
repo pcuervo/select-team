@@ -40,7 +40,6 @@
                 $tournament_info = get_user_tournament($prospect_info->st_user_id);
                 //var_dump($academic_hist);
             }
-            echo $created_curriculum."bueno";
             if (sizeof($created_curriculum) > 0) {
                 $address        =  $created_curriculum->address;
                 $phone          =  $created_curriculum->phone;
