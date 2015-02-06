@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$status = null;
 	$user_id = get_current_user_id();
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -6,13 +6,13 @@
 		$to = $_POST["email-advisor"];
 		$from = get_current_user_id();
 		$conv = $_POST["conv"];
-		
+
 		$status = add_mensaje_conversation($mensaje, $from, $to,$conv);
 		header( 'Location: mensajes/?id='.$conv );
 	}else if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 		$conv = $_GET["id"];
 		$convData = get_conversacion_info($conv);
-		
+
 		if ($user_id == $convData[0]->from_id){
 			$from = $convData[0]->to_id;
 		}else if ($user_id == $convData[0]->to_id){
@@ -23,9 +23,8 @@
 	}
 	$dest=$convData[0]->to_id;
 	//var_dump($convData);
-	$display_name= get_user_display_name($dest);
-	$disp_name=$display_name[0]->display_name;
-	
+	$display_name = get_user_display_name($dest);
+	$disp_name =$display_name[0]->display_name;
 	$mensajes = get_mensajes_conversations($conv);
 
 ?>
@@ -61,13 +60,13 @@
 					<p class="[ margin-bottom ] [ text-right ] [ border-bottom ]"><a href="<?php echo site_url('dashboard'); ?>"><b class=""><i class="fa fa-cogs"></i> Go back to Dashboard</b></a></p>
 					<h3>Conversation with <?php echo $disp_name; ?></h3>
 				<?php } ?>
-				<?php 
+				<?php
 					foreach ($mensajes as $key => $mensaje) {
-				?>	
+				?>
 					<?php if($mensaje->receptor == $user_id) {?>
 						<div class="[ message user ]">
 							<p class="[ conversation-date ]"><?php echo $mensaje->date; ?></p>
-							<p class="[ conversation-text ]"><?php echo $mensaje->message; ?></p>					
+							<p class="[ conversation-text ]"><?php echo $mensaje->message; ?></p>
 						</div>
 					<?php } else { ?>
 						<div class="[ message advisor ]">

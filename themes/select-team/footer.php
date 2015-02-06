@@ -3,7 +3,7 @@
         <div class="[ modal fade ]" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="[ modal-dialog ]">
                 <div class="[ modal-content ]">
-                    <form role="form" class="[ j-login ]" action="<?php echo site_url('login'); ?>" method="post">
+                    <form role="form" class="[ j-login ]" action="<?php echo site_url('login'); ?>" method="post" id="j-login">
                         <div class="[ modal-header ]">
                             <button type="button" class="[ close ]" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -16,21 +16,25 @@
                             <div class="[ input-group ] [ margin-bottom-sm ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-user"></i></span>
-                                    <input class="[ form-control ]" type="text" placeholder="Nombre de usuario" name="j-email">
+                                    <input class="[ form-control ][ required ]" type="text" placeholder="Nombre de usuario" name="j-email">
                                 <?php } else { ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-user"></i></span>
-                                    <input class="[ form-control ]" type="text" placeholder="Username" name="j-email">
+                                    <input class="[ form-control ][ required ]" type="text" placeholder="Username" name="j-email">
                                 <?php } ?>
                             </div>
+                            <div class=" [ clear ] "></div>
+                            <label for="error" class="[ error ][ j-error-validate ][ lab1 ]">Este campo es obligatorio. / This field is required.</label><br/>
                             <div class="[ input-group ]">
                                 <?php if (qtrans_getLanguage() == 'es'){ ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-lock"></i></span>
-                                    <input class="[ form-control ]" type="password" placeholder="Contraseña" name="j-password">
+                                    <input class="[ form-control ][ required ]" type="password" placeholder="Contraseña" name="j-password">
                                 <?php } else { ?>
                                     <span class="[ input-group-addon ]"><i class="fa fa-lock"></i></span>
-                                    <input class="[ form-control ]" type="password" placeholder="Password" name="j-password">
+                                    <input class="[ form-control ][ required ]" type="password" placeholder="Password" name="j-password">
                                 <?php } ?>
                             </div>
+                            <div class=" [ clear ] "></div>
+                            <label for="error" class="[ error ][ j-error-validate ][ lab2 ]">Este campo es obligatorio. / This field is required.</label>
                         </div><!-- .modal-body -->
                         <div class="[ modal-footer ]">
                             <?php if (qtrans_getLanguage() == 'es'){ ?>
@@ -67,13 +71,13 @@
                 </div><!-- .modal-content -->
             </div><!-- .modal-dialog -->
         </div><!-- .modal -->
-        
+
 
 
 
 
     </div><!--CONTAINER-FLUID-->
-    <?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
+    <?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home()  AND !is_page('mensajes') ) { ?>
         <footer>
             <div class="[ row ]">
                 <div class=" [  col-xs-12 col-sm-6 col-md-12 center block ] [ text-center ]">

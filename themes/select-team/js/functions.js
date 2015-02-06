@@ -818,7 +818,7 @@ function login(){
     user_data['action'] = 'site_login';
     user_data['username'] = $('.j-login input[name="j-email"]').val();
     user_data['password'] = $('.j-login input[name="j-password"]').val();
-  
+    console.log(user_data);
     $('.j-login .alert').remove();
     $.post(
         ajax_url,
@@ -827,11 +827,9 @@ function login(){
             console.log(response);
             if(response == 1){
                 redirectUserDashoard();
-            }else if(response=='-1'){
-              var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Tu cuenta está siendo aprovada. </p></div>';
-              $(html_error).prependTo('.modal-footer');
-            }
-            else{
+            } else if(response == -1 ) {
+                redirectPausedLogin();
+            } else {
                 var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
                 $(html_error).prependTo('.modal-footer');
             }
@@ -853,7 +851,8 @@ function loginUser(user, password){
     user_data['action'] = 'site_login';
     user_data['username'] = user;
     user_data['password'] = password;
-  
+    
+    console.log(user_data);
     $.post(
         ajax_url,
         user_data,
@@ -861,9 +860,8 @@ function loginUser(user, password){
             console.log(response);
             if(response == 1){
                 redirectUserDashoard();
-            }else if(response=='-1'){
-              var html_error = '<div class="[ text-center ] [ alert alert-warning ] " role="alert"><p>Tu cuenta está siendo aprovada. </p></div>';
-              $(html_error).prependTo('.modal-footer');
+            }else if(response == -1){
+              redirectPausedLogin();
             }
         } //response
     ); 
@@ -890,6 +888,9 @@ function formValidation(forma){
                     break;
                 case '.j-message':
                     document.getElementById("j-message").submit();
+                    break;
+                case '.j-login':
+                    document.getElementById("j-login").submit();
                     break;
                 case '.j-upload-profile-picture':
                     document.getElementById("j-upload-profile-picture").submit();
@@ -969,6 +970,11 @@ function redirectUserDashoard(){
     ); 
 }// redirectUserDashoard
 
+function redirectPausedLogin(){
+    window.location = site_url + '?login=paused';
+}// redirectPausedLogin
+
+
 function sendMail(){
   console.log("mail");
   var coach_data = {};
@@ -1015,4 +1021,23 @@ function sendMessage(){
      );
 }
 
+function loginValidate(){
 
+  var1 =  $('.j-login input[name="j-email"]').val();
+  var2 =  $('.j-login input[name="j-password"]').val();
+  
+  if(var1==''){
+    $('.lab1').show();
+  }else{
+    $('.lab1').hide();
+  }
+  if(var2==''){
+    $('.lab2').show();
+  }else{
+    $('.lab2').hide();
+  }
+  if(var1!='' && var2!=''){
+    document.getElementById("j-login").submit();
+  }
+
+}

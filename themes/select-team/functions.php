@@ -122,7 +122,7 @@ function pu_blank_login( $user ){
 		wp_enqueue_script( 'modernizer', JSPATH.'modernizr.custom.js', array('classie'), '1.0', true );
 		wp_enqueue_script( 'functions', JSPATH.'functions.js', array('modernizer'), '1.0', true );
 
-		if (get_the_title()=='Register' || get_the_title()=='Contacto')
+		if (get_the_title()=='Register' || get_the_title()=='Contacto' || is_home())
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
 		if (get_the_title()=='Dashboard Admin')
@@ -178,6 +178,14 @@ function pu_blank_login( $user ){
 		                    if(window.location.href.indexOf("reg=1") > -1) {
 								$('#login').modal('show'); 
 							}
+
+							$('.j-error-validate').hide();
+
+							$('.j-login .btn-success').on('click', function(e){
+								//formValidation('.j-login');
+								e.preventDefault();
+								loginValidate();
+							});
 
 		                    //On click/change/etc
 		                    filterQuestions();
@@ -958,7 +966,9 @@ function pu_blank_login( $user ){
 		if( $to_id==-1 ){
 			$to_id = 1;
 		}
+		
 		$conversation_id = has_conversacion($from_id, $to_id);
+		
 		if( $conversation_id <= 0){
 			$conversation_id = register_conversacion($from_id,$to_id );
 		}
@@ -1004,7 +1014,7 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 		
 		$user_id= get_current_user_id();
-	    $query = "SELECT T.display_name as 'to', F.display_name as 'from', C.* FROM select_team.st_conversations C INNER JOIN wp_users F ON F.ID = C.from_id INNER JOIN wp_users T ON T.ID = C.to_id WHERE from_id ='".$user_id."' or to_id ='".$user_id."'";
+	    $query = "SELECT T.display_name as 'to', F.display_name as 'from', C.* FROM st_conversations C INNER JOIN wp_users F ON F.ID = C.from_id INNER JOIN wp_users T ON T.ID = C.to_id WHERE from_id ='".$user_id."' or to_id ='".$user_id."'";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
@@ -1706,7 +1716,7 @@ function pu_blank_login( $user ){
 	function get_all_st_user(){
 		 global $wpdb;
 
-	    $query = "SELECT wp_user_id as id, full_name FROM select_team.st_users;";
+	    $query = "SELECT wp_user_id as id, full_name FROM st_users;";
 	    $users = $wpdb->get_results($query);
 		
 		return $users;
@@ -1729,7 +1739,6 @@ function pu_blank_login( $user ){
 			if(im_active($username)){
 				$user = wp_signon( $creds, false );
 			}else{
-				header("Location: ".site_url()."\?login=paused");
 				return -1;	
 			}
 		}else{
@@ -1779,7 +1788,7 @@ function pu_blank_login( $user ){
 		if($logged_in == '1'){
 			echo 1;
 		}elseif ($logged_in == '-1') {
-			return -1;
+			echo -1;
 		} else
 			echo 0;
 		die();
@@ -1789,6 +1798,7 @@ function pu_blank_login( $user ){
 	function site_login_post($username, $password){
 
 		$logged_in = login_user($username, $password);
+
 		if($logged_in == '1'){
 			return 1;
 		}elseif ($logged_in == '-1') {

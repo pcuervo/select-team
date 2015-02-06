@@ -5,7 +5,12 @@
 	if ( site_login_post($username, $password) ){
 		header("Location: ".site_url()."/dashboard");
 		die();
-	}else{
+	}
+	elseif (site_login_post($username, $password)==-1) {
+		header("Location: ".site_url()."?login=paused");
+		die();	
+	}
+	else{
 		header("Location: ".site_url());
 		die();
 	}

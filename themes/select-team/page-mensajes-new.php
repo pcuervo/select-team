@@ -1,18 +1,37 @@
 <?php
 	$status = null;
+	$admin_mail = 'raul@pcuervo.com';
+	//var_dump($_POST);
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$mensaje = $_POST["mensaje"];
 		$to = null;
-		if($_POST["email-advisor"] == -1){
-			$to = '-1';
-			$id = get_user_id('luismendoza@selectteambecas.com');
-			//$id = get_user_id('alejandro@pcuervo.com');
-			$to = $id[0]->ID;
-		} elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
-			$to = $_POST["email-advisor"];
-		} elseif (isset($_POST['email-advisor-user'])) {
-			if ($_POST['email-advisor-user']!='') {
-					$to = $_POST["email-advisor-user"];
+		if(isset($_POST['email-advisor'])){
+			if ($_POST['email-advisor']=='') {
+				if (isset($_POST['email-advisor-user'])) {
+					if ($_POST['email-advisor-user'] != '-1' ) {
+						$to = $_POST["email-advisor-user"];
+					}elseif ($_POST['email-advisor-user'] == '-1') {
+						$id = get_user_id($admin_mail);
+						$to = $id[0]->ID;
+					}
+				}
+			}
+			if($_POST['email-advisor']!='')	{
+				if($_POST["email-advisor"] == -1 && $_POST["email-advisor"] != '' ){
+					$id = get_user_id($admin_mail);
+					$to = $id[0]->ID;
+				} 
+				elseif ($_POST["email-advisor"] != -1 && $_POST["email-advisor"] != '' ) {
+					$to = $_POST["email-advisor"];
+				}
+			}
+		}	
+		elseif (isset($_POST['email-advisor-user'])) {
+			if ($_POST['email-advisor-user'] != '-1' ) {
+				$to = $_POST["email-advisor-user"];
+			}elseif ($_POST['email-advisor-user'] == '-1') {
+				$id = get_user_id($admin_mail);
+				$to = $id[0]->ID;
 			}
 		}
 		$from = get_current_user_id();
@@ -20,9 +39,8 @@
 	}
 	$role = get_current_user_role();
 	$users_st = null;
-
-	if ( $role == 'administrator' ){
-		$users_st = get_all_st_user();
+	if ( $role == 'administrator' || $role == 'subscriber'){
+		$users_st = get_advisors_basic_info();
 	}
 
 ?>
@@ -82,36 +100,49 @@
 							<label for="">Send to:</label>
 						<?php } ?>
 						<div>
-							<?php if($users_st != null){ ?>
+							<?php //if($users_st != null){ ?>
+							<?php if($role == 'subscriber' || $role == 'administrator'){ ?>
 								<select class="[ form-control ][ required ][ j-select-user ]" name="email-advisor-user">
-									<option value="">Select user</option>
+									<?php if (qtrans_getLanguage() == 'es'){ ?>
+									<option value="">Selecciona agente</option>
+									<?php if ( $role != 'administrator') { echo '<option value="-1">Administrador</option>'; } ?>
+								<?php } else { ?>
+									<option value="">Select Advisor</option>
+									<?php if ( $role != 'administrator') { echo '<option value="-1">Administrator</option>'; } ?>
+								<?php } ?>
 								<?php
 									foreach ($users_st as $key => $user)
 									{
 								?>
-									<option value="<?php echo $user->id; ?>"><?php echo $user->full_name; ?></option>
+									<option value="<?php echo $user->ID; ?>"><?php echo $user->full_name; ?></option>
 								<?php } ?>
 								</select>
 								<br/>
 							<?php } ?>
 						</div>
 					<div>
+						<?php if($role != 'subscriber'){ ?>
 						<select class="[ form-control ][ required ][ j-select-advisor ]" name="email-advisor">
 							<?php if (qtrans_getLanguage() == 'es'){ ?>
-								<option value="">Selecciona un agente o administrador</option>
-								<option value="-1">Administrador</option>
+								<option value="">Selecciona un usuario o administrador</option>
+								<?php if( $role != 'administrator') { ?>
+									<option value="-1">Administrador</option>
+									<?php } ?>
 							<?php } else { ?>
-								<option value="">Select advisor or administrator</option>
-								<option value="-1">Administrator</option>
+								<option value="">Select user or administrator</option>
+								<?php if( $role != 'administrator') { ?>
+									<option value="-1">Administrator</option>
+									<?php } ?>
 							<?php } ?>
 							<?php
-								$users = get_advisors_basic_info();
+								$users = get_all_st_user();
 								foreach ($users as $key => $user)
 								{
 							?>
-								<option value="<?php echo $user->ID; ?>"><?php echo $user->full_name; ?></option>
+								<option value="<?php echo $user->id; ?>"><?php echo $user->full_name; ?></option>
 							<?php } ?>
 						</select>
+						<?php } ?>
 					</div>
 					</div>
 					<div class="clear"></div>
