@@ -1208,8 +1208,8 @@ function pu_blank_login( $user ){
 			default:
 				// Create wp_user
 				$username =  $data['username'];
-				//$password =  $data['password'];
-				$password = 'S3l3ctT34m';
+				$password =  $data['password'];
+				//$password = 'S3l3ctT34m';
 				$email =  $data['email'];
 
 				$userdata = array(
@@ -1314,8 +1314,8 @@ function pu_blank_login( $user ){
 			default:
 				// Create wp_user
 				$username =  $_POST['username'];
-				//$password =  $_POST['password'];
-				$password = 'S3l3ctT34m';
+				$password =  $_POST['password'];
+				//$password = 'S3l3ctT34m';
 				$email =  $_POST['email'];
 
 				$userdata = array(

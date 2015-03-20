@@ -467,8 +467,11 @@ function registerUser() {
     user_data['action'] = 'register_user';
     user_data['username'] = $('.j-register-user input[name="username"]').val();
     //user_data['password'] = $('.j-register-user input[name="password"]').val();
-    user_data['password'] = 'S3l3ctT34m';
-    user_data['password_confirmation'] = 'S3l3ctT34m';
+    var password = createPassword(String(Date.now()));
+    console.log(password);
+
+    user_data['password'] = password;
+    user_data['password_confirmation'] = password;
     user_data['email'] = $('.j-register-user input[name="email"]').val();
     user_data['gender'] = $('.j-register-user select[name="gender"]').val();
     user_data['full_name'] = $('.j-register-user input[name="full_name"]').val();
@@ -493,6 +496,7 @@ function registerUser() {
             user_data['volley_height'] = $('.j-register-user input[name="volley_height"]').val();
     }
     console.log(user_data);
+
     $.post(
         site_url+"/register",
         user_data,
@@ -515,6 +519,15 @@ function registerUser() {
         }// response
     ); 
 }// registerUser
+
+function createPassword(timestamp){
+    var pass = timestamp.replace('0', 'A');
+    pass = pass.replace('1', 'B');
+    pass = pass.replace('2', 'C');
+    pass = pass.replace('3', 'D');
+    return pass.replace('4', 'E');
+
+}// createPassword
 
 function addAcademic(){
     $academic_name= $('.j-user_curriculum_academic input[name="high_school"]').val();
