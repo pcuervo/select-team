@@ -46,7 +46,7 @@ add_action( 'admin_init', 'restrict_admin', 1 );
 
 
 
-  
+
 
 // Redirect back to the custom login page on a failed login attempt.. /////////////////////////////////////
 function pu_login_failed( $user ) {
@@ -127,7 +127,7 @@ function pu_blank_login( $user ){
 
 		if (get_the_title()=='Dashboard Admin')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
-        
+
         if (get_the_title()=='Dashboard' || get_the_title()=='Mensajes' || get_the_title()=='Mensajes-new')
 			wp_enqueue_script( 'validate', JSPATH.'validate.min.js', array('plugins'), '1.0', true );
 
@@ -176,7 +176,7 @@ function pu_blank_login( $user ){
 		                        setAlturaWindowMenosHeader('.cards');
 		                    }, 500);
 		                    if(window.location.href.indexOf("reg=1") > -1) {
-								$('#login').modal('show'); 
+								$('#login').modal('show');
 							}
 
 							$('.j-error-validate').hide();
@@ -233,7 +233,7 @@ function pu_blank_login( $user ){
 		                    $('.card-close').on('click', function(){
 		                        cerrarCards( $(this) );
 		                    });
-							
+
 	   						/*$('.j-login button').on('click', function(e){
 								e.preventDefault();
 								login();//addTournament();
@@ -321,7 +321,7 @@ function pu_blank_login( $user ){
 						//$('.btn-editar').hide();
 						$('.btn-agregar').show();
 					});
-					
+
 					$('.j-user-basic-profile .btn-guardar-profile').on('click', function(){
 						formValidation('.j-user-basic-profile');
 					});
@@ -338,7 +338,7 @@ function pu_blank_login( $user ){
 						//$('.j-update-advisor input[name="password"]').removeClass('required');
 						//$('.j-update-advisor input[name="password_confirmation"]').removeClass('required');
 						//$('.j-form-confirm-update').hide();
-					});	
+					});
 
 					$('.delete-advisor').on('click', function(e){
 						e.preventDefault();
@@ -350,7 +350,7 @@ function pu_blank_login( $user ){
 				    });
 
 				    paddingDashboard();
-				    
+
 				    //Responsive
 	                $(window).resize(function(){
 	                    paddingDashboard();
@@ -382,17 +382,17 @@ function pu_blank_login( $user ){
 							changeYear: true,
 							showButtonPanel: true,
 							dateFormat: 'yy-mm-dd',
-							onClose: function(dateText, inst) { 
+							onClose: function(dateText, inst) {
 								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
 								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
-								$(this).datepicker('setDate', new Date(year, month, 1));
+								//$(this).datepicker('setDate', new Date(year, month, 1));
 							}
 						});
 						$('.j-update-basic-profile button').on('click', function(e){
 							e.preventDefault();
 							updateUserInfo();
 						});
-						
+
 						$('.j-update-curriculum-update').on('click', function(e){
 							formValidation('.j-user_curriculum_update');
 						});
@@ -437,7 +437,7 @@ function pu_blank_login( $user ){
                         });
 					});
 					paddingDashboard();
-				    
+
 				    //Responsive
 	                $(window).resize(function(){
 	                    paddingDashboard();
@@ -466,7 +466,7 @@ function pu_blank_login( $user ){
 							changeYear: true,
 							showButtonPanel: true,
 							dateFormat: 'yy-mm',
-							onClose: function(dateText, inst) { 
+							onClose: function(dateText, inst) {
 								var month = $("#datepicker-date-of-tournament .ui-datepicker-month :selected").val();
 								var year = $("#datepicker-date-of-tournament .ui-datepicker-year :selected").val();
 								$(this).datepicker('setDate', new Date(year, month, 1));
@@ -525,7 +525,7 @@ function pu_blank_login( $user ){
 							$('.j-select-user').parent().show('slow');
 						}
 					});
-					
+
 				</script>
 			<?php } ?>
 			<?php if( !is_page('dashboard') AND !is_page('dashboard-admin') AND !is_page('register-advisor') AND !is_page('admin-advisor-single') AND !is_home() ) { ?>
@@ -536,11 +536,11 @@ function pu_blank_login( $user ){
 			<?php } ?>
     		<script>
 				if(window.location.href.indexOf("login=failed") > -1) {
-					$('#login').modal('show'); 
+					$('#login').modal('show');
 					var html_error = '<div class="text-center alert" role="alert"><p>Nombre de usuario o contraseña inválidos.</p></div>';
 					$(html_error).prependTo('.modal-footer');
 				}else if(window.location.href.indexOf("login=paused") > -1) {
-					$('#paused').modal('show'); 
+					$('#paused').modal('show');
 					var html_error = '<div class="text-center alert alert-info" role="alert"><p>Tu usuario ha sido enviado para aprobación por parte del administrador.<br/><br/>Una vez que tu perfil haya sido aprobado te enviaremos tu usuario y contraseña.</p></div>';
 					$(html_error).prependTo('#paused .modal-footer');
 
@@ -574,8 +574,8 @@ function pu_blank_login( $user ){
 	add_filter( 'show_admin_bar', function($content){
 		return ( current_user_can('administrator') ) ? $content : false;
 	});
-	
-	
+
+
 	function pc_hide_admin_bar() {
 		show_admin_bar(false);
 	}
@@ -741,12 +741,12 @@ function pu_blank_login( $user ){
 			OR isset($query->rewrite) AND preg_match("/$string/i", $query->rewrite['slug'])
 			OR isset($query->post_title) AND preg_match("/$string/i", remove_accents(str_replace(' ', '-', $query->post_title) ) ) )
 			echo 'active';
-	} 
-	
+	}
+
 
 
 	function update_advisor(){
-		
+
 		// Create wp_user
 		if(isset($_POST['id']))
 			$id_user =  $_POST['id'];
@@ -756,11 +756,11 @@ function pu_blank_login( $user ){
 			$password =  $_POST['password'];
 		else
 			$password = '';
-			
+
 		$full_name = $_POST['full_name'];
-		
+
 		if(!empty($password)){
-			
+
 			$user_id = wp_update_user( array( 'ID' => $id_user, 'user_pass' => $password ) );
 
 			if ( !is_wp_error( $user_id ) ) {
@@ -771,23 +771,23 @@ function pu_blank_login( $user ){
 					"success" 	=> "Usuario registrado",
 					"error"	  	=> 0
 				);
-				echo json_encode( $msg); 
+				echo json_encode( $msg);
 			}else{
 				$msg = array(
 					"msg" => "Usuario duplicado",
 					"error"	  	=> 1
 				);
-				echo json_encode( $msg ); 
+				echo json_encode( $msg );
 			}
 		}else{
-			
+
 			update_advisor_user($full_name, $id_user);
-			
+
 			$msg = array(
 				"success" 	=> "Usuario registrado",
 				"error"	  	=> 0
 			);
-			echo json_encode( $msg); 
+			echo json_encode( $msg);
 		}
 		die();
 	} // register_advisor
@@ -819,7 +819,7 @@ function pu_blank_login( $user ){
 			    	),
 			    array('%d')
 		);
-	
+
 		die();
 	} // register_advisor
 	add_action("wp_ajax_delete_prospect", "delete_prospect");
@@ -828,7 +828,7 @@ function pu_blank_login( $user ){
 	/**
 	 * Registra un usuario advisor
 	 * @param  string  $username
-	 * @param  string  $password 
+	 * @param  string  $password
 	 * @param string  $email
 	 * @return boolean
 	 */
@@ -838,10 +838,10 @@ function pu_blank_login( $user ){
 		$password =  $_POST['password'];
 		$email =  $_POST['email'];
 		$full_name = $_POST['full_name'];
-		
+
 		$userdata = array(
 		    'user_login'  	=> $username,
-		    'user_pass'   	=> $password, 
+		    'user_pass'   	=> $password,
 		    'user_email'	=> $email,
 		    'role'			=> 'author'
 		);
@@ -861,22 +861,22 @@ function pu_blank_login( $user ){
 				"id"		=> $st_user_id,
 				"error"	  	=> 0
 				);
-			echo json_encode( $msg); 
+			echo json_encode( $msg);
 		}else{
 			$msg = array(
 				"msg" => "Usuario duplicado",
 				"error"	  	=> 1
 				);
-			echo json_encode( $msg ); 
+			echo json_encode( $msg );
 		}
 		die();
 	} // register_advisor
 	add_action("wp_ajax_register_advisor", "register_advisor");
-	
+
 	/**
 	 * Registra una conversacion
 	 * @param  string  $para quien
-	 * @param  string  $password 
+	 * @param  string  $password
 	 * @param string  $email
 	 * @return boolean
 	 */
@@ -897,13 +897,13 @@ function pu_blank_login( $user ){
 	/**
 	 * Registra una conversacion
 	 * @param  string  $para quien
-	 * @param  string  $password 
+	 * @param  string  $password
 	 * @param string  $email
-	 * @return boolean TODO	 
+	 * @return boolean TODO
 	 */
 	function has_conversacion($id,$to){
 		 global $wpdb;
-		$conv_id = -1;		
+		$conv_id = -1;
 	    $query = "SELECT * FROM st_conversations WHERE from_id = '".$id."' OR to_id = '".$id."';";
 	    $conv = $wpdb->get_results($query);
 		foreach ($conv as $key => $c) {
@@ -917,23 +917,23 @@ function pu_blank_login( $user ){
 	/**
 	 * Registra una conversacion
 	 * @param  string  $para quien
-	 * @param  string  $password 
+	 * @param  string  $password
 	 * @param string  $email
-	 * @return boolean TODO	 
+	 * @return boolean TODO
 	 */
 	function get_conversacion_info($id){
 		global $wpdb;
 	    $query = "SELECT * FROM st_conversations where id = '".$id."'";
 	    $conv = $wpdb->get_results($query);
-		
+
 		return $conv;
 	} // register_advisor
-	
+
 
 	/**
 	 * Registra un mensaje
 	 * @param  string  $username
-	 * @param  string  $password 
+	 * @param  string  $password
 	 * @param string  $email
 	 * @return boolean
 	 */
@@ -941,7 +941,7 @@ function pu_blank_login( $user ){
 		$created_date = date("Y-m-d H:i:s");
 		$mensajedata = array(
 			'message'  	=> $message,
-			'conversation_id'   	=> $conversation_id, 
+			'conversation_id'   	=> $conversation_id,
 			'read'	=> 0,
 			'date'			=> $created_date,
 			'receptor' => $to_id
@@ -957,28 +957,28 @@ function pu_blank_login( $user ){
 	/**
 	 * Registra un mensaje
 	 * @param  string  $username
-	 * @param  string  $password 
+	 * @param  string  $password
 	 * @param string  $email
 	 * @return boolean
 	 */
 	function register_mensaje($message,$from_id,$to_id){
-		
+
 		if( $to_id==-1 ){
 			$to_id = 1;
 		}
-		
+
 		$conversation_id = has_conversacion($from_id, $to_id);
-		
+
 		if( $conversation_id <= 0){
 			$conversation_id = register_conversacion($from_id,$to_id );
 		}
-		
+
 		if ( $conversation_id != -1 )
 		{
 			$created_date = date("Y-m-d H:i:s");
 			$mensajedata = array(
 				'message'  	=> $message,
-				'conversation_id'   	=> $conversation_id, 
+				'conversation_id'   	=> $conversation_id,
 				'read'	=> 0,
 				'date'			=> $created_date,
 				'receptor' => $to_id
@@ -992,7 +992,7 @@ function pu_blank_login( $user ){
 		}else
 			return false;
 	} // register_advisor
-	
+
 	/**
 	 * Jalar "basic profile" de todos los usuarios
 	 * @return mixed $users_basic_info
@@ -1002,7 +1002,7 @@ function pu_blank_login( $user ){
 
 	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id";
 	    $users = $wpdb->get_results($query);
-		
+
 		return $users;
 	}// get_advisors_basic_info
 
@@ -1012,11 +1012,11 @@ function pu_blank_login( $user ){
 	 */
 	function get_user_conversations(){
 	    global $wpdb;
-		
+
 		$user_id= get_current_user_id();
 	    $query = "SELECT T.display_name as 'to', F.display_name as 'from', C.* FROM st_conversations C INNER JOIN wp_users F ON F.ID = C.from_id INNER JOIN wp_users T ON T.ID = C.to_id WHERE from_id ='".$user_id."' or to_id ='".$user_id."'";
 	    $users = $wpdb->get_results($query);
-		
+
 		return $users;
 	}// get_user_conversations
 
@@ -1026,22 +1026,22 @@ function pu_blank_login( $user ){
 	 */
 	function get_user_id($email){
 	    global $wpdb;
-		
+
 	    $query = "SELECT ID FROM wp_users where user_email ='".$email."'";
 	    $users = $wpdb->get_results($query);
 
 		return $users;
 	}// get_user_id
-	
+
 	function get_user_display_name($id){
 	    global $wpdb;
-		
+
 	    $query = "SELECT display_name FROM wp_users where ID ='".$id."'";
 	    $users = $wpdb->get_results($query);
 
 		return $users;
 	}// get_user_id
-	
+
 
 	/**
 	 * Retorna el id de un correo.
@@ -1049,10 +1049,10 @@ function pu_blank_login( $user ){
 	 */
 	function get_mensajes_conversations($conversation_id ){
 	    global $wpdb;
-		
+
 	    $query = "SELECT * FROM st_messages where conversation_id ='".$conversation_id."'";
 	    $users = $wpdb->get_results($query);
-		
+
 		return $users;
 	}// get_mensajes_conversations
 
@@ -1067,11 +1067,11 @@ function pu_blank_login( $user ){
 
 	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."' LIMIT 1";
 	    $users = $wpdb->get_results($query);
-		
+
 		echo json_encode($users[0], JSON_FORCE_OBJECT);
 	}// get_users_basic_info
     add_action("wp_ajax_get_info_advisor", "get_info_advisor");
-	
+
 
 	function get_info_current_advisor(){
 		$user_id= get_current_user_id();
@@ -1080,7 +1080,7 @@ function pu_blank_login( $user ){
 
 	    $query = "SELECT WU.* ,A.full_name  FROM st_advisors A INNER JOIN wp_users WU ON A.wp_user_id = WU.id WHERE WU.ID ='".$user_id."' LIMIT 1";
 	    $users = $wpdb->get_results($query);
-		
+
 		if ( $users != null )
 			return $users[0];
 		else
@@ -1106,10 +1106,10 @@ function pu_blank_login( $user ){
 			$st_user_id = $wpdb->insert_id;
 			return $st_user_id;
 		}
-		
+
 		return 0;
 	}// add_advisor_user
-	
+
 	function add_conversation( $conversation_data )
 	{
 		global $wpdb;
@@ -1126,7 +1126,7 @@ function pu_blank_login( $user ){
 			$st_conversation_id = $wpdb->insert_id;
 			return $st_conversation_id;
 		}
-		
+
 		return 0;
 	}
 	/**
@@ -1151,13 +1151,13 @@ function pu_blank_login( $user ){
 			$st_message_id = $wpdb->insert_id;
 			return $st_message_id;
 		}
-		
+
 		return 0;
 	}// add_advisor_user
-	
+
 	function update_advisor_user($full_name, $id_user){
 		global $wpdb;
-		
+
 		$query = $wpdb->prepare("SELECT * FROM st_advisors  WHERE wp_user_id = %d", intval($id_user));
 	    $user_advisors = $wpdb->get_results($query);
 
@@ -1186,7 +1186,7 @@ function pu_blank_login( $user ){
 	/**
 	 * Registra un usuario nuevo
 	 * @param  string  $username
-	 * @param  string  $password 
+	 * @param  string  $password
 	 * @param string  $email
 	 * @return boolean
 	 */
@@ -1194,16 +1194,16 @@ function pu_blank_login( $user ){
 		$is_valid = validate_user_data();
 		switch ($is_valid) {
 			case USUARIO_INVALIDO:
-				echo json_encode(array("error" => "Nombre de usuario inválido"), JSON_FORCE_OBJECT ); 
+				echo json_encode(array("error" => "Nombre de usuario inválido"), JSON_FORCE_OBJECT );
 				break;
 			case EMAIL_INVALIDO:
-				echo json_encode(array("error" => "Email inválido"), JSON_FORCE_OBJECT ); 
+				echo json_encode(array("error" => "Email inválido"), JSON_FORCE_OBJECT );
 				break;
 			case PASSWORD_INVALIDO:
-				echo json_encode(array("error" => "Password inválido"), JSON_FORCE_OBJECT ); 
+				echo json_encode(array("error" => "Password inválido"), JSON_FORCE_OBJECT );
 				break;
 			case PASSWORD_DIFERENTE:
-				echo json_encode(array("error" => "Passwords diferentes"), JSON_FORCE_OBJECT ); 
+				echo json_encode(array("error" => "Passwords diferentes"), JSON_FORCE_OBJECT );
 				break;
 			default:
 				// Create wp_user
@@ -1214,14 +1214,14 @@ function pu_blank_login( $user ){
 
 				$userdata = array(
 				    'user_login'  	=> $username,
-				    'user_pass'   	=> $password, 
+				    'user_pass'   	=> $password,
 				    'user_email'	=> $email,
 				    'role'			=> 'subscriber',
 				);
 
 				$user_id = wp_insert_user( $userdata ) ;
 
-				
+
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
@@ -1283,7 +1283,7 @@ function pu_blank_login( $user ){
 					"success" => "Usuario registrado",
 					"error"	  => 0
 					);
-				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
+				echo json_encode( $msg, JSON_FORCE_OBJECT );
 
 		}// switch
 	} // register_user
@@ -1292,7 +1292,7 @@ function pu_blank_login( $user ){
 	/**
 	 * Registra un usuario nuevo
 	 * @param  string  $username
-	 * @param  string  $password 
+	 * @param  string  $password
 	 * @param string  $email
 	 * @return boolean
 	 */
@@ -1300,16 +1300,16 @@ function pu_blank_login( $user ){
 		$is_valid = validate_user_data();
 		switch ($is_valid) {
 			case USUARIO_INVALIDO:
-				echo json_encode(array("error" => "Nombre de usuario inválido"), JSON_FORCE_OBJECT ); 
+				echo json_encode(array("error" => "Nombre de usuario inválido"), JSON_FORCE_OBJECT );
 				break;
 			case EMAIL_INVALIDO:
-				echo json_encode(array("error" => "Email inválido"), JSON_FORCE_OBJECT ); 
+				echo json_encode(array("error" => "Email inválido"), JSON_FORCE_OBJECT );
 				break;
 			case PASSWORD_INVALIDO:
-				echo json_encode(array("error" => "Password inválido"), JSON_FORCE_OBJECT ); 
+				echo json_encode(array("error" => "Password inválido"), JSON_FORCE_OBJECT );
 				break;
 			case PASSWORD_DIFERENTE:
-				echo json_encode(array("error" => "Passwords diferentes"), JSON_FORCE_OBJECT ); 
+				echo json_encode(array("error" => "Passwords diferentes"), JSON_FORCE_OBJECT );
 				break;
 			default:
 				// Create wp_user
@@ -1320,14 +1320,14 @@ function pu_blank_login( $user ){
 
 				$userdata = array(
 				    'user_login'  	=> $username,
-				    'user_pass'   	=> $password, 
+				    'user_pass'   	=> $password,
 				    'user_email'	=> $email,
 				    'role'			=> 'subscriber',
 				);
 
 				$user_id = wp_insert_user( $userdata ) ;
 
-				
+
 				//$user_id = 8;
 				if(is_wp_error($user_id)){
 					echo json_encode(array("wp-error" => $user_id->get_error_codes()), JSON_FORCE_OBJECT );
@@ -1389,7 +1389,7 @@ function pu_blank_login( $user ){
 					"success" => "Usuario registrado",
 					"error"	  => 0
 					);
-				echo json_encode( $msg, JSON_FORCE_OBJECT ); 
+				echo json_encode( $msg, JSON_FORCE_OBJECT );
 		}// switch
 	} // register_user
 	add_action("wp_ajax_nopriv_register_user", "register_user");
@@ -1417,7 +1417,7 @@ function pu_blank_login( $user ){
 	   	$SAT 			= $_POST['SAT'];
 	   	$toefl 			= $_POST['toefl'];
 
-	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
+	   	$prospect_info = get_user_basic_info(get_current_user_id());
         $st_users_id=$prospect_info->st_user_id;
 
 		$updated = $wpdb->update(
@@ -1442,7 +1442,7 @@ function pu_blank_login( $user ){
 	}
 	add_action("wp_ajax_nopriv_update_curriculum", "update_curriculum");
 	add_action("wp_ajax_update_curriculum", "update_curriculum");
-	
+
 	/**
 	 * Introduce los datos del curriculum del usuario.
 	 * @param  string  $address
@@ -1465,10 +1465,10 @@ function pu_blank_login( $user ){
 	   	//$high_grad		= $_POST['high_grad'];
 	   	$SAT 			= $_POST['SAT'];
 	   	$toefl 			= $_POST['toefl'];
-	   	
-	   	$prospect_info = get_user_basic_info(get_current_user_id()); 
+
+	   	$prospect_info = get_user_basic_info(get_current_user_id());
         $st_users_id=$prospect_info->st_user_id;
-		
+
 		$inserted = $wpdb->insert(
 		    $wpdb->st_curriculum,
 			    array(
@@ -1502,8 +1502,8 @@ function pu_blank_login( $user ){
 	 */
 	function delete_tournament(){
 		global $wpdb;
-		
-		$prospect_info = get_user_basic_info(get_current_user_id()); 
+
+		$prospect_info = get_user_basic_info(get_current_user_id());
         $st_users_id=$prospect_info->st_user_id;
 		var_dump($_POST);
         $tournament_name = $_POST['tournament_name'];
@@ -1536,15 +1536,15 @@ function pu_blank_login( $user ){
 
 	function register_tournament(){
 		global $wpdb;
-		
-		$prospect_info = get_user_basic_info(get_current_user_id()); 
+
+		$prospect_info = get_user_basic_info(get_current_user_id());
         $st_users_id=$prospect_info->st_user_id;
-		
+
         $tournament_name = $_POST['tournament'];
         $tournament_date = $_POST['tournament_date'];
         $tournament_rank = $_POST['tournament_rank'];
 
-        for ($t=0; $t < sizeof($tournament_name); $t++) { 
+        for ($t=0; $t < sizeof($tournament_name); $t++) {
 
 	        $inserted = $wpdb->insert(
 			    $wpdb->st_tournament,
@@ -1555,7 +1555,7 @@ function pu_blank_login( $user ){
 				    	'ranking'	=> $tournament_rank[$t]
 				    	),
 				    array(
-				    	'%d', 
+				    	'%d',
 				    	'%s',
 				    	'%s',
 				    	'%s'
@@ -1580,7 +1580,7 @@ function pu_blank_login( $user ){
 	 */
 	function update_user(){
 		global $wpdb;
-	   	
+
 	   	$full_name 	= $_POST['full_name'];
 	   	$video_host = $_POST['video_host'];
 	   	$video_url	= $_POST['video_url'];
@@ -1601,11 +1601,11 @@ function pu_blank_login( $user ){
 		);
 
 
-		$prospect_info = get_user_basic_info(get_current_user_id()); 
+		$prospect_info = get_user_basic_info(get_current_user_id());
         $st_users_id=$prospect_info->st_user_id;
 
 		$sport	= $_POST['sport'];
-		
+
 		switch ($sport) {
 			case 'soccer':
 				$updated = $wpdb->update(
@@ -1616,7 +1616,7 @@ function pu_blank_login( $user ){
 					    	'question_id'=> '4'
 					    	),
 					    array('%s')
-					);	
+					);
 				break;
 			case 'volleyball':
 				$updated = $wpdb->update(
@@ -1627,7 +1627,7 @@ function pu_blank_login( $user ){
 					    	'question_id'=> '7'
 					    	),
 					    array('%s')
-					);	
+					);
 				break;
 			case 'golf':
 				$updated = $wpdb->update(
@@ -1638,7 +1638,7 @@ function pu_blank_login( $user ){
 					    	'question_id'=> '6'
 					    	),
 					    array('%s')
-				);	
+				);
 				break;
 			case 'tennis':
 				$updated = $wpdb->update(
@@ -1659,7 +1659,7 @@ function pu_blank_login( $user ){
 						    	),
 						    array('%s')
 					);
-				break;		
+				break;
 			default:
 				# code...
 				break;
@@ -1678,16 +1678,16 @@ function pu_blank_login( $user ){
 	 */
 	function validate_user_data(){
 		if($_POST['username'] == '')
-			return USUARIO_INVALIDO; 
+			return USUARIO_INVALIDO;
 
 		if($_POST['email'] == '')
-			return EMAIL_INVALIDO; 
+			return EMAIL_INVALIDO;
 
 		if($_POST['password'] == '' || $_POST['password_confirmation'] == '' )
-			return PASSWORD_INVALIDO; 
+			return PASSWORD_INVALIDO;
 
 		if($_POST['password'] != $_POST['password_confirmation'])
-			return PASSWORD_DIFERENTE; 
+			return PASSWORD_DIFERENTE;
 
 		return 1;
 	}// validate_user_data
@@ -1707,7 +1707,7 @@ function pu_blank_login( $user ){
 		     array( '%d')
 		 );
 	}// add_profile_picture
-	
+
 	/**
 	 * Agrega foto de perfil de usuario.
 	 * @param int $wp_user_id, string $profile_pic
@@ -1718,7 +1718,7 @@ function pu_blank_login( $user ){
 
 	    $query = "SELECT wp_user_id as id, full_name FROM st_users;";
 	    $users = $wpdb->get_results($query);
-		
+
 		return $users;
 	}// add_profile_picture
 
@@ -1732,19 +1732,19 @@ function pu_blank_login( $user ){
 		$creds['user_login'] = $username;
 		$creds['user_password'] = $password;
 		$creds['remember'] = true;
-		
+
 		//var_dump(im_active($username));
 
 		if(is_prospect($username)){
 			if(im_active($username)){
 				$user = wp_signon( $creds, false );
 			}else{
-				return -1;	
+				return -1;
 			}
 		}else{
 			$user = wp_signon( $creds, false );
 		}
-		
+
 		if ( is_wp_error($user) ){
 			return $user->get_error_message();
 		}
@@ -1759,7 +1759,7 @@ function pu_blank_login( $user ){
 	    $user_basic_info = $wpdb->get_results($query);
 		return $user_basic_info[0]->status;
 	}
- 	
+
 	function is_prospect($user){
 		global $wpdb;
 		$query = "SELECT ID FROM wp_users WHERE user_login = '".$user."';";
@@ -1794,7 +1794,7 @@ function pu_blank_login( $user ){
 		die();
 	}// site_login
 	add_action("wp_ajax_nopriv_site_login", "site_login");
-	
+
 	function site_login_post($username, $password){
 
 		$logged_in = login_user($username, $password);
@@ -1860,13 +1860,13 @@ function pu_blank_login( $user ){
 			$id = substr($id, $ampersand_position);
 
 		parse_str( parse_url( $url, PHP_URL_QUERY ), $url_array );
-		$id = $url_array['v']; 
+		$id = $url_array['v'];
 		return '//www.youtube.com/embed/'.$id;
 	}// get_video_src
 
 
 // CUSTOM TABLE FUNCTIONS //////////////////////////////////////////////////////
-	
+
 	add_action( 'init', 'st_register_tournament_table', 1 );
 	function st_register_tournament_table() {
 	    global $wpdb;
@@ -1926,7 +1926,7 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 	    $wpdb->st_answers = "st_answers";
 	}// st_register_st_answers
-	
+
 	/**
 	 * Inserta un usuario a la tabla st_users
 	 * @param string $st_user_data
@@ -1953,7 +1953,7 @@ function pu_blank_login( $user ){
 			$st_user_id = $wpdb->insert_id;
 			return $st_user_id;
 		}
-		
+
 		return 0;
 	}// add_st_user
 
@@ -2006,7 +2006,7 @@ function pu_blank_login( $user ){
 
 	    $query = "SELECT id, full_name, sport, gender, profile_picture, status FROM v_basic_profile";
 	    $users = $wpdb->get_results($query);
-		
+
 		return $users;
 	}// get_users_basic_info
 
@@ -2019,7 +2019,7 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 	    $query = $wpdb->prepare("SELECT * FROM v_basic_profile WHERE id = %d", intval($wp_user_id));
 	    $user_basic_info = $wpdb->get_results($query);
-		
+
 		return $user_basic_info[0];
 	}// get_users_basic_info
 
@@ -2032,7 +2032,7 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 	    $query = $wpdb->prepare("SELECT * FROM wp_users WHERE id = %d", intval($wp_user_id));
 	    $user_basic_info = $wpdb->get_results($query);
-		
+
 		return $user_basic_info[0];
 	}// get_users_basic_info
 
@@ -2103,7 +2103,7 @@ function pu_blank_login( $user ){
 	    global $wpdb;
 	    $query = $wpdb->prepare("SELECT name, tournament_date, ranking FROM st_tournament WHERE st_user_id = %d", $wp_user_id);
 	    $user_tournaments_info = $wpdb->get_results($query);
-		
+
 		return $user_tournaments_info;
 	}// get_user_tournament
 
@@ -2117,14 +2117,14 @@ function pu_blank_login( $user ){
 
 		$current_user = wp_get_current_user();
 		$user_id= $current_user->ID;
-		
+
 	    global $wpdb;
 	    $query = "SELECT full_name FROM st_users WHERE wp_user_id ='".$user_id."';";
 	    $myrows = $wpdb->get_results($query);
 
 		$subject = 'Select team message ';
 		$body_message = $message;
-		
+
 		$headers = 'From: '.$myrows[0]->full_name."\r\n";
 		$headers .= 'Reply-To: '.$current_user->user_email."\r\n";
 
@@ -2149,9 +2149,9 @@ function pu_blank_login( $user ){
 		$body_message .= "URL: selectteambecas.com\n";
 		$body_message .= "Usuario: ".$username."\n";
 		$body_message .= "Contraseña: S3l3ctT34m\n\r";
-		
+
 		$body_message .= "\r\n"."Atentamente,\r\n El equipo de Select Team Becas.\r\n";
-		
+
 		$mail_status = mail($mail, $subject, $body_message, $headers);
 		return $mail_status;
 	}// register_email
@@ -2169,9 +2169,9 @@ function pu_blank_login( $user ){
 
 		$body_message = "Tu usuario ha sido enviado para aprobación por parte del administrador.\n";
 		$body_message.= "Una vez que haya sido aprobado te enviaremos tu usuario y contraseña.\n\n";
-		
+
 		$body_message .= "\r\n"."Atentamente,\r\n El equipo de Select Team Becas.\r\n";
-		
+
 		$mail_status = mail($mail, $subject, $body_message, $headers);
 		return $mail_status;
 	}// register_email
@@ -2188,10 +2188,10 @@ function pu_blank_login( $user ){
 
 	function addAcademic($info){
 		global $wpdb;
-		
-		$prospect_info = get_user_basic_info(get_current_user_id()); 
+
+		$prospect_info = get_user_basic_info(get_current_user_id());
         $st_users_id=$prospect_info->st_user_id;
-		
+
         $high_school = $info['high_school'];
         $high_grad = $info['high_grad'];
         $country = $info['country'];
@@ -2208,7 +2208,7 @@ function pu_blank_login( $user ){
 				    	'city'				=> $city
 				    	),
 				    array(
-				    	'%d', 
+				    	'%d',
 				    	'%s',
 				    	'%s',
 				    	'%s',
@@ -2221,10 +2221,10 @@ function pu_blank_login( $user ){
 	function deleteAcademic($info){
 		global $wpdb;
 		$id=$info['del'];
-		$prospect_info = get_user_basic_info(get_current_user_id()); 
+		$prospect_info = get_user_basic_info(get_current_user_id());
         $st_users_id=$prospect_info->st_user_id;
-	
-		if($id=='0'){			
+
+		if($id=='0'){
 			$deleted = $wpdb->delete(
 				$wpdb->st_academic,
 					array(
@@ -2254,7 +2254,7 @@ function pu_blank_login( $user ){
 		}
 		die();
 	}
-	
+
 	/**
 	 * Crea un torneo.
 	 * @param  string  $tournament_name
@@ -2265,10 +2265,10 @@ function pu_blank_login( $user ){
 
 	function register_academic(){
 		global $wpdb;
-		
-		$prospect_info = get_user_basic_info(get_current_user_id()); 
+
+		$prospect_info = get_user_basic_info(get_current_user_id());
         $st_users_id=$prospect_info->st_user_id;
-		
+
         $academic_name = $_POST['name'];
         $academic_date = $_POST['date'];
         $academic_country = $_POST['country'];
@@ -2284,7 +2284,7 @@ function pu_blank_login( $user ){
 			    	'city'				=> $academic_city
 			    	),
 			    array(
-			    	'%d', 
+			    	'%d',
 			    	'%s',
 			    	'%s',
 			    	'%s',
@@ -2324,7 +2324,7 @@ function pu_blank_login( $user ){
 		$body_message .= "Comment:\n".$comment."\n\n";
 
 		$headers = 'Reply-To: '.$email_address."\r\n";
-		
+
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
 
 		return $mail_status;
@@ -2345,7 +2345,7 @@ function pu_blank_login( $user ){
 	function changeStatus($val, $id){
 		global $wpdb;
 		//echo get_current_user_id();
-		
+
 		$updated = $wpdb->update(
 		    $wpdb->st_users,
 			    array(
@@ -2413,7 +2413,7 @@ function pu_blank_login( $user ){
 
 		$headers = 'From: '.$q1."\r\n";
 		$headers .= 'Reply-To: '.$q2."\r\n";
-		
+
 		$mail_status = mail($mail_to, $subject, $body_message, $headers);
 
 		return $mail_status;
