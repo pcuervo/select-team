@@ -2137,8 +2137,9 @@ function pu_blank_login( $user ){
 	 * @param string $email_to, $message
 	 * @return int TRUE or FALSE
 	 */
-	function register_email($mail, $username){
+	function register_email($mail, $username, $password){
 		$st_mail="luismendoza@selectteambecas.com";
+		//$st_mail="miguel@pcuervo.com";
 
 		$subject = "Bienvenido(a) a Select Team Becas. \r\n";
 		$headers = "Bienvenido(a) a Select Team Becas. \r\n";
@@ -2148,7 +2149,7 @@ function pu_blank_login( $user ){
 
 		$body_message .= "URL: selectteambecas.com\n";
 		$body_message .= "Usuario: ".$username."\n";
-		$body_message .= "Contraseña: S3l3ctT34m\n\r";
+		$body_message .= "Contraseña: ".$password."\n\r";
 
 		$body_message .= "\r\n"."Atentamente,\r\n El equipo de Select Team Becas.\r\n";
 
@@ -2359,7 +2360,10 @@ function pu_blank_login( $user ){
 				$prospecto = get_userdata( $id );
 				$email = $prospecto->user_email;
 				$username = $prospecto->user_login;
-				$mail_status = register_email($email, $username);
+				$fecha = new DateTime();
+				$new_password = $fecha->getTimestamp();
+				wp_set_password( $new_password, $id );
+				$mail_status = register_email($email, $username, $new_password);
 			}//
 		}
 		die();

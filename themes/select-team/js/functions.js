@@ -854,6 +854,7 @@ function changeStatus(valor, id){
   $.get(
     site_url + '/dashboard-admin/?v='+valor+'&id='+id,
     function(response){
+      console.log(response);
       location.reload();
     } //response
   );  
